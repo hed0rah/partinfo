@@ -76,7 +76,7 @@ CHECKS = {
 
 def load_parts():
     parts = {}
-    for f in (REPO_ROOT / "parts").glob("**/*.json"):
+    for f in (REPO_ROOT / "src" / "partinfo" / "data" / "parts").glob("**/*.json"):
         d = json.loads(f.read_text())
         parts[d["id"]] = d
     return parts

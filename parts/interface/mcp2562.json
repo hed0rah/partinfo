@@ -1,0 +1,117 @@
+{
+  "id": "mcp2562",
+  "name": "MCP2562",
+  "aliases": [
+    "MCP2562-E/SN",
+    "MCP2561/2",
+    "MCP2562E"
+  ],
+  "full_name": "Microchip MCP2562 High-Speed CAN Transceiver with Split VIO Supply",
+  "manufacturers": [
+    "Microchip"
+  ],
+  "category": "interface",
+  "subcategory": "CAN transceiver",
+  "tags": [
+    "can",
+    "can-bus",
+    "transceiver",
+    "phy",
+    "5v",
+    "vio",
+    "level-shift",
+    "iso11898",
+    "automotive",
+    "differential"
+  ],
+  "description": "The MCP2562 is Microchip's second-generation high-speed CAN physical-layer transceiver, interfacing a CAN protocol controller to the two-wire differential bus. It is a PHY only: it carries no protocol logic and must be driven by a controller such as the MCP2515 or an MCU's CAN peripheral. It runs the bus side from a 5 V VDD (1 Mb/s, ISO 11898-2/-5), with extensive fault protection - TXD and bus permanent-dominant detection, short-circuit and high-voltage automotive transient protection, thermal shutdown, and bus pins that disconnect when unpowered so a dead node never loads the bus. Its standout trait is the separate VIO supply pin (pin 5): tie VIO to a 3.3 V (or down to 1.8 V) rail and the TXD/RXD logic levels track that rail, letting it interface a 3.3 V MCU directly without external level shifters - the key difference from its sibling the MCP2561, which instead exposes a SPLIT common-mode pin there.",
+  "packages": {
+    "SOIC-8 / PDIP-8": {
+      "template": "soic",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "TXD",
+          "type": "input",
+          "description": "Transmit data input from the CAN controller (LOW = dominant). Logic threshold referenced to VIO."
+        },
+        {
+          "pin": 2,
+          "name": "VSS",
+          "type": "ground",
+          "description": "Ground reference."
+        },
+        {
+          "pin": 3,
+          "name": "VDD",
+          "type": "power",
+          "description": "5 V transceiver supply voltage."
+        },
+        {
+          "pin": 4,
+          "name": "RXD",
+          "type": "output",
+          "description": "Receive data output to the CAN controller. Output level referenced to VIO (down to 1.8 V)."
+        },
+        {
+          "pin": 5,
+          "name": "VIO",
+          "type": "power",
+          "description": "Logic-side I/O supply reference; tie to the MCU's I/O rail (1.8 V to 5.5 V) so TXD/RXD swing matches, enabling direct 3.3 V interfacing. (On the MCP2561 this pin is SPLIT instead.)"
+        },
+        {
+          "pin": 6,
+          "name": "CANL",
+          "type": "bidirectional",
+          "description": "LOW-side differential CAN bus line."
+        },
+        {
+          "pin": 7,
+          "name": "CANH",
+          "type": "bidirectional",
+          "description": "HIGH-side differential CAN bus line."
+        },
+        {
+          "pin": 8,
+          "name": "STBY",
+          "type": "input",
+          "description": "Standby mode control; high level puts the device in low-current standby, low level enables normal operation."
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 4.5,
+    "vs_max_v": 5.5,
+    "extra": {
+      "data_rate_max": "1 Mb/s",
+      "supply": "5 V VDD plus separate VIO logic supply",
+      "vio_range": "1.8 V to 5.5 V (logic I/O reference)",
+      "standby_current": "5 uA typical",
+      "bus_esd_protection": "+/-14 kV (IEC 61000-4-2, CANH/CANL)",
+      "fault_protection": "TXD and bus permanent-dominant detection, short-circuit, automotive HV transient, thermal shutdown, POR/brown-out on VDD",
+      "unpowered_bus": "bus pins disconnect when unpowered (no bus loading)",
+      "system_voltage": "suitable for 12 V and 24 V systems",
+      "standard": "ISO 11898-2 and ISO 11898-5"
+    }
+  },
+  "typical_application": "Mixed-voltage CAN node: a 3.3 V MCU CAN controller (or MCP2515) drives TXD/RXD with VIO tied to the MCU's 3.3 V rail, while VDD runs the 5 V bus side into a 120-ohm-terminated twisted pair.",
+  "gotchas": [
+    "Transceiver (PHY) only - pair with an MCP2515 or MCU CAN controller; it does not frame messages.",
+    "VIO (pin 5) must be powered - tie it to the logic rail (commonly 3.3 V); leaving it unconnected breaks the digital interface. This is the pin that differs from the MCP2561 (SPLIT).",
+    "VDD undervoltage threshold is ~4 V and VIO ~1.2 V - both supplies must be valid before the transceiver enables.",
+    "STBY (pin 8) must be driven low for normal operation; high selects standby.",
+    "Bus still requires external 120-ohm termination at both ends."
+  ],
+  "related": [
+    "mcp2515",
+    "mcp2551",
+    "mcp2561",
+    "sn65hvd230",
+    "tja1050"
+  ],
+  "datasheet_url": "https://ww1.microchip.com/downloads/en/DeviceDoc/20005167C.pdf",
+  "source": "human",
+  "verified": true
+}

@@ -1,0 +1,162 @@
+{
+  "id": "tl022",
+  "name": "TL022",
+  "aliases": [
+    "TL022C",
+    "TL022M"
+  ],
+  "full_name": "Dual Low-Power Operational Amplifier",
+  "manufacturers": [
+    "Texas Instruments"
+  ],
+  "category": "opamp",
+  "subcategory": "dual low-power",
+  "tags": [
+    "opamp",
+    "dual",
+    "low-power",
+    "micropower",
+    "classic"
+  ],
+  "description": "Dual micropower op-amp drawing about 130uA total for both amplifiers. Standard dual op-amp pinout (same as TL072/LM358). Trades bandwidth and slew rate for very low supply current, aimed at battery-powered signal conditioning. Note: TL022M is no longer recommended for new designs.",
+  "packages": {
+    "DIP-8": {
+      "template": "dip",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "OUT1",
+          "type": "output",
+          "description": "amplifier 1 output"
+        },
+        {
+          "pin": 2,
+          "name": "IN1-",
+          "type": "input",
+          "description": "amplifier 1 inverting input"
+        },
+        {
+          "pin": 3,
+          "name": "IN1+",
+          "type": "input",
+          "description": "amplifier 1 non-inverting input"
+        },
+        {
+          "pin": 4,
+          "name": "V-",
+          "type": "power",
+          "description": "negative supply (VCC-); ground in single-supply use"
+        },
+        {
+          "pin": 5,
+          "name": "IN2+",
+          "type": "input",
+          "description": "amplifier 2 non-inverting input"
+        },
+        {
+          "pin": 6,
+          "name": "IN2-",
+          "type": "input",
+          "description": "amplifier 2 inverting input"
+        },
+        {
+          "pin": 7,
+          "name": "OUT2",
+          "type": "output",
+          "description": "amplifier 2 output"
+        },
+        {
+          "pin": 8,
+          "name": "V+",
+          "type": "power",
+          "description": "positive supply (VCC+)"
+        }
+      ],
+      "notes": "same pinout as the SOIC-8 (D) package and the industry-standard dual op-amp footprint."
+    },
+    "SOIC-8": {
+      "template": "soic",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "OUT1",
+          "type": "output",
+          "description": "amplifier 1 output"
+        },
+        {
+          "pin": 2,
+          "name": "IN1-",
+          "type": "input",
+          "description": "amplifier 1 inverting input"
+        },
+        {
+          "pin": 3,
+          "name": "IN1+",
+          "type": "input",
+          "description": "amplifier 1 non-inverting input"
+        },
+        {
+          "pin": 4,
+          "name": "V-",
+          "type": "power",
+          "description": "negative supply (VCC-); ground in single-supply use"
+        },
+        {
+          "pin": 5,
+          "name": "IN2+",
+          "type": "input",
+          "description": "amplifier 2 non-inverting input"
+        },
+        {
+          "pin": 6,
+          "name": "IN2-",
+          "type": "input",
+          "description": "amplifier 2 inverting input"
+        },
+        {
+          "pin": 7,
+          "name": "OUT2",
+          "type": "output",
+          "description": "amplifier 2 output"
+        },
+        {
+          "pin": 8,
+          "name": "V+",
+          "type": "power",
+          "description": "positive supply (VCC+)"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 5.0,
+    "vs_max_v": 36.0,
+    "iq_ma": 0.25,
+    "bw_hz": 500000.0,
+    "extra": {
+      "supply": "+-5 to +-15V dual, or 5 to 15V single",
+      "slew rate": "0.5 V/us typ",
+      "Vio": "1mV typ, 5mV max",
+      "Iib": "100nA typ",
+      "CMRR": "72dB typ",
+      "note": "TL022M not recommended for new designs",
+      "Iout": "+-6mA typ short-circuit current @ Ta=25C"
+    }
+  },
+  "typical_application": "Battery-powered analog signal conditioning where micropower supply current matters more than speed.",
+  "gotchas": [
+    "pin 4 is labeled V- / GND but is the negative supply rail in dual-supply use",
+    "low slew rate (0.5 V/us) and 0.5MHz GBW; not for fast signals, this is the price of the low Iq",
+    "TL022M variant is flagged not-for-new-design on the datasheet front page"
+  ],
+  "related": [
+    "tl072",
+    "lm358",
+    "lm324"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/tl022.pdf",
+  "source": "human",
+  "verified": true
+}

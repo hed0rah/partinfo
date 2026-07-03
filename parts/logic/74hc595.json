@@ -1,0 +1,193 @@
+{
+  "id": "74hc595",
+  "name": "74HC595",
+  "aliases": [
+    "SN74HC595",
+    "74HCT595",
+    "595 shift register"
+  ],
+  "full_name": "8-Bit Serial-In, Parallel-Out Shift Register with Output Latch",
+  "manufacturers": [
+    "Texas Instruments",
+    "Nexperia",
+    "onsemi"
+  ],
+  "category": "logic",
+  "subcategory": "shift register",
+  "tags": [
+    "logic",
+    "shift-register",
+    "spi",
+    "gpio-expander",
+    "cmos",
+    "classic"
+  ],
+  "description": "Serial-in, parallel-out 8-bit shift register with a separate storage latch and tri-state outputs. The standard way to add output pins to a microcontroller: shift in 8 bits, then latch them to the outputs all at once. Daisy-chains via Q7S.",
+  "packages": {
+    "DIP-16": {
+      "template": "dip",
+      "pin_count": 16,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "Q1",
+          "type": "output",
+          "description": "parallel output bit 1",
+          "datasheet_name": "QB",
+          "alternate": []
+        },
+        {
+          "pin": 2,
+          "name": "Q2",
+          "type": "output",
+          "description": "parallel output bit 2",
+          "datasheet_name": "QC",
+          "alternate": []
+        },
+        {
+          "pin": 3,
+          "name": "Q3",
+          "type": "output",
+          "description": "parallel output bit 3",
+          "datasheet_name": "QD",
+          "alternate": []
+        },
+        {
+          "pin": 4,
+          "name": "Q4",
+          "type": "output",
+          "description": "parallel output bit 4",
+          "datasheet_name": "QE",
+          "alternate": []
+        },
+        {
+          "pin": 5,
+          "name": "Q5",
+          "type": "output",
+          "description": "parallel output bit 5",
+          "datasheet_name": "QF",
+          "alternate": []
+        },
+        {
+          "pin": 6,
+          "name": "Q6",
+          "type": "output",
+          "description": "parallel output bit 6",
+          "datasheet_name": "QG",
+          "alternate": []
+        },
+        {
+          "pin": 7,
+          "name": "Q7",
+          "type": "output",
+          "description": "parallel output bit 7",
+          "datasheet_name": "QH",
+          "alternate": []
+        },
+        {
+          "pin": 8,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 9,
+          "name": "Q7S",
+          "type": "output",
+          "description": "serial data out for daisy-chaining to the next register",
+          "datasheet_name": "QH'",
+          "alternate": [
+            "SER OUT"
+          ]
+        },
+        {
+          "pin": 10,
+          "name": "MR",
+          "type": "input",
+          "description": "master reset, active low; tie to Vcc if unused",
+          "datasheet_name": "SRCLR",
+          "alternate": []
+        },
+        {
+          "pin": 11,
+          "name": "SHCP",
+          "type": "input",
+          "description": "shift register clock; data shifts on rising edge",
+          "datasheet_name": "SRCLK",
+          "alternate": [
+            "CLK"
+          ]
+        },
+        {
+          "pin": 12,
+          "name": "STCP",
+          "type": "input",
+          "description": "storage/latch clock; rising edge copies shift register to outputs",
+          "datasheet_name": "RCLK",
+          "alternate": [
+            "LATCH"
+          ]
+        },
+        {
+          "pin": 13,
+          "name": "OE",
+          "type": "input",
+          "description": "output enable, active low; high tri-states the outputs",
+          "alternate": [
+            "G"
+          ]
+        },
+        {
+          "pin": 14,
+          "name": "DS",
+          "type": "input",
+          "description": "serial data in",
+          "datasheet_name": "SER",
+          "alternate": [
+            "DATA"
+          ]
+        },
+        {
+          "pin": 15,
+          "name": "Q0",
+          "type": "output",
+          "description": "parallel output bit 0",
+          "datasheet_name": "QA",
+          "alternate": []
+        },
+        {
+          "pin": 16,
+          "name": "VCC",
+          "type": "power",
+          "description": "supply, 2V to 6V (HC)"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.0,
+    "vs_max_v": 6.0,
+    "iout_max_ma": 35.0,
+    "freq_max_hz": 100000000.0,
+    "extra": {
+      "outputs": "8 tri-state",
+      "logic family": "HC (CMOS) / HCT (TTL-compatible inputs)",
+      "per-pin drive": "+-6mA typical, 35mA absolute"
+    }
+  },
+  "typical_application": "Drive the data and shift clock from an MCU (or hardware SPI MOSI/SCK), pulse the latch (STCP) after 8 bits to update outputs. Chain Q7S into the next chip's DS to expand to 16/24/... outputs.",
+  "gotchas": [
+    "two separate clocks: SHCP shifts, STCP latches; forgetting to pulse the latch leaves outputs unchanged",
+    "tie MR (pin 10) high and OE (pin 13) low for normal always-on operation",
+    "total output current is limited; do not drive 8 LEDs at full brightness without current limiting and package power budget in mind",
+    "HC inputs need near-rail logic levels; use HCT (74HCT595) when driven by 5V TTL or a 3.3V MCU into 5V"
+  ],
+  "related": [
+    "74hc165",
+    "74hc164",
+    "tpic6b595"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/sn74hc595.pdf"
+}

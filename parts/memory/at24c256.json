@@ -1,0 +1,114 @@
+{
+  "id": "at24c256",
+  "name": "AT24C256",
+  "aliases": [
+    "AT24C256C",
+    "AT24C256B"
+  ],
+  "full_name": "Atmel/Microchip AT24C256 256Kbit (32K x 8) I2C Two-Wire Serial EEPROM",
+  "manufacturers": [
+    "Atmel",
+    "Microchip"
+  ],
+  "category": "memory",
+  "subcategory": "I2C EEPROM",
+  "tags": [
+    "eeprom",
+    "i2c",
+    "twi",
+    "serial",
+    "nonvolatile",
+    "memory",
+    "256kbit",
+    "atmel"
+  ],
+  "description": "The AT24C256 is Atmel's (now Microchip's) 256 Kbit (32,768 x 8) two-wire serial EEPROM, the direct competitor and pin-for-pin equivalent of the 24LC256. It operates from 2.7V to 5.5V (1.8V low-voltage variants exist), supports 400 kHz at 5V, and uses a 64-byte page write buffer. Three address pins permit eight devices on one I2C bus. Endurance is one million write cycles with multi-decade retention. Its standout trait is drop-in interchangeability with the Microchip 24LC256 in nearly every design.",
+  "packages": {
+    "DIP-8": {
+      "template": "dip",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "A0",
+          "type": "input",
+          "description": "chip address input bit 0"
+        },
+        {
+          "pin": 2,
+          "name": "A1",
+          "type": "input",
+          "description": "chip address input bit 1"
+        },
+        {
+          "pin": 3,
+          "name": "A2",
+          "type": "input",
+          "description": "chip address input bit 2"
+        },
+        {
+          "pin": 4,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 5,
+          "name": "SDA",
+          "type": "bidirectional",
+          "description": "serial data, open-drain, needs pull-up"
+        },
+        {
+          "pin": 6,
+          "name": "SCL",
+          "type": "clock",
+          "description": "serial clock input"
+        },
+        {
+          "pin": 7,
+          "name": "WP",
+          "type": "input",
+          "description": "write protect; high write-protects upper half/whole array depending on variant"
+        },
+        {
+          "pin": 8,
+          "name": "VCC",
+          "type": "power",
+          "description": "supply voltage 2.7V to 5.5V"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.7,
+    "vs_max_v": 5.5,
+    "extra": {
+      "capacity": "256 Kbit (32 KB)",
+      "organization": "32768 x 8",
+      "interface": "I2C (2-wire)",
+      "bus_speed": "400 kHz (at 5V)",
+      "page_size": "64 bytes",
+      "write_cycle": "5 ms max (self-timed)",
+      "endurance": "1,000,000 write cycles",
+      "data_retention": "40 years",
+      "i2c_address": "0x50-0x57 (A2..A0)"
+    }
+  },
+  "typical_application": "Storing settings, lookup tables, or serial-number data for embedded systems over I2C.",
+  "gotchas": [
+    "requires external pull-ups on SDA and SCL like any I2C device",
+    "WP on some die revisions protects only the upper half of the array, not the whole device; check the exact revision datasheet",
+    "1.8V variants (AT24C256...-1.8) exist; the standard part is 2.7V minimum, so verify before running at 2.5V",
+    "tie A0-A2 to defined levels; floating address pins cause unreliable addressing",
+    "use acknowledge polling after writes, the device NAKs while the internal write is in progress",
+    "page-write rollover within the 64-byte page can silently corrupt data if you write across a boundary"
+  ],
+  "related": [
+    "24lc256",
+    "at24c32",
+    "23lc1024"
+  ],
+  "datasheet_url": "https://ww1.microchip.com/downloads/en/DeviceDoc/doc0670.pdf",
+  "source": "human",
+  "verified": true
+}

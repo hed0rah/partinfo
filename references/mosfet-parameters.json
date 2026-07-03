@@ -1,0 +1,97 @@
+{
+  "id": "mosfet-parameters",
+  "title": "MOSFET Parameters",
+  "topic": "power",
+  "tags": [
+    "mosfet",
+    "vds",
+    "vgs",
+    "rds-on",
+    "gate-charge",
+    "thermal",
+    "conduction-loss",
+    "logic-level",
+    "power"
+  ],
+  "summary": "what the key MOSFET datasheet numbers mean and the calculations they feed: conduction loss, junction temperature, gate drive, and power derating.",
+  "body": "a MOSFET datasheet lists many ratings; a handful drive almost every design\ndecision. the ratings are the stored inputs -- most of what you actually want\n(will it survive, how hot, how fast) is calculated from them.\n\nV_DS is the maximum drain-source voltage the device blocks when off; stay well\nunder it (allow margin for switching spikes). V_GS(th) is the gate threshold\nwhere the channel starts to conduct -- a standard MOSFET needs ~10 V on the\ngate for its rated R_DS(on), while a logic-level part reaches it at 3-5 V. this\nis the single most common beginner trap: driving a standard MOSFET from a 3.3 V\nor 5 V pin leaves it half-on and dissipating heat. R_DS(on) is the on-resistance\n(always quoted at a specific V_GS); it sets conduction loss. I_D is the rated\ncontinuous drain current, but note it is specified at an idealized case\ntemperature -- the real current limit is almost always thermal, set by R_th and\nyour heatsink, not by the headline I_D. Q_g is the total gate charge; it sets\nhow much current the gate driver must supply to switch in a given time. R_th(JC)\nand R_th(JA) are the junction-to-case and junction-to-ambient thermal\nresistances that turn dissipated watts into a temperature rise.",
+  "formulas": [
+    {
+      "expr": "P_cond = I_D^2 * R_DS(on)",
+      "description": "conduction loss when fully on -- the dominant loss in low-frequency (DC/slow PWM) switching",
+      "vars": [
+        {"symbol": "P_cond", "meaning": "conduction power dissipated", "unit": "W"},
+        {"symbol": "I_D", "meaning": "drain current", "unit": "A"},
+        {"symbol": "R_DS(on)", "meaning": "on-resistance at the applied V_GS", "unit": "ohm"}
+      ]
+    },
+    {
+      "expr": "T_j = T_a + P * R_th(JA)",
+      "description": "junction temperature with no heatsink (still air). keep T_j below the datasheet max (often 150-175 C)",
+      "vars": [
+        {"symbol": "T_j", "meaning": "junction temperature", "unit": "C"},
+        {"symbol": "T_a", "meaning": "ambient temperature", "unit": "C"},
+        {"symbol": "P", "meaning": "total power dissipated", "unit": "W"},
+        {"symbol": "R_th(JA)", "meaning": "junction-to-ambient thermal resistance", "unit": "C/W"}
+      ]
+    },
+    {
+      "expr": "T_j = T_c + P * R_th(JC)",
+      "description": "junction temperature referenced to the case (use with a heatsink; add the case-to-sink and sink-to-air resistances for the full chain)",
+      "vars": [
+        {"symbol": "T_c", "meaning": "case temperature", "unit": "C"},
+        {"symbol": "R_th(JC)", "meaning": "junction-to-case thermal resistance", "unit": "C/W"}
+      ]
+    },
+    {
+      "expr": "I_g = Q_g / t_sw",
+      "description": "average gate-drive current needed to switch the device in time t_sw (sets the gate driver and gate resistor)",
+      "vars": [
+        {"symbol": "I_g", "meaning": "average gate current", "unit": "A"},
+        {"symbol": "Q_g", "meaning": "total gate charge", "unit": "C"},
+        {"symbol": "t_sw", "meaning": "target switching time", "unit": "s"}
+      ]
+    },
+    {
+      "expr": "P_max(T_c) = (T_j(max) - T_c) / R_th(JC)",
+      "description": "real dissipation ceiling at a given case temperature -- the headline P_D assumes T_c = 25 C, which almost never holds"
+    }
+  ],
+  "tables": [
+    {
+      "title": "key parameters at a glance",
+      "headers": ["symbol", "meaning", "note"],
+      "rows": [
+        ["V_DS", "drain-source breakdown voltage", "max blocking voltage when off; derate for spikes"],
+        ["V_GS(th)", "gate threshold voltage", "channel starts conducting; standard ~2-4 V, logic-level lower"],
+        ["V_GS(max)", "max gate-source voltage", "usually +-20 V; exceeding it punctures the gate oxide"],
+        ["R_DS(on)", "on-resistance", "quoted at a specific V_GS; sets conduction loss"],
+        ["I_D", "continuous drain current", "rated at ideal T_c; real limit is thermal"],
+        ["I_DM", "pulsed drain current", "short-duration peak, well above I_D"],
+        ["Q_g", "total gate charge", "sets gate-drive current for a given switching speed"],
+        ["P_D", "max power dissipation", "quoted at T_c = 25 C; derate with temperature"],
+        ["R_th(JC)", "junction-to-case thermal resistance", "watts to temperature rise, with heatsink"],
+        ["R_th(JA)", "junction-to-ambient thermal resistance", "watts to temperature rise, no heatsink"]
+      ]
+    }
+  ],
+  "examples": [
+    "IRF520 switching 4 A continuously: P_cond = 4^2 * 0.27 = 4.3 W. with R_th(JA) ~ 62 C/W and no heatsink, that is a ~270 C rise -- impossible, so it needs a heatsink or far less current. this is why the headline 9.2 A rating is misleading without thermal design.",
+    "logic-level check: a standard MOSFET (V_GS(th) up to 4 V) driven from a 3.3 V pin never fully turns on; R_DS(on) is far above the 10 V spec and it overheats. pick a logic-level part or add a gate driver."
+  ],
+  "gotchas": [
+    "R_DS(on) is always specified at a stated V_GS -- a value at V_GS=10 V does not apply if you drive the gate to 5 V",
+    "the continuous I_D rating assumes an unrealistic case temperature; in practice thermal resistance and your heatsink set the usable current, not I_D",
+    "V_GS(th) is where conduction begins, not where the device is fully on; full enhancement needs the V_GS at which R_DS(on) is specified",
+    "for fast PWM, add switching loss (from Q_g, capacitances and switching times) to the conduction loss; at DC/slow speeds conduction loss dominates"
+  ],
+  "related": [
+    "irf520",
+    "irf540",
+    "irlz44n",
+    "irfz44",
+    "ohms-law"
+  ],
+  "see_also_url": null,
+  "source": "human"
+}

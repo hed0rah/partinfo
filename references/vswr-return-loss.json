@@ -1,0 +1,103 @@
+{
+  "id": "vswr-return-loss",
+  "title": "VSWR and Return Loss",
+  "topic": "rf",
+  "tags": [
+    "vswr",
+    "swr",
+    "return-loss",
+    "reflection",
+    "gamma",
+    "impedance-match",
+    "antenna"
+  ],
+  "summary": "reflection coefficient, standing-wave ratio, and return loss for impedance matching.",
+  "body": "when a transmission line is not matched to its load, part of the wave reflects.\nthe reflection coefficient gamma quantifies this; VSWR and return loss are two\nways of expressing the same mismatch. a perfect match is gamma = 0, VSWR = 1:1,\nand infinite return loss.",
+  "formulas": [
+    {
+      "expr": "gamma = (ZL - Z0) / (ZL + Z0)",
+      "description": "reflection coefficient",
+      "vars": [
+        {
+          "symbol": "gamma",
+          "meaning": "reflection coefficient"
+        },
+        {
+          "symbol": "ZL",
+          "meaning": "load impedance",
+          "unit": "ohm"
+        },
+        {
+          "symbol": "Z0",
+          "meaning": "line characteristic impedance",
+          "unit": "ohm"
+        }
+      ]
+    },
+    {
+      "expr": "VSWR = (1 + |gamma|) / (1 - |gamma|)",
+      "description": "voltage standing wave ratio"
+    },
+    {
+      "expr": "RL_dB = -20 * log10(|gamma|)",
+      "description": "return loss (positive dB convention)",
+      "vars": [
+        {
+          "symbol": "RL_dB",
+          "meaning": "return loss",
+          "unit": "dB"
+        }
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "title": "mismatch quick reference",
+      "headers": [
+        "VSWR",
+        "|gamma|",
+        "return loss",
+        "power reflected"
+      ],
+      "rows": [
+        [
+          "1.0:1",
+          "0.00",
+          "inf",
+          "0%"
+        ],
+        [
+          "1.5:1",
+          "0.20",
+          "14 dB",
+          "4%"
+        ],
+        [
+          "2.0:1",
+          "0.33",
+          "9.5 dB",
+          "11%"
+        ],
+        [
+          "3.0:1",
+          "0.50",
+          "6 dB",
+          "25%"
+        ]
+      ]
+    }
+  ],
+  "examples": [
+    "75 ohm load on a 50 ohm line: gamma = (75-50)/(75+50) = 0.2, VSWR = 1.5:1, RL = 14 dB.",
+    "VSWR 2:1 reflects ~11% of power -- usually the acceptable upper limit for antennas."
+  ],
+  "gotchas": [
+    "return loss is sometimes quoted negative; the magnitude is what matters (higher = better match)",
+    "VSWR ignores cable loss, which actually improves the VSWR measured at the input (masking a bad antenna)",
+    "a Smith chart plots gamma on the complex plane; these scalar formulas assume purely resistive loads"
+  ],
+  "related": [
+    "decibel"
+  ],
+  "source": "human"
+}

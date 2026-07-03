@@ -1,0 +1,87 @@
+{
+  "id": "78l05",
+  "name": "78L05",
+  "aliases": [
+    "L78L05",
+    "MC78L05",
+    "78L12",
+    "78Lxx"
+  ],
+  "full_name": "100mA Fixed Positive Voltage Regulator (TO-92)",
+  "manufacturers": [
+    "STMicroelectronics",
+    "onsemi",
+    "Texas Instruments"
+  ],
+  "category": "power",
+  "subcategory": "fixed linear regulator (low current)",
+  "tags": [
+    "regulator",
+    "linear",
+    "fixed",
+    "to92",
+    "78lxx",
+    "classic"
+  ],
+  "description": "Small 100mA fixed positive regulator in TO-92, the low-current cousin of the 7805. The 78L05 is 5V, 78L12 is 12V, etc. Critically, the TO-92 pinout is OUT-GND-IN, which is NOT the same as the TO-220 7805 (IN-GND-OUT).",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "VOUT",
+          "type": "output",
+          "description": "regulated +5V output"
+        },
+        {
+          "pin": 2,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 3,
+          "name": "VIN",
+          "type": "power",
+          "description": "unregulated input supply"
+        }
+      ],
+      "notes": "TO-92, flat face toward you, leads down: OUT-GND-IN. Opposite of the 7805 TO-220 order."
+    }
+  },
+  "specs": {
+    "vs_min_v": 7.0,
+    "vs_max_v": 30.0,
+    "iout_max_ma": 100.0,
+    "vs_typ_v": 5.0,
+    "extra": {
+      "Vout (78L05)": "5V",
+      "Vout (78L12)": "12V",
+      "Iout max": "100mA",
+      "dropout": "~1.7V",
+      "Vin_max": "30V operating; 35V abs max (legacy chip), 45V abs max (new chip)",
+      "Iq (78L05)": "3.6mA typ (4.7mA max, new chip @ TJ=25C)",
+      "Iq (78L12)": "3.8mA typ (5.1mA max, new chip @ TJ=25C)",
+      "Rth(JC)": "75.2 C/W (TO-92)",
+      "Rth(JA)": "158.7 C/W (TO-92)"
+    },
+    "rth_jc_cw": 75.2,
+    "rth_ja_cw": 158.7
+  },
+  "typical_application": "Local low-current rails for op-amps and logic where a full 7805 is overkill. Add 0.33uF in and 0.1uF out near the pins.",
+  "gotchas": [
+    "TO-92 pinout is OUT-GND-IN, the REVERSE of the TO-220 7805; swapping them wrong destroys the part",
+    "only 100mA; use a 7805 for heavier loads",
+    "needs input/output caps to stay stable"
+  ],
+  "related": [
+    "lm7805",
+    "lm317",
+    "79l05"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/lm78l.pdf"
+}

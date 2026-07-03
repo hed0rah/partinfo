@@ -1,0 +1,179 @@
+{
+  "id": "74hc374",
+  "name": "74HC374",
+  "aliases": [
+    "74LS374",
+    "74HCT374",
+    "SN74HC374",
+    "SN54HC374"
+  ],
+  "full_name": "Octal Edge-Triggered D-Type Flip-Flop with 3-State Outputs",
+  "manufacturers": [
+    "Texas Instruments",
+    "Nexperia",
+    "onsemi"
+  ],
+  "category": "logic",
+  "subcategory": "flip-flop",
+  "tags": [
+    "logic",
+    "74-series",
+    "cmos",
+    "flip-flop",
+    "register",
+    "3-state"
+  ],
+  "description": "Eight positive-edge-triggered D flip-flops with 3-state outputs. Data on D1..D8 is captured on the rising edge of CLK and held until the next. Active-low OE independently 3-states all outputs without disturbing stored data. Edge-triggered (contrast the '373). HC/HCT/LS share this pinout.",
+  "packages": {
+    "DIP-20": {
+      "template": "dip",
+      "pin_count": 20,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "OE",
+          "type": "input",
+          "description": "output enable, active LOW; HIGH 3-states all outputs"
+        },
+        {
+          "pin": 2,
+          "name": "1Q",
+          "type": "output",
+          "description": "output 1 (3-state)"
+        },
+        {
+          "pin": 3,
+          "name": "1D",
+          "type": "input",
+          "description": "data input 1"
+        },
+        {
+          "pin": 4,
+          "name": "2D",
+          "type": "input",
+          "description": "data input 2"
+        },
+        {
+          "pin": 5,
+          "name": "2Q",
+          "type": "output",
+          "description": "output 2 (3-state)"
+        },
+        {
+          "pin": 6,
+          "name": "3Q",
+          "type": "output",
+          "description": "output 3 (3-state)"
+        },
+        {
+          "pin": 7,
+          "name": "3D",
+          "type": "input",
+          "description": "data input 3"
+        },
+        {
+          "pin": 8,
+          "name": "4D",
+          "type": "input",
+          "description": "data input 4"
+        },
+        {
+          "pin": 9,
+          "name": "4Q",
+          "type": "output",
+          "description": "output 4 (3-state)"
+        },
+        {
+          "pin": 10,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 11,
+          "name": "CLK",
+          "type": "clock",
+          "description": "clock; data latched on rising edge"
+        },
+        {
+          "pin": 12,
+          "name": "5Q",
+          "type": "output",
+          "description": "output 5 (3-state)"
+        },
+        {
+          "pin": 13,
+          "name": "5D",
+          "type": "input",
+          "description": "data input 5"
+        },
+        {
+          "pin": 14,
+          "name": "6D",
+          "type": "input",
+          "description": "data input 6"
+        },
+        {
+          "pin": 15,
+          "name": "6Q",
+          "type": "output",
+          "description": "output 6 (3-state)"
+        },
+        {
+          "pin": 16,
+          "name": "7Q",
+          "type": "output",
+          "description": "output 7 (3-state)"
+        },
+        {
+          "pin": 17,
+          "name": "7D",
+          "type": "input",
+          "description": "data input 7"
+        },
+        {
+          "pin": 18,
+          "name": "8D",
+          "type": "input",
+          "description": "data input 8"
+        },
+        {
+          "pin": 19,
+          "name": "8Q",
+          "type": "output",
+          "description": "output 8 (3-state)"
+        },
+        {
+          "pin": 20,
+          "name": "VCC",
+          "type": "power",
+          "description": "positive supply"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.0,
+    "vs_max_v": 6.0,
+    "extra": {
+      "function": "octal edge-triggered D flip-flop register",
+      "logic family": "74HC/HCT/LS",
+      "outputs": "3-state, positive-edge clocked"
+    }
+  },
+  "typical_application": "Clocked 8-bit register / output port that captures bus data on a rising clock edge and drives a 3-state bus.",
+  "gotchas": [
+    "GND = pin 10, VCC = pin 20",
+    "CLK (pin 11) is rising-edge triggered: data sampled only on the LOW-to-HIGH transition (a flip-flop, not a transparent latch like the '373)",
+    "OE (pin 1) is active-LOW and only controls the 3-state outputs; it does not affect stored data",
+    "same interleaved D/Q layout as the '373; pin 11 is CLK here, LE on the '373"
+  ],
+  "related": [
+    "74hc373",
+    "74hc74",
+    "74hc165"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/sn74hc374.pdf",
+  "source": "human",
+  "verified": true
+}

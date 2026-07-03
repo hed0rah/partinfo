@@ -1,0 +1,79 @@
+{
+  "id": "2n3904",
+  "name": "2N3904",
+  "aliases": [
+    "PN2222 alternative"
+  ],
+  "full_name": "NPN General-Purpose Switching/Amplifier Transistor",
+  "manufacturers": [
+    "onsemi",
+    "Fairchild",
+    "STMicroelectronics"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "npn small-signal",
+  "tags": [
+    "transistor",
+    "npn",
+    "bjt",
+    "small-signal",
+    "switching",
+    "classic"
+  ],
+  "description": "The default NPN small-signal transistor. General-purpose amplification and switching up to ~200mA. TO-92 lead order is E-B-C with the flat face toward you.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter"
+        },
+        {
+          "pin": 2,
+          "name": "B",
+          "type": "passive",
+          "description": "base"
+        },
+        {
+          "pin": 3,
+          "name": "C",
+          "type": "passive",
+          "description": "collector"
+        }
+      ],
+      "notes": "flat face toward you, leads down: pin 1 (E) on the left."
+    }
+  },
+  "specs": {
+    "vs_max_v": 40.0,
+    "iout_max_ma": 200.0,
+    "pd_max_mw": 625.0,
+    "hfe_min": 100,
+    "hfe_max": 300,
+    "freq_max_hz": 300000000.0,
+    "extra": {
+      "Vceo": "40V",
+      "complement (pnp)": "2N3906",
+      "Vce(sat)": "0.2V (max) @ Ic=10mA, Ib=1mA (0.3V max @ Ic=50mA, Ib=5mA)",
+      "Vbe(on)": "0.65-0.85V @ Ic=10mA, Ib=1mA (datasheet's VBEsat)"
+    }
+  },
+  "typical_application": "Small-signal gain stages, logic-level switching of small loads, LED drivers. For inductive loads add a flyback diode.",
+  "gotchas": [
+    "pinout is E-B-C, the REVERSE of BC547 (C-B-E); do not assume",
+    "200mA absolute max collector current; use a bigger transistor (BD139, 2N2222 metal can) for more",
+    "hFE varies widely part to part; do not design for an exact gain"
+  ],
+  "related": [
+    "2n3906",
+    "bc547",
+    "2n2222"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://diotec.com/request/datasheet/2n3904.pdf"
+}

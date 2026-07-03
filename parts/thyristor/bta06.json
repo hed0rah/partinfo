@@ -1,0 +1,74 @@
+{
+  "id": "bta06",
+  "name": "BTA06",
+  "aliases": [
+    "BTB06",
+    "BTA06-600",
+    "BTA06-800"
+  ],
+  "full_name": "6A Triac (Snubberless and Logic-Level variants)",
+  "manufacturers": [
+    "STMicroelectronics"
+  ],
+  "category": "thyristor",
+  "subcategory": "triac",
+  "tags": [
+    "triac",
+    "thyristor",
+    "ac-switch",
+    "phase-control",
+    "snubberless"
+  ],
+  "description": "A 6A triac in TO-220AB. ST labels the main terminals A1/A2 (A1 = MT1, A2 = MT2). The BTA variant has a voltage-insulated tab; the BTB variant has a non-insulated tab. Logic-level and snubberless (W-suffix) versions are 3-quadrant.",
+  "packages": {
+    "TO-220AB": {
+      "template": "to220",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "A1",
+          "type": "passive",
+          "description": "main terminal 1 (MT1); gate-reference terminal"
+        },
+        {
+          "pin": 2,
+          "name": "A2",
+          "type": "passive",
+          "description": "main terminal 2 (MT2); tied to the tab"
+        },
+        {
+          "pin": 3,
+          "name": "G",
+          "type": "input",
+          "description": "gate"
+        }
+      ],
+      "notes": "front face toward you, leads down: pin 1 (A1), pin 2 (A2/tab), pin 3 (G) left to right. BTA tab is insulated (2500Vrms) but still electrically A2; BTB tab is non-insulated."
+    }
+  },
+  "specs": {
+    "vs_max_v": 800.0,
+    "iout_max_ma": 6000.0,
+    "extra": {
+      "It_rms": "6A (Tc 105-110C)",
+      "VDRM": "600V and 800V",
+      "IGT": "5mA (TW logic) to 50mA (B/BW) by suffix",
+      "VGT": "1.3V max",
+      "quadrants": "standard B/C = 4; W-suffix (snubberless/logic) = 3 (no Q4)"
+    }
+  },
+  "typical_application": "AC on/off and phase control: static relays, heater regulation, dimmers, motor speed. W-suffix snubberless parts suit inductive loads.",
+  "gotchas": [
+    "the tab is A2 (MT2). BTA = insulated tab (no mica needed); BTB = non-insulated, needs isolation hardware",
+    "logic-level and snubberless (W-suffix) variants are 3-quadrant only; they cannot trigger in Q4 (MT2-, gate+)",
+    "ST uses A1/A2 instead of MT1/MT2; A1 is the gate-reference terminal"
+  ],
+  "related": [
+    "bt134",
+    "mac97a6"
+  ],
+  "datasheet_url": "https://www.st.com/resource/en/datasheet/bta06.pdf",
+  "source": "human",
+  "verified": true
+}

@@ -1,0 +1,119 @@
+{
+  "id": "tp4056",
+  "name": "TP4056",
+  "aliases": [
+    "TP4056-42",
+    "TP4056-42-ESOP8",
+    "TP4056-42-EMSOP8"
+  ],
+  "full_name": "1A Standalone Linear Li-Ion Battery Charger",
+  "manufacturers": [
+    "NanJing Top Power ASIC Corp."
+  ],
+  "category": "power",
+  "subcategory": "Li-ion battery charger",
+  "tags": [
+    "battery-charger",
+    "li-ion",
+    "lipo",
+    "cc-cv",
+    "linear",
+    "usb-charger",
+    "single-cell"
+  ],
+  "description": "The TP4056 is a complete constant-current/constant-voltage linear charger for a single-cell lithium-ion/LiPo battery. The float (charge) voltage is fixed internally at 4.2V with 1% accuracy, and the charge current is set by a single resistor from PROG to ground (IBAT = VPROG/RPROG x 1200, giving 1000mA at 1.2k). It needs no external sense resistor, blocking diode, or MOSFET thanks to its internal PMOS architecture and reverse-discharge protection, and it includes thermal regulation that folds back current as the die heats. The chip terminates at C/10, supports automatic recharge, under-voltage lockout, a 2.9V trickle threshold, and NTC battery-temperature monitoring on the TEMP pin. Two open-drain status outputs (CHRG and STDBY) drive LEDs for charging and charge-complete indication.",
+  "packages": {
+    "SOP-8": {
+      "template": "soic",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "TEMP",
+          "type": "input",
+          "description": "Battery temperature sense input from pack NTC; charging suspends if voltage is below 45% or above 80% of VCC. Tie to GND to disable temperature sensing."
+        },
+        {
+          "pin": 2,
+          "name": "PROG",
+          "type": "analog",
+          "description": "Charge-current program and monitor; resistor RPROG from this pin to GND sets current (IBAT = VPROG/RPROG x 1200). Regulated to 1V in CC mode, 0.1V in precharge."
+        },
+        {
+          "pin": 3,
+          "name": "GND",
+          "type": "ground",
+          "description": "Ground terminal"
+        },
+        {
+          "pin": 4,
+          "name": "VCC",
+          "type": "power",
+          "description": "Positive input supply (4V to 8V); enters shutdown when within 30mV of BAT voltage"
+        },
+        {
+          "pin": 5,
+          "name": "BAT",
+          "type": "output",
+          "description": "Battery connection; supplies charge current and regulates the 4.2V float voltage. Draws under 2uA in disable/sleep."
+        },
+        {
+          "pin": 6,
+          "name": "STDBY",
+          "type": "output",
+          "description": "Open-drain charge-status output; pulled low when the charge cycle completes, otherwise high impedance"
+        },
+        {
+          "pin": 7,
+          "name": "CHRG",
+          "type": "output",
+          "description": "Open-drain charge-status output; pulled low while the battery is charging, otherwise high impedance"
+        },
+        {
+          "pin": 8,
+          "name": "CE",
+          "type": "input",
+          "description": "Chip enable; logic high = normal operation, logic low = shutdown. TTL/CMOS compatible."
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 4.0,
+    "vs_max_v": 8.0,
+    "extra": {
+      "exposed_pad": "ESOP8/EMSOP8 has an exposed thermal pad on the underside connected to GND; solder it to the board GND copper for rated power dissipation",
+      "float_voltage_v": 4.2,
+      "float_accuracy": "1%",
+      "max_charge_current_a": 1.0,
+      "prog_formula": "IBAT = (VPROG / RPROG) x 1200; RPROG=1.2k -> 1000mA, 2.4k -> 500mA",
+      "termination": "C/10 (charge current falls to 1/10 of programmed value)",
+      "trickle_threshold_v": 2.9,
+      "uvlo_v": 3.7,
+      "standby_current_ua": 55,
+      "battery_drain_no_input_ua": 2,
+      "vcc_abs_max_v": 8.0,
+      "operating_temp_c": "-40 to +85",
+      "max_junction_temp_c": 145,
+      "Icc (charge mode)": "150uA typ (500uA max) @ RPROG=1.2k -- control-loop bias current, separate from the BAT charge current path",
+      "Rth(JA)": "125 C/W (ESOP8/EMSOP8, exposed pad soldered to PCB ground per the datasheet's thermal design note)"
+    },
+    "rth_ja_cw": 125.0
+  },
+  "typical_application": "USB-powered single-cell LiPo/Li-ion charger: 5V into VCC, a 1.2k PROG resistor for 1A, battery on BAT, and LEDs on CHRG/STDBY for charge and done indication.",
+  "gotchas": [
+    "The ESOP8/EMSOP8 exposed pad on the package bottom is GND and must be soldered to the PCB ground plane; without it the part overheats and thermally folds back charge current.",
+    "Charge voltage is fixed at 4.2V (single-cell only); it cannot charge LiFePO4 (3.6V) or multi-cell packs.",
+    "If you do not use a pack thermistor, tie TEMP (pin 1) to GND or charging may be inhibited; the ubiquitous red TP4056 USB charger module often grounds TEMP for this reason.",
+    "This is the bare-chip pinout; the common TP4056 USB-C/micro-USB charger module adds the PROG resistor, status LEDs, USB connector, and often a separate DW01/FS8205 protection circuit which is NOT part of the TP4056 itself.",
+    "Many distributor and aggregator pinout tables for the TP4056 are wrong; this pinout is taken from the NanJing Top Power primary datasheet (REV 2.3).",
+    "CHRG and STDBY are open-drain: they sink LED current to GND and need the LED's other side pulled to VCC through a resistor."
+  ],
+  "related": [
+    "ams1117",
+    "lm317"
+  ],
+  "datasheet_url": "https://toppwr.com/uploadfile/file/20240130/65b892bb04a3c.pdf",
+  "source": "human",
+  "verified": true
+}

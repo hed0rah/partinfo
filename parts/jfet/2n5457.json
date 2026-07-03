@@ -1,0 +1,74 @@
+{
+  "id": "2n5457",
+  "name": "2N5457",
+  "aliases": [
+    "MMBF5457 (SMD)"
+  ],
+  "full_name": "N-Channel JFET (General-Purpose, Audio)",
+  "manufacturers": [
+    "onsemi",
+    "Fairchild",
+    "Linear Systems"
+  ],
+  "category": "transistor_jfet",
+  "subcategory": "n-channel jfet",
+  "tags": [
+    "jfet",
+    "n-channel",
+    "audio",
+    "buffer",
+    "classic"
+  ],
+  "description": "General-purpose N-channel JFET common in audio buffers and amp-sim stages. Higher pinch-off and IDSS than the J201, easier to bias. TO-92 lead order is D-S-G.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "D",
+          "type": "passive",
+          "description": "drain"
+        },
+        {
+          "pin": 2,
+          "name": "S",
+          "type": "passive",
+          "description": "source (center lead)"
+        },
+        {
+          "pin": 3,
+          "name": "G",
+          "type": "passive",
+          "description": "gate"
+        }
+      ],
+      "notes": "flat face toward you, leads down: D-S-G (pin 1 drain on the left)."
+    }
+  },
+  "specs": {
+    "vs_max_v": 25.0,
+    "idss_ma": 3.0,
+    "vgs_off_v": -3.0,
+    "pd_max_mw": 625.0,
+    "extra": {
+      "Vgs(off) range": "-0.5V to -6.0V",
+      "IDSS range": "1.0 to 5.0 mA",
+      "smd equivalent": "MMBF5457"
+    }
+  },
+  "typical_application": "Source-follower buffers, instrument input stages, JFET preamps. Self-bias with a source resistor sized from the measured IDSS.",
+  "gotchas": [
+    "depletion-mode: conducts at Vgs=0; needs negative Vgs to reduce current",
+    "wide IDSS/pinch-off spread between parts; measure or trim for repeatable bias",
+    "static-sensitive gate"
+  ],
+  "related": [
+    "j201",
+    "2n5458"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.onsemi.com/pdf/datasheet/2n5457-d.pdf"
+}

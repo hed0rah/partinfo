@@ -1,0 +1,160 @@
+{
+  "id": "cd4051",
+  "name": "CD4051",
+  "aliases": [
+    "CD4051B",
+    "MC14051",
+    "HEF4051B",
+    "4051"
+  ],
+  "full_name": "Single 8-Channel Analog Multiplexer / Demultiplexer (CMOS)",
+  "manufacturers": [
+    "Texas Instruments",
+    "onsemi",
+    "STMicroelectronics"
+  ],
+  "category": "logic",
+  "subcategory": "analog mux",
+  "tags": [
+    "logic",
+    "cmos",
+    "4000-series",
+    "analog",
+    "multiplexer",
+    "demultiplexer",
+    "switch"
+  ],
+  "description": "Single 8-channel analog mux/demux connecting one of eight channels (CH0..CH7) to the common line, selected by three address lines A/B/C. Active-HIGH INHIBIT disconnects all channels. A separate VEE negative analog supply lets it pass bipolar signals between VEE and VDD; digital control references VSS/VDD. Digital supply 3V to 18V.",
+  "packages": {
+    "DIP-16": {
+      "template": "dip",
+      "pin_count": 16,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "CH4",
+          "type": "analog",
+          "description": "analog channel 4"
+        },
+        {
+          "pin": 2,
+          "name": "CH6",
+          "type": "analog",
+          "description": "analog channel 6"
+        },
+        {
+          "pin": 3,
+          "name": "COM",
+          "type": "analog",
+          "description": "common analog in/out (the multiplexed line)"
+        },
+        {
+          "pin": 4,
+          "name": "CH7",
+          "type": "analog",
+          "description": "analog channel 7"
+        },
+        {
+          "pin": 5,
+          "name": "CH5",
+          "type": "analog",
+          "description": "analog channel 5"
+        },
+        {
+          "pin": 6,
+          "name": "INH",
+          "type": "input",
+          "description": "inhibit; HIGH disables all channels"
+        },
+        {
+          "pin": 7,
+          "name": "VEE",
+          "type": "power",
+          "description": "negative analog supply (separate from VSS)"
+        },
+        {
+          "pin": 8,
+          "name": "VSS",
+          "type": "ground",
+          "description": "digital ground / 0V reference"
+        },
+        {
+          "pin": 9,
+          "name": "C",
+          "type": "input",
+          "description": "address line C (MSB)"
+        },
+        {
+          "pin": 10,
+          "name": "B",
+          "type": "input",
+          "description": "address line B"
+        },
+        {
+          "pin": 11,
+          "name": "A",
+          "type": "input",
+          "description": "address line A (LSB)"
+        },
+        {
+          "pin": 12,
+          "name": "CH3",
+          "type": "analog",
+          "description": "analog channel 3"
+        },
+        {
+          "pin": 13,
+          "name": "CH0",
+          "type": "analog",
+          "description": "analog channel 0"
+        },
+        {
+          "pin": 14,
+          "name": "CH1",
+          "type": "analog",
+          "description": "analog channel 1"
+        },
+        {
+          "pin": 15,
+          "name": "CH2",
+          "type": "analog",
+          "description": "analog channel 2"
+        },
+        {
+          "pin": 16,
+          "name": "VDD",
+          "type": "power",
+          "description": "positive supply, 3V to 18V"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.0,
+    "vs_max_v": 18.0,
+    "extra": {
+      "function": "1-of-8 analog mux/demux, bidirectional channels",
+      "logic family": "CD40xx CMOS (4000B)",
+      "channels": 8,
+      "address": "A (LSB), B, C (MSB); ABC=000->CH0 ... 111->CH7",
+      "inhibit": "active HIGH",
+      "negative_supply": "VEE (pin 7) separate from VSS (pin 8)",
+      "channel_pin_map": "CH0=13 CH1=14 CH2=15 CH3=12 CH4=1 CH5=5 CH6=2 CH7=4 COM=3"
+    }
+  },
+  "typical_application": "Routing one of eight analog sensor signals into a single ADC input, or fanning one signal out to eight destinations.",
+  "gotchas": [
+    "channel pins are not in numeric order: CH0=13, CH1=14, CH2=15, CH3=12, CH4=1, CH5=5, CH6=2, CH7=4; COM=3",
+    "VEE (pin 7) is a separate negative analog supply, NOT ground; tie VEE=VSS for single-supply signals, or to a negative rail for bipolar",
+    "INHIBIT (pin 6) is active HIGH; tie LOW to enable the mux, do not float",
+    "address line C (pin 9) is the MSB and A (pin 11) the LSB",
+    "channels are bidirectional analog switches (on-resistance hundreds of ohms), not buffered outputs; signals must stay between VEE and VDD"
+  ],
+  "related": [
+    "cd4066",
+    "cd4017"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/cd4051b.pdf",
+  "source": "human",
+  "verified": true
+}

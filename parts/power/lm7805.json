@@ -1,0 +1,87 @@
+{
+  "id": "lm7805",
+  "name": "LM7805",
+  "aliases": [
+    "7805",
+    "L7805",
+    "MC7805",
+    "uA7805"
+  ],
+  "full_name": "5V Fixed Positive Voltage Regulator",
+  "manufacturers": [
+    "STMicroelectronics",
+    "Texas Instruments",
+    "onsemi"
+  ],
+  "category": "power",
+  "subcategory": "fixed linear regulator",
+  "tags": [
+    "regulator",
+    "linear",
+    "fixed",
+    "5v",
+    "78xx",
+    "classic"
+  ],
+  "description": "Fixed 5V three-terminal linear regulator from the 78xx family. Simple and rugged. TO-220 pin order is IN-GND-OUT. The 78xx series offers other voltages (7809=9V, 7812=12V).",
+  "packages": {
+    "TO-220": {
+      "template": "to220",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "INPUT",
+          "type": "power",
+          "description": "unregulated input supply"
+        },
+        {
+          "pin": 2,
+          "name": "GROUND",
+          "type": "ground",
+          "description": "common/ground (also tab)"
+        },
+        {
+          "pin": 3,
+          "name": "OUTPUT",
+          "type": "output",
+          "description": "regulated +5V output"
+        }
+      ],
+      "notes": "metal tab is connected to GND, so it can share a grounded heatsink safely."
+    }
+  },
+  "specs": {
+    "vs_min_v": 7.0,
+    "vs_max_v": 35.0,
+    "iout_max_ma": 1000.0,
+    "vs_typ_v": 5.0,
+    "extra": {
+      "Vout": "5V",
+      "dropout": "~2V",
+      "input max": "35V",
+      "family": "7805/7809/7812 etc.",
+      "Iq": "8mA (max) @ TJ=25C",
+      "Rth(JC)": "5 C/W (TO-220)",
+      "Rth(JA)": "50 C/W (TO-220)"
+    },
+    "rth_jc_cw": 5.0,
+    "rth_ja_cw": 50.0
+  },
+  "typical_application": "Add 0.33uF on the input and 0.1uF on the output close to the pins. Input must be at least ~7V for a stable 5V out.",
+  "gotchas": [
+    "linear: dissipates (Vin - 5) * Iload as heat; a 12V input at 500mA wastes 3.5W, needs a heatsink",
+    "the TAB is GND on the 78xx (opposite of the LM317 whose tab is OUT)",
+    "needs the input/output decoupling caps or it can oscillate",
+    "minimum ~2V dropout; will not regulate from a nearly-flat 5V source"
+  ],
+  "related": [
+    "lm317",
+    "lm7812",
+    "lm1117",
+    "lm7905"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.st.com/resource/en/datasheet/l78.pdf"
+}

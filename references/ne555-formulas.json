@@ -1,0 +1,79 @@
+{
+  "id": "ne555-formulas",
+  "title": "555 Timer Formulas",
+  "topic": "other",
+  "tags": [
+    "555",
+    "ne555",
+    "timer",
+    "astable",
+    "monostable",
+    "frequency",
+    "duty-cycle"
+  ],
+  "summary": "astable frequency/duty-cycle and monostable pulse-width equations for the classic 555 timer.",
+  "body": "in astable mode the 555 oscillates: the capacitor charges through R1 + R2 and\ndischarges through R2, so the duty cycle is always above 50% in the basic\ncircuit. in monostable mode a trigger produces a single pulse set by R and C.",
+  "formulas": [
+    {
+      "expr": "f = 1.44 / ((R1 + 2*R2) * C)",
+      "description": "astable output frequency",
+      "vars": [
+        {
+          "symbol": "f",
+          "meaning": "frequency",
+          "unit": "Hz"
+        },
+        {
+          "symbol": "R1",
+          "meaning": "charge resistor",
+          "unit": "ohm"
+        },
+        {
+          "symbol": "R2",
+          "meaning": "charge/discharge resistor",
+          "unit": "ohm"
+        },
+        {
+          "symbol": "C",
+          "meaning": "timing capacitor",
+          "unit": "F"
+        }
+      ]
+    },
+    {
+      "expr": "D = (R1 + R2) / (R1 + 2*R2)",
+      "description": "astable duty cycle (fraction high)",
+      "vars": [
+        {
+          "symbol": "D",
+          "meaning": "duty cycle",
+          "unit": "fraction"
+        }
+      ]
+    },
+    {
+      "expr": "t = 1.1 * R * C",
+      "description": "monostable output pulse width",
+      "vars": [
+        {
+          "symbol": "t",
+          "meaning": "pulse width",
+          "unit": "s"
+        }
+      ]
+    }
+  ],
+  "examples": [
+    "astable R1 = 1k, R2 = 10k, C = 1 uF: f = 1.44 / (21000 * 1e-6) = 68.6 Hz.",
+    "monostable R = 100k, C = 10 uF: t = 1.1 * 100000 * 1e-5 = 1.1 s."
+  ],
+  "gotchas": [
+    "the basic astable can never reach exactly 50% duty (R1 makes it >50%); add a diode across R2 to approach 50%",
+    "the bipolar NE555 sinks large current spikes on the supply at each transition; decouple with 100nF at the chip",
+    "use the CMOS 7555 for low power, higher frequency, and less supply glitching"
+  ],
+  "related": [
+    "rc-time-constant"
+  ],
+  "source": "human"
+}

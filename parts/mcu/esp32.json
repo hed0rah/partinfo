@@ -1,0 +1,424 @@
+{
+  "id": "esp32",
+  "name": "ESP32-WROOM-32",
+  "aliases": [
+    "ESP32",
+    "ESP32-DevKitC",
+    "WROOM-32",
+    "ESP-WROOM-32"
+  ],
+  "full_name": "Wi-Fi + Bluetooth Dual-Core MCU Module (38-pin)",
+  "manufacturers": [
+    "Espressif"
+  ],
+  "category": "module",
+  "subcategory": "wifi/bluetooth mcu module",
+  "tags": [
+    "mcu",
+    "esp32",
+    "wifi",
+    "bluetooth",
+    "iot",
+    "dual-core",
+    "module"
+  ],
+  "description": "Espressif's ubiquitous Wi-Fi + Bluetooth module built on the dual-core Xtensa LX6. Pinout below is the common 38-pin WROOM-32 module / DevKitC. Many GPIOs are multiplexed; several are input-only or are strapping pins that must be at the right level at boot, and six are tied to the internal SPI flash and must not be used.",
+  "packages": {
+    "WROOM-38": {
+      "template": "module",
+      "pin_count": 38,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 2,
+          "name": "3V3",
+          "type": "power",
+          "description": "3.3V supply in/out"
+        },
+        {
+          "pin": 3,
+          "name": "EN",
+          "type": "reset",
+          "description": "chip enable / reset, active high; 10k pullup + button to reset",
+          "alternate": [
+            "RST"
+          ]
+        },
+        {
+          "pin": 4,
+          "name": "GPIO36",
+          "type": "analog",
+          "description": "input only; ADC1_CH0",
+          "alternate": [
+            "SENSOR_VP",
+            "ADC1_CH0"
+          ]
+        },
+        {
+          "pin": 5,
+          "name": "GPIO39",
+          "type": "analog",
+          "description": "input only; ADC1_CH3",
+          "alternate": [
+            "SENSOR_VN",
+            "ADC1_CH3"
+          ]
+        },
+        {
+          "pin": 6,
+          "name": "GPIO34",
+          "type": "analog",
+          "description": "input only; ADC1_CH6",
+          "alternate": [
+            "ADC1_CH6"
+          ]
+        },
+        {
+          "pin": 7,
+          "name": "GPIO35",
+          "type": "analog",
+          "description": "input only; ADC1_CH7",
+          "alternate": [
+            "ADC1_CH7"
+          ]
+        },
+        {
+          "pin": 8,
+          "name": "GPIO32",
+          "type": "bidirectional",
+          "description": "ADC1_CH4, touch9",
+          "alternate": [
+            "ADC1_CH4",
+            "TOUCH9"
+          ]
+        },
+        {
+          "pin": 9,
+          "name": "GPIO33",
+          "type": "bidirectional",
+          "description": "ADC1_CH5, touch8",
+          "alternate": [
+            "ADC1_CH5",
+            "TOUCH8"
+          ]
+        },
+        {
+          "pin": 10,
+          "name": "GPIO25",
+          "type": "bidirectional",
+          "description": "DAC1, ADC2_CH8",
+          "alternate": [
+            "DAC1",
+            "ADC2_CH8"
+          ]
+        },
+        {
+          "pin": 11,
+          "name": "GPIO26",
+          "type": "bidirectional",
+          "description": "DAC2, ADC2_CH9",
+          "alternate": [
+            "DAC2",
+            "ADC2_CH9"
+          ]
+        },
+        {
+          "pin": 12,
+          "name": "GPIO27",
+          "type": "bidirectional",
+          "description": "ADC2_CH7, touch7",
+          "alternate": [
+            "ADC2_CH7",
+            "TOUCH7"
+          ]
+        },
+        {
+          "pin": 13,
+          "name": "GPIO14",
+          "type": "bidirectional",
+          "description": "HSPI CLK, ADC2_CH6, touch6",
+          "alternate": [
+            "HSPI_CLK",
+            "ADC2_CH6",
+            "TOUCH6"
+          ]
+        },
+        {
+          "pin": 14,
+          "name": "GPIO12",
+          "type": "bidirectional",
+          "description": "strapping (flash voltage); HSPI MISO, touch5. Must be LOW at boot",
+          "alternate": [
+            "HSPI_MISO",
+            "ADC2_CH5",
+            "TOUCH5",
+            "STRAP"
+          ]
+        },
+        {
+          "pin": 15,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 16,
+          "name": "GPIO13",
+          "type": "bidirectional",
+          "description": "HSPI MOSI, ADC2_CH4, touch4",
+          "alternate": [
+            "HSPI_MOSI",
+            "ADC2_CH4",
+            "TOUCH4"
+          ]
+        },
+        {
+          "pin": 17,
+          "name": "GPIO9",
+          "type": "nc",
+          "description": "connected to internal SPI flash (SD2); do not use",
+          "alternate": [
+            "SD2",
+            "FLASH"
+          ]
+        },
+        {
+          "pin": 18,
+          "name": "GPIO10",
+          "type": "nc",
+          "description": "connected to internal SPI flash (SD3); do not use",
+          "alternate": [
+            "SD3",
+            "FLASH"
+          ]
+        },
+        {
+          "pin": 19,
+          "name": "GPIO11",
+          "type": "nc",
+          "description": "connected to internal SPI flash (CMD); do not use",
+          "alternate": [
+            "CMD",
+            "FLASH"
+          ]
+        },
+        {
+          "pin": 20,
+          "name": "GPIO6",
+          "type": "nc",
+          "description": "connected to internal SPI flash (CLK); do not use",
+          "alternate": [
+            "SCK_CLK",
+            "FLASH"
+          ]
+        },
+        {
+          "pin": 21,
+          "name": "GPIO7",
+          "type": "nc",
+          "description": "connected to internal SPI flash (SD0); do not use",
+          "alternate": [
+            "SD0",
+            "FLASH"
+          ]
+        },
+        {
+          "pin": 22,
+          "name": "GPIO8",
+          "type": "nc",
+          "description": "connected to internal SPI flash (SD1); do not use",
+          "alternate": [
+            "SD1",
+            "FLASH"
+          ]
+        },
+        {
+          "pin": 23,
+          "name": "GPIO15",
+          "type": "bidirectional",
+          "description": "strapping; HSPI CS, ADC2_CH3, touch3",
+          "alternate": [
+            "HSPI_CS",
+            "ADC2_CH3",
+            "TOUCH3",
+            "STRAP"
+          ]
+        },
+        {
+          "pin": 24,
+          "name": "GPIO2",
+          "type": "bidirectional",
+          "description": "strapping (must be low/floating to enter download); ADC2_CH2, touch2, onboard LED",
+          "alternate": [
+            "ADC2_CH2",
+            "TOUCH2",
+            "STRAP"
+          ]
+        },
+        {
+          "pin": 25,
+          "name": "GPIO0",
+          "type": "bidirectional",
+          "description": "strapping; LOW at boot enters serial bootloader. ADC2_CH1, touch1",
+          "alternate": [
+            "BOOT",
+            "ADC2_CH1",
+            "TOUCH1",
+            "STRAP"
+          ]
+        },
+        {
+          "pin": 26,
+          "name": "GPIO4",
+          "type": "bidirectional",
+          "description": "ADC2_CH0, touch0",
+          "alternate": [
+            "ADC2_CH0",
+            "TOUCH0"
+          ]
+        },
+        {
+          "pin": 27,
+          "name": "GPIO16",
+          "type": "bidirectional",
+          "description": "general I/O (RX2 by convention)",
+          "alternate": [
+            "RX2"
+          ]
+        },
+        {
+          "pin": 28,
+          "name": "GPIO17",
+          "type": "bidirectional",
+          "description": "general I/O (TX2 by convention)",
+          "alternate": [
+            "TX2"
+          ]
+        },
+        {
+          "pin": 29,
+          "name": "GPIO5",
+          "type": "bidirectional",
+          "description": "strapping; VSPI CS",
+          "alternate": [
+            "VSPI_CS",
+            "STRAP"
+          ]
+        },
+        {
+          "pin": 30,
+          "name": "GPIO18",
+          "type": "bidirectional",
+          "description": "VSPI CLK",
+          "alternate": [
+            "VSPI_CLK"
+          ]
+        },
+        {
+          "pin": 31,
+          "name": "GPIO19",
+          "type": "bidirectional",
+          "description": "VSPI MISO",
+          "alternate": [
+            "VSPI_MISO"
+          ]
+        },
+        {
+          "pin": 32,
+          "name": "NC",
+          "type": "nc",
+          "description": "no connection"
+        },
+        {
+          "pin": 33,
+          "name": "GPIO21",
+          "type": "bidirectional",
+          "description": "default I2C SDA",
+          "alternate": [
+            "SDA"
+          ]
+        },
+        {
+          "pin": 34,
+          "name": "GPIO3",
+          "type": "bidirectional",
+          "description": "UART0 RX (used by USB serial/programming)",
+          "alternate": [
+            "RXD0"
+          ]
+        },
+        {
+          "pin": 35,
+          "name": "GPIO1",
+          "type": "bidirectional",
+          "description": "UART0 TX (used by USB serial/programming)",
+          "alternate": [
+            "TXD0"
+          ]
+        },
+        {
+          "pin": 36,
+          "name": "GPIO22",
+          "type": "bidirectional",
+          "description": "default I2C SCL",
+          "alternate": [
+            "SCL"
+          ]
+        },
+        {
+          "pin": 37,
+          "name": "GPIO23",
+          "type": "bidirectional",
+          "description": "VSPI MOSI",
+          "alternate": [
+            "VSPI_MOSI"
+          ]
+        },
+        {
+          "pin": 38,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_typ_v": 3.3,
+    "cpu_mhz": 240,
+    "flash_kb": 4096,
+    "ram_kb": 520,
+    "gpio_count": 34,
+    "extra": {
+      "cores": "2x Xtensa LX6",
+      "wifi": "802.11 b/g/n",
+      "bluetooth": "v4.2 BR/EDR + BLE",
+      "adc": "2x 12-bit SAR (18 channels)",
+      "dac": "2x 8-bit",
+      "flash size": "typically 4MB on WROOM-32",
+      "operating": "3.0V to 3.6V"
+    }
+  },
+  "typical_application": "Wi-Fi/BLE IoT nodes, sensor hubs, web servers. Power the 3V3 pin from a regulator able to supply ~500mA peaks (Wi-Fi TX bursts). Use ADC1 pins for analog while Wi-Fi is on, since ADC2 is shared with the radio.",
+  "gotchas": [
+    "GPIO6-11 are bonded to the internal SPI flash; using them bricks code execution",
+    "GPIO34/35/36/39 are INPUT ONLY, no pullups and no output",
+    "ADC2 cannot be read while Wi-Fi is active; use ADC1 (GPIO32-39) for analog when networking",
+    "strapping pins (0, 2, 5, 12, 15) set boot mode; external loads on them can stop the board from booting. GPIO12 must be LOW at boot or the flash voltage is wrong",
+    "the 3.3V regulator on cheap dev boards often cannot supply Wi-Fi current peaks, causing brownout resets",
+    "GPIO0 low at reset enters the serial bootloader (how the auto-program circuit flashes it)"
+  ],
+  "related": [
+    "esp32-s3",
+    "esp8266",
+    "atmega328p",
+    "rp2040"
+  ],
+  "source": "human",
+  "verified": false
+}

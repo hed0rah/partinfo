@@ -1,0 +1,147 @@
+{
+  "id": "tl074",
+  "name": "TL074",
+  "aliases": [
+    "TL074CN",
+    "TL074IN"
+  ],
+  "full_name": "Quad Low-Noise JFET-Input Operational Amplifier",
+  "manufacturers": [
+    "Texas Instruments",
+    "STMicroelectronics",
+    "onsemi"
+  ],
+  "category": "opamp",
+  "subcategory": "quad jfet-input",
+  "tags": [
+    "opamp",
+    "quad",
+    "jfet",
+    "audio",
+    "low-noise",
+    "synth",
+    "classic"
+  ],
+  "description": "Quad version of the TL072: four JFET-input op-amps in one package. Staple of synth voltage processing, mixers, and multi-stage filters.",
+  "packages": {
+    "DIP-14": {
+      "template": "dip",
+      "pin_count": 14,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "1OUT",
+          "type": "output",
+          "description": "channel 1 output"
+        },
+        {
+          "pin": 2,
+          "name": "1IN-",
+          "type": "input",
+          "description": "channel 1 inverting input"
+        },
+        {
+          "pin": 3,
+          "name": "1IN+",
+          "type": "input",
+          "description": "channel 1 noninverting input"
+        },
+        {
+          "pin": 4,
+          "name": "VCC+",
+          "type": "power",
+          "description": "positive supply"
+        },
+        {
+          "pin": 5,
+          "name": "2IN+",
+          "type": "input",
+          "description": "channel 2 noninverting input"
+        },
+        {
+          "pin": 6,
+          "name": "2IN-",
+          "type": "input",
+          "description": "channel 2 inverting input"
+        },
+        {
+          "pin": 7,
+          "name": "2OUT",
+          "type": "output",
+          "description": "channel 2 output"
+        },
+        {
+          "pin": 8,
+          "name": "3OUT",
+          "type": "output",
+          "description": "channel 3 output"
+        },
+        {
+          "pin": 9,
+          "name": "3IN-",
+          "type": "input",
+          "description": "channel 3 inverting input"
+        },
+        {
+          "pin": 10,
+          "name": "3IN+",
+          "type": "input",
+          "description": "channel 3 noninverting input"
+        },
+        {
+          "pin": 11,
+          "name": "VCC-",
+          "type": "power",
+          "description": "negative supply"
+        },
+        {
+          "pin": 12,
+          "name": "4IN+",
+          "type": "input",
+          "description": "channel 4 noninverting input"
+        },
+        {
+          "pin": 13,
+          "name": "4IN-",
+          "type": "input",
+          "description": "channel 4 inverting input"
+        },
+        {
+          "pin": 14,
+          "name": "4OUT",
+          "type": "output",
+          "description": "channel 4 output"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 6.0,
+    "vs_max_v": 36.0,
+    "iq_ma": 1.4,
+    "bw_hz": 3000000.0,
+    "extra": {
+      "slew rate": "13 V/us",
+      "input noise": "18 nV/rtHz",
+      "supply": "+-3V to +-18V (dual) or 6-36V single",
+      "amps": "4",
+      "Vos": "3mV typ (10mV max) @ Ta=25C, TL074C grade (13mV max full range)",
+      "Ibias": "65pA typ (200pA max) @ Ta=25C, TL074C grade (7nA max full range)",
+      "CMRR": "70dB min (100dB typ), TL074C grade"
+    }
+  },
+  "typical_application": "Synth mixers, multi-pole active filters, multi-channel buffers. Bias unused amps as a unity buffer with input tied to mid-rail to keep them stable.",
+  "gotchas": [
+    "JFET inputs do not reach the negative rail; keep signals inside the rails",
+    "not rail-to-rail output",
+    "ground unused amplifiers properly (configure as buffer to mid-supply) rather than leaving inputs floating"
+  ],
+  "related": [
+    "tl072",
+    "tl084",
+    "ne5532"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/tl074.pdf"
+}

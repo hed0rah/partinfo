@@ -1,0 +1,154 @@
+{
+  "id": "74hc165",
+  "name": "74HC165",
+  "aliases": [
+    "74LS165",
+    "74HCT165",
+    "SN74HC165",
+    "SN54HC165"
+  ],
+  "full_name": "8-Bit Parallel-Load Shift Register (Serial Output)",
+  "manufacturers": [
+    "Texas Instruments",
+    "Nexperia",
+    "onsemi"
+  ],
+  "category": "logic",
+  "subcategory": "shift register",
+  "tags": [
+    "logic",
+    "74-series",
+    "cmos",
+    "shift register",
+    "parallel-load",
+    "serial-out"
+  ],
+  "description": "8-bit parallel-in / serial-out shift register. A LOW on SH/LD asynchronously loads parallel inputs A..H; a HIGH enables shifting toward QH on rising clock edges, with SER feeding the first stage. Only QH and its complement are output (no parallel outputs). HC/HCT/LS share this pinout.",
+  "packages": {
+    "DIP-16": {
+      "template": "dip",
+      "pin_count": 16,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "SH/LD",
+          "type": "input",
+          "description": "shift(H)/load(L); LOW asynchronously parallel-loads A..H"
+        },
+        {
+          "pin": 2,
+          "name": "CLK",
+          "type": "clock",
+          "description": "clock; shifts on rising edge"
+        },
+        {
+          "pin": 3,
+          "name": "E",
+          "type": "input",
+          "description": "parallel input E"
+        },
+        {
+          "pin": 4,
+          "name": "F",
+          "type": "input",
+          "description": "parallel input F"
+        },
+        {
+          "pin": 5,
+          "name": "G",
+          "type": "input",
+          "description": "parallel input G"
+        },
+        {
+          "pin": 6,
+          "name": "H",
+          "type": "input",
+          "description": "parallel input H (last stage)"
+        },
+        {
+          "pin": 7,
+          "name": "QH'",
+          "type": "output",
+          "description": "complementary serial output (QH inverted)"
+        },
+        {
+          "pin": 8,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 9,
+          "name": "QH",
+          "type": "output",
+          "description": "serial output (last stage)"
+        },
+        {
+          "pin": 10,
+          "name": "SER",
+          "type": "input",
+          "description": "serial data input to first stage"
+        },
+        {
+          "pin": 11,
+          "name": "A",
+          "type": "input",
+          "description": "parallel input A (first stage)"
+        },
+        {
+          "pin": 12,
+          "name": "B",
+          "type": "input",
+          "description": "parallel input B"
+        },
+        {
+          "pin": 13,
+          "name": "C",
+          "type": "input",
+          "description": "parallel input C"
+        },
+        {
+          "pin": 14,
+          "name": "D",
+          "type": "input",
+          "description": "parallel input D"
+        },
+        {
+          "pin": 15,
+          "name": "CLK INH",
+          "type": "input",
+          "description": "clock inhibit; HIGH disables the clock"
+        },
+        {
+          "pin": 16,
+          "name": "VCC",
+          "type": "power",
+          "description": "positive supply"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.0,
+    "vs_max_v": 6.0,
+    "extra": {
+      "function": "8-bit parallel-load serial-out shift register",
+      "logic family": "74HC/HCT/LS",
+      "outputs": "serial QH and complementary QH-bar only"
+    }
+  },
+  "typical_application": "Reading 8 parallel inputs (buttons/switches) into a microcontroller over a serial line; cascade QH to the next SER.",
+  "gotchas": [
+    "GND = pin 8, VCC = pin 16",
+    "SH/LD (pin 1) is active-LOW for parallel load and asynchronous (overrides the clock)",
+    "only serial outputs QH (pin 9) and QH-bar (pin 7) exist; there are no parallel Q outputs",
+    "CLK INH (pin 15) is active-HIGH; tie LOW to allow clocking; data shifts from A toward H/QH"
+  ],
+  "related": [
+    "74hc595",
+    "74hc374"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/sn74hc165.pdf",
+  "source": "human",
+  "verified": true
+}

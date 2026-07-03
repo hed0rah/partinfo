@@ -1,0 +1,80 @@
+{
+  "id": "bc557",
+  "name": "BC557",
+  "aliases": [
+    "BC557B"
+  ],
+  "full_name": "PNP General-Purpose Amplifier Transistor",
+  "manufacturers": [
+    "onsemi",
+    "NXP",
+    "STMicroelectronics"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "pnp small-signal",
+  "tags": [
+    "transistor",
+    "pnp",
+    "bjt",
+    "small-signal",
+    "european",
+    "classic"
+  ],
+  "description": "PNP complement to the BC547, part of the European BC556-560 family. Low-noise small-signal PNP for audio and general use. TO-92 lead order is C-B-E like its NPN sibling.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "C",
+          "type": "passive",
+          "description": "collector"
+        },
+        {
+          "pin": 2,
+          "name": "B",
+          "type": "passive",
+          "description": "base"
+        },
+        {
+          "pin": 3,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter"
+        }
+      ],
+      "notes": "flat face toward you, leads down: C-B-E (same family layout as BC547)."
+    }
+  },
+  "specs": {
+    "vs_max_v": 45.0,
+    "iout_max_ma": 100.0,
+    "pd_max_mw": 500.0,
+    "hfe_min": 110,
+    "hfe_max": 800,
+    "freq_max_hz": 150000000.0,
+    "extra": {
+      "Vceo": "-45V",
+      "complement (npn)": "BC547",
+      "low-noise sibling": "BC560",
+      "Vce(sat)": "-80mV (typ), -300mV (max) @ Ic=-10mA, Ib=-0.5mA",
+      "Vbe(on)": "-600 to -750mV @ Vce=-5V, Ic=-2mA"
+    }
+  },
+  "typical_application": "PNP half of complementary audio stages with a BC547, high-side switching of small loads, current mirrors.",
+  "gotchas": [
+    "pinout is C-B-E, the European convention, opposite the American 2N3906 (E-B-C)",
+    "PNP: emitter goes to the more positive node, base pulled low to turn on",
+    "100mA max collector current"
+  ],
+  "related": [
+    "bc547",
+    "bc560",
+    "2n3906"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://diotec.com/request/datasheet/bc556.pdf"
+}

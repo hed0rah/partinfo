@@ -1,0 +1,110 @@
+{
+  "id": "ina219",
+  "name": "INA219",
+  "aliases": [
+    "INA219A",
+    "INA219B",
+    "INA219AIDR",
+    "INA219AIDCNR"
+  ],
+  "full_name": "Zero-Drift, Bidirectional Current/Power Monitor with I2C Interface",
+  "manufacturers": [
+    "Texas Instruments"
+  ],
+  "category": "interface",
+  "subcategory": "I2C current/power monitor",
+  "tags": [
+    "current-sense",
+    "power-monitor",
+    "i2c",
+    "high-side",
+    "shunt",
+    "bidirectional",
+    "zero-drift",
+    "telemetry"
+  ],
+  "description": "The INA219 is a high-side (or low-side) current shunt and power monitor with an I2C interface. It measures the voltage across an external shunt resistor and the bus voltage, then computes current and power on-chip using a programmable calibration register. The shunt sense inputs withstand a common-mode range of 0V to +26V independent of the supply, while the device itself runs from a 3V to 5.5V supply. A zero-drift, bidirectional front end measures current in both directions with low offset. Two address pins (A0, A1) each tied to GND, VS, SDA, or SCL give 16 possible I2C addresses from 0x40 to 0x4F. It is the chip on the common Adafruit and generic INA219 breakout boards, typically populated with a 0.1 ohm shunt.",
+  "packages": {
+    "SOIC-8": {
+      "template": "soic",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "A1",
+          "type": "input",
+          "description": "Address pin. Tie to GND, VS, SDA, or SCL to set the I2C address (see address table)."
+        },
+        {
+          "pin": 2,
+          "name": "A0",
+          "type": "input",
+          "description": "Address pin. Tie to GND, VS, SDA, or SCL to set the I2C address (see address table)."
+        },
+        {
+          "pin": 3,
+          "name": "SDA",
+          "type": "bidirectional",
+          "description": "I2C serial data line. Open-drain, requires external pullup."
+        },
+        {
+          "pin": 4,
+          "name": "SCL",
+          "type": "clock",
+          "description": "I2C serial clock line. Requires external pullup."
+        },
+        {
+          "pin": 5,
+          "name": "VS",
+          "type": "power",
+          "description": "Power supply, 3V to 5.5V (abs max 6V)."
+        },
+        {
+          "pin": 6,
+          "name": "GND",
+          "type": "ground",
+          "description": "Ground."
+        },
+        {
+          "pin": 7,
+          "name": "IN-",
+          "type": "analog",
+          "description": "Negative differential shunt voltage input. Connect to the negative side of the shunt resistor; bus voltage is measured from this pin to ground."
+        },
+        {
+          "pin": 8,
+          "name": "IN+",
+          "type": "analog",
+          "description": "Positive differential shunt voltage input. Connect to the positive side of the shunt resistor."
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.0,
+    "vs_max_v": 5.5,
+    "extra": {
+      "i2c_address": "0x40 to 0x4F (16 addresses); A1=A0=GND gives 0x40 (1000000). Each of A0/A1 may be tied to GND, VS, SDA, or SCL.",
+      "bus_voltage_range": "0V to 26V common-mode at IN+/IN- (bus voltage measured to 26V), independent of VS",
+      "supply_voltage": "3V to 5.5V (VS)",
+      "shunt_full_scale": "+/-320mV programmable PGA (+/-40, +/-80, +/-160, +/-320 mV)",
+      "adc": "12-bit, programmable conversion time and averaging",
+      "front_end": "zero-drift, bidirectional; low offset",
+      "registers": "config, shunt voltage, bus voltage, power, current, calibration"
+    }
+  },
+  "typical_application": "High-side monitoring of supply current and power for a load via a small series shunt resistor, reporting current/voltage/power to an MCU over I2C.",
+  "gotchas": [
+    "The bus/common-mode voltage at IN+/IN- may be up to 26V even though VS is only 3V to 5.5V; do not confuse the two rails.",
+    "Pin numbering differs by package: this SOIC-8 (D) has A1=1, A0=2, SDA=3, SCL=4, VS=5, GND=6, IN-=7, IN+=8, which is the MIRROR/reverse of the SOT-23-8 (DCN) where IN+=1, IN-=2, GND=3, VS=4, SCL=5, SDA=6, A0=7, A1=8. Same functions, different pin locations.",
+    "Current is not measured directly; you must program the calibration register based on your shunt value and expected max current, or the current/power registers read zero.",
+    "SDA and SCL are open-drain and require external pull-up resistors (provided on most breakout modules).",
+    "Common breakout boards ship with a 0.1 ohm, 1% shunt (R100) giving roughly 3.2A full scale at the +/-320mV PGA setting; swap the shunt for other ranges."
+  ],
+  "related": [
+    "ads1115"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/ina219.pdf",
+  "source": "human",
+  "verified": true
+}

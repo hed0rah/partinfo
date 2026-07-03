@@ -1,0 +1,100 @@
+{
+  "id": "irf520",
+  "name": "IRF520",
+  "aliases": [
+    "IRF520PbF"
+  ],
+  "full_name": "N-Channel Power MOSFET",
+  "manufacturers": [
+    "Vishay",
+    "Infineon",
+    "onsemi"
+  ],
+  "category": "transistor_mosfet",
+  "subcategory": "n-channel power mosfet",
+  "tags": [
+    "mosfet",
+    "n-channel",
+    "power",
+    "switching"
+  ],
+  "description": "N-channel power MOSFET in TO-220, 100V / 9.2A, Rds(on) 0.27 ohm at Vgs=10V. Standard-threshold (not logic-level). Lead order G-D-S, tab is drain. Familiar as the through-hole part on the cheap 'IRF520 MOSFET module', though its 4V threshold and 0.27 ohm make it mediocre for direct 5V/3.3V logic drive.",
+  "packages": {
+    "TO-220": {
+      "template": "to220",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "G",
+          "type": "input",
+          "description": "gate"
+        },
+        {
+          "pin": 2,
+          "name": "D",
+          "type": "passive",
+          "description": "drain (connected to tab)"
+        },
+        {
+          "pin": 3,
+          "name": "S",
+          "type": "passive",
+          "description": "source"
+        }
+      ],
+      "notes": "TO-220AB, label toward you, leads down: G-D-S. The tab is the drain (electrically live). Datasheet figure shows the N-channel symbol and leads labeled S/D/G; the 1-2-3 order is the universal IR-lineage assignment, identical to irf540/irfz44."
+    }
+  },
+  "specs": {
+    "vs_max_v": 100.0,
+    "iout_max_ma": 9200.0,
+    "rds_on_ohm": 0.27,
+    "vgs_th_v": 4.0,
+    "pd_max_mw": 60000.0,
+    "extra": {
+      "Vds": "100V",
+      "Id": "9.2A @ Tc=25C (6.5A @ 100C)",
+      "Id pulsed": "37A",
+      "Rds(on)": "0.27 ohm @ Vgs=10V",
+      "Vgs(th)": "2-4V",
+      "Vgs max": "+-20V",
+      "gfs": "2.7 S",
+      "Qg": "16nC",
+      "Qgs": "4.4nC",
+      "Qgd": "7.7nC",
+      "Ciss": "360pF",
+      "Coss": "150pF",
+      "Crss": "34pF",
+      "td(on)": "8.8ns",
+      "tr": "30ns",
+      "td(off)": "19ns",
+      "tf": "20ns",
+      "Rth(JA)": "62 C/W",
+      "Rth(JC)": "2.5 C/W",
+      "Rth(CS)": "0.50 C/W (greased)",
+      "Vsd": "1.8V (body diode)",
+      "trr": "110ns (260 max)",
+      "Qrr": "0.53uC",
+      "logic-level": "no"
+    },
+    "rth_jc_cw": 2.5,
+    "rth_ja_cw": 62.0
+  },
+  "typical_application": "Low-side DC switching of motors, heaters, LED strings and small loads up to ~100V. Drive the gate to 10V for the rated Rds(on); add a gate resistor (~10-100 ohm) and a pulldown so the gate does not float on.",
+  "gotchas": [
+    "NOT logic-level: Vgs(th) is 2-4V and full turn-on wants ~10V, so a bare 5V/3.3V pin leaves it half-on and hot. The popular 'IRF520 module' has exactly this flaw for microcontroller PWM -- use a logic-level MOSFET (IRLZ44N, IRL540) or a gate driver instead",
+    "modest ratings for a power MOSFET: 9.2A and 0.27 ohm mean more heat than an IRFZ44/IRF540 at the same current",
+    "tab is the drain and electrically live; isolate it from grounded heatsinks",
+    "add a flyback diode across inductive loads (the body diode is slow)",
+    "IRF520N is the improved-process successor (lower typical Rds(on)) with the identical TO-220 G-D-S pinout and tab=drain"
+  ],
+  "related": [
+    "irf540",
+    "irfz44",
+    "irlz44n"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.vishay.com/docs/91017/irf520.pdf"
+}

@@ -1,0 +1,155 @@
+{
+  "id": "uln2003",
+  "name": "ULN2003",
+  "aliases": [
+    "ULN2003A",
+    "ULN2003AN",
+    "ULN2003AD"
+  ],
+  "full_name": "High-Voltage High-Current Darlington Transistor Array (7-channel)",
+  "manufacturers": [
+    "Texas Instruments",
+    "STMicroelectronics"
+  ],
+  "category": "driver",
+  "subcategory": "darlington array",
+  "tags": [
+    "darlington",
+    "driver",
+    "relay-driver",
+    "stepper",
+    "open-collector",
+    "flyback-diode"
+  ],
+  "description": "Array of 7 NPN Darlington pairs with high-voltage open-collector outputs and common-cathode freewheeling clamp diodes brought out to the COM pin. Each channel has a 2.7k series base resistor so inputs drive directly from TTL or 5V CMOS logic. Each output sinks up to 500mA at outputs rated to 50V, switching relays, solenoids, steppers and lamps from logic-level control. Widely used on 28BYJ-48 stepper driver boards and relay boards.",
+  "packages": {
+    "PDIP-16": {
+      "template": "dip",
+      "pin_count": 16,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "1B",
+          "type": "input",
+          "description": "channel 1 Darlington base input (TTL/5V CMOS compatible via 2.7k series resistor)"
+        },
+        {
+          "pin": 2,
+          "name": "2B",
+          "type": "input",
+          "description": "channel 2 Darlington base input"
+        },
+        {
+          "pin": 3,
+          "name": "3B",
+          "type": "input",
+          "description": "channel 3 Darlington base input"
+        },
+        {
+          "pin": 4,
+          "name": "4B",
+          "type": "input",
+          "description": "channel 4 Darlington base input"
+        },
+        {
+          "pin": 5,
+          "name": "5B",
+          "type": "input",
+          "description": "channel 5 Darlington base input"
+        },
+        {
+          "pin": 6,
+          "name": "6B",
+          "type": "input",
+          "description": "channel 6 Darlington base input"
+        },
+        {
+          "pin": 7,
+          "name": "7B",
+          "type": "input",
+          "description": "channel 7 Darlington base input"
+        },
+        {
+          "pin": 8,
+          "name": "E",
+          "type": "ground",
+          "description": "common emitter shared by all channels, typically tied to ground"
+        },
+        {
+          "pin": 9,
+          "name": "COM",
+          "type": "passive",
+          "description": "common cathode node for the flyback clamp diodes; tie to the inductive load supply (V+) for inductive loads"
+        },
+        {
+          "pin": 10,
+          "name": "7C",
+          "type": "output",
+          "description": "channel 7 Darlington open-collector output"
+        },
+        {
+          "pin": 11,
+          "name": "6C",
+          "type": "output",
+          "description": "channel 6 Darlington open-collector output"
+        },
+        {
+          "pin": 12,
+          "name": "5C",
+          "type": "output",
+          "description": "channel 5 Darlington open-collector output"
+        },
+        {
+          "pin": 13,
+          "name": "4C",
+          "type": "output",
+          "description": "channel 4 Darlington open-collector output"
+        },
+        {
+          "pin": 14,
+          "name": "3C",
+          "type": "output",
+          "description": "channel 3 Darlington open-collector output"
+        },
+        {
+          "pin": 15,
+          "name": "2C",
+          "type": "output",
+          "description": "channel 2 Darlington open-collector output"
+        },
+        {
+          "pin": 16,
+          "name": "1C",
+          "type": "output",
+          "description": "channel 1 Darlington open-collector output"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_max_v": 50.0,
+    "extra": {
+      "output_type": "open-collector Darlington",
+      "max_output_v": "50V",
+      "max_sink_current_per_ch": "500mA",
+      "clamp_diodes": "yes, common COM pin",
+      "input_series_resistor": "2.7k per channel"
+    }
+  },
+  "typical_application": "Driving a 28BYJ-48 unipolar stepper or a bank of relays/solenoids from microcontroller logic pins.",
+  "gotchas": [
+    "COM pin must connect to the inductive load's positive supply for the internal flyback diodes to clamp",
+    "outputs SINK current (active-low drive); the load connects between V+ and the output",
+    "cannot source current; not for driving loads referenced to ground",
+    "pin 8 (E) is the common emitter/ground return for all channels",
+    "only 7 channels - use ULN2803 if you need 8"
+  ],
+  "related": [
+    "uln2803",
+    "2n7000",
+    "irlz44n"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/uln2003a.pdf",
+  "source": "human",
+  "verified": true
+}

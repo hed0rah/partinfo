@@ -1,0 +1,88 @@
+{
+  "id": "s8050",
+  "name": "SS8050",
+  "aliases": [
+    "S8050",
+    "8050"
+  ],
+  "full_name": "NPN Medium-Power Transistor (TO-92)",
+  "manufacturers": [
+    "Fairchild",
+    "onsemi",
+    "UTC",
+    "Jiangsu Changjiang"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "npn medium-power",
+  "tags": [
+    "transistor",
+    "npn",
+    "bjt",
+    "medium-power",
+    "audio",
+    "driver",
+    "asian-jellybean"
+  ],
+  "description": "NPN medium-power transistor (1.5A) in TO-92, a high-current jellybean for audio output and switching. TO-92 pin order is E-B-C, the reverse of European BC-series. Complement to the PNP SS8550.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter (leftmost lead, flat face toward you)"
+        },
+        {
+          "pin": 2,
+          "name": "B",
+          "type": "passive",
+          "description": "base (center)"
+        },
+        {
+          "pin": 3,
+          "name": "C",
+          "type": "passive",
+          "description": "collector (rightmost lead)"
+        }
+      ],
+      "notes": "flat face toward you, leads down: E-B-C left to right. Verified from Fairchild/onsemi SS8050 datasheet (1=E, 2=B, 3=C). Order flips to C-B-E only if you view the rounded back."
+    }
+  },
+  "specs": {
+    "vs_max_v": 25.0,
+    "iout_max_ma": 1500.0,
+    "pd_max_mw": 1000.0,
+    "hfe_min": 85,
+    "hfe_max": 300,
+    "freq_max_hz": 100000000.0,
+    "extra": {
+      "Vceo": "25V",
+      "Vcbo": "40V",
+      "Vebo": "6V",
+      "Ic": "1.5A",
+      "complement (pnp)": "SS8550",
+      "hFE groups": "B 85-160, C 120-200, D 160-300",
+      "Vce(sat)": "0.5V (max) @ Ic=800mA, Ib=80mA",
+      "Vbe(on)": "1V (max) @ Ic=10mA, Vce=1V",
+      "Rth(JA)": "125 C/W"
+    },
+    "rth_ja_cw": 125.0
+  },
+  "typical_application": "~2W output amplifier for portable radios (Class B push-pull), general medium-power switching and small load driving.",
+  "gotchas": [
+    "pinout is E-B-C (pin 1 = emitter on the left), NOT the C-B-E people often assume for a TO-92; this is the most common mistake on this part",
+    "the SMD S8050 in SOT-23 has a different JEDEC pin map; this entry is the TO-92 only",
+    "1.5A rating but only 1W dissipation; high current needs low Vce"
+  ],
+  "related": [
+    "s8550",
+    "s9013",
+    "bc337"
+  ],
+  "datasheet_url": "https://www.onsemi.com/pdf/datasheet/ss8050-d.pdf",
+  "source": "human",
+  "verified": true
+}

@@ -1,0 +1,177 @@
+{
+  "id": "74hc245",
+  "name": "74HC245",
+  "aliases": [
+    "74LS245",
+    "74HCT245",
+    "SN74HC245",
+    "SN54HC245"
+  ],
+  "full_name": "Octal Bus Transceiver with 3-State Outputs",
+  "manufacturers": [
+    "Texas Instruments",
+    "Nexperia",
+    "onsemi"
+  ],
+  "category": "logic",
+  "subcategory": "bus transceiver",
+  "tags": [
+    "logic",
+    "74-series",
+    "cmos",
+    "bus transceiver",
+    "3-state"
+  ],
+  "description": "Octal (8-bit) bus transceiver for two-way communication between two buses. DIR sets direction (A to B when HIGH, B to A when LOW) and active-low OE 3-states both ports to isolate the buses. A1..A8 and B1..B8 are bidirectional. HC/HCT/LS share this pinout.",
+  "packages": {
+    "DIP-20": {
+      "template": "dip",
+      "pin_count": 20,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "DIR",
+          "type": "input",
+          "description": "direction; A->B when HIGH, B->A when LOW"
+        },
+        {
+          "pin": 2,
+          "name": "A1",
+          "type": "bidirectional",
+          "description": "port A data line 1"
+        },
+        {
+          "pin": 3,
+          "name": "A2",
+          "type": "bidirectional",
+          "description": "port A data line 2"
+        },
+        {
+          "pin": 4,
+          "name": "A3",
+          "type": "bidirectional",
+          "description": "port A data line 3"
+        },
+        {
+          "pin": 5,
+          "name": "A4",
+          "type": "bidirectional",
+          "description": "port A data line 4"
+        },
+        {
+          "pin": 6,
+          "name": "A5",
+          "type": "bidirectional",
+          "description": "port A data line 5"
+        },
+        {
+          "pin": 7,
+          "name": "A6",
+          "type": "bidirectional",
+          "description": "port A data line 6"
+        },
+        {
+          "pin": 8,
+          "name": "A7",
+          "type": "bidirectional",
+          "description": "port A data line 7"
+        },
+        {
+          "pin": 9,
+          "name": "A8",
+          "type": "bidirectional",
+          "description": "port A data line 8"
+        },
+        {
+          "pin": 10,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 11,
+          "name": "B8",
+          "type": "bidirectional",
+          "description": "port B data line 8"
+        },
+        {
+          "pin": 12,
+          "name": "B7",
+          "type": "bidirectional",
+          "description": "port B data line 7"
+        },
+        {
+          "pin": 13,
+          "name": "B6",
+          "type": "bidirectional",
+          "description": "port B data line 6"
+        },
+        {
+          "pin": 14,
+          "name": "B5",
+          "type": "bidirectional",
+          "description": "port B data line 5"
+        },
+        {
+          "pin": 15,
+          "name": "B4",
+          "type": "bidirectional",
+          "description": "port B data line 4"
+        },
+        {
+          "pin": 16,
+          "name": "B3",
+          "type": "bidirectional",
+          "description": "port B data line 3"
+        },
+        {
+          "pin": 17,
+          "name": "B2",
+          "type": "bidirectional",
+          "description": "port B data line 2"
+        },
+        {
+          "pin": 18,
+          "name": "B1",
+          "type": "bidirectional",
+          "description": "port B data line 1"
+        },
+        {
+          "pin": 19,
+          "name": "OE",
+          "type": "input",
+          "description": "output enable, active LOW; HIGH 3-states both ports"
+        },
+        {
+          "pin": 20,
+          "name": "VCC",
+          "type": "power",
+          "description": "positive supply"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.0,
+    "vs_max_v": 6.0,
+    "extra": {
+      "function": "octal bidirectional bus transceiver",
+      "logic family": "74HC/HCT/LS",
+      "outputs": "3-state, bidirectional A/B ports"
+    }
+  },
+  "typical_application": "Bidirectional buffering / isolation of an 8-bit data bus between a CPU and peripherals.",
+  "gotchas": [
+    "GND = pin 10, VCC = pin 20",
+    "OE (pin 19) is active-LOW; HIGH puts both buses into high-impedance",
+    "DIR (pin 1) sets direction: A->B when HIGH, B->A when LOW (do not confuse with OE)",
+    "B pins are reverse-ordered relative to A: B8 is at pin 11, B1 at pin 18"
+  ],
+  "related": [
+    "74hc138",
+    "74hc373"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/sn74hc245.pdf",
+  "source": "human",
+  "verified": true
+}

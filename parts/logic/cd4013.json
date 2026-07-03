@@ -1,0 +1,144 @@
+{
+  "id": "cd4013",
+  "name": "CD4013",
+  "aliases": [
+    "CD4013B",
+    "MC14013",
+    "HEF4013B",
+    "4013"
+  ],
+  "full_name": "Dual D-Type Flip-Flop (CMOS)",
+  "manufacturers": [
+    "Texas Instruments",
+    "onsemi",
+    "STMicroelectronics"
+  ],
+  "category": "logic",
+  "subcategory": "d flip-flop",
+  "tags": [
+    "logic",
+    "cmos",
+    "4000-series",
+    "flip-flop",
+    "d-type"
+  ],
+  "description": "Dual positive-edge-triggered D-type flip-flop, each with independent SET, RESET, data, clock, Q and Q-bar. D is transferred to Q on the rising clock edge. Supply 3V to 18V.",
+  "packages": {
+    "DIP-14": {
+      "template": "dip",
+      "pin_count": 14,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "1Q",
+          "type": "output",
+          "description": "flip-flop 1 Q output"
+        },
+        {
+          "pin": 2,
+          "name": "1Q'",
+          "type": "output",
+          "description": "flip-flop 1 inverted output"
+        },
+        {
+          "pin": 3,
+          "name": "1CLK",
+          "type": "clock",
+          "description": "flip-flop 1 clock (rising edge)"
+        },
+        {
+          "pin": 4,
+          "name": "1RST",
+          "type": "reset",
+          "description": "flip-flop 1 reset (active HIGH, async)"
+        },
+        {
+          "pin": 5,
+          "name": "1D",
+          "type": "input",
+          "description": "flip-flop 1 data input"
+        },
+        {
+          "pin": 6,
+          "name": "1SET",
+          "type": "input",
+          "description": "flip-flop 1 set (active HIGH, async)"
+        },
+        {
+          "pin": 7,
+          "name": "VSS",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 8,
+          "name": "2SET",
+          "type": "input",
+          "description": "flip-flop 2 set (active HIGH, async)"
+        },
+        {
+          "pin": 9,
+          "name": "2D",
+          "type": "input",
+          "description": "flip-flop 2 data input"
+        },
+        {
+          "pin": 10,
+          "name": "2RST",
+          "type": "reset",
+          "description": "flip-flop 2 reset (active HIGH, async)"
+        },
+        {
+          "pin": 11,
+          "name": "2CLK",
+          "type": "clock",
+          "description": "flip-flop 2 clock (rising edge)"
+        },
+        {
+          "pin": 12,
+          "name": "2Q'",
+          "type": "output",
+          "description": "flip-flop 2 inverted output"
+        },
+        {
+          "pin": 13,
+          "name": "2Q",
+          "type": "output",
+          "description": "flip-flop 2 Q output"
+        },
+        {
+          "pin": 14,
+          "name": "VDD",
+          "type": "power",
+          "description": "supply, 3V to 18V"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.0,
+    "vs_max_v": 18.0,
+    "extra": {
+      "function": "two D flip-flops with async set/reset",
+      "logic family": "CD40xx CMOS (4000B)",
+      "clock edge": "rising (LOW-to-HIGH)",
+      "set/reset": "active HIGH, asynchronous",
+      "flip-flops": 2
+    }
+  },
+  "typical_application": "Frequency division (tie Q-bar to D for divide-by-2), shift registers, toggle/debounce stages.",
+  "gotchas": [
+    "clock is RISING-edge; data is captured only on the LOW-to-HIGH transition",
+    "SET and RESET are active-HIGH and asynchronous; tie unused ones LOW, not floating",
+    "asserting SET and RESET together is a non-standard state; avoid it",
+    "Q-bar sits adjacent to Q (pins 1/2 and 12/13) and the order flips between the two flip-flops"
+  ],
+  "related": [
+    "cd4017",
+    "cd4040",
+    "74hc74"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/cd4013b.pdf",
+  "source": "human",
+  "verified": true
+}

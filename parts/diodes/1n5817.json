@@ -1,0 +1,73 @@
+{
+  "id": "1n5817",
+  "name": "1N5817",
+  "aliases": [
+    "1N5817-E3"
+  ],
+  "full_name": "20V 1A Schottky barrier rectifier",
+  "manufacturers": [
+    "Vishay",
+    "onsemi",
+    "Diodes Inc"
+  ],
+  "category": "diode",
+  "subcategory": "schottky rectifier",
+  "tags": [
+    "diode",
+    "schottky",
+    "rectifier",
+    "low-vf",
+    "axial",
+    "do-41"
+  ],
+  "description": "Lowest-voltage 1N5817/18/19 Schottky rectifier, 20V / 1A in DO-41. Very low forward drop (~0.45V) and fast switching for low-voltage DC/DC, freewheeling, polarity protection and OR-ing where conduction loss matters.",
+  "packages": {
+    "DO-41": {
+      "template": "custom",
+      "pin_count": 2,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "A",
+          "type": "passive",
+          "description": "anode"
+        },
+        {
+          "pin": 2,
+          "name": "K",
+          "type": "passive",
+          "description": "cathode (band/stripe end)"
+        }
+      ],
+      "ascii": "  A \u2500\u2500\u25b7|\u2500\u2500 K\n  band/stripe end = K (cathode)"
+    }
+  },
+  "specs": {
+    "vs_max_v": 20.0,
+    "iout_max_ma": 1000.0,
+    "extra": {
+      "Vrrm": "20V",
+      "If_av": "1.0A",
+      "Vf": "0.45V max at 1.0A, 0.75V at 3.1A",
+      "Ir": "1.0mA at 25C, 10mA at 100C (rated VR)",
+      "Ifsm": "25A (8.3ms)",
+      "Tj_max": "125C",
+      "Rth(JA)": "50 C/W typ"
+    },
+    "rth_ja_cw": 50.0
+  },
+  "typical_application": "Output/catch and freewheel rectifier in low-voltage switchers, and series polarity protection where minimum drop matters.",
+  "gotchas": [
+    "band end is the CATHODE",
+    "Schottky leakage is milliamp-scale (up to 1mA at 25C, 10mA at 100C), far worse than a silicon PN diode; bad for low-standby-current designs",
+    "only 20V reverse, easy to exceed with ringing; size for peak/transient reverse voltage or step up to 1N5818 (30V) / 1N5819 (40V)",
+    "low Vf is the whole point vs 1N400x, but it climbs above ~1A; watch thermal runaway from leakage at high temperature"
+  ],
+  "related": [
+    "1n4001",
+    "bat54"
+  ],
+  "datasheet_url": "https://www.vishay.com/docs/88525/1n5817.pdf",
+  "source": "human",
+  "verified": true
+}

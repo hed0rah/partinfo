@@ -1,0 +1,144 @@
+{
+  "id": "lm339",
+  "name": "LM339",
+  "aliases": [
+    "LM339N",
+    "LM339A",
+    "LM2901",
+    "LM239",
+    "LM139"
+  ],
+  "full_name": "Quad Differential Comparator",
+  "manufacturers": [
+    "Texas Instruments",
+    "ON Semiconductor"
+  ],
+  "category": "comparator",
+  "subcategory": "quad comparator",
+  "tags": [
+    "comparator",
+    "open-collector",
+    "quad",
+    "single-supply"
+  ],
+  "description": "The LM339 packs four independent voltage comparators in one PDIP-14 and runs from a single supply of 2V to 36V (or a split supply of +/-1V to +/-18V). All four outputs are open-collector, so each needs an external pullup and outputs can be wired-OR'd onto a common line. The input common-mode range includes ground, which suits single-supply designs. It is a workhorse for window comparators, level detectors, oscillators, and multi-channel threshold sensing.",
+  "packages": {
+    "PDIP-14": {
+      "template": "dip",
+      "pin_count": 14,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "1OUT",
+          "type": "output",
+          "description": "comparator 1 output, open-collector, needs external pullup"
+        },
+        {
+          "pin": 2,
+          "name": "2OUT",
+          "type": "output",
+          "description": "comparator 2 output, open-collector, needs external pullup"
+        },
+        {
+          "pin": 3,
+          "name": "VCC",
+          "type": "power",
+          "description": "positive supply, 2V to 36V single supply"
+        },
+        {
+          "pin": 4,
+          "name": "2IN-",
+          "type": "input",
+          "description": "comparator 2 inverting (negative) input"
+        },
+        {
+          "pin": 5,
+          "name": "2IN+",
+          "type": "input",
+          "description": "comparator 2 noninverting (positive) input"
+        },
+        {
+          "pin": 6,
+          "name": "1IN-",
+          "type": "input",
+          "description": "comparator 1 inverting (negative) input"
+        },
+        {
+          "pin": 7,
+          "name": "1IN+",
+          "type": "input",
+          "description": "comparator 1 noninverting (positive) input"
+        },
+        {
+          "pin": 8,
+          "name": "3IN-",
+          "type": "input",
+          "description": "comparator 3 inverting (negative) input"
+        },
+        {
+          "pin": 9,
+          "name": "3IN+",
+          "type": "input",
+          "description": "comparator 3 noninverting (positive) input"
+        },
+        {
+          "pin": 10,
+          "name": "4IN-",
+          "type": "input",
+          "description": "comparator 4 inverting (negative) input"
+        },
+        {
+          "pin": 11,
+          "name": "4IN+",
+          "type": "input",
+          "description": "comparator 4 noninverting (positive) input"
+        },
+        {
+          "pin": 12,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground / negative supply"
+        },
+        {
+          "pin": 13,
+          "name": "4OUT",
+          "type": "output",
+          "description": "comparator 4 output, open-collector, needs external pullup"
+        },
+        {
+          "pin": 14,
+          "name": "3OUT",
+          "type": "output",
+          "description": "comparator 3 output, open-collector, needs external pullup"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.0,
+    "vs_max_v": 36.0,
+    "extra": {
+      "supply_voltage": "2V to 36V single or +/-1V to +/-18V dual",
+      "output": "open-collector",
+      "input_offset_v": "typ 2mV, max 5mV",
+      "response_time": "typ 1.3us",
+      "common_mode_range": "includes ground, up to VCC - 2V",
+      "channels": "4"
+    }
+  },
+  "typical_application": "multi-channel single-supply threshold detection and window comparators with wired-OR outputs onto a shared bus.",
+  "gotchas": [
+    "each open-collector output REQUIRES an external pullup resistor",
+    "input common-mode range includes ground but the upper end is limited to VCC - 2V",
+    "some manufacturers transpose the channel 1 and 2 names; electrically the pinout is identical",
+    "do not put a bypass capacitor between the GND pin and system ground when split supplies are used"
+  ],
+  "related": [
+    "lm393",
+    "lm324",
+    "lm358"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/lm339.pdf",
+  "source": "human",
+  "verified": true
+}

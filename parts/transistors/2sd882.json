@@ -1,0 +1,88 @@
+{
+  "id": "2sd882",
+  "name": "2SD882",
+  "aliases": [
+    "D882",
+    "2SD882-P",
+    "2SD882-Q"
+  ],
+  "full_name": "NPN Medium-Power Transistor",
+  "manufacturers": [
+    "NEC",
+    "Jiangsu Donghai (WXDH)",
+    "various second-source"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "npn medium-power",
+  "tags": [
+    "transistor",
+    "npn",
+    "bjt",
+    "medium-power",
+    "audio",
+    "driver",
+    "japanese"
+  ],
+  "description": "NEC NPN medium-power transistor (marked 'D882') for ~3W audio output, regulators and relay/DC-DC drive. This is a TO-126 part, NOT a TO-92: the collector is the center pin and is bonded to the metal mounting tab. Complement to the 2SB772.",
+  "packages": {
+    "TO-126": {
+      "template": "to220",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter (leftmost lead, marked face toward you)"
+        },
+        {
+          "pin": 2,
+          "name": "C",
+          "type": "passive",
+          "description": "collector (center, tied to the metal mounting tab)"
+        },
+        {
+          "pin": 3,
+          "name": "B",
+          "type": "passive",
+          "description": "base (rightmost lead)"
+        }
+      ],
+      "notes": "TO-126 (rendered with the TO-220 template). Marked face toward you, leads down: E-C-B left to right. Collector is the CENTER pin and the tab. NEC numbers leads 1=E,2=C,3=B; some makers (Jiangsu Donghai) number them 1=B,2=C,3=E from the opposite end, but the physical layout is identical: identify the collector by the tab."
+    }
+  },
+  "specs": {
+    "vs_max_v": 30.0,
+    "iout_max_ma": 3000.0,
+    "pd_max_mw": 10000.0,
+    "hfe_min": 60,
+    "hfe_max": 400,
+    "freq_max_hz": 90000000.0,
+    "extra": {
+      "Vceo": "30V",
+      "Vcbo": "40V",
+      "Vebo": "5V",
+      "Ic": "3A (7A pulsed)",
+      "Pd": "10W at Tc=25C, 1W at Ta=25C",
+      "complement (pnp)": "2SB772",
+      "hFE ranks": "R 60-120, Q 100-200, P 160-320, E 200-400",
+      "Vce(sat)": "0.3V (typ), 0.5V (max) @ Ic=2A, Ib=0.2A",
+      "Vbe(on)": "1.0V (typ), 2.0V (max) @ Ic=2A, Ib=0.2A (datasheet's VBE(sat))"
+    }
+  },
+  "typical_application": "Medium-power NPN for audio output (~3W), series-pass regulators, DC-DC converters and relay drivers; mount the tab to a heatsink for anything near its rating.",
+  "gotchas": [
+    "this is a TO-126 (not TO-92); package, footprint and thermal handling are completely different",
+    "collector is the CENTER pin AND the mounting tab; watch for shorts to a grounded heatsink",
+    "datasheets number the outer leads in opposite directions; always find the collector by the tab, then read physical position (face toward you: E-C-B)",
+    "10W rating is at Tc=25C (heatsinked); without a heatsink it is only ~1W"
+  ],
+  "related": [
+    "2sb772",
+    "bd139",
+    "tip31"
+  ],
+  "datasheet_url": "https://akizukidenshi.com/goodsaffix/2sd882_nec.pdf",
+  "source": "human",
+  "verified": true
+}

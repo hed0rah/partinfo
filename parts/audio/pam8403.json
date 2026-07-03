@@ -1,0 +1,156 @@
+{
+  "id": "pam8403",
+  "name": "PAM8403",
+  "aliases": [
+    "PAM8403DR"
+  ],
+  "full_name": "Filterless 3W Class-D Stereo Audio Amplifier",
+  "manufacturers": [
+    "Diodes Incorporated"
+  ],
+  "category": "audio",
+  "subcategory": "class-D amplifier",
+  "tags": [
+    "class-d",
+    "stereo",
+    "audio-amplifier",
+    "filterless",
+    "speaker-driver",
+    "btl"
+  ],
+  "description": "The PAM8403 is a 3W per channel filterless class-D stereo audio amplifier from Diodes Incorporated. Its filterless architecture drives speakers directly with no LC output filter, saving cost and board area, and reaches up to 90% efficiency for portable use. Each channel is a bridge-tied-load (BTL) output, so the speaker connects between the +OUT and -OUT pins of a channel with no connection to ground. It includes short-circuit protection, thermal shutdown, and low supply-voltage detection that mutes the outputs at about 2V. The fixed default gain is 24dB. Diodes lists it as not recommended for new design (successor PAM8406).",
+  "packages": {
+    "SOP-16": {
+      "template": "soic",
+      "pin_count": 16,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "+OUT_L",
+          "type": "output",
+          "description": "Left channel positive (BTL) output to speaker"
+        },
+        {
+          "pin": 2,
+          "name": "PGND",
+          "type": "ground",
+          "description": "Power ground"
+        },
+        {
+          "pin": 3,
+          "name": "-OUT_L",
+          "type": "output",
+          "description": "Left channel negative (BTL) output to speaker"
+        },
+        {
+          "pin": 4,
+          "name": "PVDD",
+          "type": "power",
+          "description": "Power supply for the output stage"
+        },
+        {
+          "pin": 5,
+          "name": "MUTE",
+          "type": "input",
+          "description": "Mute control input, active low (logic high for normal operation)"
+        },
+        {
+          "pin": 6,
+          "name": "VDD",
+          "type": "power",
+          "description": "Analog supply voltage"
+        },
+        {
+          "pin": 7,
+          "name": "INL",
+          "type": "input",
+          "description": "Left channel analog input"
+        },
+        {
+          "pin": 8,
+          "name": "VREF",
+          "type": "analog",
+          "description": "Internal analog reference; connect a bypass capacitor from VREF to GND"
+        },
+        {
+          "pin": 9,
+          "name": "NC",
+          "type": "nc",
+          "description": "No connect"
+        },
+        {
+          "pin": 10,
+          "name": "INR",
+          "type": "input",
+          "description": "Right channel analog input"
+        },
+        {
+          "pin": 11,
+          "name": "GND",
+          "type": "ground",
+          "description": "Analog ground"
+        },
+        {
+          "pin": 12,
+          "name": "SHND",
+          "type": "input",
+          "description": "Shutdown control input, active low (logic high for normal operation)"
+        },
+        {
+          "pin": 13,
+          "name": "PVDD",
+          "type": "power",
+          "description": "Power supply for the output stage"
+        },
+        {
+          "pin": 14,
+          "name": "-OUT_R",
+          "type": "output",
+          "description": "Right channel negative (BTL) output to speaker"
+        },
+        {
+          "pin": 15,
+          "name": "PGND",
+          "type": "ground",
+          "description": "Power ground"
+        },
+        {
+          "pin": 16,
+          "name": "+OUT_R",
+          "type": "output",
+          "description": "Right channel positive (BTL) output to speaker"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.5,
+    "vs_max_v": 5.5,
+    "extra": {
+      "output_power": "3W/ch at 10% THD, 4 ohm load, 5V supply",
+      "default_gain_db": 24,
+      "efficiency": "up to 90%",
+      "load_impedance": "4 ohm to 8 ohm typical",
+      "protection": "short-circuit, thermal shutdown (>140C), low-supply mute (~2V)",
+      "output_type": "BTL (bridge-tied load), filterless",
+      "supply_voltage_abs_max_v": 6.0,
+      "operating_temp_c": "-40 to +85"
+    }
+  },
+  "typical_application": "Battery- or USB-powered portable stereo speaker driving two 4 to 8 ohm speakers directly with no output filter.",
+  "gotchas": [
+    "Outputs are bridge-tied (BTL): wire each speaker between +OUT and -OUT of a channel; never connect an output to ground.",
+    "Both MUTE (pin 5) and SHND (pin 12) are active low; tie them high (to VDD) for normal operation.",
+    "This is the bare chip pinout; the common red PAM8403 amplifier board adds a volume pot, input/output headers, and decoupling, so its connector labels do not map directly to these pin numbers.",
+    "Filterless output is a high-frequency PWM square wave; keep speaker wires short and use ferrite beads for long runs to limit EMI.",
+    "Marked not recommended for new design by Diodes; PAM8406 is the suggested replacement."
+  ],
+  "related": [
+    "lm386",
+    "tda2030",
+    "tda2822"
+  ],
+  "datasheet_url": "https://www.diodes.com/assets/Datasheets/products_inactive_data/PAM8403.pdf",
+  "source": "human",
+  "verified": true
+}

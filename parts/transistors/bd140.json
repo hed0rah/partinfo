@@ -1,0 +1,85 @@
+{
+  "id": "bd140",
+  "name": "BD140",
+  "aliases": [
+    "BD140-16"
+  ],
+  "full_name": "PNP Medium-Power Transistor",
+  "manufacturers": [
+    "onsemi",
+    "STMicroelectronics",
+    "Diotec"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "pnp medium-power",
+  "tags": [
+    "transistor",
+    "pnp",
+    "bjt",
+    "medium-power",
+    "audio-output",
+    "classic"
+  ],
+  "description": "Medium-power PNP in TO-126, the complement to the BD139 NPN. The PNP half of class-AB audio output pairs and negative-rail pass devices. Lead order is E-C-B with the printed face toward you.",
+  "packages": {
+    "TO-126": {
+      "template": "to220",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "B",
+          "type": "passive",
+          "description": "base"
+        },
+        {
+          "pin": 2,
+          "name": "C",
+          "type": "passive",
+          "description": "collector (also the mounting tab)"
+        },
+        {
+          "pin": 3,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter"
+        }
+      ],
+      "notes": "TO-126, printed face toward you, leads down: E-C-B. The metal tab is the collector."
+    }
+  },
+  "specs": {
+    "vs_max_v": 80.0,
+    "iout_max_ma": 1500.0,
+    "pd_max_mw": 12500.0,
+    "hfe_min": 40,
+    "hfe_max": 250,
+    "freq_max_hz": 75000000.0,
+    "extra": {
+      "Vceo": "-80V",
+      "Ic max": "-1.5A",
+      "complement (npn)": "BD139",
+      "gain groups": "-6/-10/-16 suffix",
+      "Vce(sat)": "-0.5V (max) @ Ic=-0.5A, Ib=-0.05A",
+      "Vbe(on)": "-1V (max) @ Ic=-0.5A, Vce=-2V",
+      "Rth(JC)": "10 C/W",
+      "Rth(JA)": "100 C/W"
+    },
+    "rth_jc_cw": 10.0,
+    "rth_ja_cw": 100.0
+  },
+  "typical_application": "PNP side of a BD139/BD140 push-pull output stage, negative linear regulator pass transistor, high-side drive. Heatsink near full dissipation.",
+  "gotchas": [
+    "lead order is E-C-B; the tab is the collector",
+    "match gain groups with the BD139 for symmetric output stages",
+    "free-air dissipation is a fraction of the 12.5W heatsinked rating"
+  ],
+  "related": [
+    "bd139",
+    "tip42c",
+    "2n3906"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.st.com/resource/en/datasheet/bd140.pdf"
+}

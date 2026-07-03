@@ -1,0 +1,88 @@
+{
+  "id": "79l05",
+  "name": "79L05",
+  "aliases": [
+    "L79L05",
+    "MC79L05",
+    "LM79L05",
+    "79L05ACZ"
+  ],
+  "full_name": "Negative 5V 100mA Three-Terminal Voltage Regulator",
+  "manufacturers": [
+    "STMicroelectronics",
+    "onsemi",
+    "Fairchild",
+    "Texas Instruments"
+  ],
+  "category": "power",
+  "subcategory": "linear regulator (negative)",
+  "tags": [
+    "regulator",
+    "ldo",
+    "negative",
+    "linear",
+    "5v",
+    "power",
+    "classic"
+  ],
+  "description": "Negative-rail 5V fixed linear regulator, 100mA, in TO-92. The low-power negative counterpart to the 78L05; typically paired with a positive regulator (e.g. 7805/78L05) to make a dual analog supply. TO-92 pin order (datasheet numbering) is GND(1)/VIN(2)/VOUT(3), which is the REVERSE of the positive 78Lxx.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground / common"
+        },
+        {
+          "pin": 2,
+          "name": "VIN",
+          "type": "power",
+          "description": "negative input voltage"
+        },
+        {
+          "pin": 3,
+          "name": "VOUT",
+          "type": "output",
+          "description": "regulated -5V output"
+        }
+      ],
+      "ascii": "    \u256d\u2500\u2500\u2500\u256e\n    \u2502   \u2502   (flat face toward you, leads down)\n    \u2570\u2500\u252c\u2500\u256f\n   \u2502  \u2502  \u2502\n VOUT VIN GND\n  (3) (2) (1)",
+      "notes": "datasheet numbers the leads GND=1, VIN=2, VOUT=3, drawn as a bottom view. Held flat-face-toward-you with leads down (front view), the physical left-to-right order is VOUT, VIN, GND (the reverse). The ascii above is the front view."
+    }
+  },
+  "specs": {
+    "vs_min_v": -30.0,
+    "vs_max_v": -30.0,
+    "iout_max_ma": 100.0,
+    "extra": {
+      "Vout": "-5V typ (-4.6 to -5.4V)",
+      "Iout max": "100mA",
+      "Vin abs max": "-30V",
+      "dropout": "~1.7V typ",
+      "polarity": "negative regulator",
+      "Iq": "2mA typ (6mA max) @ Io=100mA",
+      "Rth(JC)": "60 C/W (TO-226/TO-92)",
+      "Rth(JA)": "232 C/W still air (88 C/W at 400ft/min airflow)"
+    },
+    "rth_jc_cw": 60.0,
+    "rth_ja_cw": 232.0
+  },
+  "typical_application": "Local on-card -5V rail for dual-supply op-amp / analog circuits, paired with a positive 5V regulator on the other rail.",
+  "gotchas": [
+    "TO-92 order GND/VIN/VOUT is the REVERSE of the positive 78L05 (OUT/GND/IN); swapping a 78L for a 79L in the same footprint applies reverse polarity and destroys the part",
+    "it is a NEGATIVE regulator: VIN, VOUT and the regulated rail are all negative with respect to GND",
+    "the datasheet TO-92 figure is a bottom view; read it as a front view and you mirror the pins"
+  ],
+  "related": [
+    "78l05",
+    "7905",
+    "7805"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/lm79l.pdf",
+  "source": "human",
+  "verified": true
+}

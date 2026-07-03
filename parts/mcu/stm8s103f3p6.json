@@ -1,0 +1,187 @@
+{
+  "id": "stm8s103f3p6",
+  "name": "STM8S103F3P6",
+  "aliases": [
+    "STM8S103F3",
+    "STM8S103"
+  ],
+  "full_name": "STMicroelectronics STM8S103F3P6 8-bit STM8 Microcontroller",
+  "manufacturers": [
+    "STMicroelectronics"
+  ],
+  "category": "mcu",
+  "subcategory": "8-bit STM8 MCU",
+  "tags": [
+    "stm8",
+    "8-bit",
+    "microcontroller",
+    "tssop-20",
+    "swim",
+    "adc",
+    "uart",
+    "i2c",
+    "spi",
+    "cheap"
+  ],
+  "description": "8-bit STM8-core microcontroller in a 20-pin TSSOP with 8 KB flash, 1 KB SRAM, 640 B data EEPROM and a 16 MHz max clock. It includes a 10-bit ADC, UART, SPI, I2C, timers with PWM and true data EEPROM, all in a sub-dollar part programmed over a single-wire SWIM interface. Hobbyists meet it on the famous ~$0.30 'STM8S103 minimum system' breakout boards as a cheaper alternative to AVR/STM32. Standout traits: bargain price, on-chip EEPROM, and 5 V operation.",
+  "packages": {
+    "TSSOP-20": {
+      "template": "tssop",
+      "pin_count": 20,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "PD4",
+          "type": "bidirectional",
+          "description": "GPIO PD4; TIM2_CH1, BEEP output"
+        },
+        {
+          "pin": 2,
+          "name": "PD5",
+          "type": "bidirectional",
+          "description": "GPIO PD5; AIN5 ADC, UART1_TX"
+        },
+        {
+          "pin": 3,
+          "name": "PD6",
+          "type": "bidirectional",
+          "description": "GPIO PD6; AIN6 ADC, UART1_RX"
+        },
+        {
+          "pin": 4,
+          "name": "NRST",
+          "type": "reset",
+          "description": "active-low bidirectional reset"
+        },
+        {
+          "pin": 5,
+          "name": "PA1",
+          "type": "bidirectional",
+          "description": "GPIO PA1; OSCIN (external clock/crystal input)"
+        },
+        {
+          "pin": 6,
+          "name": "PA2",
+          "type": "bidirectional",
+          "description": "GPIO PA2; OSCOUT (crystal output)"
+        },
+        {
+          "pin": 7,
+          "name": "VSS",
+          "type": "ground",
+          "description": "digital ground"
+        },
+        {
+          "pin": 8,
+          "name": "VCAP",
+          "type": "power",
+          "description": "1.8 V internal regulator decoupling; connect external cap to VSS, do not supply externally"
+        },
+        {
+          "pin": 9,
+          "name": "VDD",
+          "type": "power",
+          "description": "supply voltage 2.95-5.5 V"
+        },
+        {
+          "pin": 10,
+          "name": "PA3",
+          "type": "bidirectional",
+          "description": "GPIO PA3; TIM2_CH3, SPI_NSS"
+        },
+        {
+          "pin": 11,
+          "name": "PB5",
+          "type": "bidirectional",
+          "description": "GPIO PB5; I2C_SDA, TIM1_BKIN (true open-drain)"
+        },
+        {
+          "pin": 12,
+          "name": "PB4",
+          "type": "bidirectional",
+          "description": "GPIO PB4; I2C_SCL, ADC_ETR (true open-drain)"
+        },
+        {
+          "pin": 13,
+          "name": "PC3",
+          "type": "bidirectional",
+          "description": "GPIO PC3; TIM1_CH3, TLI top-level interrupt"
+        },
+        {
+          "pin": 14,
+          "name": "PC4",
+          "type": "bidirectional",
+          "description": "GPIO PC4; TIM1_CH4, CLK_CCO, AIN2 ADC"
+        },
+        {
+          "pin": 15,
+          "name": "PC5",
+          "type": "bidirectional",
+          "description": "GPIO PC5; SPI_SCK, TIM2_CH1"
+        },
+        {
+          "pin": 16,
+          "name": "PC6",
+          "type": "bidirectional",
+          "description": "GPIO PC6; SPI_MOSI, TIM1_CH1"
+        },
+        {
+          "pin": 17,
+          "name": "PC7",
+          "type": "bidirectional",
+          "description": "GPIO PC7; SPI_MISO, TIM1_CH2"
+        },
+        {
+          "pin": 18,
+          "name": "PD1",
+          "type": "bidirectional",
+          "description": "GPIO PD1; SWIM single-wire debug/programming pin"
+        },
+        {
+          "pin": 19,
+          "name": "PD2",
+          "type": "bidirectional",
+          "description": "GPIO PD2; AIN3 ADC, TIM2_CH3"
+        },
+        {
+          "pin": 20,
+          "name": "PD3",
+          "type": "bidirectional",
+          "description": "GPIO PD3; AIN4 ADC, TIM2_CH2, ADC_ETR"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.95,
+    "vs_max_v": 5.5,
+    "extra": {
+      "core": "8-bit STM8 CISC",
+      "flash": "8 KB",
+      "ram": "1 KB SRAM",
+      "eeprom": "640 B data EEPROM",
+      "vdd_range": "2.95-5.5 V",
+      "max_clock": "16 MHz (internal RC)",
+      "adc": "10-bit, up to 5 channels (AIN2-AIN6)",
+      "timers": "advanced TIM1, TIM2, TIM4; PWM capable",
+      "interfaces": "UART, SPI, I2C, SWIM debug",
+      "gpio": "16"
+    }
+  },
+  "typical_application": "Ultra-low-cost control tasks such as battery monitors, simple PWM/motor control, and EEPROM-logging gadgets on the cheap STM8S103 breakout board.",
+  "gotchas": [
+    "programmed via single-wire SWIM, NOT SWD/JTAG; you need an ST-Link with the SWIM pin (PD1), not a generic SWD-only debugger",
+    "VCAP (pin 8) is the internal 1.8 V regulator output and needs a ~1 uF cap to VSS; never feed it external power or leave it floating",
+    "toolchain is not Arduino-native; use SDCC + stm8flash or ST's STVD/Cosmic, a steeper setup than AVR/STM32",
+    "default clock is the 16 MHz HSI divided by 8, so the part boots at 2 MHz until the clock prescaler is changed",
+    "PB4/PB5 (I2C pins) are true open-drain only and cannot source high, requiring external pull-ups",
+    "tiny RAM (1 KB) and flash (8 KB) limit firmware size; large libraries will not fit"
+  ],
+  "related": [
+    "stm32f103c8t6",
+    "attiny85"
+  ],
+  "datasheet_url": "https://www.st.com/resource/en/datasheet/stm8s103f3.pdf",
+  "source": "human",
+  "verified": true
+}

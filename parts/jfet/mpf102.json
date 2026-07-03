@@ -1,0 +1,81 @@
+{
+  "id": "mpf102",
+  "name": "MPF102",
+  "aliases": [],
+  "full_name": "N-Channel JFET (RF/Small-Signal Amplifier)",
+  "manufacturers": [
+    "Fairchild",
+    "onsemi"
+  ],
+  "category": "transistor_jfet",
+  "subcategory": "n-channel jfet",
+  "tags": [
+    "jfet",
+    "n-channel",
+    "rf",
+    "buffer",
+    "audio",
+    "classic"
+  ],
+  "description": "General-purpose small-signal N-channel JFET in TO-92, originally marketed for RF amplifier and low-ON-resistance analog switching applications. Extremely common in buffer and preamp stages in guitar pedal and vintage audio circuits alongside the 2N5457/J201. TO-92 lead order is D-S-G.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "D",
+          "type": "passive",
+          "description": "drain"
+        },
+        {
+          "pin": 2,
+          "name": "S",
+          "type": "passive",
+          "description": "source"
+        },
+        {
+          "pin": 3,
+          "name": "G",
+          "type": "passive",
+          "description": "gate"
+        }
+      ],
+      "notes": "Per Fairchild's own pinout: 1. Drain 2. Source 3. Gate, flat face toward you, leads down."
+    }
+  },
+  "specs": {
+    "vs_max_v": 25.0,
+    "idss_ma": 20.0,
+    "vgs_off_v": -8.0,
+    "pd_max_mw": 350.0,
+    "extra": {
+      "Vgs(off)": "-8.0V max @ VDS=15V, ID=2nA (Vgs -0.5 to -7.5V typ range @ ID=200uA)",
+      "IDSS_range": "2.0 to 20mA @ VDS=15V, VGS=0V",
+      "gfs (forward transconductance)": "2000 to 7500uS @ VGS=0V, VDS=15V, f=1kHz",
+      "Vdg_max": "25V",
+      "Vgs_max": "-25V",
+      "Ciss": "7.0pF max @ VGS=0, VDS=15V, f=1MHz",
+      "Crss": "3.0pF max @ VGS=0, VDS=15V, f=1MHz",
+      "Rth(JC)": "125 C/W",
+      "Rth(JA)": "357 C/W"
+    },
+    "rth_jc_cw": 125.0,
+    "rth_ja_cw": 357.0
+  },
+  "typical_application": "Source-follower buffers, instrument input stages, and JFET preamps; also usable as a low-ON-resistance analog switch or small RF amplifier. Self-bias with a source resistor sized from the measured IDSS.",
+  "gotchas": [
+    "depletion-mode: conducts at Vgs=0; needs negative Vgs to reduce current",
+    "wide IDSS (2-20mA) and Vgs(off) spread between individual parts; measure or trim for repeatable bias, do not assume datasheet typicals",
+    "static-sensitive gate",
+    "originally an RF/switching part, not audio-specific, but widely reused in audio buffer circuits alongside the 2N5457 and J201"
+  ],
+  "related": [
+    "2n5457",
+    "j201"
+  ],
+  "datasheet_url": "https://www.onsemi.com/download/data-sheet/pdf/mpf102-d.pdf",
+  "source": "claude",
+  "verified": true
+}

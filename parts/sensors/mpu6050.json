@@ -1,0 +1,113 @@
+{
+  "id": "mpu6050",
+  "name": "MPU-6050",
+  "aliases": [
+    "GY-521",
+    "MPU6050",
+    "MPU-6000"
+  ],
+  "full_name": "InvenSense/TDK MPU-6050 6-Axis MotionTracking Device (GY-521 breakout)",
+  "manufacturers": [
+    "InvenSense",
+    "TDK"
+  ],
+  "category": "sensor",
+  "subcategory": "6-axis IMU",
+  "tags": [
+    "imu",
+    "accelerometer",
+    "gyroscope",
+    "i2c",
+    "mems",
+    "6-axis",
+    "motion",
+    "dmp"
+  ],
+  "description": "6-axis MEMS motion tracking device combining a 3-axis gyroscope and a 3-axis accelerometer on one die, with an on-chip Digital Motion Processor (DMP). It communicates over I2C (up to 400 kHz) and includes a 1024-byte FIFO and a 16-bit ADC per channel. The popular GY-521 breakout adds a 3.3 V LDO and I2C pull-ups so it can run from 5 V. An auxiliary I2C master bus (XDA/XCL) lets it read an external magnetometer for a 9-axis solution.",
+  "packages": {
+    "GY-521 module": {
+      "template": "module",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "VCC",
+          "type": "power",
+          "description": "supply; GY-521 has an onboard 3.3 V regulator so accepts 3.3-5 V (the MPU-6050 chip VDD is 2.375-3.46 V)"
+        },
+        {
+          "pin": 2,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 3,
+          "name": "SCL",
+          "type": "clock",
+          "description": "I2C serial clock"
+        },
+        {
+          "pin": 4,
+          "name": "SDA",
+          "type": "bidirectional",
+          "description": "I2C serial data"
+        },
+        {
+          "pin": 5,
+          "name": "XDA",
+          "type": "bidirectional",
+          "description": "auxiliary I2C master data (to external sensor e.g. magnetometer)"
+        },
+        {
+          "pin": 6,
+          "name": "XCL",
+          "type": "clock",
+          "description": "auxiliary I2C master clock (to external sensor)"
+        },
+        {
+          "pin": 7,
+          "name": "AD0",
+          "type": "input",
+          "description": "I2C address LSB select: low = 0x68, high = 0x69"
+        },
+        {
+          "pin": 8,
+          "name": "INT",
+          "type": "output",
+          "description": "interrupt output (data ready, FIFO, motion detect)"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.3,
+    "vs_max_v": 5.0,
+    "extra": {
+      "interface": "I2C (up to 400 kHz)",
+      "i2c_address": "0x68 (AD0 low) / 0x69 (AD0 high)",
+      "adc": "16-bit per axis",
+      "gyro_range": "+/-250/500/1000/2000 deg/s (selectable)",
+      "accel_range": "+/-2/4/8/16 g (selectable)",
+      "features": "on-chip DMP, 1024-byte FIFO, temperature sensor",
+      "chip_supply_vdd": "2.375-3.46 V",
+      "module_supply": "3.3-5 V (GY-521 with LDO)"
+    }
+  },
+  "typical_application": "Tilt/orientation sensing, drones and gimbals, gesture and motion detection, self-balancing robots, fused with a magnetometer for AHRS/9-DOF.",
+  "gotchas": [
+    "the bare MPU-6050 chip is a 3.3 V part (VDD max 3.46 V); only the GY-521 board's onboard LDO makes 5 V safe - never feed 5 V to the raw chip VDD",
+    "AD0 sets the 7-bit I2C address: 0x68 when low (default, often pulled low on the board), 0x69 when high",
+    "XDA/XCL are the auxiliary master bus for an external magnetometer, not extra I2C for the host - leave unconnected if unused",
+    "I2C logic on the bare chip is referenced to VLOGIC; some clones tie it to VDD so 5 V I2C logic can be out of spec",
+    "many cheap clones use a lower-grade die and show more gyro drift; allow warm-up and calibration",
+    "largely superseded (MPU-6500/ICM-series) but remains the canonical hobby IMU"
+  ],
+  "related": [
+    "adxl345",
+    "bmp280"
+  ],
+  "datasheet_url": "https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf",
+  "source": "human",
+  "verified": true
+}

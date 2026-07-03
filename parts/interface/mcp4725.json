@@ -1,0 +1,93 @@
+{
+  "id": "mcp4725",
+  "name": "MCP4725",
+  "aliases": [
+    "MCP4725A0T",
+    "MCP4725-E/CH"
+  ],
+  "full_name": "Microchip MCP4725 12-Bit Digital-to-Analog Converter with EEPROM Memory in SOT-23-6",
+  "manufacturers": [
+    "Microchip Technology"
+  ],
+  "category": "interface",
+  "subcategory": "I2C DAC",
+  "tags": [
+    "dac",
+    "i2c",
+    "12-bit",
+    "eeprom",
+    "analog"
+  ],
+  "description": "The MCP4725 is a single-channel 12-bit buffered voltage-output DAC with an I2C interface and on-chip nonvolatile EEPROM. The EEPROM stores the DAC code and configuration so the output is restored to a preset value at power-up without host intervention. It uses its own VDD supply rail as the reference, producing a rail-to-rail output from VSS to VDD. Housed in a tiny 6-pin SOT-23, it is a popular choice for generating programmable setpoints, offsets, and simple analog control voltages over I2C.",
+  "packages": {
+    "SOT-23-6": {
+      "template": "sot23-6",
+      "pin_count": 6,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "VOUT",
+          "type": "output",
+          "description": "Analog output voltage from the DAC, range VSS to VDD"
+        },
+        {
+          "pin": 2,
+          "name": "VSS",
+          "type": "ground",
+          "description": "Ground reference"
+        },
+        {
+          "pin": 3,
+          "name": "VDD",
+          "type": "power",
+          "description": "Supply voltage; also serves as the DAC reference"
+        },
+        {
+          "pin": 4,
+          "name": "SDA",
+          "type": "bidirectional",
+          "description": "I2C serial data; open-drain, needs pullup"
+        },
+        {
+          "pin": 5,
+          "name": "SCL",
+          "type": "clock",
+          "description": "I2C serial clock input; open-drain, needs pullup"
+        },
+        {
+          "pin": 6,
+          "name": "A0",
+          "type": "input",
+          "description": "I2C address bit selection (A0 bit); tie to VSS or VDD, or drive with logic"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.7,
+    "vs_max_v": 5.5,
+    "extra": {
+      "resolution": "12-bit",
+      "channels": "1 (voltage output)",
+      "interface": "I2C (standard 100k, fast 400k, high-speed 3.4M)",
+      "eeprom": "yes, stores DAC code and power-down config",
+      "reference": "VDD (ratiometric)",
+      "i2c_address": "0x60-0x67; A2/A1 factory-set, A0 set by pin"
+    }
+  },
+  "typical_application": "Generating a programmable analog control voltage, setpoint, or offset from a microcontroller over I2C.",
+  "gotchas": [
+    "Output reference IS VDD, so output accuracy and noise track the supply directly; use a clean, stable VDD",
+    "Only the A0 address bit is pin-selectable; the A2 and A1 bits are fixed at the factory per ordering code, so a single bus holds at most two of the same order-code part (A0 to VSS and to VDD)",
+    "Writing the EEPROM is a separate, slower command than writing the volatile DAC register; do not write EEPROM on every update or you will wear it out",
+    "Output is buffered rail-to-rail but cannot reach exactly VDD/VSS under load; check the output swing spec for your load",
+    "SDA and SCL are open-drain and require external pullups to VDD"
+  ],
+  "related": [
+    "ads1115",
+    "mcp3008"
+  ],
+  "datasheet_url": "https://ww1.microchip.com/downloads/en/DeviceDoc/22039d.pdf",
+  "source": "human",
+  "verified": true
+}

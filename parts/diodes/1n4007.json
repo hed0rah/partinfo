@@ -1,0 +1,80 @@
+{
+  "id": "1n4007",
+  "name": "1N4007",
+  "aliases": [
+    "1N4001",
+    "1N4002",
+    "1N4003",
+    "1N4004",
+    "1N4005",
+    "1N4006",
+    "1N400x"
+  ],
+  "full_name": "General-Purpose Silicon Rectifier Diode (1A)",
+  "manufacturers": [
+    "onsemi",
+    "Vishay",
+    "Diodes Inc"
+  ],
+  "category": "diode",
+  "subcategory": "rectifier",
+  "tags": [
+    "diode",
+    "rectifier",
+    "power",
+    "flyback",
+    "classic"
+  ],
+  "description": "The default 1A general-purpose rectifier. The 1N400x series differs only in reverse voltage: 1N4001 is 50V, 1N4007 is 1000V. Just use the 1N4007 for everything. Banded end is the cathode.",
+  "packages": {
+    "DO-41": {
+      "template": "custom",
+      "pin_count": 2,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "A",
+          "type": "passive",
+          "description": "anode"
+        },
+        {
+          "pin": 2,
+          "name": "K",
+          "type": "passive",
+          "description": "cathode (banded end)"
+        }
+      ],
+      "notes": "axial body; the painted band marks the cathode."
+    }
+  },
+  "specs": {
+    "vf_v": 1.1,
+    "vs_max_v": 1000.0,
+    "iout_max_ma": 1000.0,
+    "extra": {
+      "Vr (1N4001)": "50V",
+      "Vr (1N4007)": "1000V",
+      "If average": "1A",
+      "If surge": "30A",
+      "trr": "slow (~30us), not for high-freq switching",
+      "Ir": "5.0uA max @ Ta=25C (50uA max @ Ta=100C)",
+      "Rth(JA)": "100 C/W typ"
+    },
+    "rth_ja_cw": 100.0
+  },
+  "typical_application": "Mains/transformer rectification, polarity protection, relay and solenoid flyback clamps, low-frequency power circuits. For high-frequency switching use a fast or Schottky diode instead.",
+  "gotchas": [
+    "band = cathode; reversing it in a bridge or clamp is a common error",
+    "slow reverse recovery (~30us): unsuitable for switch-mode and RF; use UF400x or a Schottky there",
+    "the 1N400x suffix only changes reverse voltage; pinout and current are identical, so default to 1N4007",
+    "~1.1V forward drop at 1A wastes more than a Schottky in low-voltage supplies"
+  ],
+  "related": [
+    "1n5819",
+    "1n4148",
+    "uf4007"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.diodes.com/datasheet/download/1N4007.pdf"
+}

@@ -1,0 +1,86 @@
+{
+  "id": "s9012",
+  "name": "S9012",
+  "aliases": [
+    "SS9012",
+    "9012"
+  ],
+  "full_name": "PNP Medium-Power Transistor (TO-92)",
+  "manufacturers": [
+    "Fairchild",
+    "MCC",
+    "UTC",
+    "Jiangsu Changjiang"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "pnp medium-power",
+  "tags": [
+    "transistor",
+    "pnp",
+    "bjt",
+    "audio",
+    "driver",
+    "asian-jellybean"
+  ],
+  "description": "PNP complement to the S9013, common in Asian-design audio output and driver stages. TO-92 pin order is E-B-C (the reverse of European BC-series parts). Values shown are magnitudes; this is a PNP so the rails are negative.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter"
+        },
+        {
+          "pin": 2,
+          "name": "B",
+          "type": "passive",
+          "description": "base"
+        },
+        {
+          "pin": 3,
+          "name": "C",
+          "type": "passive",
+          "description": "collector"
+        }
+      ],
+      "notes": "flat face toward you, leads down: pin 1 (E) on the left. Verified from MCC and generic S901x datasheets."
+    }
+  },
+  "specs": {
+    "vs_max_v": 25.0,
+    "iout_max_ma": 500.0,
+    "pd_max_mw": 625.0,
+    "hfe_min": 64,
+    "hfe_max": 300,
+    "freq_max_hz": 150000000.0,
+    "extra": {
+      "Vceo": "-25V",
+      "Vcbo": "-40V",
+      "Vebo": "-5V",
+      "complement (npn)": "S9013",
+      "polarity": "PNP (negative rails)",
+      "Vce(sat)": "-0.6V (max) @ Ic=-500mA, Ib=-50mA",
+      "Vbe(on)": "-1.2V (max) @ Ic=-500mA, Ib=-50mA (datasheet's VBE(sat))",
+      "Rth(JA)": "200 C/W"
+    },
+    "rth_ja_cw": 200.0
+  },
+  "typical_application": "Low-voltage high-current PNP switch and push-pull/audio output complement to the S9013.",
+  "gotchas": [
+    "pinout is E-B-C, NOT the European C-B-E; aggregator sites sometimes mislabel it",
+    "Vceo is only 25V while Vcbo is 40V; rate by the 25V collector-emitter limit",
+    "Vebo only 5V; reverse base-emitter beyond this degrades hFE"
+  ],
+  "related": [
+    "s9013",
+    "s9014",
+    "s9015"
+  ],
+  "datasheet_url": "https://www.mccsemi.com/pdf/products/S9012(TO-92).pdf",
+  "source": "human",
+  "verified": true
+}

@@ -1,0 +1,178 @@
+{
+  "id": "txs0108e",
+  "name": "TXS0108E",
+  "aliases": [
+    "TXS0108EPWR"
+  ],
+  "full_name": "8-bit bidirectional auto-direction voltage-level translator",
+  "manufacturers": [
+    "Texas Instruments"
+  ],
+  "category": "interface",
+  "subcategory": "level translator",
+  "tags": [
+    "interface",
+    "level-shifter",
+    "level-translator",
+    "bidirectional",
+    "i2c",
+    "auto-direction"
+  ],
+  "description": "8-channel bidirectional voltage-level translator with automatic direction sensing - no direction-control pin. It bridges a lower-voltage A-side (1.4-3.6 V) to a higher-voltage B-side (1.65-5.5 V) and tolerates open-drain signals, so it works on push-pull buses (SPI, generic GPIO) and, with care, on I2C. An output-enable (OE) pin puts all I/Os in high-impedance. The common 8-channel module for mixing 3.3 V and 5 V logic.",
+  "packages": {
+    "TSSOP-20": {
+      "template": "tssop",
+      "pin_count": 20,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "A1",
+          "type": "bidirectional",
+          "description": "channel 1, A-side (low-voltage)"
+        },
+        {
+          "pin": 2,
+          "name": "VCCA",
+          "type": "power",
+          "description": "A-side supply, 1.4-3.6 V (must be <= VCCB)"
+        },
+        {
+          "pin": 3,
+          "name": "A2",
+          "type": "bidirectional",
+          "description": "channel 2, A-side"
+        },
+        {
+          "pin": 4,
+          "name": "A3",
+          "type": "bidirectional",
+          "description": "channel 3, A-side"
+        },
+        {
+          "pin": 5,
+          "name": "A4",
+          "type": "bidirectional",
+          "description": "channel 4, A-side"
+        },
+        {
+          "pin": 6,
+          "name": "A5",
+          "type": "bidirectional",
+          "description": "channel 5, A-side"
+        },
+        {
+          "pin": 7,
+          "name": "A6",
+          "type": "bidirectional",
+          "description": "channel 6, A-side"
+        },
+        {
+          "pin": 8,
+          "name": "A7",
+          "type": "bidirectional",
+          "description": "channel 7, A-side"
+        },
+        {
+          "pin": 9,
+          "name": "A8",
+          "type": "bidirectional",
+          "description": "channel 8, A-side"
+        },
+        {
+          "pin": 10,
+          "name": "OE",
+          "type": "input",
+          "description": "output enable; low puts all A/B I/Os in high-Z (pull low at power-up, then high)"
+        },
+        {
+          "pin": 11,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 12,
+          "name": "B8",
+          "type": "bidirectional",
+          "description": "channel 8, B-side (high-voltage)"
+        },
+        {
+          "pin": 13,
+          "name": "B7",
+          "type": "bidirectional",
+          "description": "channel 7, B-side"
+        },
+        {
+          "pin": 14,
+          "name": "B6",
+          "type": "bidirectional",
+          "description": "channel 6, B-side"
+        },
+        {
+          "pin": 15,
+          "name": "B5",
+          "type": "bidirectional",
+          "description": "channel 5, B-side"
+        },
+        {
+          "pin": 16,
+          "name": "B4",
+          "type": "bidirectional",
+          "description": "channel 4, B-side"
+        },
+        {
+          "pin": 17,
+          "name": "B3",
+          "type": "bidirectional",
+          "description": "channel 3, B-side"
+        },
+        {
+          "pin": 18,
+          "name": "B2",
+          "type": "bidirectional",
+          "description": "channel 2, B-side"
+        },
+        {
+          "pin": 19,
+          "name": "VCCB",
+          "type": "power",
+          "description": "B-side supply, 1.65-5.5 V (must be >= VCCA)"
+        },
+        {
+          "pin": 20,
+          "name": "B1",
+          "type": "bidirectional",
+          "description": "channel 1, B-side"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 1.4,
+    "vs_max_v": 5.5,
+    "extra": {
+      "Vcca": "1.4-3.6 V",
+      "Vccb": "1.65-5.5 V (VCCB >= VCCA)",
+      "channels": "8 bidirectional",
+      "direction": "automatic (no DIR pin)",
+      "open_drain": "supported (unlike TXB-series)",
+      "data_rate": "up to 110 Mbps push-pull, 1.2 Mbps open-drain"
+    }
+  },
+  "typical_application": "Translate 8 logic lines between a 3.3 V and a 5 V (or other mixed) domain - SPI, GPIO, and I2C - with automatic direction and no DIR pin.",
+  "gotchas": [
+    "VCCA must be <= VCCB; swapping the low- and high-voltage sides breaks translation",
+    "OE must be low at power-up and brought high after both rails are valid, or outputs can glitch",
+    "it has internal pull-ups (one-shot edge accelerators); on an I2C bus these add to the bus loading and can fight strong external pull-ups - the simpler BSS138 FET shifter is often preferred for I2C",
+    "unlike the TXB0108, the TXS0108E tolerates open-drain/I2C, but only at lower data rates (~1.2 Mbps)",
+    "auto-direction needs the driving side to overcome the internal pull-up; very weak/high-impedance sources can confuse direction sensing"
+  ],
+  "related": [
+    "bss138",
+    "txb0108",
+    "txs0102"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/txs0108e.pdf",
+  "source": "human",
+  "verified": true
+}

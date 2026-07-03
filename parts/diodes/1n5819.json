@@ -1,0 +1,77 @@
+{
+  "id": "1n5819",
+  "name": "1N5819",
+  "aliases": [
+    "1N5817",
+    "1N5818"
+  ],
+  "full_name": "Schottky Barrier Rectifier Diode (1A)",
+  "manufacturers": [
+    "onsemi",
+    "Vishay",
+    "Diodes Inc"
+  ],
+  "category": "diode",
+  "subcategory": "schottky rectifier",
+  "tags": [
+    "diode",
+    "schottky",
+    "low-drop",
+    "rectifier",
+    "power",
+    "classic"
+  ],
+  "description": "1A Schottky rectifier with low forward drop (~0.45V) and fast recovery. The go-to for switch-mode supplies, polarity protection where every 0.1V counts, and boost/buck freewheeling. The 1N5817/18/19 differ only in reverse voltage (20/30/40V). Banded end is the cathode.",
+  "packages": {
+    "DO-41": {
+      "template": "custom",
+      "pin_count": 2,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "A",
+          "type": "passive",
+          "description": "anode"
+        },
+        {
+          "pin": 2,
+          "name": "K",
+          "type": "passive",
+          "description": "cathode (banded end)"
+        }
+      ],
+      "notes": "axial body; the painted band marks the cathode."
+    }
+  },
+  "specs": {
+    "vf_v": 0.45,
+    "vs_max_v": 40.0,
+    "iout_max_ma": 1000.0,
+    "extra": {
+      "Vr (1N5817)": "20V",
+      "Vr (1N5819)": "40V",
+      "If average": "1A",
+      "Vf at 1A": "~0.45V",
+      "recovery": "fast (Schottky)",
+      "Ir": "1.0mA max @ Ta=25C (10mA max @ Ta=100C)",
+      "Rth(JA)": "50 C/W typ",
+      "Rth(JL)": "15 C/W typ"
+    },
+    "rth_ja_cw": 50.0
+  },
+  "typical_application": "Buck/boost converter freewheel diode, low-loss polarity protection, OR-ing supplies, charge pumps. The low drop and fast recovery suit switching above tens of kHz.",
+  "gotchas": [
+    "higher reverse leakage than silicon, and it rises sharply with temperature; not ideal where low standby leakage matters",
+    "low reverse voltage (20-40V); do not use on mains rectification",
+    "band = cathode",
+    "the 1N581x suffix only changes reverse voltage"
+  ],
+  "related": [
+    "1n4007",
+    "1n4148",
+    "sb560"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.diodes.com/assets/Datasheets/ds23001.pdf"
+}

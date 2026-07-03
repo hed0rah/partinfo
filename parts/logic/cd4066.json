@@ -1,0 +1,150 @@
+{
+  "id": "cd4066",
+  "name": "CD4066",
+  "aliases": [
+    "CD4066B",
+    "MC14066",
+    "4066",
+    "4016 (similar)"
+  ],
+  "full_name": "Quad Bilateral Analog Switch (CMOS)",
+  "manufacturers": [
+    "Texas Instruments",
+    "onsemi",
+    "STMicroelectronics"
+  ],
+  "category": "logic",
+  "subcategory": "analog switch",
+  "tags": [
+    "cmos",
+    "analog-switch",
+    "bilateral",
+    "mux",
+    "synth",
+    "audio",
+    "classic"
+  ],
+  "description": "Four independent bilateral analog switches: each passes analog or digital signals in both directions when its control pin is high. Lower on-resistance than the older 4016. Widely used for signal routing, sample-and-hold, mute/switching in synths and effects.",
+  "packages": {
+    "DIP-14": {
+      "template": "dip",
+      "pin_count": 14,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "1A",
+          "type": "bidirectional",
+          "description": "switch 1 I/O terminal A"
+        },
+        {
+          "pin": 2,
+          "name": "1B",
+          "type": "bidirectional",
+          "description": "switch 1 I/O terminal B"
+        },
+        {
+          "pin": 3,
+          "name": "2B",
+          "type": "bidirectional",
+          "description": "switch 2 I/O terminal B"
+        },
+        {
+          "pin": 4,
+          "name": "2A",
+          "type": "bidirectional",
+          "description": "switch 2 I/O terminal A"
+        },
+        {
+          "pin": 5,
+          "name": "2CTL",
+          "type": "input",
+          "description": "switch 2 control (high = closed/on)",
+          "datasheet_name": "CONTROL B"
+        },
+        {
+          "pin": 6,
+          "name": "3CTL",
+          "type": "input",
+          "description": "switch 3 control (high = closed/on)",
+          "datasheet_name": "CONTROL C"
+        },
+        {
+          "pin": 7,
+          "name": "VSS",
+          "type": "ground",
+          "description": "ground / negative analog rail"
+        },
+        {
+          "pin": 8,
+          "name": "3A",
+          "type": "bidirectional",
+          "description": "switch 3 I/O terminal A"
+        },
+        {
+          "pin": 9,
+          "name": "3B",
+          "type": "bidirectional",
+          "description": "switch 3 I/O terminal B"
+        },
+        {
+          "pin": 10,
+          "name": "4A",
+          "type": "bidirectional",
+          "description": "switch 4 I/O terminal A"
+        },
+        {
+          "pin": 11,
+          "name": "4B",
+          "type": "bidirectional",
+          "description": "switch 4 I/O terminal B"
+        },
+        {
+          "pin": 12,
+          "name": "4CTL",
+          "type": "input",
+          "description": "switch 4 control (high = closed/on)",
+          "datasheet_name": "CONTROL D"
+        },
+        {
+          "pin": 13,
+          "name": "1CTL",
+          "type": "input",
+          "description": "switch 1 control (high = closed/on)",
+          "datasheet_name": "CONTROL A"
+        },
+        {
+          "pin": 14,
+          "name": "VDD",
+          "type": "power",
+          "description": "supply, 3V to 18V"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.0,
+    "vs_max_v": 18.0,
+    "rds_on_ohm": 80.0,
+    "extra": {
+      "on-resistance": "~80 ohm typ",
+      "control": "high = on",
+      "signal range": "VSS to VDD only",
+      "switches": "4 bidirectional"
+    }
+  },
+  "typical_application": "Analog/digital signal routing, multiplexing, sample-and-hold, channel mute/switching in audio and synth circuits. Control pin high closes the switch.",
+  "gotchas": [
+    "the analog signal must stay between VSS and VDD; for bipolar audio you need a dual supply (VSS negative) or to bias the signal mid-rail",
+    "on-resistance (~80 ohm) varies with signal level, causing slight distortion; drive into high impedance to minimize it",
+    "control input is a CMOS input; do not float it",
+    "not zero-resistance and not infinite-off; charge injection clicks can appear when switching audio (mute during silence)"
+  ],
+  "related": [
+    "cd4051",
+    "cd4053",
+    "dg419"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/cd4066b.pdf"
+}

@@ -1,0 +1,188 @@
+{
+  "id": "ssi2140",
+  "name": "SSI2140",
+  "aliases": [
+    "SSI2140SS-TU",
+    "SSI2140SS-RT"
+  ],
+  "full_name": "FatKeys Voltage Controlled Multi-Mode Filter (4-section OTA-based VCF)",
+  "manufacturers": [
+    "Sound Semiconductor"
+  ],
+  "category": "audio",
+  "subcategory": "voltage-controlled filter (OTA-based)",
+  "tags": [
+    "vcf",
+    "ota",
+    "transconductance",
+    "filter",
+    "analog-synth",
+    "eurorack",
+    "classic"
+  ],
+  "description": "Four independently-configurable variable-transconductance (gm) cells with temperature-compensated exponential control, designed by original SSM2040 designer Dave Rossum as its modern successor. Each cell can be wired as a filter pole; combine one to four for low-pass, high-pass, band-pass, all-pass, notch, Sallen-Key, biquad, Cauer, or state-variable responses. Includes an on-chip resonance VCA with linear current control for Q. Preserves the SSM2040's classic analog synth filter character (including an overdrivable input stage) while improving noise and gm production spread (1.7:1 vs the SSM2040's 3:1).",
+  "packages": {
+    "SSOP-20": {
+      "template": "ssop",
+      "pin_count": 20,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "OUT2",
+          "type": "output",
+          "description": "output of transconductance cell 2's buffer amplifier; +-1V swing max, sources 10mA/sinks 1.6mA. Use 10k ohm or greater feedback/load resistors"
+        },
+        {
+          "pin": 2,
+          "name": "CAP2",
+          "type": "passive",
+          "description": "integrating capacitor pin for cell 2, to GND; use 50pF or greater for stability"
+        },
+        {
+          "pin": 3,
+          "name": "IN2",
+          "type": "input",
+          "description": "inverting input to transconductance cell 2; recommended 10k input resistor with a 200 ohm attenuator to GND for best control rejection"
+        },
+        {
+          "pin": 4,
+          "name": "OUT1",
+          "type": "output",
+          "description": "output of transconductance cell 1's buffer amplifier; same drive/swing limits as OUT2"
+        },
+        {
+          "pin": 5,
+          "name": "CAP1",
+          "type": "passive",
+          "description": "integrating capacitor pin for cell 1, to GND; use 50pF or greater for stability"
+        },
+        {
+          "pin": 6,
+          "name": "IN1",
+          "type": "input",
+          "description": "inverting input to transconductance cell 1; same recommended input network as IN2"
+        },
+        {
+          "pin": 7,
+          "name": "EXPO CTRL",
+          "type": "input",
+          "description": "exponential control voltage that sets the gain of all four transconductance cells together, typical sensitivity -18mV/octave"
+        },
+        {
+          "pin": 8,
+          "name": "TEMPCO",
+          "type": "passive",
+          "description": "internal 890 ohm (typ) temperature-compensating resistor; leave disconnected if unused"
+        },
+        {
+          "pin": 9,
+          "name": "Q VCA OUT",
+          "type": "output",
+          "description": "output current of the Q (resonance) VCA; connect to ground if unused"
+        },
+        {
+          "pin": 10,
+          "name": "GND",
+          "type": "ground",
+          "description": "analog signal ground; use a short, low-inductance trace"
+        },
+        {
+          "pin": 11,
+          "name": "V-",
+          "type": "power",
+          "description": "negative supply; recommend a 100nF local decoupling capacitor placed close to the package"
+        },
+        {
+          "pin": 12,
+          "name": "Q CTRL",
+          "type": "input",
+          "description": "current control of Q VCA gain; ground-referenced current input"
+        },
+        {
+          "pin": 13,
+          "name": "Q VCA IN+",
+          "type": "input",
+          "description": "noninverting input of the Q VCA; the inverting input is internally tied to OUT4"
+        },
+        {
+          "pin": 14,
+          "name": "OUT4",
+          "type": "output",
+          "description": "output of transconductance cell 4's buffer amplifier; same drive/swing limits as OUT2"
+        },
+        {
+          "pin": 15,
+          "name": "CAP4",
+          "type": "passive",
+          "description": "integrating capacitor pin for cell 4, to GND; use 50pF or greater for stability"
+        },
+        {
+          "pin": 16,
+          "name": "IN4",
+          "type": "input",
+          "description": "inverting input to transconductance cell 4; same recommended input network as IN2"
+        },
+        {
+          "pin": 17,
+          "name": "OUT3",
+          "type": "output",
+          "description": "output of transconductance cell 3's buffer amplifier; same drive/swing limits as OUT2"
+        },
+        {
+          "pin": 18,
+          "name": "CAP3",
+          "type": "passive",
+          "description": "integrating capacitor pin for cell 3, to GND; use 50pF or greater for stability"
+        },
+        {
+          "pin": 19,
+          "name": "IN3",
+          "type": "input",
+          "description": "inverting input to transconductance cell 3; same recommended input network as IN2"
+        },
+        {
+          "pin": 20,
+          "name": "V+",
+          "type": "power",
+          "description": "positive supply; recommend a 100nF local decoupling capacitor placed close to the package"
+        }
+      ],
+      "notes": "Per Sound Semiconductor's own connection diagram (Rev 3.1.1, March 2023), 20-lead SSOP, top view. Cells are numbered 1-4 and mostly independent except for the shared EXPO CTRL line (drives all four gains together) and the Q VCA's connection to OUT4."
+    }
+  },
+  "specs": {
+    "vs_min_v": 4.0,
+    "vs_max_v": 16.0,
+    "extra": {
+      "supply (split)": "+-4V to +-16V (each rail); +-18V absolute max",
+      "Is": "+-3.5mA typ (+-6.5mA max)",
+      "gm @ VEXPO=0V": "215uS typ (160-270uS range)",
+      "gm @ VEXPO=-36mV": "850uS typ (700-1000uS range)",
+      "frequency control sensitivity": "-18.4mV/octave",
+      "control feedthrough": "-66dB",
+      "EIN (noise)": "0.5uVrms @ VEXPO=-90mV, 20Hz-20kHz, each cell",
+      "THD": "0.1% typ @ Vin=1Vpp, VEXPO=-90mV",
+      "Q control current range": "0 to 500uA",
+      "Q control current at oscillation": "222uA typ",
+      "tempco resistor": "890 ohm typ (830-950 ohm)",
+      "signal pin current abs max": "+-5mA",
+      "Top_op": "-40 to +85C",
+      "Tstg": "-65 to +150C"
+    }
+  },
+  "typical_application": "Classic analog-synth voltage-controlled filter (VCF) core: wire one to four cells for low-pass, high-pass, band-pass, notch, all-pass, or state-variable responses. Direct successor to the SSM2040, widely used in Eurorack VCF modules and other DIY/boutique synth builds.",
+  "gotchas": [
+    "split supply only, minimum +-4V; will not run from a single rail",
+    "EXPO CTRL sets the gain of all four cells together; there is no per-cell independent gain control other than external circuitry",
+    "OUT pins are buffered but still limited to +-1V swing and need 10k ohm or greater feedback/load resistors; driving them into a low impedance will not work as expected",
+    "Q VCA's inverting input is internally hardwired to OUT4, not user-accessible; the resonance feedback path assumes a specific topology (see the datasheet's application circuits)",
+    "pin/electrical successor to the SSM2040 but not a spec-for-spec clone: typical gm is 215uS vs the SSM2040's 200uS, with tighter production spread (1.7:1 vs 3:1)",
+    "sold only directly by Sound Semiconductor and its authorized resellers, not a general second-sourced part"
+  ],
+  "related": [
+    "lm13700"
+  ],
+  "source": "claude",
+  "verified": true,
+  "datasheet_url": "https://www.soundsemiconductor.com/downloads/ssi2140datasheet.pdf"
+}

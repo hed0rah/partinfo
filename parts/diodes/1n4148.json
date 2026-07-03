@@ -1,0 +1,73 @@
+{
+  "id": "1n4148",
+  "name": "1N4148",
+  "aliases": [
+    "1N914"
+  ],
+  "full_name": "Small-Signal Fast Switching Diode",
+  "manufacturers": [
+    "onsemi",
+    "Vishay",
+    "NXP",
+    "Diodes Inc"
+  ],
+  "category": "diode",
+  "subcategory": "signal switching diode",
+  "tags": [
+    "diode",
+    "switching",
+    "signal",
+    "clipping",
+    "classic"
+  ],
+  "description": "The default small-signal silicon switching diode. Fast recovery, low capacitance. Used everywhere for signal steering, clipping/clamping, flyback on small relays, and logic. The banded end is the cathode.",
+  "packages": {
+    "DO-35": {
+      "template": "custom",
+      "pin_count": 2,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "A",
+          "type": "passive",
+          "description": "anode"
+        },
+        {
+          "pin": 2,
+          "name": "K",
+          "type": "passive",
+          "description": "cathode (banded end)"
+        }
+      ],
+      "notes": "axial glass body; the painted band marks the cathode."
+    }
+  },
+  "specs": {
+    "vf_v": 0.72,
+    "vs_max_v": 100.0,
+    "iout_max_ma": 200.0,
+    "extra": {
+      "Vr max": "100V",
+      "If average": "150-200mA",
+      "trr": "4ns",
+      "Vf at 10mA": "~0.72V",
+      "Ir": "25nA max @ Vr=20V, Tj=25C (50uA max @ Vr=20V, Tj=150C; 5uA max @ Vr=75V)",
+      "Rth(JA)": "350 C/W typ"
+    },
+    "rth_ja_cw": 350.0
+  },
+  "typical_application": "Soft clipping in guitar pedals (two anti-parallel diodes), signal-path steering/OR-ing, flyback protection on small relays and reed switches, charge pumps.",
+  "gotchas": [
+    "band = cathode; reversing it blocks the intended current path",
+    "not a rectifier for power; 200mA max, use a 1N400x for mains/power rectification",
+    "forward voltage drifts with current and temperature, which matters in clipping and bias circuits"
+  ],
+  "related": [
+    "1n4001",
+    "1n5817",
+    "bat41"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.vishay.com/docs/81857/1n4148.pdf"
+}

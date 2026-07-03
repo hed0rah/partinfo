@@ -1,0 +1,325 @@
+{
+  "id": "atmega328p",
+  "name": "ATmega328P",
+  "aliases": [
+    "ATmega328",
+    "Arduino Uno MCU",
+    "328p"
+  ],
+  "full_name": "8-bit AVR Microcontroller, 32KB Flash",
+  "manufacturers": [
+    "Microchip",
+    "Atmel"
+  ],
+  "category": "mcu",
+  "subcategory": "8-bit avr",
+  "tags": [
+    "mcu",
+    "avr",
+    "arduino",
+    "8-bit",
+    "atmega",
+    "classic"
+  ],
+  "description": "The 8-bit AVR microcontroller at the heart of the Arduino Uno and Nano. 32KB flash, 2KB SRAM, 1KB EEPROM. Pin numbers below are the DIP-28 chip; Arduino digital/analog pin names are listed as alternates.",
+  "packages": {
+    "DIP-28": {
+      "template": "dip",
+      "pin_count": 28,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "PC6",
+          "type": "reset",
+          "description": "RESET (active low), or PC6 if reset disabled",
+          "alternate": [
+            "RESET",
+            "Arduino RST"
+          ]
+        },
+        {
+          "pin": 2,
+          "name": "PD0",
+          "type": "bidirectional",
+          "description": "UART RX",
+          "alternate": [
+            "RXD",
+            "Arduino D0"
+          ]
+        },
+        {
+          "pin": 3,
+          "name": "PD1",
+          "type": "bidirectional",
+          "description": "UART TX",
+          "alternate": [
+            "TXD",
+            "Arduino D1"
+          ]
+        },
+        {
+          "pin": 4,
+          "name": "PD2",
+          "type": "bidirectional",
+          "description": "external interrupt 0",
+          "alternate": [
+            "INT0",
+            "Arduino D2"
+          ]
+        },
+        {
+          "pin": 5,
+          "name": "PD3",
+          "type": "bidirectional",
+          "description": "external interrupt 1 / PWM",
+          "alternate": [
+            "INT1",
+            "OC2B",
+            "Arduino D3 PWM"
+          ]
+        },
+        {
+          "pin": 6,
+          "name": "PD4",
+          "type": "bidirectional",
+          "description": "general I/O / T0",
+          "alternate": [
+            "Arduino D4"
+          ]
+        },
+        {
+          "pin": 7,
+          "name": "VCC",
+          "type": "power",
+          "description": "digital supply, 1.8V to 5.5V"
+        },
+        {
+          "pin": 8,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 9,
+          "name": "PB6",
+          "type": "bidirectional",
+          "description": "crystal oscillator in (XTAL1)",
+          "alternate": [
+            "XTAL1"
+          ]
+        },
+        {
+          "pin": 10,
+          "name": "PB7",
+          "type": "bidirectional",
+          "description": "crystal oscillator out (XTAL2)",
+          "alternate": [
+            "XTAL2"
+          ]
+        },
+        {
+          "pin": 11,
+          "name": "PD5",
+          "type": "bidirectional",
+          "description": "PWM",
+          "alternate": [
+            "OC0B",
+            "Arduino D5 PWM"
+          ]
+        },
+        {
+          "pin": 12,
+          "name": "PD6",
+          "type": "bidirectional",
+          "description": "PWM",
+          "alternate": [
+            "OC0A",
+            "Arduino D6 PWM"
+          ]
+        },
+        {
+          "pin": 13,
+          "name": "PD7",
+          "type": "bidirectional",
+          "description": "general I/O",
+          "alternate": [
+            "Arduino D7"
+          ]
+        },
+        {
+          "pin": 14,
+          "name": "PB0",
+          "type": "bidirectional",
+          "description": "general I/O",
+          "alternate": [
+            "Arduino D8"
+          ]
+        },
+        {
+          "pin": 15,
+          "name": "PB1",
+          "type": "bidirectional",
+          "description": "PWM",
+          "alternate": [
+            "OC1A",
+            "Arduino D9 PWM"
+          ]
+        },
+        {
+          "pin": 16,
+          "name": "PB2",
+          "type": "bidirectional",
+          "description": "SPI slave-select / PWM",
+          "alternate": [
+            "SS",
+            "OC1B",
+            "Arduino D10 PWM"
+          ]
+        },
+        {
+          "pin": 17,
+          "name": "PB3",
+          "type": "bidirectional",
+          "description": "SPI MOSI / PWM",
+          "alternate": [
+            "MOSI",
+            "OC2A",
+            "Arduino D11 PWM"
+          ]
+        },
+        {
+          "pin": 18,
+          "name": "PB4",
+          "type": "bidirectional",
+          "description": "SPI MISO",
+          "alternate": [
+            "MISO",
+            "Arduino D12"
+          ]
+        },
+        {
+          "pin": 19,
+          "name": "PB5",
+          "type": "bidirectional",
+          "description": "SPI SCK / onboard LED",
+          "alternate": [
+            "SCK",
+            "Arduino D13"
+          ]
+        },
+        {
+          "pin": 20,
+          "name": "AVCC",
+          "type": "power",
+          "description": "ADC supply; connect to VCC (via LC filter ideally)"
+        },
+        {
+          "pin": 21,
+          "name": "AREF",
+          "type": "analog",
+          "description": "ADC reference voltage"
+        },
+        {
+          "pin": 22,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 23,
+          "name": "PC0",
+          "type": "bidirectional",
+          "description": "analog input 0",
+          "alternate": [
+            "ADC0",
+            "Arduino A0"
+          ]
+        },
+        {
+          "pin": 24,
+          "name": "PC1",
+          "type": "bidirectional",
+          "description": "analog input 1",
+          "alternate": [
+            "ADC1",
+            "Arduino A1"
+          ]
+        },
+        {
+          "pin": 25,
+          "name": "PC2",
+          "type": "bidirectional",
+          "description": "analog input 2",
+          "alternate": [
+            "ADC2",
+            "Arduino A2"
+          ]
+        },
+        {
+          "pin": 26,
+          "name": "PC3",
+          "type": "bidirectional",
+          "description": "analog input 3",
+          "alternate": [
+            "ADC3",
+            "Arduino A3"
+          ]
+        },
+        {
+          "pin": 27,
+          "name": "PC4",
+          "type": "bidirectional",
+          "description": "analog input 4 / I2C SDA",
+          "alternate": [
+            "ADC4",
+            "SDA",
+            "Arduino A4"
+          ]
+        },
+        {
+          "pin": 28,
+          "name": "PC5",
+          "type": "bidirectional",
+          "description": "analog input 5 / I2C SCL",
+          "alternate": [
+            "ADC5",
+            "SCL",
+            "Arduino A5"
+          ]
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 1.8,
+    "vs_max_v": 5.5,
+    "cpu_mhz": 20,
+    "flash_kb": 32,
+    "ram_kb": 2,
+    "eeprom_b": 1024,
+    "gpio_count": 23,
+    "extra": {
+      "adc": "6 channels (8 on TQFP) 10-bit",
+      "uart": "1",
+      "spi": "1",
+      "i2c": "1",
+      "timers": "2x 8-bit, 1x 16-bit",
+      "arduino clock": "16 MHz with external crystal"
+    }
+  },
+  "typical_application": "Arduino Uno/Nano core. Standalone: needs decoupling on VCC/AVCC, RESET pulled up via 10k, and either the internal 8MHz RC oscillator or an external 16MHz crystal with two ~22pF load caps on pins 9/10.",
+  "gotchas": [
+    "max 20MHz at 4.5-5.5V; at lower voltages the max clock drops (10MHz at 2.7V)",
+    "AVCC must be powered even if the ADC is unused, or some port pins misbehave",
+    "the Arduino bootloader occupies ~0.5KB of flash; bare chips ship without it",
+    "RESET (pin 1) must be held high to run; a floating reset causes random restarts",
+    "DIP-28 has 6 ADC channels; the TQFP/QFN packages add ADC6/ADC7"
+  ],
+  "related": [
+    "atmega32u4",
+    "attiny85",
+    "esp32"
+  ],
+  "source": "human",
+  "verified": false
+}

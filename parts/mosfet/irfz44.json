@@ -1,0 +1,99 @@
+{
+  "id": "irfz44",
+  "name": "IRFZ44",
+  "aliases": [
+    "IRFZ44N"
+  ],
+  "full_name": "N-Channel Power MOSFET (Low Rds(on))",
+  "manufacturers": [
+    "Infineon",
+    "Vishay",
+    "onsemi"
+  ],
+  "category": "transistor_mosfet",
+  "subcategory": "n-channel power mosfet",
+  "tags": [
+    "mosfet",
+    "n-channel",
+    "power",
+    "switching",
+    "low-rdson",
+    "classic"
+  ],
+  "description": "N-channel power MOSFET in TO-220, ~55V / 49A with very low Rds(on). Common in 12V automotive and battery switching. Standard-threshold (not logic-level). Lead order G-D-S, tab is drain.",
+  "packages": {
+    "TO-220": {
+      "template": "to220",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "G",
+          "type": "input",
+          "description": "gate"
+        },
+        {
+          "pin": 2,
+          "name": "D",
+          "type": "passive",
+          "description": "drain (connected to tab)"
+        },
+        {
+          "pin": 3,
+          "name": "S",
+          "type": "passive",
+          "description": "source"
+        }
+      ],
+      "notes": "TO-220, label toward you, leads down: G-D-S. The tab is the drain."
+    }
+  },
+  "specs": {
+    "vs_max_v": 55.0,
+    "iout_max_ma": 49000.0,
+    "rds_on_ohm": 0.0175,
+    "vgs_th_v": 4.0,
+    "pd_max_mw": 94000.0,
+    "extra": {
+      "Vds": "55V",
+      "Id": "49A",
+      "Vgs(th)": "2-4V",
+      "full enhancement Vgs": "~10V",
+      "Vgs max": "+-20V",
+      "logic-level": "no",
+      "Qg": "63nC (max) @ Id=25A",
+      "Qgs": "14nC (max)",
+      "Qgd": "23nC (max)",
+      "Ciss": "1470pF",
+      "Coss": "360pF",
+      "Crss": "88pF",
+      "td(on)": "12ns",
+      "tr": "60ns",
+      "td(off)": "44ns",
+      "tf": "45ns",
+      "Rth(JC)": "1.5 C/W",
+      "Rth(JA)": "62 C/W",
+      "Rth(CS)": "0.50 C/W (greased)",
+      "Vsd": "1.3V (max) @ Is=25A",
+      "trr": "63ns (95 max)",
+      "Qrr": "170nC (260 max)"
+    },
+    "rth_jc_cw": 1.5,
+    "rth_ja_cw": 62.0
+  },
+  "typical_application": "12V automotive and battery load switching, high-current low-side drive, power supply pass element. Drive the gate to 10V; the very low Rds(on) keeps conduction loss tiny.",
+  "gotchas": [
+    "NOT logic-level; needs ~10V gate to fully enhance. For 5V/3.3V direct drive use IRLZ44N (logic-level)",
+    "tab is drain and live; isolate from grounded heatsinks",
+    "high gate charge; use a real gate driver for fast PWM",
+    "add an external fast diode for inductive switching"
+  ],
+  "related": [
+    "irlz44n",
+    "irf540",
+    "irf3205"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.infineon.com/assets/row/public/documents/24/49/infineon-irfz44n-datasheet-en.pdf"
+}

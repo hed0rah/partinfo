@@ -1,0 +1,83 @@
+{
+  "id": "2n5551",
+  "name": "2N5551",
+  "aliases": [
+    "MMBT5551 (SOT-23 variant)"
+  ],
+  "full_name": "NPN High-Voltage General-Purpose Transistor",
+  "manufacturers": [
+    "onsemi",
+    "Motorola",
+    "Fairchild",
+    "Central Semiconductor",
+    "STMicroelectronics"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "npn high-voltage",
+  "tags": [
+    "transistor",
+    "npn",
+    "bjt",
+    "high-voltage",
+    "amplifier",
+    "classic"
+  ],
+  "description": "NPN high-voltage (160V) general-purpose amplifier, the standard complement to the PNP 2N5401. Common in high-voltage small-signal stages, audio phono/tube-emulation circuits, and CRT/Nixie/EL drivers. TO-92 pinout is E-B-C (base center).",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter (leftmost lead, flat face toward you)"
+        },
+        {
+          "pin": 2,
+          "name": "B",
+          "type": "passive",
+          "description": "base (center)"
+        },
+        {
+          "pin": 3,
+          "name": "C",
+          "type": "passive",
+          "description": "collector (rightmost lead)"
+        }
+      ],
+      "notes": "flat face toward you, leads down: E-B-C left to right (base is the center pin). onsemi and Motorola both number 1=E, 2=B, 3=C."
+    }
+  },
+  "specs": {
+    "vs_max_v": 160.0,
+    "iout_max_ma": 600.0,
+    "pd_max_mw": 625.0,
+    "hfe_min": 80,
+    "hfe_max": 250,
+    "freq_max_hz": 100000000.0,
+    "extra": {
+      "Vceo": "160V",
+      "Vcbo": "180V",
+      "Vebo": "6V",
+      "complement (pnp)": "2N5401",
+      "Vce(sat)": "0.15V (max) @ Ic=10mA, Ib=1mA (0.20V max @ Ic=50mA, Ib=5mA)",
+      "Vbe(on)": "1.0V (max) @ Ic=10mA, Ib=1mA (datasheet's VBE(sat))"
+    }
+  },
+  "typical_application": "High-voltage NPN amplifier and level-shift stages needing Vceo above 100V; pairs with 2N5401 in complementary high-voltage circuits.",
+  "gotchas": [
+    "pinout is E-B-C (base center), the American convention",
+    "shares a datasheet with the lower-rated 2N5550 (Vceo 140V); confirm you have the 5551, not the 5550",
+    "high gain at low Ic makes it a favorite for low-noise high-voltage stages, but watch the 6V Vebo limit"
+  ],
+  "related": [
+    "2n5401",
+    "2n3904",
+    "mpsa42"
+  ],
+  "datasheet_url": "https://www.onsemi.com/pdf/datasheet/2n5551-d.pdf",
+  "source": "human",
+  "verified": true
+}

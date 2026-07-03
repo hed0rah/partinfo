@@ -1,0 +1,118 @@
+{
+  "id": "sn65hvd230",
+  "name": "SN65HVD230",
+  "aliases": [
+    "VP230",
+    "HVD230",
+    "SN65HVD230D",
+    "SN65HVD23x"
+  ],
+  "full_name": "Texas Instruments SN65HVD230 3.3-V CAN Bus Transceiver",
+  "manufacturers": [
+    "Texas Instruments"
+  ],
+  "category": "interface",
+  "subcategory": "CAN transceiver",
+  "tags": [
+    "can",
+    "can-bus",
+    "transceiver",
+    "phy",
+    "3.3v",
+    "iso11898",
+    "esp32",
+    "stm32",
+    "automotive",
+    "differential"
+  ],
+  "description": "The SN65HVD230 is the de-facto 3.3 V high-speed CAN physical-layer transceiver, sitting between a CAN controller's digital TXD/RXD lines and the differential CANH/CANL bus. It is a PHY only: it does not implement the CAN protocol, so it must be paired with a controller such as the MCP2515 or an MCU's built-in CAN/TWAI peripheral (ESP32, STM32). It runs from a single 3.3 V supply, tolerates a -2 V to 7 V bus common-mode range, withstands +/-25 V common-mode transients, and supports up to 120 nodes thanks to high input impedance. Its standout trait is the RS pin offering three modes in one part - full-speed switching, resistor-programmable slope control for EMI reduction, and a low-current (370 uA) listen-only standby - which is why nearly every 3.3 V MCU CAN project ships on the blue 'VP230' breakout board.",
+  "packages": {
+    "SOIC-8 (D)": {
+      "template": "soic",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "D",
+          "type": "input",
+          "description": "Driver (CAN transmit) data input, also called TXD; LOW for dominant and HIGH for recessive bus states. Connects to the controller's TXD line."
+        },
+        {
+          "pin": 2,
+          "name": "GND",
+          "type": "ground",
+          "description": "Ground connection."
+        },
+        {
+          "pin": 3,
+          "name": "VCC",
+          "type": "power",
+          "description": "Transceiver 3.3 V supply voltage (single supply)."
+        },
+        {
+          "pin": 4,
+          "name": "R",
+          "type": "output",
+          "description": "Receiver (CAN receive) data output, also called RXD; LOW for dominant and HIGH for recessive bus states. Connects to the controller's RXD line."
+        },
+        {
+          "pin": 5,
+          "name": "Vref",
+          "type": "output",
+          "description": "VCC/2 reference voltage output, useful for biasing split-termination common mode."
+        },
+        {
+          "pin": 6,
+          "name": "CANL",
+          "type": "bidirectional",
+          "description": "LOW-side differential CAN bus line."
+        },
+        {
+          "pin": 7,
+          "name": "CANH",
+          "type": "bidirectional",
+          "description": "HIGH-side differential CAN bus line."
+        },
+        {
+          "pin": 8,
+          "name": "RS",
+          "type": "input",
+          "description": "Mode select: tie to GND for high-speed mode, add a resistor to GND (e.g. 10 kohm ~= 15 V/us, 100 kohm ~= 2 V/us) for slope control, or apply a high level for low-current standby (listen-only) mode."
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.0,
+    "vs_max_v": 3.6,
+    "extra": {
+      "data_rate_max": "1 Mbps",
+      "supply": "single 3.3 V",
+      "bus_common_mode_range": "-2 V to 7 V",
+      "common_mode_transient_withstand": "+/-25 V",
+      "bus_esd_protection": "+/-16 kV HBM (bus pins)",
+      "max_nodes": "up to 120",
+      "standby_current": "370 uA typical (listen-only standby)",
+      "slope_control": "resistor-programmable via RS pin",
+      "vref": "VCC/2 output",
+      "standard": "ISO 11898-2"
+    }
+  },
+  "typical_application": "3.3 V CAN node: MCU/DSP CAN controller (or MCP2515) drives D/R, transceiver drives a 120-ohm-terminated CANH/CANL twisted pair. Standard wiring on the VP230 breakout for ESP32/STM32 CAN/TWAI projects.",
+  "gotchas": [
+    "This is a transceiver (PHY) only, not a CAN controller - it needs an MCP2515 or an MCU with a built-in CAN/TWAI controller to actually frame messages.",
+    "3.3 V part: do not substitute for the 5 V MCP2551/TJA1050 without checking supply; conversely it interoperates on the same bus with 5 V transceivers because CAN is differential.",
+    "RS (pin 8) must be handled - leave it floating and slope/mode behavior is undefined; tie to GND for normal high-speed operation.",
+    "Bus still needs proper 120-ohm termination at both physical ends of the trunk; the chip does not terminate the bus.",
+    "Low-power replacement for the PCA82C250, but at 3.3 V logic levels rather than 5 V."
+  ],
+  "related": [
+    "mcp2515",
+    "mcp2551",
+    "tja1050",
+    "mcp2562"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/sn65hvd230.pdf",
+  "source": "human",
+  "verified": true
+}

@@ -1,0 +1,89 @@
+{
+  "id": "lm7912",
+  "name": "LM7912",
+  "aliases": [
+    "L77912",
+    "7912",
+    "MC77912",
+    "uA77912",
+    "KA77912",
+    "L77912CV"
+  ],
+  "full_name": "LM7912 three-terminal negative 12V fixed linear voltage regulator",
+  "manufacturers": [
+    "STMicroelectronics",
+    "Texas Instruments",
+    "onsemi",
+    "Fairchild"
+  ],
+  "category": "power",
+  "subcategory": "fixed linear regulator (negative)",
+  "tags": [
+    "regulator",
+    "linear",
+    "power",
+    "negative",
+    "fixed",
+    "12v",
+    "79xx",
+    "to220",
+    "classic"
+  ],
+  "description": "Negative fixed 12V three-terminal regulator from the 79xx family. Dropout about 1.1V, up to ~1.5A with a heatsink. CRITICAL: the metal tab is electrically the INPUT pin (the negative input rail), NOT ground - the heatsink is live at the negative input voltage.",
+  "packages": {
+    "TO-220": {
+      "template": "to220",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "GND",
+          "type": "ground",
+          "description": "common/ground reference"
+        },
+        {
+          "pin": 2,
+          "name": "IN",
+          "type": "input",
+          "description": "unregulated negative DC input (Vi); also bonded to the metal tab"
+        },
+        {
+          "pin": 3,
+          "name": "OUT",
+          "type": "output",
+          "description": "regulated 12V output (Vo)"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_max_v": 35.0,
+    "iout_max_ma": 1500.0,
+    "extra": {
+      "Vout": "-12V",
+      "Vin_max": "-35V (abs max DC input)",
+      "Iout_max": "1.5A (internally limited)",
+      "dropout": "~1.1V",
+      "Iq": "3mA (max) @ TJ=25C",
+      "Rth(JC)": "5 C/W (TO-220)",
+      "Rth(JA)": "50 C/W (TO-220)"
+    },
+    "rth_jc_cw": 5.0,
+    "rth_ja_cw": 50.0
+  },
+  "typical_application": "Negative 12V rail of a split linear supply, complementing a 7812.",
+  "gotchas": [
+    "pinout DIFFERS from positive 78xx: 79xx front-view is GND-IN-OUT (pin1=GND, pin2=IN, pin3=OUT) vs 78xx IN-GND-OUT",
+    "the tab/heatsink is the INPUT pin at the NEGATIVE input potential; it is NOT grounded - isolate it from a grounded chassis/heatsink",
+    "input is negative with respect to ground; wiring it like a 78xx will destroy the part and likely the circuit",
+    "79xx prefer larger output caps for stability (e.g. ~1uF tantalum) plus an input cap"
+  ],
+  "related": [
+    "lm7812",
+    "lm337",
+    "lm7905"
+  ],
+  "datasheet_url": "https://www.st.com/resource/en/datasheet/l79.pdf",
+  "source": "human",
+  "verified": true
+}

@@ -1,0 +1,68 @@
+{
+  "id": "1n34a",
+  "name": "1N34A",
+  "aliases": [
+    "1N34"
+  ],
+  "full_name": "Germanium Point-Contact Signal Diode",
+  "manufacturers": [
+    "various (NOS and current production)"
+  ],
+  "category": "diode",
+  "subcategory": "germanium signal",
+  "tags": [
+    "diode",
+    "germanium",
+    "detector",
+    "audio",
+    "fuzz",
+    "vintage"
+  ],
+  "description": "Germanium point-contact diode with a low ~0.3V forward drop. The classic AM crystal-radio detector, and prized in guitar fuzz/clipping for its soft, asymmetric character versus silicon. Higher leakage and lower current handling than silicon. Banded end is the cathode.",
+  "packages": {
+    "DO-7": {
+      "template": "custom",
+      "pin_count": 2,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "A",
+          "type": "passive",
+          "description": "anode"
+        },
+        {
+          "pin": 2,
+          "name": "K",
+          "type": "passive",
+          "description": "cathode (banded end)"
+        }
+      ],
+      "notes": "small glass axial body; the band marks the cathode."
+    }
+  },
+  "specs": {
+    "vf_v": 0.3,
+    "vs_max_v": 60.0,
+    "iout_max_ma": 50.0,
+    "extra": {
+      "type": "germanium point-contact",
+      "Vf": "~0.25-0.4V",
+      "leakage": "high vs silicon",
+      "tempco": "drifts with temperature"
+    }
+  },
+  "typical_application": "Crystal-radio AM envelope detector, soft clipping in fuzz pedals (often a matched pair), low-level signal rectification where the low forward drop matters.",
+  "gotchas": [
+    "high reverse leakage and wide part-to-part spread; for fuzz circuits people hand-select by forward voltage",
+    "low current and power handling; not a rectifier",
+    "germanium is temperature-sensitive; bias and tone drift with heat",
+    "genuine NOS parts are often relabeled or out of spec; measure before trusting"
+  ],
+  "related": [
+    "1n4148",
+    "oa90",
+    "aa119"
+  ],
+  "source": "human",
+  "verified": false
+}

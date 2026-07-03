@@ -1,0 +1,158 @@
+{
+  "id": "drv8833",
+  "name": "DRV8833",
+  "aliases": [
+    "DRV8833PWP",
+    "DRV8833PWPR",
+    "DRV8833C"
+  ],
+  "full_name": "Dual H-Bridge Motor Driver",
+  "manufacturers": [
+    "Texas Instruments"
+  ],
+  "category": "driver",
+  "subcategory": "dual H-bridge motor driver",
+  "tags": [
+    "h-bridge",
+    "dual",
+    "motor-driver",
+    "dc-motor",
+    "stepper",
+    "pwm",
+    "low-voltage"
+  ],
+  "description": "Dual H-bridge driver for DC motors, one bipolar stepper, solenoids, or other inductive loads. Each H-bridge delivers up to 1.5 A RMS / 2 A peak (at VM = 5 V, in the PWP/RTY packages) from a 2.7 to 10.8 V motor supply. Integrates N-channel power MOSFET bridges, PWM current regulation via external sense resistors, and protection including overcurrent, overtemperature, and undervoltage lockout reported on nFAULT. The 16-pin HTSSOP (PWP) has a PowerPAD for heat.",
+  "packages": {
+    "HTSSOP-16": {
+      "template": "tssop",
+      "pin_count": 16,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "nSLEEP",
+          "type": "input",
+          "description": "Sleep mode input; logic high enables the device, logic low enters low-power sleep and resets logic (internal pulldown)"
+        },
+        {
+          "pin": 2,
+          "name": "AOUT1",
+          "type": "output",
+          "description": "Bridge A output 1 (to motor winding A)"
+        },
+        {
+          "pin": 3,
+          "name": "AISEN",
+          "type": "analog",
+          "description": "Bridge A ground / current-sense; connect sense resistor to GND, or tie to GND if current control unused"
+        },
+        {
+          "pin": 4,
+          "name": "AOUT2",
+          "type": "output",
+          "description": "Bridge A output 2 (to motor winding A)"
+        },
+        {
+          "pin": 5,
+          "name": "BOUT2",
+          "type": "output",
+          "description": "Bridge B output 2 (to motor winding B)"
+        },
+        {
+          "pin": 6,
+          "name": "BISEN",
+          "type": "analog",
+          "description": "Bridge B ground / current-sense; connect sense resistor to GND, or tie to GND if current control unused"
+        },
+        {
+          "pin": 7,
+          "name": "BOUT1",
+          "type": "output",
+          "description": "Bridge B output 1 (to motor winding B)"
+        },
+        {
+          "pin": 8,
+          "name": "nFAULT",
+          "type": "output",
+          "description": "Open-drain fault output; pulled low on fault (overtemperature, overcurrent)"
+        },
+        {
+          "pin": 9,
+          "name": "BIN1",
+          "type": "input",
+          "description": "Bridge B input 1; controls state of BOUT1 (internal pulldown)"
+        },
+        {
+          "pin": 10,
+          "name": "BIN2",
+          "type": "input",
+          "description": "Bridge B input 2; controls state of BOUT2 (internal pulldown)"
+        },
+        {
+          "pin": 11,
+          "name": "VCP",
+          "type": "passive",
+          "description": "High-side gate-drive (charge pump) voltage; connect 0.01 uF X7R capacitor to VM"
+        },
+        {
+          "pin": 12,
+          "name": "VM",
+          "type": "power",
+          "description": "Device/motor power supply (2.7 to 10.8 V); bypass with 10 uF (min) ceramic to GND"
+        },
+        {
+          "pin": 13,
+          "name": "GND",
+          "type": "ground",
+          "description": "Device ground; PowerPAD must also be connected to ground"
+        },
+        {
+          "pin": 14,
+          "name": "VINT",
+          "type": "power",
+          "description": "Internal supply bypass; connect 2.2 uF, 6.3 V capacitor to GND"
+        },
+        {
+          "pin": 15,
+          "name": "AIN2",
+          "type": "input",
+          "description": "Bridge A input 2; controls state of AOUT2 (internal pulldown)"
+        },
+        {
+          "pin": 16,
+          "name": "AIN1",
+          "type": "input",
+          "description": "Bridge A input 1; controls state of AOUT1 (internal pulldown)"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.7,
+    "vs_max_v": 10.8,
+    "extra": {
+      "motor_supply": "2.7 V to 10.8 V",
+      "logic_input": "up to 5.75 V",
+      "current": "1.5 A RMS / 2 A peak per H-bridge (PWP)",
+      "current_control": "PWM via external sense resistors",
+      "abs_max_vm": "11.8 V",
+      "thermal_pad": "exposed PowerPAD = GND, solder to ground plane"
+    }
+  },
+  "typical_application": "Driving two small DC motors (or one low-voltage bipolar stepper) from a microcontroller with PWM speed and direction control.",
+  "gotchas": [
+    "nSLEEP must be driven high to enable the device; it has an internal pulldown so it defaults to sleep",
+    "the HTSSOP exposed PowerPAD is GND and must be soldered to the ground plane for rated current/heat dissipation (tie it to pin 13)",
+    "set per-bridge current limit with external sense resistors on AISEN/BISEN; tie those pins to GND if current regulation is not needed",
+    "the two H-bridges can be paralleled (tie AIN/BIN and AOUT/BOUT together) to drive a single higher-current motor",
+    "motor supply range is only 2.7 to 10.8 V (abs max 11.8 V); it is a low-voltage driver, not for 12 V+ rails",
+    "nFAULT is open-drain and needs an external pull-up to read fault status"
+  ],
+  "related": [
+    "a4988",
+    "irlz44n",
+    "uln2003"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/drv8833.pdf",
+  "source": "human",
+  "verified": true
+}

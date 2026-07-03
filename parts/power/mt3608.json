@@ -1,0 +1,96 @@
+{
+  "id": "mt3608",
+  "name": "MT3608",
+  "aliases": [
+    "MT3608L",
+    "B628",
+    "SX1308 (similar)"
+  ],
+  "full_name": "MT3608 step-up (boost) DC-DC converter, 1.2MHz, 2A switch",
+  "manufacturers": [
+    "Aerosemi"
+  ],
+  "category": "power",
+  "subcategory": "boost regulator",
+  "tags": [
+    "regulator",
+    "switching",
+    "boost",
+    "step-up",
+    "power",
+    "sot23-6",
+    "module"
+  ],
+  "description": "High-frequency (1.2MHz) step-up (boost) converter in SOT-23-6, the chip on the common small blue boost modules. Input 2-24V, output up to 28V, internal 4A-limit switch (~2A typical usable output). Sets output with an external feedback divider against a 0.6V reference.",
+  "packages": {
+    "SOT-23-6": {
+      "template": "sot23-6",
+      "pin_count": 6,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "SW",
+          "type": "output",
+          "description": "switch node; connects to the inductor"
+        },
+        {
+          "pin": 2,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 3,
+          "name": "FB",
+          "type": "analog",
+          "description": "feedback; regulates to 0.6V via the external divider"
+        },
+        {
+          "pin": 4,
+          "name": "EN",
+          "type": "input",
+          "description": "enable; high to turn on, low to shut down"
+        },
+        {
+          "pin": 5,
+          "name": "IN",
+          "type": "input",
+          "description": "input supply, 2-24V"
+        },
+        {
+          "pin": 6,
+          "name": "NC",
+          "type": "nc",
+          "description": "no connection"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.0,
+    "vs_max_v": 24.0,
+    "extra": {
+      "Vin": "2-24V",
+      "Vout_max": "28V",
+      "fsw": "1.2MHz",
+      "Isw_limit": "4A (peak switch); ~2A usable output",
+      "Vref": "0.6V (FB)",
+      "Iq": "100uA typ (200uA max) PFM mode; 1.6mA typ (2.2mA max) PWM mode",
+      "SW Ron": "80 mOhm typ (150 max) -- internal switch on-resistance, the switcher analog of linear dropout"
+    }
+  },
+  "typical_application": "Boost a single Li-ion or USB 5V up to 9/12V. Vout = 0.6 * (1 + R1/R2) with R1 from OUT to FB. Inductor on SW, Schottky to the output.",
+  "gotchas": [
+    "boost converters cannot output below their input; with EN high there is always a DC path (through the inductor and diode) from IN to OUT",
+    "the 4A figure is the internal switch current LIMIT, not output current; usable output is closer to ~2A and falls as the step-up ratio rises",
+    "pin 6 is NC; do not rely on it for anything",
+    "needs a suitable inductor and a fast Schottky catch diode; cheap modules vary in quality"
+  ],
+  "related": [
+    "lm2596",
+    "lm317"
+  ],
+  "datasheet_url": "https://www.olimex.com/Products/Breadboarding/BB-PWR-3608/resources/MT3608.pdf",
+  "source": "human",
+  "verified": true
+}

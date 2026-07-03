@@ -1,0 +1,158 @@
+{
+  "id": "cd4040",
+  "name": "CD4040",
+  "aliases": [
+    "CD4040B",
+    "MC14040",
+    "HEF4040B",
+    "4040"
+  ],
+  "full_name": "12-Stage Ripple-Carry Binary Counter (CMOS)",
+  "manufacturers": [
+    "Texas Instruments",
+    "onsemi",
+    "STMicroelectronics"
+  ],
+  "category": "logic",
+  "subcategory": "counter",
+  "tags": [
+    "logic",
+    "cmos",
+    "4000-series",
+    "counter",
+    "binary",
+    "ripple-carry"
+  ],
+  "description": "12-stage ripple-carry binary counter with buffered outputs Q1 (divide-by-2) through Q12 (divide-by-4096). Advances on the FALLING clock edge; a HIGH on RESET clears all stages. Supply 3V to 18V.",
+  "packages": {
+    "DIP-16": {
+      "template": "dip",
+      "pin_count": 16,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "Q12",
+          "type": "output",
+          "description": "stage 12 (divide-by-4096), MSB"
+        },
+        {
+          "pin": 2,
+          "name": "Q6",
+          "type": "output",
+          "description": "stage 6"
+        },
+        {
+          "pin": 3,
+          "name": "Q5",
+          "type": "output",
+          "description": "stage 5"
+        },
+        {
+          "pin": 4,
+          "name": "Q7",
+          "type": "output",
+          "description": "stage 7"
+        },
+        {
+          "pin": 5,
+          "name": "Q4",
+          "type": "output",
+          "description": "stage 4"
+        },
+        {
+          "pin": 6,
+          "name": "Q3",
+          "type": "output",
+          "description": "stage 3"
+        },
+        {
+          "pin": 7,
+          "name": "Q2",
+          "type": "output",
+          "description": "stage 2"
+        },
+        {
+          "pin": 8,
+          "name": "VSS",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 9,
+          "name": "Q1",
+          "type": "output",
+          "description": "stage 1 (divide-by-2), LSB"
+        },
+        {
+          "pin": 10,
+          "name": "CLK",
+          "type": "clock",
+          "description": "clock; advances on falling edge"
+        },
+        {
+          "pin": 11,
+          "name": "MR",
+          "type": "reset",
+          "description": "master reset; HIGH clears all stages"
+        },
+        {
+          "pin": 12,
+          "name": "Q9",
+          "type": "output",
+          "description": "stage 9"
+        },
+        {
+          "pin": 13,
+          "name": "Q8",
+          "type": "output",
+          "description": "stage 8"
+        },
+        {
+          "pin": 14,
+          "name": "Q10",
+          "type": "output",
+          "description": "stage 10"
+        },
+        {
+          "pin": 15,
+          "name": "Q11",
+          "type": "output",
+          "description": "stage 11"
+        },
+        {
+          "pin": 16,
+          "name": "VDD",
+          "type": "power",
+          "description": "supply, 3V to 18V"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.0,
+    "vs_max_v": 18.0,
+    "extra": {
+      "function": "12-stage ripple-carry binary counter/divider",
+      "logic family": "CD40xx CMOS (4000B)",
+      "stages": 12,
+      "clock edge": "falling (HIGH-to-LOW)",
+      "reset": "active HIGH (async)",
+      "output_pin_map": "Q1=9 Q2=7 Q3=6 Q4=5 Q5=3 Q6=2 Q7=4 Q8=13 Q9=12 Q10=14 Q11=15 Q12=1"
+    }
+  },
+  "typical_application": "Frequency division and timing chains: tap a fast clock down by factors of 2 up to 4096.",
+  "gotchas": [
+    "advances on the FALLING clock edge, unlike the CD4017 (rising)",
+    "RESET (pin 11) is active HIGH; tie LOW for normal counting, do not float",
+    "output pins are scrambled: Q1=9, Q2=7, Q3=6, Q4=5, Q5=3, Q6=2, Q7=4, Q8=13, Q9=12, Q10=14, Q11=15, Q12=1",
+    "there is no Q0 and no carry-out; first output is Q1 (divide-by-2)"
+  ],
+  "related": [
+    "cd4017",
+    "cd4060",
+    "cd4020"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/cd4040b.pdf",
+  "source": "human",
+  "verified": true
+}

@@ -1,0 +1,85 @@
+{
+  "id": "bc550",
+  "name": "BC550",
+  "aliases": [
+    "BC550C"
+  ],
+  "full_name": "NPN Low-Noise Amplifier Transistor",
+  "manufacturers": [
+    "onsemi",
+    "NXP",
+    "STMicroelectronics",
+    "Fairchild"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "npn small-signal",
+  "tags": [
+    "transistor",
+    "npn",
+    "bjt",
+    "small-signal",
+    "low-noise",
+    "european",
+    "classic"
+  ],
+  "description": "Low-noise NPN in the European BC546-550 family, the low-noise 45V member (the BC549/BC550 are the low-noise siblings of BC547/BC548). Same TO-92 C-B-E pinout. Complement to the BC560.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "C",
+          "type": "passive",
+          "description": "collector"
+        },
+        {
+          "pin": 2,
+          "name": "B",
+          "type": "passive",
+          "description": "base"
+        },
+        {
+          "pin": 3,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter"
+        }
+      ],
+      "notes": "flat face toward you, leads down: C-B-E (BC546-550 family layout). Opposite of the 2N3904."
+    }
+  },
+  "specs": {
+    "vs_max_v": 45.0,
+    "iout_max_ma": 100.0,
+    "pd_max_mw": 500.0,
+    "hfe_min": 110,
+    "hfe_max": 800,
+    "freq_max_hz": 300000000.0,
+    "extra": {
+      "Vceo": "45V",
+      "complement (pnp)": "BC560",
+      "noise": "low-noise grade (like BC549)",
+      "gain groups": "B/C suffix; C is highest gain",
+      "Vce(sat)": "90mV (typ), 250mV (max) @ Ic=10mA, Ib=0.5mA",
+      "Vbe(on)": "580mV (min), 660mV (typ), 700mV (max) @ Vce=5V, Ic=2mA"
+    }
+  },
+  "typical_application": "Low-noise audio input/preamp stages where device noise matters (microphone/phono front ends), and general small-signal NPN use.",
+  "gotchas": [
+    "pinout is C-B-E, the REVERSE of the American 2N3904 (E-B-C)",
+    "the low-noise spec is the reason to pick BC549/BC550 over BC547/BC548; otherwise similar",
+    "100mA max collector current",
+    "commonly stocked as the high-gain C suffix"
+  ],
+  "related": [
+    "bc549",
+    "bc547",
+    "bc560",
+    "2n3904"
+  ],
+  "datasheet_url": "https://www.onsemi.com/pdf/datasheet/bc550-d.pdf",
+  "source": "human",
+  "verified": true
+}

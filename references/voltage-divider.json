@@ -1,0 +1,60 @@
+{
+  "id": "voltage-divider",
+  "title": "Voltage Divider",
+  "topic": "dc",
+  "tags": [
+    "divider",
+    "resistor",
+    "ratio",
+    "bias",
+    "reference"
+  ],
+  "summary": "two resistors in series produce an output voltage that is a fixed fraction of the input.",
+  "body": "a voltage divider scales a voltage down by the ratio of the lower resistor to\nthe total resistance. it only holds when the load drawing current from the tap\nis much higher impedance than R2 (rule of thumb: at least 10x), otherwise the\nload pulls the output down.",
+  "formulas": [
+    {
+      "expr": "Vout = Vin * R2 / (R1 + R2)",
+      "description": "output at the tap between R1 (top) and R2 (bottom)",
+      "vars": [
+        {
+          "symbol": "Vin",
+          "meaning": "input voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "Vout",
+          "meaning": "output voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "R1",
+          "meaning": "top resistor",
+          "unit": "ohm"
+        },
+        {
+          "symbol": "R2",
+          "meaning": "bottom resistor",
+          "unit": "ohm"
+        }
+      ]
+    },
+    {
+      "expr": "R2 = R1 * Vout / (Vin - Vout)",
+      "description": "pick R2 for a target ratio given R1"
+    }
+  ],
+  "examples": [
+    "level-shift 5 V to ~3.3 V: R1 = 1.8k, R2 = 3.3k -> Vout = 5 * 3.3 / 5.1 = 3.24 V.",
+    "halve a voltage with two equal resistors (R1 = R2): Vout = Vin / 2."
+  ],
+  "gotchas": [
+    "a divider is not a voltage regulator; output sags as load current rises and shifts with input voltage",
+    "keep the divider current >> load current (10x) or buffer the tap with an op-amp follower",
+    "high-value resistors save power but raise output impedance and pick up noise"
+  ],
+  "related": [
+    "ohms-law",
+    "e-series"
+  ],
+  "source": "human"
+}

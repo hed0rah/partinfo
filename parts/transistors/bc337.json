@@ -1,0 +1,88 @@
+{
+  "id": "bc337",
+  "name": "BC337",
+  "aliases": [
+    "BC337-25",
+    "BC337-40"
+  ],
+  "full_name": "NPN General-Purpose Amplifier Transistor",
+  "manufacturers": [
+    "onsemi",
+    "Fairchild",
+    "multicomp",
+    "Diotec",
+    "NXP"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "npn small-signal",
+  "tags": [
+    "transistor",
+    "npn",
+    "bjt",
+    "small-signal",
+    "audio",
+    "driver",
+    "classic"
+  ],
+  "description": "NPN complement to the BC327, common in audio driver/output stages and as a higher-current (800mA) small-signal switch. Like the rest of the European BC family, the TO-92 pinout is C-B-E (flat face toward you, leads down, left to right), the reverse of American parts like the 2N3904.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "C",
+          "type": "passive",
+          "description": "collector (leftmost lead, flat face toward you)"
+        },
+        {
+          "pin": 2,
+          "name": "B",
+          "type": "passive",
+          "description": "base (center)"
+        },
+        {
+          "pin": 3,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter (rightmost lead)"
+        }
+      ],
+      "notes": "flat face toward you, leads down: C-B-E left to right. Datasheets disagree on lead NUMBERING (onsemi numbers the left lead pin 1 = C; multicomp numbers the right lead pin 1 = E) but the physical layout is the same C-B-E."
+    }
+  },
+  "specs": {
+    "vs_max_v": 45.0,
+    "iout_max_ma": 800.0,
+    "pd_max_mw": 625.0,
+    "hfe_min": 100,
+    "hfe_max": 630,
+    "freq_max_hz": 100000000.0,
+    "extra": {
+      "Vceo": "45V",
+      "Vcbo": "50V",
+      "Vebo": "5V",
+      "complement (pnp)": "BC327",
+      "gain groups": "BC337-25 hFE 160-400, BC337-40 hFE 250-630",
+      "Vce(sat)": "0.7V (max) @ Ic=500mA, Ib=50mA",
+      "Vbe(on)": "1.2V (max) @ Ic=300mA, Vce=1V"
+    }
+  },
+  "typical_application": "Audio driver and small output stages (paired with BC327), general switching up to 800mA, LED and small relay drivers. Add a flyback diode for inductive loads.",
+  "gotchas": [
+    "pinout is C-B-E (European family), the REVERSE of the 2N3904 (E-B-C); do not assume",
+    "datasheets number the leads inconsistently (onsemi pin 1 = collector on the left; multicomp pin 1 = emitter on the right) even though the physical C-B-E layout is identical; when in doubt, meter it",
+    "800mA absolute max collector current; derate hard for continuous use",
+    "hFE depends on the -25 or -40 suffix; do not design for an exact gain"
+  ],
+  "related": [
+    "bc327",
+    "bc547",
+    "2n3904",
+    "bd139"
+  ],
+  "datasheet_url": "https://www.onsemi.com/pdf/datasheet/bc337-d.pdf",
+  "source": "human",
+  "verified": true
+}

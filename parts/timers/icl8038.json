@@ -1,0 +1,141 @@
+{
+  "id": "icl8038",
+  "name": "ICL8038",
+  "aliases": [
+    "ICL8038CCPD",
+    "ICL8038CCJD"
+  ],
+  "full_name": "Precision Waveform Generator (Sine/Square/Triangle)",
+  "manufacturers": [
+    "Intersil",
+    "Renesas"
+  ],
+  "category": "timer",
+  "subcategory": "precision waveform generator",
+  "tags": [
+    "oscillator",
+    "waveform-generator",
+    "vco",
+    "synth",
+    "vintage",
+    "classic",
+    "nrnd"
+  ],
+  "description": "Monolithic function generator that produces simultaneous sine, square, and triangle wave outputs from 0.001Hz to 300kHz, set by external R/C and adjustable duty cycle (2%-98%). A classic analog-synth and test-equipment building block. Marked 'NOT RECOMMENDED FOR NEW DESIGNS' by Intersil, but remains widely used and second-sourced given its unique combined three-waveform output. Known in practice for sine-wave distortion and part-to-part variation that often needs trimming (external THD-adjust network) to hit datasheet-spec sine purity.",
+  "packages": {
+    "DIP-14": {
+      "template": "dip",
+      "pin_count": 14,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "SINE ADJ1",
+          "type": "input",
+          "description": "sine wave adjust (distortion trim)"
+        },
+        {
+          "pin": 2,
+          "name": "SINE OUT",
+          "type": "output",
+          "description": "sine wave output"
+        },
+        {
+          "pin": 3,
+          "name": "TRI OUT",
+          "type": "output",
+          "description": "triangle wave output"
+        },
+        {
+          "pin": 4,
+          "name": "DUTY CYCLE",
+          "type": "input",
+          "description": "duty cycle / frequency adjust resistor terminal"
+        },
+        {
+          "pin": 5,
+          "name": "FREQ ADJ",
+          "type": "input",
+          "description": "duty cycle / frequency adjust resistor terminal"
+        },
+        {
+          "pin": 6,
+          "name": "V+",
+          "type": "power",
+          "description": "positive supply"
+        },
+        {
+          "pin": 7,
+          "name": "FM BIAS",
+          "type": "input",
+          "description": "FM bias input"
+        },
+        {
+          "pin": 8,
+          "name": "FM SWEEP",
+          "type": "input",
+          "description": "FM sweep input, for voltage-controlled frequency"
+        },
+        {
+          "pin": 9,
+          "name": "SQUARE OUT",
+          "type": "output",
+          "description": "square wave output (open collector, needs a pullup)"
+        },
+        {
+          "pin": 10,
+          "name": "TIMING CAP",
+          "type": "passive",
+          "description": "external timing capacitor terminal"
+        },
+        {
+          "pin": 11,
+          "name": "V- / GND",
+          "type": "power",
+          "description": "negative supply or ground (single-supply operation)"
+        },
+        {
+          "pin": 12,
+          "name": "SINE ADJ2",
+          "type": "input",
+          "description": "sine wave adjust (distortion trim, second terminal)"
+        },
+        {
+          "pin": 13,
+          "name": "NC",
+          "type": "nc",
+          "description": "no connection"
+        },
+        {
+          "pin": 14,
+          "name": "NC",
+          "type": "nc",
+          "description": "no connection"
+        }
+      ],
+      "notes": "Per Intersil's own pinout diagram, PDIP/CERDIP, top view."
+    }
+  },
+  "specs": {
+    "vs_max_v": 36.0,
+    "extra": {
+      "supply_single": "10V to 30V single supply (or +-5V to +-15V split)",
+      "freq_range": "0.001Hz to 300kHz",
+      "duty_cycle_range": "2% to 98%",
+      "output_sink_current": "25mA max (pins 3 and 9)"
+    }
+  },
+  "typical_application": "Analog synth VCOs and LFOs, function generators, FM modulators, and test equipment needing simultaneous sine/square/triangle outputs from one chip.",
+  "gotchas": [
+    "SQUARE OUT (pin 9) is open-collector; it needs an external pullup resistor to work",
+    "sine output distortion is a known practical issue; many designs add an external trim network on the SINE ADJ pins to hit low-THD sine output, do not expect clean sine out of the box without it",
+    "marked NOT RECOMMENDED FOR NEW DESIGNS by Intersil; still in wide use and second-sourced, this is not a sign the part is fake, just that the manufacturer prefers customers move to newer parts",
+    "duty cycle and frequency are both set by the same external R/C network and interact; changing one without accounting for the other shifts both"
+  ],
+  "related": [
+    "ne555",
+    "cd4046"
+  ],
+  "datasheet_url": "https://www.renesas.com/en/document/dst/icl8038-datasheet",
+  "source": "claude",
+  "verified": true
+}

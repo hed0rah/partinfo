@@ -1,0 +1,89 @@
+{
+  "id": "bc327",
+  "name": "BC327",
+  "aliases": [
+    "BC327-25",
+    "BC327-40"
+  ],
+  "full_name": "PNP General-Purpose Amplifier Transistor",
+  "manufacturers": [
+    "onsemi",
+    "Fairchild",
+    "multicomp",
+    "Diotec",
+    "NXP"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "pnp small-signal",
+  "tags": [
+    "transistor",
+    "pnp",
+    "bjt",
+    "small-signal",
+    "audio",
+    "driver",
+    "classic"
+  ],
+  "description": "PNP complement to the BC337, common in audio driver/output stages and as a higher-current (-800mA) small-signal switch. TO-92 pinout is C-B-E (flat face toward you, leads down, left to right), like the rest of the European BC family. Values are magnitudes; PNP rails are negative.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "C",
+          "type": "passive",
+          "description": "collector (leftmost lead, flat face toward you)"
+        },
+        {
+          "pin": 2,
+          "name": "B",
+          "type": "passive",
+          "description": "base (center)"
+        },
+        {
+          "pin": 3,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter (rightmost lead)"
+        }
+      ],
+      "notes": "flat face toward you, leads down: C-B-E left to right. Datasheets disagree on lead NUMBERING (Diotec/onsemi number the left lead pin 1 = C; multicomp/Farnell number the right lead pin 1 = E) but the physical layout is the same C-B-E."
+    }
+  },
+  "specs": {
+    "vs_max_v": 45.0,
+    "iout_max_ma": 800.0,
+    "pd_max_mw": 625.0,
+    "hfe_min": 100,
+    "hfe_max": 800,
+    "freq_max_hz": 100000000.0,
+    "extra": {
+      "Vceo": "-45V",
+      "Vcbo": "-50V",
+      "Vebo": "-5V",
+      "complement (npn)": "BC337",
+      "gain groups": "BC327-25 hFE 160-400, BC327-40 hFE 250-630",
+      "polarity": "PNP (negative rails)",
+      "Vce(sat)": "-0.7V (max) @ Ic=-500mA, Ib=-50mA",
+      "Vbe(on)": "-1.2V (max) @ Ic=-300mA, Vce=-1V"
+    }
+  },
+  "typical_application": "Audio driver and small output stages (paired with BC337), general switching up to 800mA, low-side and high-side small loads.",
+  "gotchas": [
+    "pinout is C-B-E (European family), the REVERSE of American PNP parts like the 2N3906 (E-B-C)",
+    "datasheets number the leads inconsistently (Diotec/onsemi pin 1 = collector on the left; multicomp pin 1 = emitter on the right) even though the physical C-B-E layout is identical; when in doubt, meter it",
+    "PNP: all ratings are negative, do not read -45V as a positive limit",
+    "hFE depends on the -25 or -40 suffix; do not design for an exact gain"
+  ],
+  "related": [
+    "bc337",
+    "bc557",
+    "2n3906",
+    "bd140"
+  ],
+  "datasheet_url": "https://diotec.com/request/datasheet/bc327.pdf",
+  "source": "human",
+  "verified": true
+}

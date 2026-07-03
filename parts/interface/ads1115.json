@@ -1,0 +1,120 @@
+{
+  "id": "ads1115",
+  "name": "ADS1115",
+  "aliases": [
+    "ADS1115IDGS",
+    "ADS111x"
+  ],
+  "full_name": "Texas Instruments ADS1115 16-Bit, 860-SPS, 4-Channel Delta-Sigma ADC with PGA, Oscillator, VREF, Comparator and I2C",
+  "manufacturers": [
+    "Texas Instruments"
+  ],
+  "category": "interface",
+  "subcategory": "I2C ADC",
+  "tags": [
+    "adc",
+    "i2c",
+    "16-bit",
+    "delta-sigma",
+    "pga",
+    "analog"
+  ],
+  "description": "The ADS1115 is a 16-bit delta-sigma ADC with an integrated programmable gain amplifier (PGA), voltage reference, oscillator, and I2C interface. It provides 4 single-ended or 2 differential inputs at data rates up to 860 samples per second. The PGA scales the full-scale range from +/-256 mV up to +/-6.144 V, making it ideal for measuring small sensor signals without external amplification. A standout trait is the on-chip programmable comparator with the ALERT/RDY pin, which can flag threshold crossings or signal conversion-ready without polling. It is the de facto hobbyist and lab choice for adding precision analog inputs over I2C.",
+  "packages": {
+    "VSSOP-10": {
+      "template": "tssop",
+      "pin_count": 10,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "ADDR",
+          "type": "input",
+          "description": "I2C target address select; tie to GND/VDD/SDA/SCL to pick one of four addresses"
+        },
+        {
+          "pin": 2,
+          "name": "ALERT/RDY",
+          "type": "output",
+          "description": "Comparator output or conversion-ready; open-drain, needs pullup to VDD"
+        },
+        {
+          "pin": 3,
+          "name": "GND",
+          "type": "ground",
+          "description": "Ground"
+        },
+        {
+          "pin": 4,
+          "name": "AIN0",
+          "type": "analog",
+          "description": "Analog input 0"
+        },
+        {
+          "pin": 5,
+          "name": "AIN1",
+          "type": "analog",
+          "description": "Analog input 1"
+        },
+        {
+          "pin": 6,
+          "name": "AIN2",
+          "type": "analog",
+          "description": "Analog input 2"
+        },
+        {
+          "pin": 7,
+          "name": "AIN3",
+          "type": "analog",
+          "description": "Analog input 3"
+        },
+        {
+          "pin": 8,
+          "name": "VDD",
+          "type": "power",
+          "description": "Power supply; decouple with 0.1 uF to GND"
+        },
+        {
+          "pin": 9,
+          "name": "SDA",
+          "type": "bidirectional",
+          "description": "I2C serial data; needs pullup to VDD"
+        },
+        {
+          "pin": 10,
+          "name": "SCL",
+          "type": "clock",
+          "description": "I2C serial clock input; needs pullup to VDD"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.0,
+    "vs_max_v": 5.5,
+    "extra": {
+      "resolution": "16-bit",
+      "channels": "4 single-ended or 2 differential",
+      "sample_rate": "8 to 860 SPS (programmable)",
+      "interface": "I2C (up to 3.4 MHz)",
+      "pga_range": "+/-0.256 V to +/-6.144 V",
+      "i2c_address": "0x48-0x4B (ADDR to GND/VDD/SDA/SCL)",
+      "internal_reference": "yes",
+      "internal_oscillator": "yes"
+    }
+  },
+  "typical_application": "Reading multiple precision analog sensors (thermistors, potentiometers, low-level bridge outputs) into a microcontroller over I2C.",
+  "gotchas": [
+    "ADDR pin sets the I2C address by which rail it ties to: GND=0x48, VDD=0x49, SDA=0x4A, SCL=0x4B, giving up to four devices per bus",
+    "ALERT/RDY is open-drain and exists only on the ADS1114/ADS1115; it requires an external pullup",
+    "Absolute input voltage on any AIN must stay within GND-0.3 V to VDD+0.3 V even when the PGA range is small",
+    "The plain ADS1113 has no comparator or ALERT/RDY pin; do not assume code written for the 1115 maps to it",
+    "Internal reference and oscillator are fixed; full-scale is set by the PGA, not by an external VREF pin"
+  ],
+  "related": [
+    "mcp3008",
+    "mcp4725"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/ads1115.pdf",
+  "source": "human",
+  "verified": true
+}

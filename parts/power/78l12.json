@@ -1,0 +1,86 @@
+{
+  "id": "78l12",
+  "name": "78L12",
+  "aliases": [
+    "LM78L12",
+    "L78L12",
+    "MC78L12",
+    "78L12ACZ"
+  ],
+  "full_name": "Positive 12V 100mA Three-Terminal Voltage Regulator",
+  "manufacturers": [
+    "Texas Instruments",
+    "STMicroelectronics",
+    "onsemi",
+    "Fairchild"
+  ],
+  "category": "power",
+  "subcategory": "linear regulator (positive)",
+  "tags": [
+    "regulator",
+    "ldo",
+    "positive",
+    "linear",
+    "12v",
+    "power",
+    "classic"
+  ],
+  "description": "Positive-rail 12V fixed linear regulator, 100mA, in TO-92. The low-power member of the 78xx family for 12V, needing no external components. TO-92 pin order is VOUT(1)/GND(2)/VIN(3) (front view, flat face toward you).",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "VOUT",
+          "type": "output",
+          "description": "regulated +12V output (leftmost lead, flat face toward you)"
+        },
+        {
+          "pin": 2,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground / common (center)"
+        },
+        {
+          "pin": 3,
+          "name": "VIN",
+          "type": "power",
+          "description": "input voltage (rightmost lead)"
+        }
+      ],
+      "notes": "flat face toward you, leads down: VOUT, GND, VIN left to right (datasheet numbering matches this front view)."
+    }
+  },
+  "specs": {
+    "vs_min_v": 14.5,
+    "vs_max_v": 35.0,
+    "iout_max_ma": 100.0,
+    "extra": {
+      "Vout": "+12V (11.4 to 12.6V)",
+      "Iout max": "100mA",
+      "Vin abs max": "35V (30V recommended)",
+      "dropout": "~1.7V typ",
+      "Iq": "3.8mA typ (5.1mA max, new chip @ TJ=25C)",
+      "Rth(JC)": "75.2 C/W (TO-92)",
+      "Rth(JA)": "158.7 C/W (TO-92)"
+    },
+    "rth_jc_cw": 75.2,
+    "rth_ja_cw": 158.7
+  },
+  "typical_application": "Local on-card +12V regulation for low-current analog/logic from an unregulated 15-27V rail, with no external parts required.",
+  "gotchas": [
+    "TO-92 order OUT/GND/IN is the REVERSE of the negative 79Lxx (GND/IN/OUT); the two families do not share a footprint orientation",
+    "this TO-92 OUT/GND/IN order is also opposite the big 7812 TO-220 (IN/GND/OUT, tab=GND); do not carry the TO-220 pinout over",
+    "only 100mA; for higher current use the 7812 in TO-220"
+  ],
+  "related": [
+    "78l05",
+    "7812",
+    "79l12"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/lm78l.pdf",
+  "source": "human",
+  "verified": true
+}

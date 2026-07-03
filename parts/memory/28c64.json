@@ -1,0 +1,233 @@
+{
+  "id": "28c64",
+  "name": "AT28C64",
+  "aliases": [
+    "AT28C64B",
+    "28C64",
+    "AT28C64B-15PU"
+  ],
+  "full_name": "Atmel/Microchip AT28C64B 64Kbit (8K x 8) Parallel EEPROM",
+  "manufacturers": [
+    "Atmel",
+    "Microchip"
+  ],
+  "category": "memory",
+  "subcategory": "parallel EEPROM",
+  "tags": [
+    "eeprom",
+    "parallel",
+    "nonvolatile",
+    "memory",
+    "64kbit",
+    "byte-wide",
+    "atmel"
+  ],
+  "description": "The AT28C64B is a 64 Kbit (8,192 x 8) byte-wide parallel EEPROM with a JEDEC-standard 28-pin pinout, accessed like a static RAM via 13 address lines and 8 data I/O lines under /CE, /OE, and /WE control. It runs from a single 5V supply with 150 ns access time, supports automatic page write of up to 64 bytes, and includes hardware and software data protection. Endurance is 100,000 cycles with 10-year retention. Its standout trait is being a hobbyist favorite for retro CPU/ROM projects and homebrew computers needing an in-system reprogrammable parallel ROM.",
+  "packages": {
+    "DIP-28": {
+      "template": "dip",
+      "pin_count": 28,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "NC",
+          "type": "nc",
+          "description": "no connect"
+        },
+        {
+          "pin": 2,
+          "name": "A12",
+          "type": "input",
+          "description": "address line 12"
+        },
+        {
+          "pin": 3,
+          "name": "A7",
+          "type": "input",
+          "description": "address line 7"
+        },
+        {
+          "pin": 4,
+          "name": "A6",
+          "type": "input",
+          "description": "address line 6"
+        },
+        {
+          "pin": 5,
+          "name": "A5",
+          "type": "input",
+          "description": "address line 5"
+        },
+        {
+          "pin": 6,
+          "name": "A4",
+          "type": "input",
+          "description": "address line 4"
+        },
+        {
+          "pin": 7,
+          "name": "A3",
+          "type": "input",
+          "description": "address line 3"
+        },
+        {
+          "pin": 8,
+          "name": "A2",
+          "type": "input",
+          "description": "address line 2"
+        },
+        {
+          "pin": 9,
+          "name": "A1",
+          "type": "input",
+          "description": "address line 1"
+        },
+        {
+          "pin": 10,
+          "name": "A0",
+          "type": "input",
+          "description": "address line 0"
+        },
+        {
+          "pin": 11,
+          "name": "I/O0",
+          "type": "bidirectional",
+          "description": "data input/output bit 0"
+        },
+        {
+          "pin": 12,
+          "name": "I/O1",
+          "type": "bidirectional",
+          "description": "data input/output bit 1"
+        },
+        {
+          "pin": 13,
+          "name": "I/O2",
+          "type": "bidirectional",
+          "description": "data input/output bit 2"
+        },
+        {
+          "pin": 14,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 15,
+          "name": "I/O3",
+          "type": "bidirectional",
+          "description": "data input/output bit 3"
+        },
+        {
+          "pin": 16,
+          "name": "I/O4",
+          "type": "bidirectional",
+          "description": "data input/output bit 4"
+        },
+        {
+          "pin": 17,
+          "name": "I/O5",
+          "type": "bidirectional",
+          "description": "data input/output bit 5"
+        },
+        {
+          "pin": 18,
+          "name": "I/O6",
+          "type": "bidirectional",
+          "description": "data input/output bit 6"
+        },
+        {
+          "pin": 19,
+          "name": "I/O7",
+          "type": "bidirectional",
+          "description": "data input/output bit 7, also used for DATA polling / toggle bit"
+        },
+        {
+          "pin": 20,
+          "name": "/CE",
+          "type": "input",
+          "description": "chip enable, active low"
+        },
+        {
+          "pin": 21,
+          "name": "A10",
+          "type": "input",
+          "description": "address line 10"
+        },
+        {
+          "pin": 22,
+          "name": "/OE",
+          "type": "input",
+          "description": "output enable, active low"
+        },
+        {
+          "pin": 23,
+          "name": "A11",
+          "type": "input",
+          "description": "address line 11"
+        },
+        {
+          "pin": 24,
+          "name": "A9",
+          "type": "input",
+          "description": "address line 9"
+        },
+        {
+          "pin": 25,
+          "name": "A8",
+          "type": "input",
+          "description": "address line 8"
+        },
+        {
+          "pin": 26,
+          "name": "NC",
+          "type": "nc",
+          "description": "no connect"
+        },
+        {
+          "pin": 27,
+          "name": "/WE",
+          "type": "input",
+          "description": "write enable, active low"
+        },
+        {
+          "pin": 28,
+          "name": "VCC",
+          "type": "power",
+          "description": "supply voltage, single 5V +/-10%"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 4.5,
+    "vs_max_v": 5.5,
+    "extra": {
+      "capacity": "64 Kbit (8 KB)",
+      "organization": "8192 x 8",
+      "interface": "parallel (13 address, 8 data)",
+      "access_time": "150 ns",
+      "page_size": "1 to 64 bytes (automatic page write)",
+      "write_cycle": "10 ms max page (2 ms on -BF option)",
+      "endurance": "100,000 cycles",
+      "data_retention": "10 years",
+      "supply": "single 5V +/-10%"
+    }
+  },
+  "typical_application": "Reprogrammable ROM for retro CPU boards, homebrew computers, and microcode/lookup-table storage.",
+  "gotchas": [
+    "JEDEC 28-pin pinout matches 2764/27C64 EPROM and 6264 SRAM closely but not identically; pin 1 and pins 26/27 differ, verify before socket-swapping",
+    "pins 1 and 26 are NC on the DIP; do not assume they are address lines like on larger 28-pin parts",
+    "default 10 ms page write timer means a naive byte-at-a-time loop is very slow; use page write or poll I/O7 (DATA polling / toggle bit)",
+    "software data protection can be enabled and will silently block writes until the unlock sequence is issued; a 'dead' chip is often just SDP-locked",
+    "/WE-controlled and /CE-controlled write timings differ; hold the other signal stable during the active write strobe",
+    "this is 5V only; do not drive address/data from 3.3V logic expecting reliable VIH without checking levels"
+  ],
+  "related": [
+    "24lc256",
+    "23lc1024"
+  ],
+  "datasheet_url": "https://ww1.microchip.com/downloads/en/DeviceDoc/doc0270.pdf",
+  "source": "human",
+  "verified": true
+}

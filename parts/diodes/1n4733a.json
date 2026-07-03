@@ -1,0 +1,78 @@
+{
+  "id": "1n4733a",
+  "name": "1N4733A",
+  "aliases": [
+    "1N4733",
+    "1N4733A-E3"
+  ],
+  "full_name": "5.1V 1W Zener diode",
+  "manufacturers": [
+    "Vishay",
+    "onsemi",
+    "Diodes Inc",
+    "Nexperia"
+  ],
+  "category": "diode",
+  "subcategory": "zener diode",
+  "tags": [
+    "diode",
+    "zener",
+    "voltage-reference",
+    "regulator",
+    "axial",
+    "do-41"
+  ],
+  "description": "5.1V, 1W silicon Zener from the 1N4728A series, A suffix = +/-5% tolerance. Reverse-biased in breakdown as a shunt reference or clamp; common for simple rails, bias references, and overvoltage protection.",
+  "packages": {
+    "DO-41": {
+      "template": "custom",
+      "pin_count": 2,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "A",
+          "type": "passive",
+          "description": "anode"
+        },
+        {
+          "pin": 2,
+          "name": "K",
+          "type": "passive",
+          "description": "cathode (band/stripe end)"
+        }
+      ],
+      "ascii": "  A \u2500\u2500\u25b7|\u2500\u2500 K\n  band/stripe end = K (cathode)"
+    }
+  },
+  "specs": {
+    "vs_max_v": 5.1,
+    "iout_max_ma": 178.0,
+    "extra": {
+      "Vz": "5.1V at Izt=49mA",
+      "tolerance": "+/-5% (A suffix)",
+      "Pd": "1.0W nominal (Vishay rates 1300mW at TL)",
+      "Zzt": "7 ohm at Izt",
+      "Izt": "49mA",
+      "Izm": "178mA (max Zener current)",
+      "Tj_max": "200C",
+      "Ir": "10uA max @ Vr=1V",
+      "Vf": "1.2V max @ If=200mA",
+      "Rth(JA)": "110 C/W typ"
+    },
+    "rth_ja_cw": 110.0
+  },
+  "typical_application": "Shunt voltage reference/regulator: fed through a series resistor from a higher rail to hold ~5.1V across the load.",
+  "gotchas": [
+    "in normal use it is REVERSE biased; cathode (band) goes to the more-positive node - reversed it acts as an ordinary ~0.9V forward diode",
+    "needs a series current-limiting resistor sized for load + Izt; without it the Zener overheats and fails",
+    "5-6V is the knee where the tempco crosses zero, so 5.1V Zeners are relatively stable; lower-voltage ones drift negative",
+    "not a precision reference (5% tolerance, soft knee, noise); use a TL431 or bandgap if accuracy matters"
+  ],
+  "related": [
+    "1n4742a",
+    "tl431"
+  ],
+  "datasheet_url": "https://www.vishay.com/docs/85816/1n4728a.pdf",
+  "source": "human",
+  "verified": true
+}

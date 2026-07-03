@@ -1,0 +1,99 @@
+{
+  "id": "hc-05",
+  "name": "HC-05",
+  "aliases": [
+    "HC05",
+    "ZS-040 HC-05",
+    "linvor HC-05"
+  ],
+  "full_name": "HC-05 Bluetooth Classic SPP Serial Module",
+  "manufacturers": [
+    "various (canonical HC-05 module spec)"
+  ],
+  "category": "rf",
+  "subcategory": "Bluetooth Classic SPP module",
+  "tags": [
+    "rf",
+    "bluetooth",
+    "spp",
+    "uart",
+    "module",
+    "serial",
+    "2.4ghz",
+    "wireless"
+  ],
+  "description": "Bluetooth Classic (v2.0+EDR) module providing a transparent serial (SPP) link over UART, configurable as master or slave - unlike the slave-only HC-06. It is controlled and configured through AT commands (entered by holding the EN/KEY pin high at power-up to enter command mode). The module core runs at 3.3 V; most breakout boards add a regulator so VCC accepts 3.6-6 V, but the UART logic is 3.3 V and the RXD pin should be level-shifted from a 5 V MCU.",
+  "packages": {
+    "module (6-pin header)": {
+      "template": "module",
+      "pin_count": 6,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "EN/KEY",
+          "type": "input",
+          "description": "enable / command-mode select; hold HIGH at power-up to enter AT command mode"
+        },
+        {
+          "pin": 2,
+          "name": "VCC",
+          "type": "power",
+          "description": "module supply, typically 3.6-6 V on breakout (onboard regulator); chip core is 3.3 V"
+        },
+        {
+          "pin": 3,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 4,
+          "name": "TXD",
+          "type": "output",
+          "description": "UART transmit, 3.3 V logic (to MCU RX)"
+        },
+        {
+          "pin": 5,
+          "name": "RXD",
+          "type": "input",
+          "description": "UART receive, 3.3 V logic (from MCU TX; level shift a 5 V MCU)"
+        },
+        {
+          "pin": 6,
+          "name": "STATE",
+          "type": "output",
+          "description": "connection status output (high when a Bluetooth link is established)"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.6,
+    "vs_max_v": 6.0,
+    "extra": {
+      "interface": "UART (SPP) + AT command config",
+      "bluetooth": "Classic v2.0 + EDR",
+      "role": "master or slave (configurable)",
+      "default_baud": "9600 (data mode), 38400 (AT mode on many clones)",
+      "module_supply": "3.6-6 V (breakout with regulator)",
+      "chip_supply": "3.3 V",
+      "logic": "3.3 V UART"
+    }
+  },
+  "typical_application": "Wireless serial replacement between a microcontroller and a phone/PC: telemetry, remote control, and configuration over a Bluetooth SPP link.",
+  "gotchas": [
+    "HC-05 can be master OR slave (set by AT command); the similar-looking HC-06 is slave-only - do not assume behavior from appearance",
+    "to enter AT command mode you must hold EN/KEY high (or press the onboard button) during power-up; in data mode AT commands are ignored",
+    "UART logic is 3.3 V: feed RXD from a 5 V MCU through a divider/level shifter, though TXD into a 5 V MCU usually reads fine",
+    "AT-mode baud differs from data-mode baud on many clones (often 38400 for AT, 9600 for data) - mismatched baud is the usual 'no response' cause",
+    "VCC range is the regulated breakout spec (3.6-6 V); the bare chip is 3.3 V, so never bypass the board regulator with raw 5 V to the chip",
+    "the STATE pin reflects link status and is useful to gate data; it is not a data line"
+  ],
+  "related": [
+    "esp-01",
+    "nrf24l01"
+  ],
+  "datasheet_url": "https://components101.com/sites/default/files/component_datasheet/HC-05%20Datasheet.pdf",
+  "source": "human",
+  "verified": true
+}

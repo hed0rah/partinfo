@@ -1,0 +1,92 @@
+{
+  "id": "tda2030",
+  "name": "TDA2030",
+  "aliases": [
+    "TDA2030A"
+  ],
+  "full_name": "14W Hi-Fi Audio Power Amplifier",
+  "manufacturers": [
+    "STMicroelectronics",
+    "SGS-Thomson"
+  ],
+  "category": "audio",
+  "subcategory": "power amplifier",
+  "tags": [
+    "audio",
+    "amplifier",
+    "power-amp",
+    "class-ab",
+    "mono",
+    "pentawatt",
+    "classic"
+  ],
+  "description": "Monolithic mono class-AB audio power amplifier delivering ~14W into 4 ohm, in the 5-lead Pentawatt (TO-220-5) package. Includes short-circuit and thermal protection. The TDA2030A successor shares this pinout but tolerates a higher supply.",
+  "packages": {
+    "Pentawatt": {
+      "template": "sip",
+      "pin_count": 5,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "IN+",
+          "type": "input",
+          "description": "non-inverting (+) signal input"
+        },
+        {
+          "pin": 2,
+          "name": "IN-",
+          "type": "input",
+          "description": "inverting (-) input; sets closed-loop gain via the feedback network"
+        },
+        {
+          "pin": 3,
+          "name": "-Vs",
+          "type": "power",
+          "description": "negative supply rail; the metal tab is tied to this pin (NOT ground)"
+        },
+        {
+          "pin": 4,
+          "name": "OUT",
+          "type": "output",
+          "description": "amplifier power output to loudspeaker"
+        },
+        {
+          "pin": 5,
+          "name": "+Vs",
+          "type": "power",
+          "description": "positive supply rail"
+        }
+      ],
+      "notes": "5-lead Pentawatt (TO-220-5), single inline, numbered 1-5 from the labelled end. The mounting tab is connected to pin 3 (-Vs), so on a split supply the heatsink floats at the negative rail and must be isolated."
+    }
+  },
+  "specs": {
+    "vs_min_v": 12.0,
+    "vs_max_v": 36.0,
+    "iq_ma": 40.0,
+    "bw_hz": 140000.0,
+    "extra": {
+      "supply": "+/-6V to +/-18V split (12-36V single)",
+      "Po": "14W typ into 4 ohm (d=0.5%), 9W into 8 ohm",
+      "THD": "0.2% typ",
+      "Gv": "30dB typ closed-loop",
+      "Io peak": "3.5A internally limited",
+      "Ptot": "20W at Tcase=90C"
+    }
+  },
+  "typical_application": "Single-ended non-inverting class-AB amp on a +/-14V split supply, gain ~30dB (R1=22k / R2=680R feedback), driving a 4 or 8 ohm speaker. Add two 1N4001 output clamp diodes to the rails, a Zobel network (1R + 220nF) at the output, and 100uF + 100nF decoupling per rail.",
+  "gotchas": [
+    "the mounting tab is pin 3 (-Vs), NOT ground; in a dual-supply design the heatsink sits at the negative rail and must be isolated from chassis",
+    "TDA2030A is the higher-voltage successor (abs max +/-22V) with the identical 5-pin Pentawatt pinout; the original TDA2030 maxes at +/-18V",
+    "shares the Pentawatt pinout with the LM1875, but supply limits differ; do not assume drop-in equivalence",
+    "output current internally limited to 3.5A; thermal shutdown and SOA protection are built in"
+  ],
+  "related": [
+    "tda2822",
+    "lm1875",
+    "tda2050"
+  ],
+  "datasheet_url": "https://www.st.com/resource/en/datasheet/tda2030.pdf",
+  "source": "human",
+  "verified": true
+}

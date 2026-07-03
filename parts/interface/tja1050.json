@@ -1,0 +1,115 @@
+{
+  "id": "tja1050",
+  "name": "TJA1050",
+  "aliases": [
+    "TJA1050T",
+    "TJA1050"
+  ],
+  "full_name": "NXP TJA1050 High-Speed CAN Transceiver",
+  "manufacturers": [
+    "NXP",
+    "Philips Semiconductors"
+  ],
+  "category": "interface",
+  "subcategory": "CAN transceiver",
+  "tags": [
+    "can",
+    "can-bus",
+    "transceiver",
+    "phy",
+    "5v",
+    "iso11898",
+    "automotive",
+    "differential",
+    "low-eme"
+  ],
+  "description": "The TJA1050 is NXP's 5 V high-speed CAN physical-layer transceiver, the interface between a CAN protocol controller's TXD/RXD pins and the differential CANH/CANL bus. Like all transceivers it is a PHY, not a controller, so it pairs with an MCP2515 or an MCU's CAN peripheral to do the actual protocol work. It is the direct successor to the PCA82C250, adding very low electromagnetic emission, a TXD dominant time-out, and a silent mode, while keeping input levels compatible with 3.3 V controllers. It runs from 4.75 to 5.25 V and handles data rates from 40 kbaud up to 1 Mbaud over a wide-common-mode differential receiver. Its standout trait is the silent mode (S pin tied to VCC) that disables only the transmitter while everything else keeps running, letting a node listen without ever disturbing the bus.",
+  "packages": {
+    "SO8": {
+      "template": "soic",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "TXD",
+          "type": "input",
+          "description": "Transmit data input; reads data in from the CAN controller to the bus line drivers (LOW = dominant)."
+        },
+        {
+          "pin": 2,
+          "name": "GND",
+          "type": "ground",
+          "description": "Ground."
+        },
+        {
+          "pin": 3,
+          "name": "VCC",
+          "type": "power",
+          "description": "5 V supply voltage."
+        },
+        {
+          "pin": 4,
+          "name": "RXD",
+          "type": "output",
+          "description": "Receive data output; reads data out from the bus lines to the CAN controller."
+        },
+        {
+          "pin": 5,
+          "name": "Vref",
+          "type": "output",
+          "description": "Reference voltage output at 0.5 x VCC (VCC/2), for split-termination common-mode biasing."
+        },
+        {
+          "pin": 6,
+          "name": "CANL",
+          "type": "bidirectional",
+          "description": "LOW-level CAN bus line."
+        },
+        {
+          "pin": 7,
+          "name": "CANH",
+          "type": "bidirectional",
+          "description": "HIGH-level CAN bus line."
+        },
+        {
+          "pin": 8,
+          "name": "S",
+          "type": "input",
+          "description": "Select input: tie to GND for high-speed mode, tie to VCC for silent mode (transmitter disabled, all other functions active)."
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 4.75,
+    "vs_max_v": 5.25,
+    "extra": {
+      "data_rate": "40 kbaud to 1 Mbaud",
+      "supply": "single 5 V",
+      "vref": "0.5 x VCC output",
+      "silent_mode": "S = VCC disables transmitter (listen-only)",
+      "txd_dominant_timeout": "yes (prevents bus lock-up on stuck-dominant TXD)",
+      "emissions": "very low EME",
+      "bus_transient_protection": "automotive transients per ISO 7637",
+      "logic_compat": "input levels compatible with 3.3 V devices",
+      "standard": "ISO 11898"
+    }
+  },
+  "typical_application": "5 V automotive/industrial CAN node: a CAN controller (MCP2515 or MCU peripheral) drives TXD/RXD, the TJA1050 drives a 120-ohm-terminated twisted pair. Common drop-in successor to PCA82C250 designs.",
+  "gotchas": [
+    "Transceiver (PHY) only - not a controller; pair with an MCP2515 or MCU CAN peripheral.",
+    "5 V part: unlike the SN65HVD230 it needs a 5 V VCC, though its TXD/RXD inputs accept 3.3 V logic from the controller side.",
+    "Has silent mode but no true low-power standby/sleep mode - it is always drawing normal supply current when powered.",
+    "S (pin 8) must be tied low (GND) for normal high-speed transmit; left floating, mode is undefined.",
+    "Bus needs external 120-ohm termination at both ends; the device does not terminate."
+  ],
+  "related": [
+    "mcp2515",
+    "mcp2551",
+    "sn65hvd230",
+    "mcp2562"
+  ],
+  "datasheet_url": "https://www.nxp.com/docs/en/data-sheet/TJA1050.pdf",
+  "source": "human",
+  "verified": true
+}

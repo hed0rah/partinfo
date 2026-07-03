@@ -1,0 +1,85 @@
+{
+  "id": "2n7000",
+  "name": "2N7000",
+  "aliases": [],
+  "full_name": "N-channel enhancement small-signal MOSFET, 60V 200mA (TO-92)",
+  "manufacturers": [
+    "onsemi",
+    "Fairchild",
+    "Diodes Inc",
+    "Vishay"
+  ],
+  "category": "transistor_mosfet",
+  "subcategory": "n-channel small-signal",
+  "tags": [
+    "mosfet",
+    "n-channel",
+    "enhancement",
+    "small-signal",
+    "switch",
+    "to92"
+  ],
+  "description": "N-channel enhancement-mode small-signal MOSFET in TO-92, 60V / 200mA. Low-power switching, level shifting, and signal interfacing. Threshold 0.8-3.0V, but Rds(on) is rated at Vgs=10V, so it is not a true logic-level part at 3.3V despite the low threshold.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "S",
+          "type": "passive",
+          "description": "source; usually to ground/common in low-side switching"
+        },
+        {
+          "pin": 2,
+          "name": "G",
+          "type": "passive",
+          "description": "gate; high-impedance control input"
+        },
+        {
+          "pin": 3,
+          "name": "D",
+          "type": "passive",
+          "description": "drain; connects to the load"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_max_v": 60.0,
+    "iout_max_ma": 200.0,
+    "extra": {
+      "Vds_max": "60V",
+      "Vgs_max": "+/-20V",
+      "Vgs_th": "0.8-3.0V",
+      "Id": "200mA continuous (500mA pulsed)",
+      "Rds_on": "5 ohm max at Vgs=10V (6 ohm at Vgs=4.5V)",
+      "Pd": "350mW",
+      "Ciss": "30pF",
+      "Coss": "12pF",
+      "Crss": "3.0pF",
+      "td(on)": "10ns (max)",
+      "tr": "10ns (max)",
+      "td(off)": "10ns (max)",
+      "tf": "10ns (max)",
+      "Rth(JA)": "312.5 C/W"
+    },
+    "rth_ja_cw": 312.5
+  },
+  "typical_application": "Logic-driven switching of relays/LEDs/small loads under 200mA, level shifting, and signal interfacing.",
+  "gotchas": [
+    "pinout is S-G-D (pin1=Source), the REVERSE of the BS170 (D-G-S); they look identical but are NOT pin-compatible drop-ins",
+    "not a true logic-level FET: Rds(on) is rated at Vgs=10V; at 3.3-5V drive it conducts but with higher Rds(on) and cannot reach full current",
+    "Vgs absolute max is only +/-20V; static or gate transients can punch the thin gate oxide",
+    "modest 200mA / 350mW; easy to exceed with inductive loads or sustained current"
+  ],
+  "related": [
+    "bs170",
+    "bss138",
+    "irlz44n"
+  ],
+  "datasheet_url": "https://www.onsemi.com/download/data-sheet/pdf/2n7000ta-d.pdf",
+  "source": "human",
+  "verified": true
+}

@@ -1,0 +1,111 @@
+{
+  "id": "tl082",
+  "name": "TL082",
+  "aliases": [
+    "TL082A",
+    "TL082B",
+    "TL082C",
+    "TL082CP",
+    "TL082H"
+  ],
+  "full_name": "Dual JFET-Input Operational Amplifier",
+  "manufacturers": [
+    "Texas Instruments"
+  ],
+  "category": "opamp",
+  "subcategory": "dual JFET-input op-amp",
+  "tags": [
+    "op-amp",
+    "dual",
+    "jfet-input",
+    "high-impedance",
+    "low-bias-current",
+    "audio"
+  ],
+  "description": "Dual high-input-impedance operational amplifier with JFET inputs, giving very low input bias and offset currents. Offers high slew rate, low input offset, and internal frequency compensation. Well suited to high-impedance sources, filters, and audio where the bipolar NE5532/4558 family loads the source too heavily.",
+  "packages": {
+    "PDIP-8": {
+      "template": "dip",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "1OUT",
+          "type": "output",
+          "description": "Amplifier 1 output"
+        },
+        {
+          "pin": 2,
+          "name": "1IN-",
+          "type": "input",
+          "description": "Amplifier 1 inverting input"
+        },
+        {
+          "pin": 3,
+          "name": "1IN+",
+          "type": "input",
+          "description": "Amplifier 1 non-inverting input"
+        },
+        {
+          "pin": 4,
+          "name": "VCC-",
+          "type": "power",
+          "description": "Negative supply rail (or GND in single-supply use)"
+        },
+        {
+          "pin": 5,
+          "name": "2IN+",
+          "type": "input",
+          "description": "Amplifier 2 non-inverting input"
+        },
+        {
+          "pin": 6,
+          "name": "2IN-",
+          "type": "input",
+          "description": "Amplifier 2 inverting input"
+        },
+        {
+          "pin": 7,
+          "name": "2OUT",
+          "type": "output",
+          "description": "Amplifier 2 output"
+        },
+        {
+          "pin": 8,
+          "name": "VCC+",
+          "type": "power",
+          "description": "Positive supply rail"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 6.0,
+    "vs_max_v": 36.0,
+    "extra": {
+      "supply_voltage": "+/-2.25V to +/-18V",
+      "input_type": "JFET (high impedance)",
+      "slew_rate": "13 V/us typ",
+      "gbw": "3 MHz typ",
+      "input_bias_current": "tens of pA",
+      "Vos": "3mV typ (10mV max) @ Ta=25C, TL082C grade (13mV max full range)",
+      "Ibias": "65pA typ (200pA max) @ Ta=25C, TL082C grade (7nA max full range)",
+      "CMRR": "70dB min (100dB typ), TL082C grade"
+    }
+  },
+  "typical_application": "High-impedance buffers, active filters, integrators, and instrument/guitar input stages.",
+  "gotchas": [
+    "JFET inputs give very high input impedance and tiny bias current, ideal for high-Z sources where the bipolar NE5532 would load the source",
+    "can latch up or behave abnormally if an input is driven beyond the supply rails; clamp or keep inputs within VCC- to VCC+",
+    "pin 4 is VCC- (negative rail), not ground, in split-supply designs",
+    "decouple both supply rails near the device to prevent oscillation"
+  ],
+  "related": [
+    "tl072",
+    "tl074",
+    "ne5532"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/tl082.pdf",
+  "source": "human",
+  "verified": true
+}

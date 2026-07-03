@@ -1,0 +1,154 @@
+{
+  "id": "cd4094",
+  "name": "CD4094B",
+  "aliases": [
+    "CD4094",
+    "HEF4094",
+    "MC14094",
+    "4094"
+  ],
+  "full_name": "8-Stage Shift-and-Store Bus Register with 3-State Outputs (CMOS)",
+  "manufacturers": [
+    "Texas Instruments",
+    "onsemi",
+    "Nexperia"
+  ],
+  "category": "logic",
+  "subcategory": "shift register",
+  "tags": [
+    "logic",
+    "cmos",
+    "shift-register",
+    "serial-to-parallel",
+    "3-state",
+    "4000-series"
+  ],
+  "description": "An 8-stage serial-in shift register with a parallel storage latch and 3-state parallel outputs. Serial data shifts on the clock, transfers to the latch on STROBE, and appears on the outputs when OUTPUT ENABLE is high. Two serial outputs (QS, Q'S) allow cascading.",
+  "packages": {
+    "DIP-16": {
+      "template": "dip",
+      "pin_count": 16,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "STROBE",
+          "type": "input",
+          "description": "active HIGH; transfers shift-register data into the storage latches"
+        },
+        {
+          "pin": 2,
+          "name": "DATA",
+          "type": "input",
+          "description": "serial data input"
+        },
+        {
+          "pin": 3,
+          "name": "CLK",
+          "type": "input",
+          "description": "clock; data shifts on the positive transition"
+        },
+        {
+          "pin": 4,
+          "name": "Q1",
+          "type": "output",
+          "description": "parallel 3-state output, stage 1"
+        },
+        {
+          "pin": 5,
+          "name": "Q2",
+          "type": "output",
+          "description": "parallel 3-state output, stage 2"
+        },
+        {
+          "pin": 6,
+          "name": "Q3",
+          "type": "output",
+          "description": "parallel 3-state output, stage 3"
+        },
+        {
+          "pin": 7,
+          "name": "Q4",
+          "type": "output",
+          "description": "parallel 3-state output, stage 4"
+        },
+        {
+          "pin": 8,
+          "name": "VSS",
+          "type": "ground",
+          "description": "ground (0V)"
+        },
+        {
+          "pin": 9,
+          "name": "QS",
+          "type": "output",
+          "description": "serial output, valid on the positive clock edge (cascade out)"
+        },
+        {
+          "pin": 10,
+          "name": "Q'S",
+          "type": "output",
+          "description": "serial output, valid on the next negative clock edge (cascade into slow-clock systems)"
+        },
+        {
+          "pin": 11,
+          "name": "Q8",
+          "type": "output",
+          "description": "parallel 3-state output, stage 8"
+        },
+        {
+          "pin": 12,
+          "name": "Q7",
+          "type": "output",
+          "description": "parallel 3-state output, stage 7"
+        },
+        {
+          "pin": 13,
+          "name": "Q6",
+          "type": "output",
+          "description": "parallel 3-state output, stage 6"
+        },
+        {
+          "pin": 14,
+          "name": "Q5",
+          "type": "output",
+          "description": "parallel 3-state output, stage 5"
+        },
+        {
+          "pin": 15,
+          "name": "OE",
+          "type": "input",
+          "description": "output enable; HIGH drives outputs from the latch, LOW puts Q1-Q8 in high-Z"
+        },
+        {
+          "pin": 16,
+          "name": "VDD",
+          "type": "power",
+          "description": "supply, 3V to 18V"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.0,
+    "vs_max_v": 18.0,
+    "extra": {
+      "stages": "8",
+      "max clock": "1.25MHz at 5V, 3MHz at 15V",
+      "outputs": "3-state parallel + 2 serial (QS, Q'S)"
+    }
+  },
+  "typical_application": "Serial-to-parallel expansion driving a bus or LED bank from a 3-wire (data/clock/strobe) interface; chain multiple via QS/Q'S to extend width.",
+  "gotchas": [
+    "parallel outputs are NOT in pin order: Q1-Q4 on pins 4-7, but Q5-Q8 are on pins 14,13,12,11 (descending)",
+    "two serial outputs: QS (pin 9) on the positive edge, Q'S (pin 10) on the next negative edge; use Q'S to cascade when the downstream clock edge is slow",
+    "OUTPUT ENABLE low tri-states the parallel outputs but NOT the serial outputs",
+    "STROBE must go high to move shifted data into the latch before it reaches the outputs"
+  ],
+  "related": [
+    "74hc595",
+    "cd4060"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/gpn/CD4094B",
+  "source": "human",
+  "verified": true
+}

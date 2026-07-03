@@ -1,0 +1,82 @@
+{
+  "id": "bc547",
+  "name": "BC547",
+  "aliases": [
+    "BC547B"
+  ],
+  "full_name": "NPN General-Purpose Amplifier Transistor",
+  "manufacturers": [
+    "onsemi",
+    "NXP",
+    "STMicroelectronics",
+    "Fairchild"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "npn small-signal",
+  "tags": [
+    "transistor",
+    "npn",
+    "bjt",
+    "small-signal",
+    "european",
+    "classic"
+  ],
+  "description": "Popular European-lineage NPN small-signal transistor (BC547/548/549 family). Low noise, good for audio preamp stages. Critically, its TO-92 lead order is C-B-E, the opposite of the 2N3904.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "C",
+          "type": "passive",
+          "description": "collector"
+        },
+        {
+          "pin": 2,
+          "name": "B",
+          "type": "passive",
+          "description": "base"
+        },
+        {
+          "pin": 3,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter"
+        }
+      ],
+      "notes": "flat face toward you, leads down: pin 1 (C) on the left. Opposite of 2N3904."
+    }
+  },
+  "specs": {
+    "vs_max_v": 45.0,
+    "iout_max_ma": 100.0,
+    "pd_max_mw": 500.0,
+    "hfe_min": 110,
+    "hfe_max": 800,
+    "freq_max_hz": 300000000.0,
+    "extra": {
+      "Vceo": "45V",
+      "complement (pnp)": "BC557",
+      "low-noise sibling": "BC549",
+      "gain groups": "A/B/C suffix sets hFE band",
+      "Vce(sat)": "80mV (typ), 250mV (max) @ Ic=10mA, Ib=0.5mA",
+      "Vbe(on)": "580-700mV @ Vce=5V, Ic=2mA"
+    }
+  },
+  "typical_application": "Audio preamp and small-signal gain stages, general switching of small loads. BC549 variant for low-noise input stages.",
+  "gotchas": [
+    "pinout is C-B-E, the REVERSE of the American 2N3904 (E-B-C); a frequent wiring mistake",
+    "only 100mA max collector current, lower than the 2N3904",
+    "gain group suffix (A/B/C) sets the hFE band; B is the common mid-gain part"
+  ],
+  "related": [
+    "bc557",
+    "bc549",
+    "2n3904"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://diotec.com/request/datasheet/bc546.pdf"
+}

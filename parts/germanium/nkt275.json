@@ -1,0 +1,80 @@
+{
+  "id": "nkt275",
+  "name": "NKT275",
+  "aliases": [],
+  "full_name": "Germanium PNP Audio Transistor (TO-1)",
+  "manufacturers": [
+    "Newmarket Transistors (defunct; no primary datasheet located)"
+  ],
+  "category": "transistor_germanium",
+  "subcategory": "germanium pnp audio",
+  "tags": [
+    "transistor",
+    "germanium",
+    "pnp",
+    "vintage",
+    "fuzz",
+    "fuzz-face",
+    "audio",
+    "to-1",
+    "rare"
+  ],
+  "description": "The germanium PNP used in the earliest Dallas Arbiter Fuzz Face units (mid-1960s), famously associated with Jimi Hendrix's rig. Made by the UK's Newmarket Transistors, which stopped production by the early-mid 1970s; original examples are now rare and expensive collector items, commonly hundreds of dollars each, and are frequently counterfeited or relabeled given fuzz-pedal demand. Newmarket is long defunct with no successor maintaining documentation, so this entry is built from period catalog data rather than a manufacturer's own current datasheet -- see gotchas before relying on it.",
+  "packages": {
+    "TO-1": {
+      "template": "custom",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "E (unconfirmed)",
+          "type": "passive",
+          "description": "emitter -- physical lead position could not be confirmed against a primary manufacturer datasheet; verify with a multimeter before trusting this in a build"
+        },
+        {
+          "pin": 2,
+          "name": "B (unconfirmed)",
+          "type": "passive",
+          "description": "base -- physical lead position could not be confirmed against a primary manufacturer datasheet; verify with a multimeter before trusting this in a build"
+        },
+        {
+          "pin": 3,
+          "name": "C (unconfirmed)",
+          "type": "passive",
+          "description": "collector -- physical lead position could not be confirmed against a primary manufacturer datasheet; verify with a multimeter before trusting this in a build"
+        }
+      ],
+      "notes": "TO-1 metal can (3 leads), same case family as AC128. No manufacturer package drawing for the NKT275 specifically was located; do not assume it matches AC128's Valvo-drawn C-B-E arrangement, that is a different manufacturer's part in a similar-looking case, not the same part. Electrical data below comes from a scanned period component catalog (reached only via an aggregator mirror, not a live Newmarket source) cross-checked against a second independent lookup; both agree on the core absolute-maximum figures, neither includes a pin diagram."
+    }
+  },
+  "specs": {
+    "vs_max_v": 15.0,
+    "iout_max_ma": 250.0,
+    "pd_max_mw": 200.0,
+    "hfe_min": 30,
+    "extra": {
+      "Vcbo": "15V",
+      "Vebo": "5V",
+      "Vceo": "15V (second source only; not in the period catalog table)",
+      "hFE": "30...90 @ Vce=4.5V, Ic=1mA (f=1kHz)",
+      "ICBO": "10uA max @ Vcb=10V",
+      "fT": "conflicting secondary sources: 1MHz (period catalog's shared page-level figure, may not be NKT275-specific) vs 0.5MHz (independent lookup source); neither is a confirmed primary value",
+      "Cob": "conflicting secondary sources: 40pF (period catalog's shared page-level figure) vs 60pF (independent lookup source); neither is a confirmed primary value",
+      "Tj_max": "90C"
+    }
+  },
+  "typical_application": "Historically a general-purpose germanium audio transistor; today almost exclusively sought for recreating or repairing early Dallas Arbiter Fuzz Face circuits.",
+  "gotchas": [
+    "PIN POSITION NOT VERIFIED: no primary manufacturer package drawing was found. Do not wire from this entry alone; test a real part's E/B/C with a multimeter diode-test (or a curve tracer) before building anything",
+    "no primary Newmarket datasheet is known to survive online; the electrical data here comes from a scanned period component catalog reached only through an aggregator mirror, cross-checked against one independent lookup source. Both agree on Vcbo/Vebo/Pd/Ic/hFE(min)/Tj but disagree on fT and Cob",
+    "genuine NOS NKT275 units are rare, valuable (commonly hundreds of dollars), and frequently counterfeited or relabeled; measure hFE and leakage on any purchased part before trusting the label",
+    "germanium: leakage current (ICBO) is far more temperature-sensitive than silicon; keep well below rated dissipation",
+    "if you have a confirmed-genuine physical part, measuring and reporting its actual pin arrangement would upgrade this entry considerably, see CONTRIBUTING.md"
+  ],
+  "related": [
+    "ac128",
+    "2n404"
+  ],
+  "source": "claude",
+  "verified": false
+}

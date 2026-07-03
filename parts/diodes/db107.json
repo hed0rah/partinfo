@@ -1,0 +1,98 @@
+{
+  "id": "db107",
+  "name": "DB107",
+  "aliases": [
+    "DB101",
+    "DB102",
+    "DB103",
+    "DB104",
+    "DB105",
+    "DB106"
+  ],
+  "full_name": "1.0A Single-Phase Glass Passivated Bridge Rectifier (1000V)",
+  "manufacturers": [
+    "Rectron",
+    "Diodes Inc"
+  ],
+  "category": "diode",
+  "subcategory": "bridge rectifier",
+  "tags": [
+    "diode",
+    "rectifier",
+    "bridge",
+    "power",
+    "ac-dc",
+    "classic"
+  ],
+  "description": "Full-wave bridge rectifier in a single 4-lead DB-1 package: four diodes in one part, turning an AC input into a pulsating DC output. The DB101-DB107 family differs only in reverse voltage rating (50V to 1000V, the same idea as the 1N400x family); pinout, package, and current rating are identical across all seven, so DB107 (1000V) is a safe default with maximum headroom. Extremely common in small linear wall-wart and transformer-based power supplies.",
+  "packages": {
+    "DB-1": {
+      "template": "custom",
+      "pin_count": 4,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "DC-",
+          "type": "output",
+          "description": "rectified DC output, negative",
+          "datasheet_name": "-"
+        },
+        {
+          "pin": 2,
+          "name": "DC+",
+          "type": "output",
+          "description": "rectified DC output, positive",
+          "datasheet_name": "+"
+        },
+        {
+          "pin": 3,
+          "name": "AC1",
+          "type": "passive",
+          "description": "AC input; interchangeable with AC2, no fixed polarity",
+          "datasheet_name": "~"
+        },
+        {
+          "pin": 4,
+          "name": "AC2",
+          "type": "passive",
+          "description": "AC input; interchangeable with AC1, no fixed polarity",
+          "datasheet_name": "~"
+        }
+      ],
+      "ascii": "    -            +\n    |            |\n  +-+------------+-+\n  |                |\n  +-+------------+-+\n    |            |\n    ~            ~",
+      "notes": "Small molded body with 2 leads exiting the top edge (DC-, DC+ left to right) and 2 from the bottom edge (AC, AC), as printed on the case per Rectron's own DB-1 outline drawing (the primary citation here). Diodes Inc's older datasheet for the same generic part draws it rotated 180 degrees (AC on top, DC on bottom) -- cross-checked pixel-by-pixel against Rectron's drawing and confirmed to be the same physical part viewed from the opposite side, not a real pinout conflict. Verify with a multimeter diode-test before trusting any pinout on a physical part you're wiring in: AC-to-AC should read open in both directions (two series diodes back-to-back), while AC-to-DC+ and DC- -to-AC should each show a single diode drop in only one direction."
+    }
+  },
+  "specs": {
+    "vf_v": 1.0,
+    "vs_max_v": 1000.0,
+    "iout_max_ma": 1000.0,
+    "extra": {
+      "Vr (DB101)": "50V",
+      "Vr (DB107)": "1000V",
+      "Vrms (DB107)": "700V",
+      "If average": "1.0A @ Ta=40C",
+      "If surge": "30A peak (8.3ms single half-sine, JEDEC method)",
+      "I2T": "3.74 A^2s",
+      "Ir": "1.0uA max @ Ta=25C (0.05mA max @ Ta=125C)",
+      "Rth(JA)": "40 C/W typ",
+      "Rth(JL)": "15 C/W typ"
+    },
+    "rth_ja_cw": 40.0
+  },
+  "typical_application": "Full-wave AC-DC rectification in small linear supplies (5-24V wall-wart and transformer-based designs); replaces four discrete diodes with one 4-lead part ahead of the reservoir capacitor.",
+  "gotchas": [
+    "the two AC (~) leads are fully interchangeable; only DC+ and DC- are polarity-sensitive",
+    "verify with a multimeter diode-test before trusting this pinout on a physical part: AC-to-AC reads open in both directions (two series diodes back-to-back); AC-to-DC+ and DC- -to-AC each show a single diode drop in only one direction",
+    "DB101-DB107 differ only in reverse voltage; pinout, package, and current rating are identical across the whole family",
+    "some Diodes Inc literature marks this part 'NOT RECOMMENDED FOR NEW DESIGNS, PLEASE USE DF005M-DF10M' -- that's Diodes Inc steering new designs toward a newer surface-mount-friendly family, not a sign of a fake or bad part; DB101-DB107 remain in production and second-sourced (e.g. by Rectron, the citation used here)",
+    "surge current, forward voltage, and reverse leakage vary noticeably between manufacturers of this generic part (Rectron: 30A surge / 1.0V Vf / 1.0uA Ir; Diodes Inc's older sheet: 50A / 1.1V / 10uA); match the numbers to whichever manufacturer's part is actually on hand"
+  ],
+  "related": [
+    "1n4007",
+    "1n4001"
+  ],
+  "source": "claude",
+  "verified": true,
+  "datasheet_url": "https://www.rectron.com/public/product_datasheets/db101-db107.pdf"
+}

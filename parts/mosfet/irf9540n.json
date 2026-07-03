@@ -1,0 +1,95 @@
+{
+  "id": "irf9540n",
+  "name": "IRF9540N",
+  "aliases": [
+    "IRF9540"
+  ],
+  "full_name": "P-channel power MOSFET, -100V -23A (TO-220)",
+  "manufacturers": [
+    "International Rectifier",
+    "Infineon"
+  ],
+  "category": "transistor_mosfet",
+  "subcategory": "p-channel power",
+  "tags": [
+    "mosfet",
+    "p-channel",
+    "power",
+    "hexfet",
+    "to220",
+    "high-side"
+  ],
+  "description": "P-channel enhancement power MOSFET in TO-220, -100V / -23A, 0.117 ohm Rds(on). The common complement to the N-channel IRF540N for high-side switching and motor/H-bridge drive. Fully avalanche rated.",
+  "packages": {
+    "TO-220": {
+      "template": "to220",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "G",
+          "type": "passive",
+          "description": "gate; drive negative relative to source (Vgs below Vgs(th)) to turn on"
+        },
+        {
+          "pin": 2,
+          "name": "D",
+          "type": "passive",
+          "description": "drain; connected to the metal tab"
+        },
+        {
+          "pin": 3,
+          "name": "S",
+          "type": "passive",
+          "description": "source; tie to the positive rail in high-side use (body-diode cathode)"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_max_v": 100.0,
+    "iout_max_ma": 23000.0,
+    "extra": {
+      "Vds_max": "-100V",
+      "Vgs_max": "+/-20V",
+      "Vgs_th": "-2.0 to -4.0V",
+      "Id": "-23A at 25C (-16A at 100C)",
+      "Rds_on": "0.117 ohm at Vgs=-10V",
+      "Pd": "140W",
+      "Qg": "97nC (max) @ Id=-11A",
+      "Qgs": "15nC (max)",
+      "Qgd": "51nC (max)",
+      "Ciss": "1300pF",
+      "Coss": "400pF",
+      "Crss": "240pF",
+      "td(on)": "15ns",
+      "tr": "67ns",
+      "td(off)": "51ns",
+      "tf": "51ns",
+      "Rth(JC)": "1.1 C/W",
+      "Rth(JA)": "62 C/W",
+      "Rth(CS)": "0.50 C/W (greased)",
+      "Vsd": "1.6V (max) @ If=11A",
+      "trr": "150ns (220 max)",
+      "Qrr": "830nC (1200 max)"
+    },
+    "rth_jc_cw": 1.1,
+    "rth_ja_cw": 62.0
+  },
+  "typical_application": "High-side switching, the P-channel side of H-bridges and complementary push-pull stages, reverse-polarity protection, and load switching from a positive rail.",
+  "gotchas": [
+    "P-channel: all voltages are negative. source goes to the positive supply; turn on by pulling the gate negative relative to source (more negative than Vgs(th), ~-2 to -4V; drive with about -10V)",
+    "gate is referenced to source, not ground; in high-side use the source sits near V+, so the gate must be driven below that rail, not just to ground",
+    "Vgs absolute max is only +/-20V",
+    "the metal tab is Drain and is electrically live; isolate it from heatsinks/chassis",
+    "higher Rds(on) and lower current than a same-size N-channel part (lower hole mobility); body diode points drain-to-source, opposite an N-channel device"
+  ],
+  "related": [
+    "irf540",
+    "irlz44n",
+    "irfz44"
+  ],
+  "datasheet_url": "https://www.infineon.com/dgdl/irf9540npbf.pdf",
+  "source": "human",
+  "verified": true
+}

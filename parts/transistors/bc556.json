@@ -1,0 +1,84 @@
+{
+  "id": "bc556",
+  "name": "BC556",
+  "aliases": [
+    "BC556B"
+  ],
+  "full_name": "PNP General-Purpose Amplifier Transistor",
+  "manufacturers": [
+    "onsemi",
+    "NXP",
+    "STMicroelectronics",
+    "Fairchild"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "pnp small-signal",
+  "tags": [
+    "transistor",
+    "pnp",
+    "bjt",
+    "small-signal",
+    "european",
+    "classic"
+  ],
+  "description": "PNP small-signal transistor in the European BC556-560 family, the high-voltage -65V member and complement to the NPN BC546. Same TO-92 C-B-E pinout as the BC557. Values are magnitudes; PNP rails are negative.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "C",
+          "type": "passive",
+          "description": "collector"
+        },
+        {
+          "pin": 2,
+          "name": "B",
+          "type": "passive",
+          "description": "base"
+        },
+        {
+          "pin": 3,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter"
+        }
+      ],
+      "notes": "flat face toward you, leads down: C-B-E (BC556-560 family layout, same as BC557)."
+    }
+  },
+  "specs": {
+    "vs_max_v": 65.0,
+    "iout_max_ma": 100.0,
+    "pd_max_mw": 500.0,
+    "hfe_min": 110,
+    "hfe_max": 800,
+    "freq_max_hz": 150000000.0,
+    "extra": {
+      "Vceo": "-65V",
+      "complement (npn)": "BC546",
+      "family": "BC556 (65V), BC557 (45V), BC558 (30V)",
+      "polarity": "PNP (negative rails)",
+      "Vce(sat)": "-80mV (typ), -300mV (max) @ Ic=-10mA, Ib=-0.5mA",
+      "Vbe(on)": "-600 to -750mV @ Vce=-5V, Ic=-2mA"
+    }
+  },
+  "typical_application": "High-side switching and PNP small-signal stages needing more than 45V, complement to the BC546 in higher-voltage complementary circuits.",
+  "gotchas": [
+    "pinout is C-B-E, the European convention, opposite the American 2N3906 (E-B-C)",
+    "PNP: all ratings negative; emitter to the more positive node, base pulled low to turn on",
+    "highest-voltage member of the BC556 family (-65V)",
+    "100mA max collector current"
+  ],
+  "related": [
+    "bc557",
+    "bc558",
+    "bc546",
+    "2n3906"
+  ],
+  "datasheet_url": "https://diotec.com/request/datasheet/bc556.pdf",
+  "source": "human",
+  "verified": true
+}

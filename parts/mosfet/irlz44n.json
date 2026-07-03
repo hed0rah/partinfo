@@ -1,0 +1,94 @@
+{
+  "id": "irlz44n",
+  "name": "IRLZ44N",
+  "aliases": [],
+  "full_name": "N-channel logic-level power MOSFET, 55V 47A (TO-220)",
+  "manufacturers": [
+    "International Rectifier",
+    "Infineon"
+  ],
+  "category": "transistor_mosfet",
+  "subcategory": "n-channel logic-level power",
+  "tags": [
+    "mosfet",
+    "n-channel",
+    "logic-level",
+    "power",
+    "hexfet",
+    "to220",
+    "switching"
+  ],
+  "description": "Logic-level N-channel HEXFET power MOSFET in TO-220, 55V / 47A. Sub-2V threshold and Rds(on) specified at Vgs=5V let it be driven directly from 5V (and often 3.3V) microcontroller logic without a gate driver. Switching motors, lamps, heaters, and solenoids from MCU GPIO.",
+  "packages": {
+    "TO-220": {
+      "template": "to220",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "G",
+          "type": "passive",
+          "description": "gate; fully enhanced near Vgs=5V. drive through a series resistor with a gate pulldown"
+        },
+        {
+          "pin": 2,
+          "name": "D",
+          "type": "passive",
+          "description": "drain; also connected to the metal tab"
+        },
+        {
+          "pin": 3,
+          "name": "S",
+          "type": "passive",
+          "description": "source; common/low-side reference (body-diode anode)"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_max_v": 55.0,
+    "iout_max_ma": 47000.0,
+    "extra": {
+      "Vds_max": "55V",
+      "Vgs_max": "+/-16V",
+      "Vgs_th": "1.0-2.0V",
+      "Id": "47A at 25C (33A at 100C)",
+      "Rds_on": "0.025 ohm typ at Vgs=5V (0.022 ohm at Vgs=10V)",
+      "Pd": "110W",
+      "Qg": "48nC (max) @ Id=25A",
+      "Qgs": "8.6nC (max)",
+      "Qgd": "25nC (max)",
+      "Ciss": "1700pF",
+      "Coss": "400pF",
+      "Crss": "150pF",
+      "td(on)": "11ns",
+      "tr": "84ns",
+      "td(off)": "26ns",
+      "tf": "15ns",
+      "Rth(JC)": "1.4 C/W",
+      "Rth(JA)": "62 C/W",
+      "Rth(CS)": "0.50 C/W (greased)",
+      "Vsd": "1.3V (max) @ Is=25A",
+      "trr": "80ns (120 max)",
+      "Qrr": "210nC (320 max)"
+    },
+    "rth_jc_cw": 1.4,
+    "rth_ja_cw": 62.0
+  },
+  "typical_application": "Low-side switching of inductive/resistive loads (DC motors, solenoids, relays, LED strips, heaters) directly from 5V or 3.3V GPIO without a dedicated gate driver.",
+  "gotchas": [
+    "logic-level part: fully on around Vgs=5V (Rds(on) spec'd there); at 3.3V it conducts but with higher Rds(on) and can run hot at high current",
+    "do NOT confuse with the standard-level IRFZ44N, which needs ~10V on the gate and barely turns on from 5V logic",
+    "gate is a capacitive load (Qg ~48nC); use a series gate resistor and a gate-to-source pulldown so it stays off when the driving pin floats",
+    "body diode is intrinsic but slow (trr ~80ns); add an external Schottky for hard-switched inductive loads",
+    "TO-220 tab is electrically Drain; isolate it from grounded heatsinks"
+  ],
+  "related": [
+    "irfz44",
+    "irf540",
+    "irf9540n"
+  ],
+  "datasheet_url": "https://www.infineon.com/dgdl/irlz44npbf.pdf",
+  "source": "human",
+  "verified": true
+}

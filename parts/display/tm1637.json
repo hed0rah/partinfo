@@ -1,0 +1,80 @@
+{
+  "id": "tm1637",
+  "name": "TM1637",
+  "aliases": [
+    "4-digit 7-segment module",
+    "TM1637 display"
+  ],
+  "full_name": "Titan Micro TM1637 LED Drive Control IC (4-digit module)",
+  "manufacturers": [
+    "Titan Micro Electronics"
+  ],
+  "category": "display",
+  "subcategory": "led-driver",
+  "tags": [
+    "led-driver",
+    "7-segment",
+    "4-digit",
+    "two-wire",
+    "clock-display",
+    "keyscan"
+  ],
+  "description": "The TM1637 is a low-cost LED driver with a built-in display memory and keypad-scan capability, sold mainly as a 4-digit 7-segment clock-style module with a 4-pin header (VCC, GND, DIO, CLK). It talks over a custom two-wire protocol that looks like I2C electrically but has no device address and uses a different ack scheme, so a hardware I2C peripheral cannot drive it directly. The driver handles multiplexing and 8-level brightness internally, so the MCU just sends segment data and a brightness command. Its bit-banged two-wire interface and the iconic clock module with a center colon make it the go-to for hobby clocks and counters.",
+  "packages": {
+    "4-pin module header": {
+      "template": "module",
+      "pin_count": 4,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "CLK",
+          "type": "clock",
+          "description": "two-wire clock line (bit-banged, not hardware I2C)"
+        },
+        {
+          "pin": 2,
+          "name": "DIO",
+          "type": "bidirectional",
+          "description": "two-wire data in/out line"
+        },
+        {
+          "pin": 3,
+          "name": "VCC",
+          "type": "power",
+          "description": "supply, 3.3V-5V"
+        },
+        {
+          "pin": 4,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground (0V)"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.3,
+    "vs_max_v": 5.0,
+    "extra": {
+      "interface": "custom two-wire (I2C-like timing, no address)",
+      "brightness_levels": "8",
+      "max_grids": "6 grids x 8 segments on bare chip",
+      "keyscan": "up to 16 keys (chip feature, usually unused on display modules)",
+      "module_geometry": "4 digits with colon"
+    }
+  },
+  "typical_application": "A 4-digit clock or counter readout driven from any two spare GPIO pins (CLK, DIO) using a TM1637 library; the colon segment makes it ideal for HH:MM clocks.",
+  "gotchas": [
+    "NOT real I2C - it has no slave address and a nonstandard ack, so you must bit-bang it or use a TM1637-specific library, not the Wire library",
+    "pin header order varies between board vendors; always read the silkscreen rather than assuming CLK/DIO positions",
+    "the digit/segment address mapping is fixed by the module wiring; the colon is usually bit 7 of digit 2",
+    "DIO is open-drain style and bidirectional; driving it as a hard push-pull output can cause contention during the ack bit",
+    "brightness must be set with a command; a fresh module may power up dim or blank until configured"
+  ],
+  "related": [
+    "max7219"
+  ],
+  "datasheet_url": "https://www.makerguides.com/wp-content/uploads/2019/08/TM1637-Datasheet.pdf",
+  "source": "human",
+  "verified": true
+}

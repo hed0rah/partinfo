@@ -1,0 +1,113 @@
+{
+  "id": "23lc1024",
+  "name": "23LC1024",
+  "aliases": [
+    "23A1024",
+    "23LCV1024",
+    "23K256 family"
+  ],
+  "full_name": "Microchip 23LC1024 1Mbit (128K x 8) SPI Serial SRAM with SDI and SQI",
+  "manufacturers": [
+    "Microchip"
+  ],
+  "category": "memory",
+  "subcategory": "SPI SRAM",
+  "tags": [
+    "sram",
+    "spi",
+    "sdi",
+    "sqi",
+    "volatile",
+    "memory",
+    "1mbit",
+    "microchip"
+  ],
+  "description": "The 23LC1024 is a 1 Mbit (128K x 8) serial SRAM accessed over SPI, with optional SDI (dual) and SQI (quad) modes, all running up to a 20 MHz clock. It operates from 2.5V to 5.5V, offers zero write time and unlimited read/write cycles, and supports byte, page (32-byte), and sequential transfer modes. Because it is SRAM, contents are volatile and lost on power-down. Its standout trait is providing fast, fatigue-free external RAM expansion over just a few SPI pins, ideal for buffering on RAM-starved microcontrollers.",
+  "packages": {
+    "DIP-8": {
+      "template": "dip",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "/CS",
+          "type": "input",
+          "description": "chip select input, active low"
+        },
+        {
+          "pin": 2,
+          "name": "SO (SIO1)",
+          "type": "bidirectional",
+          "description": "serial data output in SPI; SIO1 in SDI/SQI modes"
+        },
+        {
+          "pin": 3,
+          "name": "SIO2",
+          "type": "bidirectional",
+          "description": "I/O line 2, used only in SQI (quad) mode"
+        },
+        {
+          "pin": 4,
+          "name": "VSS",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 5,
+          "name": "SI (SIO0)",
+          "type": "bidirectional",
+          "description": "serial data input in SPI; SIO0 in SDI/SQI modes"
+        },
+        {
+          "pin": 6,
+          "name": "SCK",
+          "type": "clock",
+          "description": "serial clock input"
+        },
+        {
+          "pin": 7,
+          "name": "/HOLD (SIO3)",
+          "type": "bidirectional",
+          "description": "hold input (active low) in SPI/SDI; becomes SIO3 in SQI mode"
+        },
+        {
+          "pin": 8,
+          "name": "VCC",
+          "type": "power",
+          "description": "supply voltage 2.5V to 5.5V"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.5,
+    "vs_max_v": 5.5,
+    "extra": {
+      "capacity": "1 Mbit (128 KB)",
+      "organization": "128K x 8",
+      "interface": "SPI / SDI (dual) / SQI (quad)",
+      "max_clock": "20 MHz (all modes)",
+      "page_size": "32 bytes",
+      "write_time": "zero (SRAM)",
+      "endurance": "unlimited read/write cycles",
+      "volatility": "volatile (contents lost on power-down)"
+    }
+  },
+  "typical_application": "External volatile RAM buffer/scratchpad expansion for microcontrollers over SPI.",
+  "gotchas": [
+    "it is SRAM, not flash/EEPROM; all data is lost on power loss, do not use for persistent storage",
+    "23LC1024 is the 2.5-5.5V part; the 23A1024 sibling is 1.7-2.2V only, do not mix them up on a 3.3V/5V rail",
+    "in basic SPI keep /HOLD high (or tie to VCC) or the device pauses; only release it intentionally",
+    "SIO2 and /HOLD-as-SIO3 are only active in SQI mode after switching the mode register; in plain SPI SIO2 is unused",
+    "default power-up mode is byte mode; set sequential or page mode in the mode register before relying on auto-increment",
+    "20 MHz clock ceiling (16 MHz for E-temp on 23A1024) is lower than typical flash, plan SPI bus speed accordingly"
+  ],
+  "related": [
+    "w25q32",
+    "24lc256",
+    "28c64"
+  ],
+  "datasheet_url": "https://ww1.microchip.com/downloads/en/DeviceDoc/20005142C.pdf",
+  "source": "human",
+  "verified": true
+}

@@ -1,0 +1,86 @@
+{
+  "id": "s9015",
+  "name": "S9015",
+  "aliases": [
+    "SS9015",
+    "9015"
+  ],
+  "full_name": "PNP Small-Signal Low-Noise Transistor (TO-92)",
+  "manufacturers": [
+    "Fairchild",
+    "MCC",
+    "UTC",
+    "Jiangsu Changjiang"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "pnp small-signal",
+  "tags": [
+    "transistor",
+    "pnp",
+    "bjt",
+    "small-signal",
+    "low-noise",
+    "audio",
+    "asian-jellybean"
+  ],
+  "description": "PNP small-signal low-noise transistor, complement to the S9014. TO-92 pin order is E-B-C, the reverse of European BC-series. Values are magnitudes; PNP rails are negative.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter"
+        },
+        {
+          "pin": 2,
+          "name": "B",
+          "type": "passive",
+          "description": "base"
+        },
+        {
+          "pin": 3,
+          "name": "C",
+          "type": "passive",
+          "description": "collector"
+        }
+      ],
+      "notes": "flat face toward you, leads down: pin 1 (E) on the left. Verified from Fairchild SS9015 and MCC datasheets."
+    }
+  },
+  "specs": {
+    "vs_max_v": 45.0,
+    "iout_max_ma": 100.0,
+    "pd_max_mw": 450.0,
+    "hfe_min": 60,
+    "hfe_max": 1000,
+    "freq_max_hz": 100000000.0,
+    "extra": {
+      "Vceo": "-45V",
+      "Vcbo": "-50V",
+      "Vebo": "-5V",
+      "complement (npn)": "S9014",
+      "hFE classes": "A 60-150, B 100-300, C 200-600, D 400-1000",
+      "polarity": "PNP (negative rails)",
+      "Vce(sat)": "-0.7V (max) @ Ic=-100mA, Ib=-5mA",
+      "Vbe(on)": "-0.6 to -0.75V @ Vce=-5V, Ic=-2mA"
+    }
+  },
+  "typical_application": "Low-noise PNP preamplifier and small-signal stage; complementary partner to the S9014.",
+  "gotchas": [
+    "pinout is E-B-C, not the European C-B-E",
+    "ft (100MHz min) is lower than its S9014 complement (150MHz min); the pair is not bandwidth-symmetric",
+    "small-signal PNP, Ic only 100mA"
+  ],
+  "related": [
+    "s9014",
+    "s9012",
+    "bc557"
+  ],
+  "datasheet_url": "https://media.digikey.com/pdf/Data%20Sheets/Fairchild%20PDFs/SS9015.pdf",
+  "source": "human",
+  "verified": true
+}

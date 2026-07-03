@@ -1,0 +1,418 @@
+{
+  "id": "rp2040",
+  "name": "RP2040",
+  "aliases": [
+    "Raspberry Pi Pico",
+    "Pico",
+    "RP2040 Pico"
+  ],
+  "full_name": "Dual-Core Cortex-M0+ MCU (Raspberry Pi Pico board, 40-pin)",
+  "manufacturers": [
+    "Raspberry Pi"
+  ],
+  "category": "module",
+  "subcategory": "cortex-m0+ board",
+  "tags": [
+    "mcu",
+    "rp2040",
+    "pico",
+    "arm",
+    "cortex-m0",
+    "pio",
+    "module"
+  ],
+  "description": "Raspberry Pi's dual-core Cortex-M0+ microcontroller. Pinout below is the 40-pin Raspberry Pi Pico board. Notable for its Programmable I/O (PIO) state machines. Most GPIOs are freely assignable to UART/SPI/I2C via the flexible pin mux; three pins (GP26-28) are ADC-capable.",
+  "packages": {
+    "Pico-40": {
+      "template": "module",
+      "pin_count": 40,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "GP0",
+          "type": "bidirectional",
+          "description": "UART0 TX, I2C0 SDA, SPI0 RX",
+          "alternate": [
+            "UART0_TX",
+            "I2C0_SDA",
+            "SPI0_RX"
+          ]
+        },
+        {
+          "pin": 2,
+          "name": "GP1",
+          "type": "bidirectional",
+          "description": "UART0 RX, I2C0 SCL, SPI0 CSn",
+          "alternate": [
+            "UART0_RX",
+            "I2C0_SCL",
+            "SPI0_CSn"
+          ]
+        },
+        {
+          "pin": 3,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 4,
+          "name": "GP2",
+          "type": "bidirectional",
+          "description": "I2C1 SDA, SPI0 SCK",
+          "alternate": [
+            "I2C1_SDA",
+            "SPI0_SCK"
+          ]
+        },
+        {
+          "pin": 5,
+          "name": "GP3",
+          "type": "bidirectional",
+          "description": "I2C1 SCL, SPI0 TX",
+          "alternate": [
+            "I2C1_SCL",
+            "SPI0_TX"
+          ]
+        },
+        {
+          "pin": 6,
+          "name": "GP4",
+          "type": "bidirectional",
+          "description": "UART1 TX, I2C0 SDA, SPI0 RX",
+          "alternate": [
+            "UART1_TX",
+            "I2C0_SDA",
+            "SPI0_RX"
+          ]
+        },
+        {
+          "pin": 7,
+          "name": "GP5",
+          "type": "bidirectional",
+          "description": "UART1 RX, I2C0 SCL, SPI0 CSn",
+          "alternate": [
+            "UART1_RX",
+            "I2C0_SCL",
+            "SPI0_CSn"
+          ]
+        },
+        {
+          "pin": 8,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 9,
+          "name": "GP6",
+          "type": "bidirectional",
+          "description": "I2C1 SDA, SPI0 SCK",
+          "alternate": [
+            "I2C1_SDA",
+            "SPI0_SCK"
+          ]
+        },
+        {
+          "pin": 10,
+          "name": "GP7",
+          "type": "bidirectional",
+          "description": "I2C1 SCL, SPI0 TX",
+          "alternate": [
+            "I2C1_SCL",
+            "SPI0_TX"
+          ]
+        },
+        {
+          "pin": 11,
+          "name": "GP8",
+          "type": "bidirectional",
+          "description": "UART1 TX, I2C0 SDA, SPI1 RX",
+          "alternate": [
+            "UART1_TX",
+            "I2C0_SDA",
+            "SPI1_RX"
+          ]
+        },
+        {
+          "pin": 12,
+          "name": "GP9",
+          "type": "bidirectional",
+          "description": "UART1 RX, I2C0 SCL, SPI1 CSn",
+          "alternate": [
+            "UART1_RX",
+            "I2C0_SCL",
+            "SPI1_CSn"
+          ]
+        },
+        {
+          "pin": 13,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 14,
+          "name": "GP10",
+          "type": "bidirectional",
+          "description": "I2C1 SDA, SPI1 SCK",
+          "alternate": [
+            "I2C1_SDA",
+            "SPI1_SCK"
+          ]
+        },
+        {
+          "pin": 15,
+          "name": "GP11",
+          "type": "bidirectional",
+          "description": "I2C1 SCL, SPI1 TX",
+          "alternate": [
+            "I2C1_SCL",
+            "SPI1_TX"
+          ]
+        },
+        {
+          "pin": 16,
+          "name": "GP12",
+          "type": "bidirectional",
+          "description": "UART0 TX, I2C0 SDA, SPI1 RX",
+          "alternate": [
+            "UART0_TX",
+            "I2C0_SDA",
+            "SPI1_RX"
+          ]
+        },
+        {
+          "pin": 17,
+          "name": "GP13",
+          "type": "bidirectional",
+          "description": "UART0 RX, I2C0 SCL, SPI1 CSn",
+          "alternate": [
+            "UART0_RX",
+            "I2C0_SCL",
+            "SPI1_CSn"
+          ]
+        },
+        {
+          "pin": 18,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 19,
+          "name": "GP14",
+          "type": "bidirectional",
+          "description": "I2C1 SDA, SPI1 SCK",
+          "alternate": [
+            "I2C1_SDA",
+            "SPI1_SCK"
+          ]
+        },
+        {
+          "pin": 20,
+          "name": "GP15",
+          "type": "bidirectional",
+          "description": "I2C1 SCL, SPI1 TX",
+          "alternate": [
+            "I2C1_SCL",
+            "SPI1_TX"
+          ]
+        },
+        {
+          "pin": 21,
+          "name": "GP16",
+          "type": "bidirectional",
+          "description": "SPI0 RX, UART0 TX, I2C0 SDA",
+          "alternate": [
+            "SPI0_RX",
+            "UART0_TX",
+            "I2C0_SDA"
+          ]
+        },
+        {
+          "pin": 22,
+          "name": "GP17",
+          "type": "bidirectional",
+          "description": "SPI0 CSn, UART0 RX, I2C0 SCL",
+          "alternate": [
+            "SPI0_CSn",
+            "UART0_RX",
+            "I2C0_SCL"
+          ]
+        },
+        {
+          "pin": 23,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 24,
+          "name": "GP18",
+          "type": "bidirectional",
+          "description": "SPI0 SCK, I2C1 SDA",
+          "alternate": [
+            "SPI0_SCK",
+            "I2C1_SDA"
+          ]
+        },
+        {
+          "pin": 25,
+          "name": "GP19",
+          "type": "bidirectional",
+          "description": "SPI0 TX, I2C1 SCL",
+          "alternate": [
+            "SPI0_TX",
+            "I2C1_SCL"
+          ]
+        },
+        {
+          "pin": 26,
+          "name": "GP20",
+          "type": "bidirectional",
+          "description": "I2C0 SDA, also GPIN0 clock input",
+          "alternate": [
+            "I2C0_SDA"
+          ]
+        },
+        {
+          "pin": 27,
+          "name": "GP21",
+          "type": "bidirectional",
+          "description": "I2C0 SCL, also GPOUT0 clock output",
+          "alternate": [
+            "I2C0_SCL"
+          ]
+        },
+        {
+          "pin": 28,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 29,
+          "name": "GP22",
+          "type": "bidirectional",
+          "description": "general I/O",
+          "alternate": []
+        },
+        {
+          "pin": 30,
+          "name": "RUN",
+          "type": "reset",
+          "description": "enable/reset, active high; pull low to reset",
+          "alternate": [
+            "RST"
+          ]
+        },
+        {
+          "pin": 31,
+          "name": "GP26",
+          "type": "analog",
+          "description": "ADC0, I2C1 SDA",
+          "alternate": [
+            "ADC0",
+            "I2C1_SDA"
+          ]
+        },
+        {
+          "pin": 32,
+          "name": "GP27",
+          "type": "analog",
+          "description": "ADC1, I2C1 SCL",
+          "alternate": [
+            "ADC1",
+            "I2C1_SCL"
+          ]
+        },
+        {
+          "pin": 33,
+          "name": "AGND",
+          "type": "ground",
+          "description": "analog ground for ADC"
+        },
+        {
+          "pin": 34,
+          "name": "GP28",
+          "type": "analog",
+          "description": "ADC2",
+          "alternate": [
+            "ADC2"
+          ]
+        },
+        {
+          "pin": 35,
+          "name": "ADC_VREF",
+          "type": "analog",
+          "description": "ADC reference voltage"
+        },
+        {
+          "pin": 36,
+          "name": "3V3",
+          "type": "power",
+          "description": "3.3V output from onboard regulator (~300mA available)",
+          "alternate": [
+            "3V3_OUT"
+          ]
+        },
+        {
+          "pin": 37,
+          "name": "3V3_EN",
+          "type": "input",
+          "description": "enable for onboard 3.3V regulator; pull low to disable",
+          "alternate": [
+            "3V3_EN"
+          ]
+        },
+        {
+          "pin": 38,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 39,
+          "name": "VSYS",
+          "type": "power",
+          "description": "main system input, 1.8V to 5.5V (feeds the regulator)"
+        },
+        {
+          "pin": 40,
+          "name": "VBUS",
+          "type": "power",
+          "description": "5V from the USB connector"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_typ_v": 3.3,
+    "cpu_mhz": 133,
+    "ram_kb": 264,
+    "gpio_count": 26,
+    "extra": {
+      "cores": "2x Cortex-M0+",
+      "flash": "2MB external QSPI on Pico board",
+      "adc": "4-channel 12-bit (3 on header + internal temp)",
+      "pio": "2 blocks, 8 state machines",
+      "vsys range": "1.8V to 5.5V"
+    }
+  },
+  "typical_application": "Power from USB (VBUS) or 1.8-5.5V on VSYS. The flexible pin mux lets you place UART/SPI/I2C on many pin pairs; pick from the alternate functions per GPIO. Use PIO for custom high-speed protocols (WS2812, DVI, etc.).",
+  "gotchas": [
+    "only GP26, GP27, GP28 are ADC-capable; the rest are digital only",
+    "VSYS is not a regulated output; it is the regulator INPUT (1.8-5.5V). Do not confuse with 3V3",
+    "the onboard 3V3 regulator supplies roughly 300mA; budget accordingly for peripherals",
+    "no DAC; use PWM + RC filter or PIO for analog-ish output",
+    "GPIO numbering (GPx) does not match physical pin numbers; pin 1 is GP0 but pin 3 is GND"
+  ],
+  "related": [
+    "rp2350",
+    "esp32",
+    "atmega328p"
+  ],
+  "source": "human",
+  "verified": false
+}

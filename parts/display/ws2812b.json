@@ -1,0 +1,85 @@
+{
+  "id": "ws2812b",
+  "name": "WS2812B",
+  "aliases": [
+    "NeoPixel",
+    "WS2812",
+    "5050 RGB",
+    "addressable RGB LED"
+  ],
+  "full_name": "Worldsemi WS2812B Intelligent Integrated-Control RGB LED (5050)",
+  "manufacturers": [
+    "Worldsemi"
+  ],
+  "category": "display",
+  "subcategory": "addressable-led",
+  "tags": [
+    "addressable-rgb",
+    "neopixel",
+    "single-wire",
+    "800khz",
+    "5050",
+    "chainable"
+  ],
+  "description": "The WS2812B is an RGB LED with the driver IC integrated into the same 5050 package, controlled by a single data line at 800kHz. Each device reads the first 24 bits (8 bits each for green, red, blue), latches them, and forwards the rest of the stream out of DOUT to the next LED, so a whole strip is addressed from one MCU pin. Data flows strictly from DIN to DOUT, making the chain directional. Its one-wire daisy-chain protocol and built-in PWM/constant-current driver are what made cheap, individually addressable strips and matrices possible.",
+  "packages": {
+    "5050 4-pin SMD (PLCC-4)": {
+      "template": "custom",
+      "pin_count": 4,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "VDD",
+          "type": "power",
+          "description": "supply, 3.5V-5.3V (5V typical)"
+        },
+        {
+          "pin": 2,
+          "name": "DOUT",
+          "type": "output",
+          "description": "data output to the DIN of the next LED in the chain"
+        },
+        {
+          "pin": 3,
+          "name": "VSS",
+          "type": "ground",
+          "description": "ground (0V)"
+        },
+        {
+          "pin": 4,
+          "name": "DIN",
+          "type": "input",
+          "description": "data input; reads its 24-bit GRB word then passes the rest to DOUT"
+        }
+      ],
+      "ascii": "        +-----------+\n        |   o (LED)  |\n  VDD 1-|           |-4 DIN\n        |  WS2812B  |\n DOUT 2-|   5050    |-3 VSS\n        +-----------+\n  data flows: DIN -> [LED] -> DOUT -> next DIN\n  (pin 1 marked by the cut/chamfered corner)"
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.5,
+    "vs_max_v": 5.3,
+    "extra": {
+      "protocol": "single-wire NRZ, ~800kHz",
+      "color_order": "GRB, 8 bits each (24-bit/pixel)",
+      "reset_time": ">50us low (RES) latches the frame",
+      "pwm": "internal, ~400Hz-2kHz refresh",
+      "current_per_led": "~60mA all channels full white",
+      "logic_threshold": "VIH ~0.7*VDD"
+    }
+  },
+  "typical_application": "Chaining many LEDs into a strip or matrix driven from one MCU pin (with a level shifter), each pixel set independently via a 24-bit GRB word, using FastLED or Adafruit_NeoPixel.",
+  "gotchas": [
+    "data is directional: the arrow/DIN end of the strip must face the controller, DOUT feeds the next pixel",
+    "color order is GRB, not RGB - sending RGB swaps red and green",
+    "at 5V VDD the logic-high threshold (~0.7*VDD = 3.5V) means 3.3V MCUs often need a level shifter on the first DIN",
+    "add a ~1000uF cap across VDD/VSS at the strip input and a 300-470 ohm resistor in series with the first DIN to prevent damage and glitches",
+    "tight 800kHz timing requires precise bit-banging or DMA/RMT; ordinary delay loops or interrupts can corrupt the frame",
+    "long strips drop voltage along the rail; inject power at both ends to avoid the far end turning reddish/dim"
+  ],
+  "related": [
+    "txs0108e"
+  ],
+  "datasheet_url": "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf",
+  "source": "human",
+  "verified": true
+}

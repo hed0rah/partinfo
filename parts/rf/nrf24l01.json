@@ -1,0 +1,113 @@
+{
+  "id": "nrf24l01",
+  "name": "nRF24L01+",
+  "aliases": [
+    "nRF24L01",
+    "nRF24L01P",
+    "NRF24L01+"
+  ],
+  "full_name": "Nordic Semiconductor nRF24L01+ 2.4 GHz RF Transceiver (module)",
+  "manufacturers": [
+    "Nordic Semiconductor"
+  ],
+  "category": "rf",
+  "subcategory": "2.4 GHz RF transceiver",
+  "tags": [
+    "rf",
+    "2.4ghz",
+    "transceiver",
+    "spi",
+    "wireless",
+    "module",
+    "ism",
+    "shockburst"
+  ],
+  "description": "Low-power 2.4 GHz ISM-band RF transceiver controlled over SPI, with an embedded Enhanced ShockBurst baseband protocol engine that handles packet assembly, auto-acknowledge and auto-retransmit in hardware. It supports data rates of 250 kbps, 1 Mbps and 2 Mbps across 125 selectable channels and up to 6 data pipes. The chip core runs at 1.9 to 3.6 V but its inputs are 5 V tolerant, so a 3.3 V supply with 5 V logic is workable. The common breakout exposes an 8-pin 2x4 header.",
+  "packages": {
+    "module (2x4 header)": {
+      "template": "module",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground (corner pin, usually marked on the board)"
+        },
+        {
+          "pin": 2,
+          "name": "VCC",
+          "type": "power",
+          "description": "1.9-3.6 V supply; NOT 5 V tolerant on VCC, use 3.3 V"
+        },
+        {
+          "pin": 3,
+          "name": "CE",
+          "type": "input",
+          "description": "chip enable; activates RX/TX (5 V tolerant logic)"
+        },
+        {
+          "pin": 4,
+          "name": "CSN",
+          "type": "input",
+          "description": "SPI chip select, active low (5 V tolerant)"
+        },
+        {
+          "pin": 5,
+          "name": "SCK",
+          "type": "clock",
+          "description": "SPI clock (5 V tolerant)"
+        },
+        {
+          "pin": 6,
+          "name": "MOSI",
+          "type": "input",
+          "description": "SPI data in, master-out-slave-in (5 V tolerant)"
+        },
+        {
+          "pin": 7,
+          "name": "MISO",
+          "type": "output",
+          "description": "SPI data out, master-in-slave-out"
+        },
+        {
+          "pin": 8,
+          "name": "IRQ",
+          "type": "output",
+          "description": "active-low interrupt (maskable: TX done / RX ready / max retransmit)"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 1.9,
+    "vs_max_v": 3.6,
+    "extra": {
+      "interface": "SPI (up to 10 MHz)",
+      "band": "2.400-2.525 GHz ISM",
+      "channels": "125 (1 MHz spacing)",
+      "data_rates": "250 kbps / 1 Mbps / 2 Mbps",
+      "protocol": "Enhanced ShockBurst (hardware auto-ack, auto-retransmit)",
+      "pipes": "6 data pipes",
+      "tx_power": "up to 0 dBm",
+      "supply": "1.9-3.6 V (VCC)",
+      "logic": "inputs 5 V tolerant"
+    }
+  },
+  "typical_application": "Low-cost bidirectional wireless links between microcontrollers: remote sensors, RC, telemetry, and short-range home automation.",
+  "gotchas": [
+    "VCC must be 3.3 V (1.9-3.6 V); 5 V on VCC destroys the chip even though the digital inputs are 5 V tolerant",
+    "the module is sensitive to supply noise; add a 10 uF (or larger) cap directly across VCC/GND at the module or it will drop packets/lock up",
+    "CE and CSN are separate: CE gates the radio (RX/TX) while CSN is the SPI chip-select - do not confuse them",
+    "the bare 2x4 header is easy to plug in rotated; pin 1 (GND) is marked on the PCB - orientation errors are the most common wiring fault",
+    "the '+' (nRF24L01+) variant adds the 250 kbps rate and is what is sold today; non-plus modules cannot interoperate at 250 kbps",
+    "PA+LNA long-range variants draw higher peak current and almost always need the external cap or a regulated 3.3 V rail"
+  ],
+  "related": [
+    "esp-01",
+    "rfm95w"
+  ],
+  "datasheet_url": "https://www.sparkfun.com/datasheets/Components/SMD/nRF24L01Pluss_Preliminary_Product_Specification_v1_0.pdf",
+  "source": "human",
+  "verified": true
+}

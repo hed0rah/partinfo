@@ -1,0 +1,87 @@
+{
+  "id": "tip32c",
+  "name": "TIP32C",
+  "aliases": [
+    "TIP32"
+  ],
+  "full_name": "PNP Power Transistor",
+  "manufacturers": [
+    "STMicroelectronics",
+    "onsemi",
+    "Fairchild",
+    "Motorola"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "pnp power",
+  "tags": [
+    "transistor",
+    "pnp",
+    "bjt",
+    "power",
+    "audio",
+    "classic"
+  ],
+  "description": "Medium-power PNP in TO-220, -100V/-3A, the complement to the TIP31C. The C suffix is the 100V grade. Identical TO-220 B-C-E pinout to the TIP31C; only the polarity differs. Values are magnitudes; rails are negative.",
+  "packages": {
+    "TO-220": {
+      "template": "to220",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "B",
+          "type": "passive",
+          "description": "base"
+        },
+        {
+          "pin": 2,
+          "name": "C",
+          "type": "passive",
+          "description": "collector (tied to the metal mounting tab)"
+        },
+        {
+          "pin": 3,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter"
+        }
+      ],
+      "notes": "printed face toward you, tab at back, leads down: B-C-E. Same as TIP31C. Tab = collector (live)."
+    }
+  },
+  "specs": {
+    "vs_max_v": 100.0,
+    "iout_max_ma": 3000.0,
+    "pd_max_w": 40.0,
+    "hfe_min": 10,
+    "hfe_max": 50,
+    "extra": {
+      "Vceo": "-100V",
+      "Vcbo": "-100V",
+      "Vebo": "-5V",
+      "Ic": "-3A (-5A peak)",
+      "Pd": "40W at Tcase=25C",
+      "grades": "TIP32=40V, A=60V, B=80V, C=100V",
+      "complement (npn)": "TIP31C",
+      "polarity": "PNP (negative rails)",
+      "ft": "not in ST datasheet (classic spec ~3MHz)",
+      "Vce(sat)": "-1.2V (max) @ Ic=-3A, Ib=-375mA",
+      "Vbe(on)": "-1.8V (max) @ Ic=-3A, Vce=-4V"
+    }
+  },
+  "typical_application": "PNP half of complementary push-pull power/audio output stages with a TIP31C, high-side motor and relay drivers, complementary Darlington and linear power circuits.",
+  "gotchas": [
+    "collector is on the tab (same as TIP31C); isolate from grounded heatsinks; in a complementary pair both tabs are live",
+    "all ratings negative (PNP): emitter is the most positive terminal, collector the most negative",
+    "low Vebo magnitude (-5V); same reverse base-emitter caution as TIP31C",
+    "only the C grade is 100V; pair with a matching TIP31C grade"
+  ],
+  "related": [
+    "tip31c",
+    "tip42c",
+    "bd140"
+  ],
+  "datasheet_url": "https://www.st.com/resource/en/datasheet/tip32c.pdf",
+  "source": "human",
+  "verified": true
+}

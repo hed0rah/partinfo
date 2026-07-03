@@ -1,0 +1,86 @@
+{
+  "id": "hc-sr04",
+  "name": "HC-SR04",
+  "aliases": [
+    "HCSR04",
+    "SR04",
+    "ultrasonic ranging module"
+  ],
+  "full_name": "HC-SR04 Ultrasonic Ranging Module",
+  "manufacturers": [
+    "various (canonical HC-SR04 module spec)"
+  ],
+  "category": "sensor",
+  "subcategory": "ultrasonic rangefinder",
+  "tags": [
+    "ultrasonic",
+    "distance",
+    "rangefinder",
+    "sonar",
+    "trigger-echo",
+    "proximity"
+  ],
+  "description": "4-pin ultrasonic distance module measuring roughly 2 cm to 400 cm with about 3 mm resolution. A 10 us pulse on Trig starts a burst of eight 40 kHz cycles; the module then drives Echo high for a duration proportional to the round-trip time, and distance is derived from the speed of sound (distance_cm = echo_us / 58). It runs from 5 V and uses simple GPIO timing rather than a serial bus. The default low-cost rangefinder for hobby robotics and obstacle avoidance.",
+  "packages": {
+    "module (4-pin)": {
+      "template": "module",
+      "pin_count": 4,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "VCC",
+          "type": "power",
+          "description": "5 V supply"
+        },
+        {
+          "pin": 2,
+          "name": "Trig",
+          "type": "input",
+          "description": "trigger input; a 10 us high pulse starts a measurement"
+        },
+        {
+          "pin": 3,
+          "name": "Echo",
+          "type": "output",
+          "description": "echo output; 5 V pulse whose width equals the round-trip ultrasonic time"
+        },
+        {
+          "pin": 4,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 5.0,
+    "vs_max_v": 5.0,
+    "extra": {
+      "interface": "GPIO trigger/echo (timing)",
+      "supply": "5 V",
+      "operating_current": "~15 mA",
+      "range": "2 cm - 400 cm",
+      "resolution": "~3 mm",
+      "measuring_angle": "~15 deg",
+      "frequency": "40 kHz",
+      "trigger_pulse": "10 us TTL high",
+      "distance_formula": "distance_cm = echo_high_time_us / 58"
+    }
+  },
+  "typical_application": "Obstacle avoidance and distance sensing for robots, parking/proximity alerts, liquid level and presence detection.",
+  "gotchas": [
+    "the Echo output is a 5 V signal - feed a 3.3 V MCU through a voltage divider or level shifter to avoid damaging the GPIO",
+    "the module needs a true 5 V supply; running VCC below ~4.5 V gives erratic or no readings",
+    "leave at least ~60 ms between measurements so the previous echo does not bleed into the next reading",
+    "soft, angled, or sound-absorbing surfaces scatter the burst and cause missed/false echoes; the beam is narrow (~15 deg)",
+    "if Echo never goes low (no object within range), add a timeout in firmware or the read will block",
+    "minimum reliable distance is ~2 cm; closer objects fall inside the transducer ring-down dead zone"
+  ],
+  "related": [
+    "vl53l0x"
+  ],
+  "datasheet_url": "https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf",
+  "source": "human",
+  "verified": true
+}

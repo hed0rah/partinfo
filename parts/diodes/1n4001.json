@@ -1,0 +1,77 @@
+{
+  "id": "1n4001",
+  "name": "1N4001",
+  "aliases": [
+    "1N4001G",
+    "1N4001-E3"
+  ],
+  "full_name": "50V 1A general-purpose silicon rectifier",
+  "manufacturers": [
+    "Vishay",
+    "onsemi",
+    "Diodes Inc"
+  ],
+  "category": "diode",
+  "subcategory": "rectifier diode",
+  "tags": [
+    "diode",
+    "rectifier",
+    "silicon",
+    "axial",
+    "general-purpose",
+    "do-41"
+  ],
+  "description": "Lowest-voltage member of the ubiquitous 1N400x general-purpose silicon rectifier family, 50V / 1A average in DO-41. Mains/low-frequency rectification, freewheeling clamps, and reverse-polarity protection.",
+  "packages": {
+    "DO-41": {
+      "template": "custom",
+      "pin_count": 2,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "A",
+          "type": "passive",
+          "description": "anode"
+        },
+        {
+          "pin": 2,
+          "name": "K",
+          "type": "passive",
+          "description": "cathode (band/stripe end)"
+        }
+      ],
+      "ascii": "  A \u2500\u2500\u25b7|\u2500\u2500 K\n  band/stripe end = K (cathode)"
+    }
+  },
+  "specs": {
+    "vs_max_v": 50.0,
+    "iout_max_ma": 1000.0,
+    "extra": {
+      "Vrrm": "50V",
+      "If_av": "1.0A",
+      "Vf": "1.1V max at 1.0A",
+      "Ifsm": "30A (8.3ms)",
+      "Tj_max": "150C",
+      "trr": "not specified (slow PN junction)",
+      "Ir": "5.0uA max @ Ta=25C (50uA max @ Ta=125C)",
+      "Rth(JA)": "50 C/W typ (9.5mm lead length, PCB mounted)",
+      "Rth(JL)": "25 C/W typ"
+    },
+    "rth_ja_cw": 50.0
+  },
+  "typical_application": "Bridge/half-wave rectification in linear supplies; freewheel diode across relays and inductive loads.",
+  "gotchas": [
+    "the printed band marks the CATHODE, not the anode",
+    "slow PN junction (no trr spec); not for switching converters above a few kHz - use a fast or Schottky diode there",
+    "1N4001 through 1N4007 are physically identical, differing only in reverse voltage; do not assume an unmarked one is the high-voltage grade",
+    "rated 1A average, not 1A continuous into all conditions; derate with temperature"
+  ],
+  "related": [
+    "1n4004",
+    "1n5408",
+    "1n5817"
+  ],
+  "datasheet_url": "https://www.vishay.com/docs/88503/1n4001.pdf",
+  "source": "human",
+  "verified": true
+}

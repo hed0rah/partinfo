@@ -1,0 +1,112 @@
+{
+  "id": "ne5532",
+  "name": "NE5532",
+  "aliases": [
+    "NE5532A",
+    "NE5532P",
+    "NE5532D",
+    "SA5532",
+    "SA5532A"
+  ],
+  "full_name": "Dual Low-Noise Operational Amplifier",
+  "manufacturers": [
+    "Texas Instruments"
+  ],
+  "category": "opamp",
+  "subcategory": "dual audio op-amp",
+  "tags": [
+    "op-amp",
+    "dual",
+    "low-noise",
+    "audio",
+    "bipolar",
+    "internally-compensated"
+  ],
+  "description": "High-performance dual bipolar-input operational amplifier optimized for audio. Features very low equivalent input noise voltage (5 nV/rtHz typ at 1 kHz), high output-drive capability, low distortion, and a 12 MHz unity-gain bandwidth. Internally compensated for unity-gain operation, with input-protection diodes and output short-circuit protection.",
+  "packages": {
+    "PDIP-8": {
+      "template": "dip",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "1OUT",
+          "type": "output",
+          "description": "Amplifier 1 output"
+        },
+        {
+          "pin": 2,
+          "name": "1IN-",
+          "type": "input",
+          "description": "Amplifier 1 inverting input"
+        },
+        {
+          "pin": 3,
+          "name": "1IN+",
+          "type": "input",
+          "description": "Amplifier 1 non-inverting input"
+        },
+        {
+          "pin": 4,
+          "name": "VCC-",
+          "type": "power",
+          "description": "Negative supply rail (or GND in single-supply use)"
+        },
+        {
+          "pin": 5,
+          "name": "2IN+",
+          "type": "input",
+          "description": "Amplifier 2 non-inverting input"
+        },
+        {
+          "pin": 6,
+          "name": "2IN-",
+          "type": "input",
+          "description": "Amplifier 2 inverting input"
+        },
+        {
+          "pin": 7,
+          "name": "2OUT",
+          "type": "output",
+          "description": "Amplifier 2 output"
+        },
+        {
+          "pin": 8,
+          "name": "VCC+",
+          "type": "power",
+          "description": "Positive supply rail"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 6.0,
+    "vs_max_v": 44.0,
+    "extra": {
+      "supply_voltage": "+/-3V to +/-20V",
+      "input_noise": "5 nV/rtHz typ at 1 kHz",
+      "gbw": "12 MHz typ",
+      "slew_rate": "5 V/us typ",
+      "cmrr": "100 dB typ",
+      "voltage_gain": "100 V/mV typ",
+      "Vos": "0.5mV typ (4mV max) @ Ta=25C (5mV max full range)",
+      "Ibias": "200nA typ (800nA max) @ Ta=25C (1000nA max full range)",
+      "Iout": "38mA typ short-circuit current"
+    }
+  },
+  "typical_application": "Low-noise audio preamps, active filters, mixing-console gain stages, and DAC output buffers.",
+  "gotchas": [
+    "bipolar (BJT) input stage draws appreciable input bias current, so it is not ideal for very high-impedance sources the way the JFET-input TL082 is",
+    "decouple each supply rail close to the pin (e.g. 0.1 uF ceramic) to avoid oscillation given the wide bandwidth",
+    "needs a meaningful load/output current to deliver its rated audio performance; designed to drive low impedances",
+    "pin 4 is VCC- (negative rail), not ground, in split-supply designs"
+  ],
+  "related": [
+    "tl072",
+    "jrc4558",
+    "lm358"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/ne5532.pdf",
+  "source": "human",
+  "verified": true
+}

@@ -1,0 +1,30 @@
+# derived index (rebuilt from parts/*.json via `partinfo ingest`)
+/data/parts.db
+
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+
+# venvs / local
+.venv/
+venv/
+.env
+
+# working docs (spec-fill handover / cheatsheet) -- not part of the public reference
+/HANDOVER-spec-fill.md
+/CHEATSHEET.md
+/HANDOVER-2026-07-02.md
+
+# session reports and brainstorming artifacts -- internal working notes,
+# never the public reference. session narrative, not documentation.
+/session-report-*.md
+/docs/superpowers/
+
+# brainstorming visual-companion mockups
+.superpowers/

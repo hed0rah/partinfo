@@ -1,0 +1,76 @@
+{
+  "id": "1n4004",
+  "name": "1N4004",
+  "aliases": [
+    "1N4004G",
+    "1N4004-E3"
+  ],
+  "full_name": "400V 1A general-purpose silicon rectifier",
+  "manufacturers": [
+    "Vishay",
+    "onsemi",
+    "Diodes Inc"
+  ],
+  "category": "diode",
+  "subcategory": "rectifier diode",
+  "tags": [
+    "diode",
+    "rectifier",
+    "silicon",
+    "axial",
+    "general-purpose",
+    "do-41"
+  ],
+  "description": "Mid-range 1N400x, 400V / 1A in DO-41. The common choice for off-line (rectified mains) circuits where the 1N4001's 50V is insufficient.",
+  "packages": {
+    "DO-41": {
+      "template": "custom",
+      "pin_count": 2,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "A",
+          "type": "passive",
+          "description": "anode"
+        },
+        {
+          "pin": 2,
+          "name": "K",
+          "type": "passive",
+          "description": "cathode (band/stripe end)"
+        }
+      ],
+      "ascii": "  A \u2500\u2500\u25b7|\u2500\u2500 K\n  band/stripe end = K (cathode)"
+    }
+  },
+  "specs": {
+    "vs_max_v": 400.0,
+    "iout_max_ma": 1000.0,
+    "extra": {
+      "Vrrm": "400V",
+      "If_av": "1.0A",
+      "Vf": "1.1V max at 1.0A",
+      "Ifsm": "30A (8.3ms)",
+      "Tj_max": "150C",
+      "trr": "not specified (slow PN junction)",
+      "Ir": "5.0uA max @ Ta=25C (50uA max @ Ta=125C)",
+      "Rth(JA)": "50 C/W typ (9.5mm lead length, PCB mounted)",
+      "Rth(JL)": "25 C/W typ"
+    },
+    "rth_ja_cw": 50.0
+  },
+  "typical_application": "Rectifier in 120/230VAC line-powered supplies and bridges needing headroom above peak mains.",
+  "gotchas": [
+    "band end is the CATHODE",
+    "not a fast/switching diode (no trr rating); unsuitable above a few kHz",
+    "400V is the repetitive peak rating; mains transients can exceed it, so add a snubber/MOV where needed",
+    "Vf is essentially the same as the 1N4001; only the voltage rating differs across the family"
+  ],
+  "related": [
+    "1n4001",
+    "1n5408"
+  ],
+  "datasheet_url": "https://www.vishay.com/docs/88503/1n4001.pdf",
+  "source": "human",
+  "verified": true
+}

@@ -1,0 +1,114 @@
+{
+  "id": "resistor-color-code",
+  "title": "Resistor Color Code",
+  "topic": "passive",
+  "tags": [
+    "resistor",
+    "color-code",
+    "bands",
+    "tolerance",
+    "decode"
+  ],
+  "summary": "decode 4- and 5-band axial resistor values from their color bands.",
+  "body": "read color bands from the end with bands grouped closest to a lead. for a\n4-band part: digit, digit, multiplier, tolerance. for 5-band (precision):\ndigit, digit, digit, multiplier, tolerance. the value is the digits followed by\nthe multiplier (number of zeros / power of ten).",
+  "tables": [
+    {
+      "title": "band colors",
+      "headers": [
+        "color",
+        "digit",
+        "multiplier",
+        "tolerance"
+      ],
+      "rows": [
+        [
+          "black",
+          "0",
+          "x1",
+          "-"
+        ],
+        [
+          "brown",
+          "1",
+          "x10",
+          "+/-1%"
+        ],
+        [
+          "red",
+          "2",
+          "x100",
+          "+/-2%"
+        ],
+        [
+          "orange",
+          "3",
+          "x1k",
+          "-"
+        ],
+        [
+          "yellow",
+          "4",
+          "x10k",
+          "-"
+        ],
+        [
+          "green",
+          "5",
+          "x100k",
+          "+/-0.5%"
+        ],
+        [
+          "blue",
+          "6",
+          "x1M",
+          "+/-0.25%"
+        ],
+        [
+          "violet",
+          "7",
+          "x10M",
+          "+/-0.1%"
+        ],
+        [
+          "grey",
+          "8",
+          "-",
+          "+/-0.05%"
+        ],
+        [
+          "white",
+          "9",
+          "-",
+          "-"
+        ],
+        [
+          "gold",
+          "-",
+          "x0.1",
+          "+/-5%"
+        ],
+        [
+          "silver",
+          "-",
+          "x0.01",
+          "+/-10%"
+        ]
+      ]
+    }
+  ],
+  "examples": [
+    "brown-black-red-gold = 1,0 x100 = 1000 ohm = 1k, +/-5%.",
+    "yellow-violet-orange-gold = 4,7 x1k = 47k, +/-5%.",
+    "5-band brown-black-black-brown-brown = 1,0,0 x10 = 1000 ohm = 1k, +/-1%."
+  ],
+  "gotchas": [
+    "the tolerance band (gold/silver, or brown/red on precision parts) is slightly separated; read from the opposite end",
+    "a single black band means a 0 ohm jumper",
+    "blue and green, or brown and red, are easy to confuse under poor light; measure with a meter when unsure"
+  ],
+  "related": [
+    "e-series",
+    "ohms-law"
+  ],
+  "source": "human"
+}

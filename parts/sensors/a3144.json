@@ -1,0 +1,80 @@
+{
+  "id": "a3144",
+  "name": "A3144",
+  "aliases": [
+    "A3144E",
+    "A3144EU",
+    "OH3144",
+    "A3144EUA"
+  ],
+  "full_name": "Allegro A3141/A3142/A3143/A3144 Sensitive Hall-Effect Switch",
+  "manufacturers": [
+    "Allegro MicroSystems"
+  ],
+  "category": "sensor",
+  "subcategory": "hall-effect switch",
+  "tags": [
+    "hall-effect",
+    "magnetic",
+    "switch",
+    "digital",
+    "unipolar",
+    "open-collector",
+    "to-92"
+  ],
+  "description": "Temperature-stable, sensitive unipolar Hall-effect switch in a 3-pin TO-92 (SIP-3). It outputs a digital (on/off) signal, not a linear field measurement: the open-collector output pulls low when south-pole flux exceeds the operate point and releases when it falls below the release point. It integrates a voltage regulator, Hall element, Schmitt-trigger comparator and open-collector NPN output, operating from 4.5 to 24 V. Widely used for proximity, position and RPM sensing.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "VCC",
+          "type": "power",
+          "description": "supply voltage 4.5-24 V (branded/marked face toward you, leftmost pin)"
+        },
+        {
+          "pin": 2,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground (center pin)"
+        },
+        {
+          "pin": 3,
+          "name": "OUTPUT",
+          "type": "output",
+          "description": "open-collector NPN output, active-low, needs external pull-up (rightmost pin)"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 4.5,
+    "vs_max_v": 24.0,
+    "extra": {
+      "type": "unipolar digital hall switch (south-pole sensitive)",
+      "supply": "4.5-24 V",
+      "output": "open-collector NPN, sink up to 25 mA",
+      "output_voltage_rating": "up to 24 V",
+      "operate_point_max": "~350 G (B_OP)",
+      "release_point": "hysteresis below operate point",
+      "temperature_stability": "internal regulator for stable operation over temperature"
+    }
+  },
+  "typical_application": "Magnetic proximity/limit switch, brushless motor commutation, RPM and tachometer pickups, door/lid open detection, flow-meter pulse counting.",
+  "gotchas": [
+    "the output is open-collector and active-low: it REQUIRES an external pull-up resistor (commonly 10k) to read a logic high",
+    "it is a digital SWITCH (unipolar, on/off), not a linear/ratiometric field sensor - do not expect an analog field reading like an A1302/A1308",
+    "unipolar and south-pole sensitive: only one magnet polarity facing the branded face triggers it; the wrong pole or wrong face never switches",
+    "verify TO-92 pin order with the BRANDED face toward you, leads down: pin1=VCC, pin2=GND, pin3=OUTPUT - reversing VCC and OUTPUT can damage the part",
+    "no built-in reverse-polarity protection; swapping VCC/GND can destroy it - add a series resistor or diode if supply polarity is uncertain",
+    "the original A3141-4 series is obsolete; most parts sold today are A3144E/OH3144 clones with the same pinout and behavior"
+  ],
+  "related": [
+    "ss49e"
+  ],
+  "datasheet_url": "https://www.allegromicro.com/-/media/files/datasheets/a3141-2-3-4-datasheet.pdf",
+  "source": "human",
+  "verified": true
+}

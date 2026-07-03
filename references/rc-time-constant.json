@@ -1,0 +1,108 @@
+{
+  "id": "rc-time-constant",
+  "title": "RC Time Constant",
+  "topic": "passive",
+  "tags": [
+    "rc",
+    "capacitor",
+    "time-constant",
+    "filter",
+    "cutoff",
+    "tau",
+    "charge"
+  ],
+  "summary": "the charge/discharge timing of a resistor-capacitor pair and the resulting filter cutoff.",
+  "body": "the time constant tau = R * C sets how fast a capacitor charges or discharges\nthrough a resistor. after one tau the capacitor reaches ~63% of the final\nvoltage; after 5 tau it is within ~1% (considered fully settled). the same RC\npair forms a first-order low-pass (or high-pass) filter with cutoff fc.",
+  "formulas": [
+    {
+      "expr": "tau = R * C",
+      "description": "time constant",
+      "vars": [
+        {
+          "symbol": "tau",
+          "meaning": "time constant",
+          "unit": "s"
+        },
+        {
+          "symbol": "R",
+          "meaning": "resistance",
+          "unit": "ohm"
+        },
+        {
+          "symbol": "C",
+          "meaning": "capacitance",
+          "unit": "F"
+        }
+      ]
+    },
+    {
+      "expr": "Vc(t) = Vin * (1 - e^(-t/tau))",
+      "description": "charging voltage vs time"
+    },
+    {
+      "expr": "Vc(t) = V0 * e^(-t/tau)",
+      "description": "discharging voltage vs time"
+    },
+    {
+      "expr": "fc = 1 / (2 * pi * R * C)",
+      "description": "filter -3 dB cutoff frequency",
+      "vars": [
+        {
+          "symbol": "fc",
+          "meaning": "cutoff frequency",
+          "unit": "Hz"
+        }
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "title": "charge level after n time constants",
+      "headers": [
+        "n*tau",
+        "charged %",
+        "discharged %"
+      ],
+      "rows": [
+        [
+          "1",
+          "63.2",
+          "36.8"
+        ],
+        [
+          "2",
+          "86.5",
+          "13.5"
+        ],
+        [
+          "3",
+          "95.0",
+          "5.0"
+        ],
+        [
+          "4",
+          "98.2",
+          "1.8"
+        ],
+        [
+          "5",
+          "99.3",
+          "0.7"
+        ]
+      ]
+    }
+  ],
+  "examples": [
+    "R = 10k, C = 1 uF: tau = 10ms, fc = 1 / (2*pi*10000*1e-6) = 15.9 Hz low-pass.",
+    "debounce: 10k + 100nF gives tau = 1 ms, settling in ~5 ms."
+  ],
+  "gotchas": [
+    "electrolytic capacitor tolerance is wide (-20%/+80% on some), so RC timing from them is imprecise",
+    "for a high-pass the cutoff formula is the same but output is taken across R, not C"
+  ],
+  "related": [
+    "ohms-law",
+    "decibel"
+  ],
+  "source": "human"
+}

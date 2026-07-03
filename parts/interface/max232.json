@@ -1,0 +1,159 @@
+{
+  "id": "max232",
+  "name": "MAX232",
+  "aliases": [
+    "MAX232A",
+    "MAX232I"
+  ],
+  "full_name": "Dual RS-232 driver/receiver with charge-pump",
+  "manufacturers": [
+    "Texas Instruments",
+    "Maxim Integrated (Analog Devices)"
+  ],
+  "category": "interface",
+  "subcategory": "rs-232 transceiver",
+  "tags": [
+    "interface",
+    "rs-232",
+    "level-shifter",
+    "uart",
+    "charge-pump",
+    "serial"
+  ],
+  "description": "Dual EIA/TIA-232-F driver/receiver that lets a 5 V TTL/CMOS system talk to a true RS-232 line without a +/-12 V supply. An on-chip capacitive charge-pump (voltage doubler + inverter) generates the +/-RS-232 levels from a single 5 V rail using four external capacitors. It provides two transmit channels (TTL in, RS-232 out) and two receive channels (RS-232 in, TTL out), with +/-30 V input tolerance. The classic part for adding a 9-pin serial port to micros.",
+  "packages": {
+    "DIP-16": {
+      "template": "dip",
+      "pin_count": 16,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "C1+",
+          "type": "analog",
+          "description": "positive terminal of charge-pump capacitor C1"
+        },
+        {
+          "pin": 2,
+          "name": "VS+",
+          "type": "power",
+          "description": "regulated +RS-232 supply from charge pump (storage cap to GND); V+ on Maxim datasheet"
+        },
+        {
+          "pin": 3,
+          "name": "C1-",
+          "type": "analog",
+          "description": "negative terminal of charge-pump capacitor C1"
+        },
+        {
+          "pin": 4,
+          "name": "C2+",
+          "type": "analog",
+          "description": "positive terminal of charge-pump capacitor C2"
+        },
+        {
+          "pin": 5,
+          "name": "C2-",
+          "type": "analog",
+          "description": "negative terminal of charge-pump capacitor C2"
+        },
+        {
+          "pin": 6,
+          "name": "VS-",
+          "type": "power",
+          "description": "regulated -RS-232 supply from charge pump (storage cap to GND); V- on Maxim datasheet"
+        },
+        {
+          "pin": 7,
+          "name": "T2OUT",
+          "type": "output",
+          "description": "driver 2 RS-232 line output (to remote DB9)"
+        },
+        {
+          "pin": 8,
+          "name": "R2IN",
+          "type": "input",
+          "description": "receiver 2 RS-232 line input (from remote DB9)"
+        },
+        {
+          "pin": 9,
+          "name": "R2OUT",
+          "type": "output",
+          "description": "receiver 2 TTL/CMOS output (to UART)"
+        },
+        {
+          "pin": 10,
+          "name": "T2IN",
+          "type": "input",
+          "description": "driver 2 TTL/CMOS input (from UART)"
+        },
+        {
+          "pin": 11,
+          "name": "T1IN",
+          "type": "input",
+          "description": "driver 1 TTL/CMOS input (from UART)"
+        },
+        {
+          "pin": 12,
+          "name": "R1OUT",
+          "type": "output",
+          "description": "receiver 1 TTL/CMOS output (to UART)"
+        },
+        {
+          "pin": 13,
+          "name": "R1IN",
+          "type": "input",
+          "description": "receiver 1 RS-232 line input (from remote DB9)"
+        },
+        {
+          "pin": 14,
+          "name": "T1OUT",
+          "type": "output",
+          "description": "driver 1 RS-232 line output (to remote DB9)"
+        },
+        {
+          "pin": 15,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 16,
+          "name": "VCC",
+          "type": "power",
+          "description": "+5 V supply"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 4.5,
+    "vs_max_v": 5.5,
+    "extra": {
+      "Vcc": "5 V single supply",
+      "channels": "2 drivers + 2 receivers",
+      "data_rate_max": "120 kbit/s typ",
+      "input_tolerance": "+/-30 V on receiver inputs",
+      "caps_MAX232": "4 x 1 uF + 1 uF reservoir",
+      "caps_MAX232A": "4 x 0.1 uF",
+      "interface": "EIA/TIA-232-F (RS-232)",
+      "icc_typ": "8 mA"
+    }
+  },
+  "typical_application": "Level-shift a microcontroller UART (TXD/RXD) to a DB9 RS-232 port for PC, modem, or instrument communication from a single 5 V rail.",
+  "gotchas": [
+    "needs five external capacitors (C1-C4 charge-pump caps plus a reservoir cap) - it does not work standalone",
+    "MAX232 specifies 1 uF caps; MAX232A (and many clones) use 0.1 uF - wrong values compromise voltage levels or speed",
+    "only 2 TX + 2 RX channels, so a full hardware-handshake port (RTS/CTS/DTR/DSR) does not fit on one chip",
+    "data rate is limited (~120 kbit/s typ); not for high-speed serial",
+    "TI labels the charge-pump rails VS+ (pin 2) / VS- (pin 6); the original Maxim datasheet calls them V+ / V- - same pins",
+    "observe capacitor polarity and keep them close to the IC; long traces add ripple to the +/- rails"
+  ],
+  "related": [
+    "max3232",
+    "ft232rl",
+    "ds275"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/max232.pdf",
+  "source": "human",
+  "verified": true
+}

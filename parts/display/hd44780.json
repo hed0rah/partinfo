@@ -1,0 +1,161 @@
+{
+  "id": "hd44780",
+  "name": "HD44780",
+  "aliases": [
+    "1602 LCD",
+    "2004 LCD",
+    "HD44780U",
+    "LCD1602",
+    "character LCD"
+  ],
+  "full_name": "Hitachi HD44780U Dot-Matrix Character LCD Controller/Driver",
+  "manufacturers": [
+    "Hitachi",
+    "Sitronix (ST7066, compatible)",
+    "Samsung (KS0066, compatible)"
+  ],
+  "category": "display",
+  "subcategory": "character-lcd-controller",
+  "tags": [
+    "lcd",
+    "character-display",
+    "parallel",
+    "16x2",
+    "20x4",
+    "4-bit",
+    "8-bit"
+  ],
+  "description": "The HD44780 is the de facto standard controller behind nearly every monochrome character LCD module (16x2, 20x4, etc.). Hobbyists almost never touch the bare chip; they wire the 16-pin module header it sits behind. The parallel interface can run in 8-bit mode (D0-D7) or 4-bit mode (D4-D7 only) to save four MCU pins, with RS/RW/E as the control lines. Contrast is set with an analog voltage on V0, usually from a trimpot between VDD and VSS. Its 4-bit mode and the universally cloned instruction set make decades-old code and libraries work on virtually any compatible module.",
+  "packages": {
+    "16-pin module header": {
+      "template": "module",
+      "pin_count": 16,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "VSS",
+          "type": "ground",
+          "description": "ground (0V)"
+        },
+        {
+          "pin": 2,
+          "name": "VDD",
+          "type": "power",
+          "description": "logic supply, typically +5V"
+        },
+        {
+          "pin": 3,
+          "name": "V0",
+          "type": "analog",
+          "description": "contrast adjust input; set with a trimpot between VDD and VSS"
+        },
+        {
+          "pin": 4,
+          "name": "RS",
+          "type": "input",
+          "description": "register select: 0 = command/instruction, 1 = data"
+        },
+        {
+          "pin": 5,
+          "name": "RW",
+          "type": "input",
+          "description": "read/write select: 0 = write, 1 = read; tie to GND if only writing"
+        },
+        {
+          "pin": 6,
+          "name": "E",
+          "type": "clock",
+          "description": "enable strobe; data latched on the falling edge"
+        },
+        {
+          "pin": 7,
+          "name": "D0",
+          "type": "bidirectional",
+          "description": "data bit 0 (used only in 8-bit mode)"
+        },
+        {
+          "pin": 8,
+          "name": "D1",
+          "type": "bidirectional",
+          "description": "data bit 1 (8-bit mode only)"
+        },
+        {
+          "pin": 9,
+          "name": "D2",
+          "type": "bidirectional",
+          "description": "data bit 2 (8-bit mode only)"
+        },
+        {
+          "pin": 10,
+          "name": "D3",
+          "type": "bidirectional",
+          "description": "data bit 3 (8-bit mode only)"
+        },
+        {
+          "pin": 11,
+          "name": "D4",
+          "type": "bidirectional",
+          "description": "data bit 4 (used in both 4-bit and 8-bit modes)"
+        },
+        {
+          "pin": 12,
+          "name": "D5",
+          "type": "bidirectional",
+          "description": "data bit 5 (used in both 4-bit and 8-bit modes)"
+        },
+        {
+          "pin": 13,
+          "name": "D6",
+          "type": "bidirectional",
+          "description": "data bit 6 (used in both 4-bit and 8-bit modes)"
+        },
+        {
+          "pin": 14,
+          "name": "D7",
+          "type": "bidirectional",
+          "description": "data bit 7 (used in both modes; also the busy flag when read)"
+        },
+        {
+          "pin": 15,
+          "name": "A",
+          "type": "power",
+          "description": "backlight LED anode (LED+); usually needs a series current-limiting resistor"
+        },
+        {
+          "pin": 16,
+          "name": "K",
+          "type": "ground",
+          "description": "backlight LED cathode (LED-)"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 4.5,
+    "vs_max_v": 5.5,
+    "extra": {
+      "interface": "6800-style parallel",
+      "bus_modes": "4-bit (D4-D7) or 8-bit (D0-D7)",
+      "logic_voltage": "5V (3.3V variants exist)",
+      "ddram": "80 bytes",
+      "cgram": "8 user-defined 5x8 characters",
+      "common_geometries": "16x2, 20x4, 16x1, 8x2"
+    }
+  },
+  "typical_application": "Driving a 16x2 or 20x4 character LCD from a microcontroller in 4-bit mode, with a 10k trimpot on V0 for contrast and a resistor in series with pin 15 (A) for the backlight.",
+  "gotchas": [
+    "in 4-bit mode only D4-D7 are wired; D0-D3 are left unconnected",
+    "E is a strobe, not a clock line you free-run; data is latched on its falling edge",
+    "tie RW to GND if you never read; reading is rarely needed and forgetting it can drive the bus against the MCU",
+    "no contrast voltage on V0 (or wrong polarity) shows a blank screen or only black boxes, often mistaken for a dead module",
+    "backlight pin 15 (A) needs an external series resistor on most bare modules to avoid burning out the LED"
+  ],
+  "related": [
+    "pcd8544",
+    "ssd1306",
+    "pcf8574"
+  ],
+  "datasheet_url": "https://www.sparkfun.com/datasheets/LCD/HD44780.pdf",
+  "source": "human",
+  "verified": true
+}

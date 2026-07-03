@@ -1,0 +1,93 @@
+{
+  "id": "ap2127",
+  "name": "AP2127",
+  "aliases": [
+    "AP2127K",
+    "AP2127N"
+  ],
+  "full_name": "300mA CMOS Low-Dropout Adjustable/Fixed Voltage Regulator",
+  "manufacturers": [
+    "Diodes Inc"
+  ],
+  "category": "power",
+  "subcategory": "ldo regulator",
+  "tags": [
+    "regulator",
+    "linear",
+    "ldo",
+    "adjustable",
+    "power",
+    "sot-23-5",
+    "modern"
+  ],
+  "description": "Small modern CMOS LDO in SOT-23-5 (also SOT-23-3 and SOT-89), adjustable 0.8V-5.5V via an external divider or fixed-output grade, 300mA continuous. Used as the adjustable-rail regulator on the Bus Pirate 5 (AP2127K-ADJTRG1). Low dropout (170mV typ at 300mA for a 3.3V output) and low quiescent current make it typical of the tiny modern LDOs that have largely replaced classic 78xx/AMS1117-style regulators on compact boards.",
+  "packages": {
+    "SOT-23-5": {
+      "template": "sot23-5",
+      "pin_count": 5,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "VIN",
+          "type": "power",
+          "description": "unregulated input supply"
+        },
+        {
+          "pin": 2,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 3,
+          "name": "EN",
+          "type": "input",
+          "description": "shutdown/enable; logic high enables the output"
+        },
+        {
+          "pin": 4,
+          "name": "ADJ",
+          "type": "input",
+          "description": "feedback input for the adjustable grade; connect a resistor divider from VOUT. Fixed-output grades leave this as NC"
+        },
+        {
+          "pin": 5,
+          "name": "VOUT",
+          "type": "output",
+          "description": "regulated output"
+        }
+      ],
+      "notes": "Per Diodes Inc's own pin table (SOT-23-5 column): VIN=1, GND=2, EN=3, ADJ/NC=4, VOUT=5. The same die also ships in SOT-23-3 and SOT-89 with different pin assignments per package, always check which package column applies."
+    }
+  },
+  "specs": {
+    "vs_min_v": 0.8,
+    "vs_max_v": 5.5,
+    "iout_max_ma": 300.0,
+    "extra": {
+      "Vin_max": "6.5V (abs max); recommended operating 2.5V to 6V",
+      "Iout_max": "300mA typ (400mA max)",
+      "dropout": "170mV typ @ Iout=300mA, Vout=3.3V (140mV typ @ Vout=4.75V)",
+      "Iq": "60uA typ (90uA max) @ Vin=Vout+1V, Iout=0",
+      "Istandby": "0.1uA typ (1.0uA max), EN low",
+      "Rth(JA)": "250 C/W (SOT-23-5)",
+      "load_regulation": "4mV typ (10mV max)",
+      "short_circuit_current": "50mA typ"
+    },
+    "rth_ja_cw": 250.0
+  },
+  "typical_application": "Small adjustable local rail regulation on space-constrained boards; used for the Bus Pirate 5's adjustable-voltage output stage.",
+  "gotchas": [
+    "adjustable grade (ADJTRG1 suffix used on Bus Pirate 5) needs an external resistor divider from VOUT to the ADJ pin, bare VOUT alone will not regulate",
+    "EN is active HIGH; tie to VIN if always-on operation is wanted, do not float",
+    "pin assignment differs by package (SOT-23-3 vs SOT-23-5 vs SOT-89); this entry documents SOT-23-5 specifically, the package used on Bus Pirate 5",
+    "300mA continuous is the typical rating; the 400mA figure is a max/peak spec, do not design a continuous load around it"
+  ],
+  "related": [
+    "ams1117",
+    "lm317"
+  ],
+  "datasheet_url": "https://www.diodes.com/assets/Datasheets/AP2127.pdf",
+  "source": "claude",
+  "verified": true
+}

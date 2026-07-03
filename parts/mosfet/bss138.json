@@ -1,0 +1,94 @@
+{
+  "id": "bss138",
+  "name": "BSS138",
+  "aliases": [
+    "BSS138LT1",
+    "BSS138-7-F"
+  ],
+  "full_name": "N-channel logic-level MOSFET, 50V 220mA (SOT-23)",
+  "manufacturers": [
+    "onsemi",
+    "Fairchild",
+    "Diodes Inc",
+    "Nexperia"
+  ],
+  "category": "transistor_mosfet",
+  "subcategory": "n-channel logic-level",
+  "tags": [
+    "mosfet",
+    "n-channel",
+    "logic-level",
+    "enhancement",
+    "level-shifter",
+    "i2c",
+    "smd",
+    "sot-23"
+  ],
+  "description": "N-channel logic-level enhancement MOSFET in SOT-23, 50V / 0.22A, low threshold (Vgs(th) typ 1.3V). The de-facto standard FET for bidirectional I2C and logic level shifters: gate to the lower supply, source to the low-voltage line, drain to the high-voltage line, with the body diode handling one direction. Also small-load switching and gate driving.",
+  "packages": {
+    "SOT-23": {
+      "template": "sot23",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "G",
+          "type": "passive",
+          "description": "gate; logic-level threshold allows drive from 3.3V / low-voltage logic"
+        },
+        {
+          "pin": 2,
+          "name": "S",
+          "type": "passive",
+          "description": "source; tied to the low-voltage bus side in level-shifter use (body-diode anode)"
+        },
+        {
+          "pin": 3,
+          "name": "D",
+          "type": "passive",
+          "description": "drain; tied to the high-voltage bus side (body-diode cathode)"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_max_v": 50.0,
+    "iout_max_ma": 220.0,
+    "extra": {
+      "Vds_max": "50V",
+      "Vgs_max": "+/-20V",
+      "Vgs_th": "0.8/1.3/1.5V (min/typ/max)",
+      "Id": "0.22A continuous (0.88A pulsed)",
+      "Rds_on": "3.5 ohm max at Vgs=10V, 6 ohm max at Vgs=4.5V",
+      "Pd": "0.36W",
+      "Qg": "1.7nC (2.4 max) @ Vds=25V, Id=0.22A, Vgs=10V",
+      "Qgs": "0.1nC",
+      "Qgd": "0.4nC",
+      "Ciss": "27pF",
+      "Coss": "13pF",
+      "Crss": "6pF",
+      "td(on)": "2.5ns (5 max)",
+      "tr": "9ns (18 max)",
+      "td(off)": "20ns (36 max)",
+      "tf": "7ns (14 max)",
+      "Rth(JA)": "350 C/W",
+      "Vsd": "0.8V (1.4 max) @ Is=0.44A"
+    },
+    "rth_ja_cw": 350.0
+  },
+  "typical_application": "Bidirectional I2C / logic level shifter between two rails (e.g. 3.3V to 5V), and low-current load switching, gate driving, and small motor control.",
+  "gotchas": [
+    "in the level-shifter circuit the intrinsic body diode (source=anode, drain=cathode) provides the initial conduction path before the channel turns on; it is essential to the topology, not incidental",
+    "only 0.22A continuous; not a power switch - use a proper power MOSFET above a few hundred mA",
+    "SOT-23 dissipation is just 0.36W and derates fast (2.8mW/C); minimal thermal headroom",
+    "SOT-23 pin order is G-S-D (pin1=Gate, pin2=Source, pin3=Drain), which differs from BJT-style SOT-23 transistors; verify before layout"
+  ],
+  "related": [
+    "2n7000",
+    "ao3400a",
+    "bs170"
+  ],
+  "datasheet_url": "https://www.onsemi.com/download/data-sheet/pdf/bss138-d.pdf",
+  "source": "human",
+  "verified": true
+}

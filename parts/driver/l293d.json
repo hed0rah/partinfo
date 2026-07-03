@@ -1,0 +1,157 @@
+{
+  "id": "l293d",
+  "name": "L293D",
+  "aliases": [
+    "L293",
+    "L293DNE",
+    "L293DD"
+  ],
+  "full_name": "Quadruple Half-H Driver with Clamp Diodes (Push-Pull Four Channel Driver)",
+  "manufacturers": [
+    "STMicroelectronics",
+    "Texas Instruments"
+  ],
+  "category": "driver",
+  "subcategory": "h-bridge motor driver",
+  "tags": [
+    "h-bridge",
+    "motor-driver",
+    "half-h",
+    "stepper",
+    "dc-motor",
+    "flyback-diode"
+  ],
+  "description": "Quadruple high-current half-H driver, i.e. two full H-bridges, with totem-pole push-pull outputs and integrated output clamp diodes for inductive transient suppression. Provides bidirectional drive currents up to 600mA per channel (1.2A peak) at motor supply voltages from 4.5V to 36V. A separate logic supply VCC1 (5V) powers the inputs; channels are enabled in pairs by 1,2EN and 3,4EN. Drives DC motors, bipolar stepper motors, relays and solenoids directly from microcontroller logic.",
+  "packages": {
+    "PDIP-16": {
+      "template": "dip",
+      "pin_count": 16,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "1,2EN",
+          "type": "input",
+          "description": "enable for driver channels 1 and 2 (active-high)"
+        },
+        {
+          "pin": 2,
+          "name": "1A",
+          "type": "input",
+          "description": "driver 1 input, noninverting"
+        },
+        {
+          "pin": 3,
+          "name": "1Y",
+          "type": "output",
+          "description": "driver 1 output"
+        },
+        {
+          "pin": 4,
+          "name": "GND",
+          "type": "ground",
+          "description": "device ground and heat sink pin"
+        },
+        {
+          "pin": 5,
+          "name": "GND",
+          "type": "ground",
+          "description": "device ground and heat sink pin"
+        },
+        {
+          "pin": 6,
+          "name": "2Y",
+          "type": "output",
+          "description": "driver 2 output"
+        },
+        {
+          "pin": 7,
+          "name": "2A",
+          "type": "input",
+          "description": "driver 2 input, noninverting"
+        },
+        {
+          "pin": 8,
+          "name": "VCC2",
+          "type": "power",
+          "description": "power VCC for the drivers, 4.5 V to 36 V (motor supply)"
+        },
+        {
+          "pin": 9,
+          "name": "3,4EN",
+          "type": "input",
+          "description": "enable for driver channels 3 and 4 (active-high)"
+        },
+        {
+          "pin": 10,
+          "name": "3A",
+          "type": "input",
+          "description": "driver 3 input, noninverting"
+        },
+        {
+          "pin": 11,
+          "name": "3Y",
+          "type": "output",
+          "description": "driver 3 output"
+        },
+        {
+          "pin": 12,
+          "name": "GND",
+          "type": "ground",
+          "description": "device ground and heat sink pin"
+        },
+        {
+          "pin": 13,
+          "name": "GND",
+          "type": "ground",
+          "description": "device ground and heat sink pin"
+        },
+        {
+          "pin": 14,
+          "name": "4Y",
+          "type": "output",
+          "description": "driver 4 output"
+        },
+        {
+          "pin": 15,
+          "name": "4A",
+          "type": "input",
+          "description": "driver 4 input, noninverting"
+        },
+        {
+          "pin": 16,
+          "name": "VCC1",
+          "type": "power",
+          "description": "5 V supply for internal logic / input translation"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 4.5,
+    "vs_max_v": 36.0,
+    "extra": {
+      "output_type": "totem-pole push-pull half-H",
+      "channels": "4 half-H (2 full bridges)",
+      "output_current_per_ch": "600mA continuous, 1.2A peak",
+      "clamp_diodes": "yes, internal (L293 has none)",
+      "vcc2_range": "4.5V to 36V",
+      "vcc1": "5V logic"
+    }
+  },
+  "typical_application": "Driving one bipolar stepper or two small DC motors bidirectionally from an Arduino, using the two full bridges.",
+  "gotchas": [
+    "L293D has internal output clamp diodes; the plain L293 does NOT and needs external flyback diodes",
+    "two separate supplies: VCC1 (pin 16, 5V logic) and VCC2 (pin 8, 4.5-36V motor power)",
+    "drivers enable in pairs via 1,2EN and 3,4EN, not individually",
+    "pins 4,5,12,13 are all ground and double as the heat sink - connect to a copper ground plane",
+    "outputs are push-pull totem-pole, not open-collector"
+  ],
+  "related": [
+    "l298n",
+    "uln2803",
+    "irf540"
+  ],
+  "datasheet_url": "https://www.st.com/resource/en/datasheet/l293d.pdf",
+  "source": "human",
+  "verified": true
+}

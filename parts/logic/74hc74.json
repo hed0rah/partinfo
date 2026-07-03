@@ -1,0 +1,148 @@
+{
+  "id": "74hc74",
+  "name": "74HC74",
+  "aliases": [
+    "74LS74",
+    "74HCT74",
+    "7474",
+    "SN74HC74",
+    "SN74LS74",
+    "SN74HCT74"
+  ],
+  "full_name": "Dual D-Type Positive-Edge-Triggered Flip-Flop with Preset and Clear",
+  "manufacturers": [
+    "Texas Instruments",
+    "Nexperia",
+    "onsemi"
+  ],
+  "category": "logic",
+  "subcategory": "flip-flop",
+  "tags": [
+    "logic",
+    "74-series",
+    "cmos",
+    "ttl",
+    "flip-flop",
+    "d-type",
+    "edge-triggered"
+  ],
+  "description": "Two independent D flip-flops, each triggered on the rising clock edge, with asynchronous active-low preset (PRE) and clear (CLR). On the rising edge Q follows D. HC, HCT and LS share this pinout. HC supply 2-6V; HCT/LS are 5V.",
+  "packages": {
+    "DIP-14": {
+      "template": "dip",
+      "pin_count": 14,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "1CLR",
+          "type": "reset",
+          "description": "flip-flop 1 clear, active LOW (async)"
+        },
+        {
+          "pin": 2,
+          "name": "1D",
+          "type": "input",
+          "description": "flip-flop 1 data input"
+        },
+        {
+          "pin": 3,
+          "name": "1CLK",
+          "type": "clock",
+          "description": "flip-flop 1 clock (rising edge)"
+        },
+        {
+          "pin": 4,
+          "name": "1PRE",
+          "type": "reset",
+          "description": "flip-flop 1 preset, active LOW (async set)"
+        },
+        {
+          "pin": 5,
+          "name": "1Q",
+          "type": "output",
+          "description": "flip-flop 1 output Q"
+        },
+        {
+          "pin": 6,
+          "name": "1Q'",
+          "type": "output",
+          "description": "flip-flop 1 inverted output"
+        },
+        {
+          "pin": 7,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 8,
+          "name": "2Q'",
+          "type": "output",
+          "description": "flip-flop 2 inverted output"
+        },
+        {
+          "pin": 9,
+          "name": "2Q",
+          "type": "output",
+          "description": "flip-flop 2 output Q"
+        },
+        {
+          "pin": 10,
+          "name": "2PRE",
+          "type": "reset",
+          "description": "flip-flop 2 preset, active LOW (async set)"
+        },
+        {
+          "pin": 11,
+          "name": "2CLK",
+          "type": "clock",
+          "description": "flip-flop 2 clock (rising edge)"
+        },
+        {
+          "pin": 12,
+          "name": "2D",
+          "type": "input",
+          "description": "flip-flop 2 data input"
+        },
+        {
+          "pin": 13,
+          "name": "2CLR",
+          "type": "reset",
+          "description": "flip-flop 2 clear, active LOW (async)"
+        },
+        {
+          "pin": 14,
+          "name": "VCC",
+          "type": "power",
+          "description": "positive supply"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.0,
+    "vs_max_v": 6.0,
+    "extra": {
+      "function": "Q follows D on rising CLK; async active-LOW PRE (set) and CLR (reset)",
+      "logic family": "74HC/HCT/LS",
+      "VCC": "HC 2-6V, HCT/LS 4.75-5.25V",
+      "flip-flops": 2
+    }
+  },
+  "typical_application": "Frequency divide-by-2 (Q-bar to D), data latching/synchronization, momentary-to-toggle conversion.",
+  "gotchas": [
+    "pin 7 = GND, pin 14 = VCC",
+    "PRE (pins 4/10) and CLR (pins 1/13) are asynchronous and ACTIVE LOW; tie HIGH when unused or the flip-flop is held set/reset",
+    "data is captured on the rising clock edge only; respect setup/hold times",
+    "do not assert PRE and CLR LOW simultaneously (indeterminate state)",
+    "flip-flop 2 pin order is mirrored: Q-bar (8) and Q (9) come before PRE/CLK/D/CLR"
+  ],
+  "related": [
+    "cd4013",
+    "74hc374",
+    "74hc04"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/sn74hc74.pdf",
+  "source": "human",
+  "verified": true
+}

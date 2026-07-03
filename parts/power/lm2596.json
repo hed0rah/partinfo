@@ -1,0 +1,99 @@
+{
+  "id": "lm2596",
+  "name": "LM2596",
+  "aliases": [
+    "LM2596S",
+    "LM2596-ADJ",
+    "LM2596-5.0",
+    "LM2596-3.3",
+    "LM2596T"
+  ],
+  "full_name": "LM2596 simple-switcher step-down (buck) voltage regulator, 3A",
+  "manufacturers": [
+    "Texas Instruments"
+  ],
+  "category": "power",
+  "subcategory": "buck regulator",
+  "tags": [
+    "regulator",
+    "switching",
+    "buck",
+    "step-down",
+    "power",
+    "to220",
+    "module",
+    "classic"
+  ],
+  "description": "150kHz fixed-frequency step-down (buck) switching regulator, 3A output, up to 40V input. Fixed grades (3.3/5/12V) and an adjustable grade (1.23V ref). The basis of countless cheap red buck-converter modules. Needs only an inductor, catch diode, and caps.",
+  "packages": {
+    "TO-220-5": {
+      "template": "to220",
+      "pin_count": 5,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "VIN",
+          "type": "input",
+          "description": "unregulated input, up to 40V"
+        },
+        {
+          "pin": 2,
+          "name": "SW",
+          "type": "output",
+          "description": "switch / output node; connects to the inductor and catch diode"
+        },
+        {
+          "pin": 3,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground; also the metal tab"
+        },
+        {
+          "pin": 4,
+          "name": "FB",
+          "type": "analog",
+          "description": "feedback; 1.23V ref on the adjustable grade, or tie to output on fixed grades"
+        },
+        {
+          "pin": 5,
+          "name": "ON/OFF",
+          "type": "input",
+          "description": "shutdown control, ACTIVE-LOW: pull low (or ground) to enable, high to shut down"
+        }
+      ],
+      "ascii": "    \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n    \u2502      TAB       \u2502  (GND)\n    \u2514\u2500\u252c\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u252c\u2500\u2500\u252c\u2500\u2500\u252c\u2500\u2518\n      \u2502   \u2502   \u2502  \u2502  \u2502\n     VIN  SW GND FB ON/OFF'\n      1   2   3  4    5"
+    }
+  },
+  "specs": {
+    "vs_max_v": 40.0,
+    "iout_max_ma": 3000.0,
+    "extra": {
+      "Vin_max": "40V (45V on HV grade)",
+      "Iout_max": "3A",
+      "fsw": "150kHz",
+      "Vref": "1.23V (adjustable grade)",
+      "Vout": "3.3/5/12V fixed or 1.23-37V adjustable",
+      "Iq": "5mA typ (10mA max) operating; 80uA typ (200uA max) shutdown",
+      "Vsat (switch)": "1.16V typ (1.4V max) @ Iout=3A -- internal switch saturation voltage, the switcher analog of linear dropout",
+      "Rth(JC)": "2 C/W (TO-220)",
+      "Rth(JA)": "50 C/W (TO-220, no heatsink, ~1in2 1oz copper)"
+    },
+    "rth_jc_cw": 2.0,
+    "rth_ja_cw": 50.0
+  },
+  "typical_application": "Efficient step-down from a 12-40V source to a 5V/3.3V rail. Adjustable: Vout = 1.23 * (1 + R2/R1). Modern TI package designators are NDH (TO-220-5) and KTT (TO-263).",
+  "gotchas": [
+    "ON/OFF (pin 5) is ACTIVE-LOW: tie it LOW or to ground to turn the regulator ON; leaving it high keeps it shut down",
+    "switching part, not a linear drop-in for a 7805; requires the correct inductor, a fast catch (Schottky) diode, and input/output caps",
+    "the tab is GND; cheap modules often omit a heatsink, limiting real output well below 3A",
+    "feedback divider sets the voltage on -ADJ grade; a wrong divider or a dirty trimpot can send full Vin to the load"
+  ],
+  "related": [
+    "lm317",
+    "mt3608",
+    "lm7805"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/lm2596.pdf",
+  "source": "human",
+  "verified": true
+}

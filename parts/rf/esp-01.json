@@ -1,0 +1,111 @@
+{
+  "id": "esp-01",
+  "name": "ESP-01",
+  "aliases": [
+    "ESP8266 ESP-01",
+    "ESP-01S",
+    "ESP01"
+  ],
+  "full_name": "Espressif ESP8266 ESP-01 Wi-Fi Module",
+  "manufacturers": [
+    "Espressif (Ai-Thinker module)"
+  ],
+  "category": "rf",
+  "subcategory": "Wi-Fi module (ESP8266)",
+  "tags": [
+    "rf",
+    "wifi",
+    "esp8266",
+    "module",
+    "2.4ghz",
+    "uart",
+    "iot",
+    "at-commands"
+  ],
+  "description": "Compact ESP8266-based 2.4 GHz Wi-Fi module on a 2x4 header, the smallest popular ESP8266 board. It can run as a UART-to-Wi-Fi bridge via AT-command firmware or be reprogrammed with custom firmware (Arduino core, NodeMCU/Lua, MicroPython). It exposes only two usable GPIOs (GPIO0 and GPIO2) plus the UART. It is strictly a 3.3 V part - VCC and all logic are 3.3 V, not 5 V tolerant - and the radio draws high current spikes that demand a solid 3.3 V supply.",
+  "packages": {
+    "module (2x4 header)": {
+      "template": "module",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 2,
+          "name": "GPIO2",
+          "type": "bidirectional",
+          "description": "GPIO2; must be high at boot; usable as I/O after boot"
+        },
+        {
+          "pin": 3,
+          "name": "GPIO0",
+          "type": "bidirectional",
+          "description": "GPIO0; pull LOW at boot to enter flash/programming mode, high for normal run"
+        },
+        {
+          "pin": 4,
+          "name": "RXD",
+          "type": "input",
+          "description": "UART receive (3.3 V)"
+        },
+        {
+          "pin": 5,
+          "name": "TXD",
+          "type": "output",
+          "description": "UART transmit (3.3 V)"
+        },
+        {
+          "pin": 6,
+          "name": "CH_PD",
+          "type": "input",
+          "description": "chip enable / power-down; tie HIGH (to 3.3 V) to run"
+        },
+        {
+          "pin": 7,
+          "name": "RST",
+          "type": "reset",
+          "description": "active-low reset; high for normal operation"
+        },
+        {
+          "pin": 8,
+          "name": "VCC",
+          "type": "power",
+          "description": "3.3 V supply (NOT 5 V tolerant); high peak current"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.0,
+    "vs_max_v": 3.6,
+    "extra": {
+      "interface": "UART (default AT firmware) / reprogrammable",
+      "soc": "Espressif ESP8266",
+      "wifi": "802.11 b/g/n, 2.4 GHz",
+      "usable_gpio": "GPIO0, GPIO2 (plus UART)",
+      "supply": "3.3 V",
+      "peak_current": "~300-400 mA bursts during TX",
+      "logic": "3.3 V, NOT 5 V tolerant"
+    }
+  },
+  "typical_application": "Adding Wi-Fi to a microcontroller over UART (AT commands), or as a standalone tiny Wi-Fi IoT node when reflashed with custom firmware.",
+  "gotchas": [
+    "3.3 V ONLY on VCC and all logic; a 5 V supply or 5 V UART lines will destroy the module - level shift a 5 V MCU's TX into RXD",
+    "the onboard 3.3 V regulator on many host boards cannot supply the ~300-400 mA TX bursts; brownouts cause resets/Wi-Fi failures - use a dedicated 3.3 V regulator with bulk capacitance",
+    "boot strapping: CH_PD high, RST high, GPIO0 high for normal run; GPIO0 LOW at reset enters flash mode - getting these wrong means it won't boot",
+    "GPIO2 must not be held low at boot or the module fails to start",
+    "only two GPIOs are broken out, so the ESP-01 is I/O-limited; use a larger ESP board if you need more pins",
+    "the bare 2x4 header is easy to misorient; confirm pin 1 against the silkscreen"
+  ],
+  "related": [
+    "nrf24l01",
+    "hc-05"
+  ],
+  "datasheet_url": "https://www.espressif.com/sites/default/files/documentation/0a-esp8266ex_datasheet_en.pdf",
+  "source": "human",
+  "verified": true
+}

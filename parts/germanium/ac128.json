@@ -1,0 +1,94 @@
+{
+  "id": "ac128",
+  "name": "AC128",
+  "aliases": [
+    "AC128K"
+  ],
+  "full_name": "Germanium PNP Audio Power Transistor (TO-1)",
+  "manufacturers": [
+    "Valvo (Philips)",
+    "Germanium Power Devices Corp"
+  ],
+  "category": "transistor_germanium",
+  "subcategory": "germanium pnp audio power",
+  "tags": [
+    "transistor",
+    "germanium",
+    "pnp",
+    "vintage",
+    "fuzz",
+    "fuzz-face",
+    "tone-bender",
+    "audio",
+    "to-1"
+  ],
+  "description": "Germanium PNP audio power transistor in a small TO-1 metal can, designed by Valvo as a push-pull (Class B) output pair with the AC127 (NPN). Best known today as the transistor in later production runs of the Dallas Arbiter Fuzz Face and in Sola Sound Tone Bender circuits, alongside the rarer NKT275. Widely second-sourced through the 1960s-70s under the Pro Electron AC1xx naming scheme.",
+  "packages": {
+    "TO-1": {
+      "template": "custom",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "C",
+          "type": "passive",
+          "description": "collector; case marked with a colored dot on the collector side"
+        },
+        {
+          "pin": 2,
+          "name": "B",
+          "type": "passive",
+          "description": "base"
+        },
+        {
+          "pin": 3,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter"
+        }
+      ],
+      "notes": "Per Valvo's own 1963 package drawing (bottom view, leads down): collector at top-right (marked with a colored dot on that side of the case), base at left, emitter at bottom. Small TO-1 metal can, 3 leads, max 1.5mm unplated lead length before the bend. Verify against the physical part: decades of second-sourcing means case marking conventions are not perfectly uniform across manufacturers."
+    }
+  },
+  "specs": {
+    "vs_max_v": 32.0,
+    "iout_max_ma": 1000.0,
+    "pd_max_mw": 700.0,
+    "hfe_min": 55,
+    "extra": {
+      "Vcbo": "32V",
+      "Vebo": "10V",
+      "Vce(sat) equiv (Restspannung)": "0.6V max @ Ic=1A",
+      "hFE": "90 typ (55...175) @ Ie=50mA and @ Ie=300mA (80 typ, 45...165 @ Ie=1A)",
+      "Vbe(sat)": "300mV max @ Ie=50mA (450mV max @ Ie=300mA)",
+      "f1 (|beta|=1)": "1.5MHz typ (1.0MHz min) @ Vcb=2V, Ie=10mA",
+      "fB (corner freq)": "15kHz typ (10kHz min) @ Vcb=2V, Ie=10mA",
+      "rbb'": "25 ohm @ Vcb=5V, Ie=1mA",
+      "Cb'c": "100pF @ Vcb=5V, Ie=0",
+      "ICBO": "10uA max @ Vcb=10V (200uA test point for the 32V breakdown guarantee)",
+      "IEBO": "500uA max @ Veb=5V, Tj=75C",
+      "Rth(JC)": "40 C/W (Valvo's Kg <= 0.04 C/mW)",
+      "Rth(JA)": "290 C/W free-standing (140 C/W with a heatsink clip, 80 C/W with clip + 12.5cm2 cooling area)",
+      "Tj_max": "90C",
+      "Tstg": "-55 to +75C"
+    },
+    "rth_jc_cw": 40.0,
+    "rth_ja_cw": 290.0
+  },
+  "typical_application": "Push-pull Class B audio output stage paired with the complementary AC127 (NPN), per Valvo's original design intent. Far better known today as the gain transistor in germanium fuzz and treble-booster guitar pedals (Fuzz Face, Tone Bender).",
+  "gotchas": [
+    "PNP: this entry strips the sign convention for consistency with the rest of this repository; Valvo's own datasheet states all voltages and currents as negative",
+    "the colored dot on the case marks the collector side; confirm against the physical part before wiring, do not assume without checking",
+    "Valvo's 1963 sheet is explicitly marked 'vorlaeufige Daten' (preliminary data) and rates Pd at 700mW; a modern reference table from Germanium Power Devices Corp lists 1000mW for the same generic part, likely a later refinement. Use the more conservative 700mW figure for a safety margin unless you know your specific part matches the higher rating",
+    "germanium: leakage current (ICBO/IEBO) is far more temperature-sensitive than silicon; keep well below rated dissipation",
+    "hFE spread is wide (55-175) even within spec; germanium-fuzz builders commonly hand-select pairs by measured gain and leakage rather than trusting the datasheet range",
+    "decades of second-sourcing and today's collector demand mean mislabeled or out-of-spec 'vintage AC128' parts are common; measure a real part (hFE, leakage, and pinout with a multimeter) before trusting it in a build"
+  ],
+  "related": [
+    "nkt275",
+    "2n404"
+  ],
+  "source": "claude",
+  "verified": true,
+  "datasheet_url": "https://www.electrosmash.com/images/tech/fuzz-face/ac128_datasheet1.pdf"
+}

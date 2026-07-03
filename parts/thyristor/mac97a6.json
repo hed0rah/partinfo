@@ -1,0 +1,73 @@
+{
+  "id": "mac97a6",
+  "name": "MAC97A6",
+  "aliases": [
+    "MAC97A4",
+    "MAC97A8"
+  ],
+  "full_name": "0.6A Sensitive-Gate Four-Quadrant Triac",
+  "manufacturers": [
+    "onsemi"
+  ],
+  "category": "thyristor",
+  "subcategory": "triac",
+  "tags": [
+    "triac",
+    "thyristor",
+    "sensitive-gate",
+    "logic-driven",
+    "ac-switch"
+  ],
+  "description": "A small 0.6A sensitive-gate triac in TO-92, triggerable directly from MPU/logic outputs. Note the gate is the CENTER pin, unlike many triacs. The A6 suffix is the 400V grade.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "MT1",
+          "type": "passive",
+          "description": "main terminal 1"
+        },
+        {
+          "pin": 2,
+          "name": "G",
+          "type": "input",
+          "description": "gate (center pin)"
+        },
+        {
+          "pin": 3,
+          "name": "MT2",
+          "type": "passive",
+          "description": "main terminal 2"
+        }
+      ],
+      "notes": "flat face toward you, leads down: pin 1 (MT1), pin 2 (GATE, center), pin 3 (MT2). No tab. onsemi CASE 29-11 STYLE 12."
+    }
+  },
+  "specs": {
+    "vs_max_v": 400.0,
+    "iout_max_ma": 600.0,
+    "extra": {
+      "It_rms": "0.6A (Tc +50C)",
+      "VDRM": "400V (A6); A4=200V, A8=600V",
+      "IGT": "5mA max (Q1-Q3), 7mA (Q4)",
+      "VGT": "2.0V max (Q1-Q3)",
+      "quadrants": "four"
+    }
+  },
+  "typical_application": "Low-current AC switching driven straight from MPU/TTL/logic outputs: solid-state relays, light consumer and industrial loads.",
+  "gotchas": [
+    "the A6 suffix is 400V; do not assume 600V (that is the A8), A4 is 200V",
+    "the GATE is the MIDDLE pin (pin 2), unlike triacs where the gate is an end pin; mind orientation",
+    "0.6A RMS only; this is a sensitive-gate signal triac, not a power device"
+  ],
+  "related": [
+    "bt134",
+    "bta06"
+  ],
+  "datasheet_url": "https://www.onsemi.com/pdf/datasheet/mac97a-d.pdf",
+  "source": "human",
+  "verified": true
+}

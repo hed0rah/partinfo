@@ -1,0 +1,92 @@
+{
+  "id": "ao3400a",
+  "name": "AO3400A",
+  "aliases": [
+    "AO3400"
+  ],
+  "full_name": "N-channel logic-level trench MOSFET, 30V 5.7A (SOT-23)",
+  "manufacturers": [
+    "Alpha & Omega Semiconductor"
+  ],
+  "category": "transistor_mosfet",
+  "subcategory": "n-channel logic-level",
+  "tags": [
+    "mosfet",
+    "n-channel",
+    "logic-level",
+    "trench",
+    "load-switch",
+    "pwm",
+    "sot-23",
+    "low-rds-on"
+  ],
+  "description": "30V N-channel logic-level enhancement trench MOSFET in SOT-23, very low on-resistance (~18 mohm typ at Vgs=10V). Low threshold (0.65-1.45V) lets it be fully driven from 2.5-4.5V logic, so it is common on breakout/driver modules. Low-side load switch and PWM/motor/LED driver.",
+  "packages": {
+    "SOT-23": {
+      "template": "sot23",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "G",
+          "type": "passive",
+          "description": "gate; logic-level, fully enhanced at Vgs=4.5V"
+        },
+        {
+          "pin": 2,
+          "name": "S",
+          "type": "passive",
+          "description": "source"
+        },
+        {
+          "pin": 3,
+          "name": "D",
+          "type": "passive",
+          "description": "drain; single pin opposite the two-pin side, thermally tied to PCB copper"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_max_v": 30.0,
+    "iout_max_ma": 5700.0,
+    "extra": {
+      "Vds_max": "30V",
+      "Vgs_max": "+/-12V",
+      "Vgs_th": "0.65/1.05/1.45V (min/typ/max)",
+      "Id": "5.7A at 25C",
+      "Rds_on": "32 mohm max at Vgs=4.5V (18 mohm typ at Vgs=10V)",
+      "Pd": "1.4W",
+      "Qg": "6nC (7 max)",
+      "Qgs": "1.3nC",
+      "Qgd": "1.8nC",
+      "Ciss": "630pF",
+      "Coss": "75pF",
+      "Crss": "50pF",
+      "td(on)": "3ns",
+      "tr": "2.5ns",
+      "td(off)": "25ns",
+      "tf": "4ns",
+      "Rth(JA)": "125 C/W (max, steady-state; 100 typ)",
+      "Rth(JL)": "80 C/W (max; 63 typ)",
+      "Vsd": "0.7V (1 max) @ Is=1A",
+      "trr": "8.5ns",
+      "Qrr": "2.6nC"
+    },
+    "rth_ja_cw": 125.0
+  },
+  "typical_application": "Low-side load switch and PWM control (motor, LED, solenoid drivers) on logic-level outputs; common on hobbyist breakout modules.",
+  "gotchas": [
+    "the 5.7A rating is bonded to the die; real continuous current is limited by SOT-23 dissipation (1.4W at 25C) and PCB copper - far lower without adequate copper",
+    "pulsed Idm is rated to 30A but only as short pulses, not continuous",
+    "Vgs absolute max is only +/-12V (tighter than the +/-20V of most parts); watch ringing in fast switching",
+    "high junction-to-ambient thermal resistance; derate current significantly at elevated ambient temperature"
+  ],
+  "related": [
+    "bss138",
+    "irlz44n"
+  ],
+  "datasheet_url": "https://www.aosmd.com/res/datasheets/AO3400A.pdf",
+  "source": "human",
+  "verified": true
+}

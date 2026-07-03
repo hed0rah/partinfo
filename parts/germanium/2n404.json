@@ -1,0 +1,87 @@
+{
+  "id": "2n404",
+  "name": "2N404",
+  "aliases": [
+    "2N404A"
+  ],
+  "full_name": "Germanium PNP Medium-Speed Switching Transistor (TO-5)",
+  "manufacturers": [
+    "Central Semiconductor"
+  ],
+  "category": "transistor_germanium",
+  "subcategory": "germanium pnp switching",
+  "tags": [
+    "transistor",
+    "germanium",
+    "pnp",
+    "vintage",
+    "fuzz",
+    "switching",
+    "to-5"
+  ],
+  "description": "One of the most widely used general-purpose germanium PNP transistors of the early 1960s, still in production today by Central Semiconductor as a direct legacy part. Historically significant as the transistor in the Maestro Fuzz-Tone FZ-1 (1962), the first mass-produced guitar fuzz pedal. Low absolute ratings (25V, 100mA, 150mW) by modern standards; this is a small-signal/low-power switching part, not a power device.",
+  "packages": {
+    "TO-5": {
+      "template": "custom",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter; lead nearest the case tab"
+        },
+        {
+          "pin": 2,
+          "name": "B",
+          "type": "passive",
+          "description": "base"
+        },
+        {
+          "pin": 3,
+          "name": "C",
+          "type": "passive",
+          "description": "collector"
+        }
+      ],
+      "notes": "Standard TO-5 metal can, bottom view. Small tab on the case rim near lead 1 (emitter) at roughly 45 degrees from the lead 1-3 centerline, the usual TO-5/TO-18 orientation key. Leads 1-2-3 (E-B-C) arranged in a triangle per Central Semiconductor's own mechanical outline drawing."
+    }
+  },
+  "specs": {
+    "vs_max_v": 25.0,
+    "iout_max_ma": 100.0,
+    "pd_max_mw": 150.0,
+    "hfe_min": 30,
+    "extra": {
+      "Vcbo": "25V",
+      "Vebo": "12V",
+      "Vpt (punch-through)": "24V",
+      "Ic cont": "100mA",
+      "Pd": "150mW @ Ta=25C",
+      "hFE": "30 min @ Vce=0.15V, Ic=12mA (24 min @ Vce=0.2V, Ic=24mA; 135 typ small-signal @ Vcb=6V, Ic=1mA, f=1kHz)",
+      "Vce(sat)": "0.15V max @ Ic=12mA, Ib=0.4mA (0.20V max @ Ic=24mA, Ib=1.0mA)",
+      "Vbe(sat)": "0.35V max @ Ic=12mA, Ib=0.4mA (0.40V max @ Ic=24mA, Ib=1.0mA)",
+      "fhfb (cutoff freq)": "4.0MHz min @ Vcb=6V, Ie=1.0mA",
+      "Cob": "20pF max @ Vcb=6V, Ie=0, f=1.0MHz",
+      "ICBO": "5.0uA max @ Vcb=12V (90uA max @ Ta=80C)",
+      "IEBO": "2.5uA max @ Veb=2.5V",
+      "TJ": "-65 to +85C",
+      "Tstg": "-65 to +100C"
+    }
+  },
+  "typical_application": "Low-frequency switching and general-purpose audio amplification. Historically the transistor in the Maestro Fuzz-Tone FZ-1; also widely used across early-1960s consumer electronics as a jellybean germanium switch/amplifier.",
+  "gotchas": [
+    "TO-5 orientation matters: verify the case tab against pin 1 (emitter) before wiring, do not assume a silicon TO-92's E-B-C order carries over",
+    "germanium: leakage current (ICBO/IEBO) is far more temperature-sensitive than silicon; stay well below rated Pd and avoid letting it run hot",
+    "absolute ratings are low by modern standards (25V/100mA/150mW); this is a small-signal switch, not a power transistor",
+    "2N404A is a tighter-spec version of the same part; pinout and package are identical"
+  ],
+  "related": [
+    "ac128",
+    "nkt275",
+    "2n2222"
+  ],
+  "source": "claude",
+  "verified": true,
+  "datasheet_url": "https://my.centralsemi.com/datasheets/2n404.PDF"
+}

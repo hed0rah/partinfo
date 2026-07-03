@@ -1,0 +1,150 @@
+{
+  "id": "attiny84",
+  "name": "ATtiny84",
+  "aliases": [
+    "ATtiny24/44/84",
+    "tiny84"
+  ],
+  "full_name": "Atmel/Microchip ATtiny84 8-bit AVR Microcontroller",
+  "manufacturers": [
+    "Microchip",
+    "Atmel"
+  ],
+  "category": "mcu",
+  "subcategory": "8-bit AVR MCU",
+  "tags": [
+    "avr",
+    "8-bit",
+    "microcontroller",
+    "attiny",
+    "dip-14",
+    "adc",
+    "pwm",
+    "isp"
+  ],
+  "description": "14-pin 8-bit AVR microcontroller with 8 KB flash, 512 B SRAM and 512 B EEPROM, offering 12 GPIO in a breadboard-friendly DIP-14. Compared to the ATtiny85 it trades the high-speed PLL for more I/O and an 8-channel 10-bit ADC, plus a USI for SPI/I2C. Used when a project needs more pins than a tiny85 but should stay small, cheap and Arduino-programmable. Standout trait: generous I/O and ADC count in a sub-$2 14-pin DIP.",
+  "packages": {
+    "PDIP-14": {
+      "template": "dip",
+      "pin_count": 14,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "VCC",
+          "type": "power",
+          "description": "supply voltage"
+        },
+        {
+          "pin": 2,
+          "name": "PB0",
+          "type": "bidirectional",
+          "description": "GPIO PB0; XTAL1/CLKI crystal/clock input, PCINT8"
+        },
+        {
+          "pin": 3,
+          "name": "PB1",
+          "type": "bidirectional",
+          "description": "GPIO PB1; XTAL2 crystal output, PCINT9"
+        },
+        {
+          "pin": 4,
+          "name": "PB3",
+          "type": "bidirectional",
+          "description": "GPIO PB3; RESET (active-low), dW (debugWIRE), PCINT11"
+        },
+        {
+          "pin": 5,
+          "name": "PB2",
+          "type": "bidirectional",
+          "description": "GPIO PB2; INT0, OC0A, CKOUT, PCINT10"
+        },
+        {
+          "pin": 6,
+          "name": "PA7",
+          "type": "bidirectional",
+          "description": "GPIO PA7; ADC7, OC0B, ICP1, PCINT7"
+        },
+        {
+          "pin": 7,
+          "name": "PA6",
+          "type": "bidirectional",
+          "description": "GPIO PA6; ADC6, MOSI/DI, SDA (USI), OC1A, PCINT6"
+        },
+        {
+          "pin": 8,
+          "name": "PA5",
+          "type": "bidirectional",
+          "description": "GPIO PA5; ADC5, MISO/DO, OC1B, PCINT5"
+        },
+        {
+          "pin": 9,
+          "name": "PA4",
+          "type": "bidirectional",
+          "description": "GPIO PA4; ADC4, USCK/SCK, SCL (USI), T1, PCINT4"
+        },
+        {
+          "pin": 10,
+          "name": "PA3",
+          "type": "bidirectional",
+          "description": "GPIO PA3; ADC3, T0, PCINT3"
+        },
+        {
+          "pin": 11,
+          "name": "PA2",
+          "type": "bidirectional",
+          "description": "GPIO PA2; ADC2, AIN1, PCINT2"
+        },
+        {
+          "pin": 12,
+          "name": "PA1",
+          "type": "bidirectional",
+          "description": "GPIO PA1; ADC1, AIN0, PCINT1"
+        },
+        {
+          "pin": 13,
+          "name": "PA0",
+          "type": "bidirectional",
+          "description": "GPIO PA0; ADC0, AREF, PCINT0"
+        },
+        {
+          "pin": 14,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.7,
+    "vs_max_v": 5.5,
+    "extra": {
+      "core": "8-bit AVR RISC",
+      "flash": "8 KB",
+      "ram": "512 B SRAM",
+      "eeprom": "512 B",
+      "vcc_range": "2.7-5.5 V (ATtiny84V: 1.8-5.5 V)",
+      "max_clock": "20 MHz",
+      "adc": "10-bit, 8 channels (ADC0-ADC7)",
+      "timers": "one 8-bit and one 16-bit timer/counter",
+      "gpio": "12 (PA0-PA7, PB0-PB3)",
+      "interfaces": "USI (SPI/I2C), debugWIRE"
+    }
+  },
+  "typical_application": "Mid-pin-count sensor nodes and controllers needing several ADC inputs and PWM outputs in a small DIP-14 footprint.",
+  "gotchas": [
+    "PB3/pin 4 is the RESET pin; reclaiming it as GPIO disables ISP and needs a high-voltage programmer to undo",
+    "pin 1 is VCC and pin 14 is GND, the opposite end-arrangement from many DIP MCUs, so it is easy to wire backwards",
+    "no hardware UART; serial is via USI or software",
+    "ships with CKDIV8 fuse set, so the internal oscillator starts at 1 MHz until reconfigured",
+    "port pins split across PORTA (8) and PORTB (4); Arduino core pin numbers do not match physical pin order",
+    "plain (non-V) grade is not rated for full-speed operation below 2.7 V"
+  ],
+  "related": [
+    "attiny85",
+    "atmega328p"
+  ],
+  "datasheet_url": "https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7701_Automotive-Microcontrollers-ATtiny24-44-84_Datasheet.pdf",
+  "source": "human",
+  "verified": true
+}

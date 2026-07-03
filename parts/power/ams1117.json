@@ -1,0 +1,91 @@
+{
+  "id": "ams1117",
+  "name": "AMS1117",
+  "aliases": [
+    "AMS1117-3.3",
+    "AMS1117-5.0",
+    "AMS1117-ADJ",
+    "LM1117 (similar)"
+  ],
+  "full_name": "AMS1117 1A low-dropout linear regulator (fixed and adjustable)",
+  "manufacturers": [
+    "Advanced Monolithic Systems"
+  ],
+  "category": "power",
+  "subcategory": "ldo regulator",
+  "tags": [
+    "regulator",
+    "linear",
+    "ldo",
+    "power",
+    "sot223",
+    "3.3v",
+    "breakout",
+    "classic"
+  ],
+  "description": "Ubiquitous 1A LDO in SOT-223, found on countless 3.3V breakout boards. Fixed grades (1.8/2.5/3.3/5.0V etc.) and an adjustable -ADJ grade set by a divider against the 1.25V reference. Dropout ~1.1-1.3V at 1A, so it cannot make 3.3V from 3.3V.",
+  "packages": {
+    "SOT-223": {
+      "template": "custom",
+      "pin_count": 4,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "GND/ADJ",
+          "type": "ground",
+          "description": "ground on fixed grades; ADJUST (feedback) on the -ADJ adjustable grade"
+        },
+        {
+          "pin": 2,
+          "name": "VOUT",
+          "type": "output",
+          "description": "regulated output; also tied to the large metal tab"
+        },
+        {
+          "pin": 3,
+          "name": "VIN",
+          "type": "input",
+          "description": "unregulated input"
+        },
+        {
+          "pin": 4,
+          "name": "TAB",
+          "type": "output",
+          "description": "metal tab, electrically VOUT (tied to pin 2)"
+        }
+      ],
+      "ascii": "    \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n    \u2502   TAB    \u2502  (VOUT, = pin 2)\n    \u2514\u2500\u252c\u2500\u2500\u252c\u2500\u2500\u2500\u252c\u2500\u2518\n      \u2502  \u2502   \u2502\n    GND VO  VI\n     1   2   3"
+    }
+  },
+  "specs": {
+    "vs_max_v": 15.0,
+    "iout_max_ma": 1000.0,
+    "extra": {
+      "Vout": "1.8/2.5/3.3/5.0V fixed or 1.25-12V adjustable",
+      "Iout_max": "1A",
+      "Vref": "1.25V (adjustable grade)",
+      "dropout": "~1.1-1.3V at 1A",
+      "Vin_max": "15V (abs max)",
+      "Iq": "5mA typ (11mA max)",
+      "Rth(JC)": "15 C/W (junction-to-tab, all packages)",
+      "Rth(JA)": "90 C/W typ (SOT-223; varies 46-90 with copper area)"
+    },
+    "rth_jc_cw": 15.0,
+    "rth_ja_cw": 90.0
+  },
+  "typical_application": "On-board 3.3V rail for ESP/MCU breakouts from a 5V source. Adjustable grade: Vout = 1.25 * (1 + R2/R1) with R1 from OUT to ADJ.",
+  "gotchas": [
+    "dropout is ~1.1-1.3V, much higher than a true modern LDO; you cannot regulate 3.3V from a 3.3V input",
+    "the tab is VOUT (tied to pin 2), not ground - matters for heatsinking and board layout",
+    "needs at least ~22uF on the output (electrolytic/tantalum/ceramic) for stability; many clones are marginal",
+    "pin 1 is GND on fixed grades but ADJUST on the -ADJ grade; check the suffix before wiring"
+  ],
+  "related": [
+    "lm317",
+    "lm7805",
+    "78l05"
+  ],
+  "datasheet_url": "http://www.advanced-monolithic.com/pdf/ds1117.pdf",
+  "source": "human",
+  "verified": true
+}

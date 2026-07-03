@@ -1,0 +1,151 @@
+{
+  "id": "l298n",
+  "name": "L298N",
+  "aliases": [
+    "L298",
+    "L298HN",
+    "L298P"
+  ],
+  "full_name": "Dual Full-Bridge Driver",
+  "manufacturers": [
+    "STMicroelectronics",
+    "onsemi"
+  ],
+  "category": "driver",
+  "subcategory": "h-bridge motor driver",
+  "tags": [
+    "h-bridge",
+    "motor-driver",
+    "full-bridge",
+    "stepper",
+    "dc-motor",
+    "current-sense"
+  ],
+  "description": "High-voltage, high-current dual full-bridge driver that accepts standard TTL logic and drives inductive loads such as relays, solenoids, DC and stepping motors. Operates from a motor supply VS up to 46V with total DC current up to 4A, and uses a separate lower-voltage logic supply VSS so the logic works at 5V. Two enable inputs gate each bridge independently, and the lower transistor emitters of each bridge are brought out (SENSE A/B) for an external current-sense resistor. The classic high-power H-bridge, famous as the red L298N motor module.",
+  "packages": {
+    "Multiwatt-15": {
+      "template": "sip",
+      "pin_count": 15,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "SENSE A",
+          "type": "analog",
+          "description": "current sensing A; connect an external sense resistor between this pin and ground (emitters of bridge A lower transistors)"
+        },
+        {
+          "pin": 2,
+          "name": "OUT1",
+          "type": "output",
+          "description": "bridge A output 1"
+        },
+        {
+          "pin": 3,
+          "name": "OUT2",
+          "type": "output",
+          "description": "bridge A output 2"
+        },
+        {
+          "pin": 4,
+          "name": "VS",
+          "type": "power",
+          "description": "supply voltage for the power output stages (motor supply, up to 46V operating)"
+        },
+        {
+          "pin": 5,
+          "name": "IN1",
+          "type": "input",
+          "description": "bridge A input 1 (TTL compatible)"
+        },
+        {
+          "pin": 6,
+          "name": "ENABLE A",
+          "type": "input",
+          "description": "enable input for bridge A (TTL; low disables bridge A)"
+        },
+        {
+          "pin": 7,
+          "name": "IN2",
+          "type": "input",
+          "description": "bridge A input 2 (TTL compatible)"
+        },
+        {
+          "pin": 8,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 9,
+          "name": "VSS",
+          "type": "power",
+          "description": "logic supply voltage (typically 5V); requires a 100nF decoupling capacitor"
+        },
+        {
+          "pin": 10,
+          "name": "IN3",
+          "type": "input",
+          "description": "bridge B input 3 (TTL compatible)"
+        },
+        {
+          "pin": 11,
+          "name": "ENABLE B",
+          "type": "input",
+          "description": "enable input for bridge B (TTL; low disables bridge B)"
+        },
+        {
+          "pin": 12,
+          "name": "IN4",
+          "type": "input",
+          "description": "bridge B input 4 (TTL compatible)"
+        },
+        {
+          "pin": 13,
+          "name": "OUT3",
+          "type": "output",
+          "description": "bridge B output 3"
+        },
+        {
+          "pin": 14,
+          "name": "OUT4",
+          "type": "output",
+          "description": "bridge B output 4"
+        },
+        {
+          "pin": 15,
+          "name": "SENSE B",
+          "type": "analog",
+          "description": "current sensing B; connect an external sense resistor between this pin and ground (emitters of bridge B lower transistors)"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_max_v": 46.0,
+    "extra": {
+      "output_type": "dual full-bridge (BJT)",
+      "max_supply_v": "46V operating (50V abs max)",
+      "total_dc_current": "4A",
+      "logic_supply": "VSS, 5V typical (7V abs max)",
+      "clamp_diodes": "none internal - external flyback diodes required",
+      "current_sense": "SENSE A / SENSE B external resistor pins"
+    }
+  },
+  "typical_application": "Driving a bipolar stepper or two DC motors at higher current/voltage than a logic-IC bridge can handle, with 8 external flyback diodes.",
+  "gotchas": [
+    "needs 8 EXTERNAL flyback/freewheeling diodes (fast recovery) - the L298 has NO internal clamp diodes, unlike the L293D",
+    "two separate supplies: VS (pin 4, motor power up to 46V) and VSS (pin 9, ~5V logic)",
+    "SENSE A/B pins are the bridge low-side emitters; tie to ground (directly or via a small sense resistor) - do not leave floating",
+    "the common red L298N module adds onboard flyback diodes and a 5V regulator - remove the 5V-enable jumper when VS > 12V or it can damage the regulator",
+    "high BJT saturation voltage means significant heat - a heat sink is required at higher currents",
+    "Multiwatt-15 is a single staggered inline row, not a DIP"
+  ],
+  "related": [
+    "l293d",
+    "irf540",
+    "irlz44n"
+  ],
+  "datasheet_url": "https://www.st.com/resource/en/datasheet/l298.pdf",
+  "source": "human",
+  "verified": true
+}

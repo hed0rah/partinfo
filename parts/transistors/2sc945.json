@@ -1,0 +1,85 @@
+{
+  "id": "2sc945",
+  "name": "2SC945",
+  "aliases": [
+    "C945",
+    "2SC945-P",
+    "2SC945-Q"
+  ],
+  "full_name": "NPN AF Amplifier / Low-Speed Switching Transistor",
+  "manufacturers": [
+    "NEC",
+    "UTC (Unisonic)"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "npn small-signal",
+  "tags": [
+    "transistor",
+    "npn",
+    "bjt",
+    "small-signal",
+    "audio",
+    "switching",
+    "japanese"
+  ],
+  "description": "NEC NPN general-purpose AF amplifier and low-speed switch, one of the most common Japanese small-signal NPN parts (marked 'C945'). TO-92 pinout is E-C-B (Japanese convention): collector is the center pin. Complement to the 2SA733.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter (leftmost lead, flat face toward you)"
+        },
+        {
+          "pin": 2,
+          "name": "C",
+          "type": "passive",
+          "description": "collector (center)"
+        },
+        {
+          "pin": 3,
+          "name": "B",
+          "type": "passive",
+          "description": "base (rightmost lead)"
+        }
+      ],
+      "notes": "flat face toward you, leads down: E-C-B left to right. Collector is the CENTER pin. Verified from NEC and UTC datasheets (both 1=E, 2=C, 3=B)."
+    }
+  },
+  "specs": {
+    "vs_max_v": 50.0,
+    "iout_max_ma": 100.0,
+    "pd_max_mw": 250.0,
+    "hfe_min": 90,
+    "hfe_max": 600,
+    "freq_max_hz": 250000000.0,
+    "extra": {
+      "Vceo": "50V",
+      "Vcbo": "60V",
+      "Vebo": "5V",
+      "complement (pnp)": "2SA733",
+      "hFE ranks": "R 90-180, Q 135-270, P 200-400, K 300-600",
+      "Vce(sat)": "0.15V (typ), 0.3V (max) @ Ic=100mA, Ib=10mA",
+      "Vbe(on)": "0.62V (typ), 0.65V (max) @ Ic=1mA, Vce=6V"
+    }
+  },
+  "typical_application": "AF amplifier driver stage and low-speed switching; a default Japanese general-purpose NPN.",
+  "gotchas": [
+    "pinout is E-C-B with COLLECTOR in the CENTER, not base",
+    "complement is 2SA733, NOT 2SA1015 (a common mix-up)",
+    "NEC rates Pd 250mW and Ic 100mA; some second-source 'C945' parts advertise up to 150mA, so confirm against the actual maker",
+    "marked 'C945' (the '2S' prefix is dropped) with the rank letter and date code"
+  ],
+  "related": [
+    "2sa733",
+    "2sc1815",
+    "2n3904"
+  ],
+  "datasheet_url": "https://www.ersinelektronik.com/class/INNOVAEditor/assets/Datasheets/2SC945.pdf",
+  "source": "human",
+  "verified": true
+}

@@ -1,0 +1,113 @@
+{
+  "id": "lm741",
+  "name": "LM741",
+  "aliases": [
+    "741",
+    "uA741",
+    "LM741CN"
+  ],
+  "full_name": "Single General-Purpose Operational Amplifier",
+  "manufacturers": [
+    "Texas Instruments",
+    "STMicroelectronics",
+    "onsemi"
+  ],
+  "category": "opamp",
+  "subcategory": "single bipolar",
+  "tags": [
+    "opamp",
+    "single",
+    "bipolar",
+    "vintage",
+    "classic",
+    "teaching"
+  ],
+  "description": "The classic textbook op-amp. Internally compensated single bipolar amplifier. Obsolete for real designs (slow, noisy, needs dual supplies) but iconic in teaching and vintage gear. Offset can be trimmed via pins 1 and 5.",
+  "packages": {
+    "DIP-8": {
+      "template": "dip",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "OFFSET NULL",
+          "type": "input",
+          "description": "offset null trim"
+        },
+        {
+          "pin": 2,
+          "name": "IN-",
+          "type": "input",
+          "description": "inverting input"
+        },
+        {
+          "pin": 3,
+          "name": "IN+",
+          "type": "input",
+          "description": "noninverting input"
+        },
+        {
+          "pin": 4,
+          "name": "V-",
+          "type": "power",
+          "description": "negative supply"
+        },
+        {
+          "pin": 5,
+          "name": "OFFSET NULL",
+          "type": "input",
+          "description": "offset null trim"
+        },
+        {
+          "pin": 6,
+          "name": "OUT",
+          "type": "output",
+          "description": "output"
+        },
+        {
+          "pin": 7,
+          "name": "V+",
+          "type": "power",
+          "description": "positive supply"
+        },
+        {
+          "pin": 8,
+          "name": "NC",
+          "type": "nc",
+          "description": "no connect, leave floating"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 10.0,
+    "vs_max_v": 36.0,
+    "iq_ma": 1.7,
+    "bw_hz": 1000000.0,
+    "extra": {
+      "slew rate": "0.5 V/us",
+      "input noise": "high by modern standards",
+      "supply": "+-5V to +-18V",
+      "offset null": "10k pot between pins 1 and 5, wiper to V-",
+      "Vos": "2mV typ (6mV max) @ Ta=25C, LM741C grade (7.5mV max full range)",
+      "Ibias": "80nA typ (500nA max) @ Ta=25C, LM741C grade (0.8uA max full range)",
+      "Iout": "25mA typ short-circuit current @ Ta=25C",
+      "CMRR": "70dB min (90dB typ), LM741C grade"
+    }
+  },
+  "typical_application": "Teaching basic op-amp circuits (inverting/non-inverting amp, comparator). For real audio or precision work use a TL07x or NE5532 instead.",
+  "gotchas": [
+    "needs a dual (split) supply for normal use; not designed for single-supply ground-referenced signals",
+    "slow 0.5 V/us slew rate badly distorts audio above a few kHz at any real amplitude",
+    "not rail-to-rail in or out; large headroom loss",
+    "pin 8 is NC, do not connect"
+  ],
+  "related": [
+    "tl071",
+    "ne5532",
+    "lm358"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/lm741.pdf"
+}

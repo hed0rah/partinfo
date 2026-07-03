@@ -1,0 +1,142 @@
+{
+  "id": "cd4077",
+  "name": "CD4077",
+  "aliases": [
+    "CD4077B",
+    "MC14077",
+    "4077"
+  ],
+  "full_name": "Quad 2-Input XNOR Gate (CMOS)",
+  "manufacturers": [
+    "Texas Instruments",
+    "onsemi",
+    "STMicroelectronics"
+  ],
+  "category": "logic",
+  "subcategory": "xnor gate",
+  "tags": [
+    "logic",
+    "cmos",
+    "xnor",
+    "exclusive-nor",
+    "4000-series",
+    "classic"
+  ],
+  "description": "Four 2-input exclusive-NOR gates in the standard 4000-series quad gate pinout. Y = A XNOR B (output HIGH when inputs are equal). Same pin arrangement as the CD4070 (XOR), CD4071 (OR) and CD4081 (AND).",
+  "packages": {
+    "DIP-14": {
+      "template": "dip",
+      "pin_count": 14,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "1A",
+          "type": "input",
+          "description": "gate 1 input A"
+        },
+        {
+          "pin": 2,
+          "name": "1B",
+          "type": "input",
+          "description": "gate 1 input B"
+        },
+        {
+          "pin": 3,
+          "name": "1Y",
+          "type": "output",
+          "description": "gate 1 output (A XNOR B)"
+        },
+        {
+          "pin": 4,
+          "name": "2Y",
+          "type": "output",
+          "description": "gate 2 output (A XNOR B)"
+        },
+        {
+          "pin": 5,
+          "name": "2A",
+          "type": "input",
+          "description": "gate 2 input A"
+        },
+        {
+          "pin": 6,
+          "name": "2B",
+          "type": "input",
+          "description": "gate 2 input B"
+        },
+        {
+          "pin": 7,
+          "name": "VSS",
+          "type": "ground",
+          "description": "ground (0V)"
+        },
+        {
+          "pin": 8,
+          "name": "3A",
+          "type": "input",
+          "description": "gate 3 input A"
+        },
+        {
+          "pin": 9,
+          "name": "3B",
+          "type": "input",
+          "description": "gate 3 input B"
+        },
+        {
+          "pin": 10,
+          "name": "3Y",
+          "type": "output",
+          "description": "gate 3 output (A XNOR B)"
+        },
+        {
+          "pin": 11,
+          "name": "4Y",
+          "type": "output",
+          "description": "gate 4 output (A XNOR B)"
+        },
+        {
+          "pin": 12,
+          "name": "4A",
+          "type": "input",
+          "description": "gate 4 input A"
+        },
+        {
+          "pin": 13,
+          "name": "4B",
+          "type": "input",
+          "description": "gate 4 input B"
+        },
+        {
+          "pin": 14,
+          "name": "VDD",
+          "type": "power",
+          "description": "supply, 3V to 18V"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.0,
+    "vs_max_v": 18.0,
+    "extra": {
+      "function": "Y = A XNOR B (HIGH when A = B)",
+      "logic family": "CD40xx CMOS (4000B)",
+      "drive": "low"
+    }
+  },
+  "typical_application": "Equality/comparison logic and parity circuits. Tie unused inputs to a rail.",
+  "gotchas": [
+    "XNOR is the complement of XOR (CD4070); output is HIGH when the two inputs match",
+    "weak CMOS drive; buffer heavier loads",
+    "do not float unused inputs",
+    "no Schmitt hysteresis; clean slow edges with a CD40106/CD4093"
+  ],
+  "related": [
+    "cd4070",
+    "cd4071",
+    "cd4081",
+    "cd4093"
+  ],
+  "source": "human",
+  "verified": true
+}

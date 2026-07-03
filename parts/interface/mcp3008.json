@@ -1,0 +1,152 @@
+{
+  "id": "mcp3008",
+  "name": "MCP3008",
+  "aliases": [
+    "MCP3008-I/P",
+    "MCP3004/3008"
+  ],
+  "full_name": "Microchip MCP3008 2.7V 8-Channel 10-Bit A/D Converter with SPI Serial Interface",
+  "manufacturers": [
+    "Microchip Technology"
+  ],
+  "category": "interface",
+  "subcategory": "SPI ADC",
+  "tags": [
+    "adc",
+    "spi",
+    "10-bit",
+    "8-channel",
+    "analog"
+  ],
+  "description": "The MCP3008 is a 10-bit successive-approximation ADC with eight multiplexed analog input channels and an SPI interface. Channels can be configured as eight single-ended inputs or four pseudo-differential pairs. It achieves up to 200 ksps at 5 V (75 ksps at 2.7 V) and uses an external reference voltage on VREF to set the full-scale range. Its simplicity, low cost, and clean SPI protocol made it the classic way to give a Raspberry Pi or other digital-only board analog inputs. The 16-pin part comes in PDIP, SOIC, and TSSOP.",
+  "packages": {
+    "PDIP-16": {
+      "template": "dip",
+      "pin_count": 16,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "CH0",
+          "type": "analog",
+          "description": "Analog input channel 0"
+        },
+        {
+          "pin": 2,
+          "name": "CH1",
+          "type": "analog",
+          "description": "Analog input channel 1"
+        },
+        {
+          "pin": 3,
+          "name": "CH2",
+          "type": "analog",
+          "description": "Analog input channel 2"
+        },
+        {
+          "pin": 4,
+          "name": "CH3",
+          "type": "analog",
+          "description": "Analog input channel 3"
+        },
+        {
+          "pin": 5,
+          "name": "CH4",
+          "type": "analog",
+          "description": "Analog input channel 4"
+        },
+        {
+          "pin": 6,
+          "name": "CH5",
+          "type": "analog",
+          "description": "Analog input channel 5"
+        },
+        {
+          "pin": 7,
+          "name": "CH6",
+          "type": "analog",
+          "description": "Analog input channel 6"
+        },
+        {
+          "pin": 8,
+          "name": "CH7",
+          "type": "analog",
+          "description": "Analog input channel 7"
+        },
+        {
+          "pin": 9,
+          "name": "DGND",
+          "type": "ground",
+          "description": "Digital ground"
+        },
+        {
+          "pin": 10,
+          "name": "CS/SHDN",
+          "type": "input",
+          "description": "Chip select / shutdown input; pull low to start communication, high between conversions"
+        },
+        {
+          "pin": 11,
+          "name": "DIN",
+          "type": "input",
+          "description": "SPI serial data in; loads channel configuration"
+        },
+        {
+          "pin": 12,
+          "name": "DOUT",
+          "type": "output",
+          "description": "SPI serial data out; conversion result, changes on falling SCLK edge"
+        },
+        {
+          "pin": 13,
+          "name": "SCLK",
+          "type": "clock",
+          "description": "SPI serial clock; initiates conversion and clocks out data"
+        },
+        {
+          "pin": 14,
+          "name": "AGND",
+          "type": "ground",
+          "description": "Analog ground"
+        },
+        {
+          "pin": 15,
+          "name": "VREF",
+          "type": "input",
+          "description": "Reference voltage input; sets full-scale range"
+        },
+        {
+          "pin": 16,
+          "name": "VDD",
+          "type": "power",
+          "description": "Power supply, +2.7V to 5.5V"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.7,
+    "vs_max_v": 5.5,
+    "extra": {
+      "resolution": "10-bit",
+      "channels": "8 single-ended or 4 pseudo-differential",
+      "sample_rate": "200 ksps at 5V, 75 ksps at 2.7V",
+      "interface": "SPI (modes 0,0 and 1,1)",
+      "reference": "external VREF pin"
+    }
+  },
+  "typical_application": "Adding 8 channels of analog input to a digital-only host such as a Raspberry Pi via SPI.",
+  "gotchas": [
+    "VREF is a separate external pin and sets full-scale; resolution per step is VREF/1024, so a noisy or low VREF directly degrades accuracy",
+    "VREF can be set independently of VDD but must not exceed VDD",
+    "CS/SHDN must be cycled high between conversions; leaving it low after a read can stall the next conversion",
+    "Has separate AGND (pin 14) and DGND (pin 9); tie them together at a single point near the device",
+    "The 14-pin MCP3004 is the 4-channel sibling with a different pinout (pins 5,6 are NC); do not interchange footprints"
+  ],
+  "related": [
+    "ads1115",
+    "mcp4725"
+  ],
+  "datasheet_url": "https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/ProductDocuments/DataSheets/MCP3004-MCP3008-Data-Sheet-DS20001295.pdf",
+  "source": "human",
+  "verified": true
+}

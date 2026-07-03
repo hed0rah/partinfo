@@ -1,0 +1,74 @@
+{
+  "id": "1n5408",
+  "name": "1N5408",
+  "aliases": [
+    "1N5408-E3"
+  ],
+  "full_name": "1000V 3A general-purpose silicon rectifier",
+  "manufacturers": [
+    "Vishay",
+    "onsemi",
+    "Diodes Inc"
+  ],
+  "category": "diode",
+  "subcategory": "rectifier diode",
+  "tags": [
+    "diode",
+    "rectifier",
+    "silicon",
+    "axial",
+    "high-voltage",
+    "do-201ad"
+  ],
+  "description": "Top member of the 1N540x 3A rectifier family, 1000V / 3A in the larger DO-201AD axial body. For higher-power linear supplies, bridges, inverters, and freewheeling where the 1N400x's 1A is too low.",
+  "packages": {
+    "DO-201AD": {
+      "template": "custom",
+      "pin_count": 2,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "A",
+          "type": "passive",
+          "description": "anode"
+        },
+        {
+          "pin": 2,
+          "name": "K",
+          "type": "passive",
+          "description": "cathode (band/stripe end)"
+        }
+      ],
+      "ascii": "  A \u2500\u2500\u25b7|\u2500\u2500 K\n  band/stripe end = K (cathode)"
+    }
+  },
+  "specs": {
+    "vs_max_v": 1000.0,
+    "iout_max_ma": 3000.0,
+    "extra": {
+      "Vrrm": "1000V",
+      "If_av": "3.0A",
+      "Vf": "1.2V max at 3.0A",
+      "Ifsm": "200A (8.3ms)",
+      "Tj_max": "150C",
+      "trr": "not specified (slow PN junction)",
+      "Ir": "5.0uA max @ Ta=25C (500uA max @ Ta=150C)",
+      "Rth(JA)": "20 C/W typ"
+    },
+    "rth_ja_cw": 20.0
+  },
+  "typical_application": "General-purpose high-voltage rectification in supplies, inverters, converters, and as a freewheel diode.",
+  "gotchas": [
+    "band end is the CATHODE",
+    "larger DO-201AD body with heavier leads; needs more board space than a 1N400x",
+    "slow recovery, not a switching diode (no trr spec)",
+    "1N5400 through 1N5408 share the body and differ only in reverse voltage (50V to 1000V)"
+  ],
+  "related": [
+    "1n4001",
+    "1n4004"
+  ],
+  "datasheet_url": "https://www.vishay.com/docs/88516/1n5400.pdf",
+  "source": "human",
+  "verified": true
+}

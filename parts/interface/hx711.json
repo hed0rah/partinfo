@@ -1,0 +1,153 @@
+{
+  "id": "hx711",
+  "name": "HX711",
+  "aliases": [
+    "HX711 24-bit ADC"
+  ],
+  "full_name": "Avia Semiconductor HX711 24-Bit Analog-to-Digital Converter for Weigh Scales",
+  "manufacturers": [
+    "Avia Semiconductor"
+  ],
+  "category": "interface",
+  "subcategory": "Load-cell ADC",
+  "tags": [
+    "adc",
+    "24-bit",
+    "load-cell",
+    "strain-gauge",
+    "analog"
+  ],
+  "description": "The HX711 is a 24-bit delta-sigma ADC purpose-built for weigh scales and load-cell / strain-gauge bridges. It integrates a low-noise programmable-gain amplifier (gain 128 or 64 on channel A, fixed 32 on channel B) and an on-chip regulator that can excite the bridge, so it needs almost no external components. Communication is a simple two-wire clock-and-data scheme (PD_SCK and DOUT) rather than standard SPI or I2C, with no register programming required; channel and gain are selected by the number of clock pulses applied. Output data rate is 10 Hz or 80 Hz, chosen by the RATE pin. Its very low cost and ratiometric design made it the default front-end for hobby and commercial scales.",
+  "packages": {
+    "SOP-16": {
+      "template": "soic",
+      "pin_count": 16,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "VSUP",
+          "type": "power",
+          "description": "Regulator supply, 2.7 to 5.5V"
+        },
+        {
+          "pin": 2,
+          "name": "BASE",
+          "type": "output",
+          "description": "Regulator control output (analog); leave NC when regulator not used"
+        },
+        {
+          "pin": 3,
+          "name": "AVDD",
+          "type": "power",
+          "description": "Analog supply, 2.6 to 5.5V"
+        },
+        {
+          "pin": 4,
+          "name": "VFB",
+          "type": "input",
+          "description": "Regulator control input (analog); connect to AGND when regulator not used"
+        },
+        {
+          "pin": 5,
+          "name": "AGND",
+          "type": "ground",
+          "description": "Analog ground"
+        },
+        {
+          "pin": 6,
+          "name": "VBG",
+          "type": "output",
+          "description": "Reference bypass output (analog)"
+        },
+        {
+          "pin": 7,
+          "name": "INA-",
+          "type": "analog",
+          "description": "Channel A negative input"
+        },
+        {
+          "pin": 8,
+          "name": "INA+",
+          "type": "analog",
+          "description": "Channel A positive input"
+        },
+        {
+          "pin": 9,
+          "name": "INB-",
+          "type": "analog",
+          "description": "Channel B negative input"
+        },
+        {
+          "pin": 10,
+          "name": "INB+",
+          "type": "analog",
+          "description": "Channel B positive input"
+        },
+        {
+          "pin": 11,
+          "name": "PD_SCK",
+          "type": "input",
+          "description": "Power-down control (active high) and serial clock input"
+        },
+        {
+          "pin": 12,
+          "name": "DOUT",
+          "type": "output",
+          "description": "Serial data output"
+        },
+        {
+          "pin": 13,
+          "name": "XO",
+          "type": "bidirectional",
+          "description": "Crystal I/O; leave NC when not used"
+        },
+        {
+          "pin": 14,
+          "name": "XI",
+          "type": "input",
+          "description": "Crystal I/O or external clock input; tie to GND to use the on-chip oscillator"
+        },
+        {
+          "pin": 15,
+          "name": "RATE",
+          "type": "input",
+          "description": "Output data rate select; 0 = 10 Hz, 1 (DVDD) = 80 Hz"
+        },
+        {
+          "pin": 16,
+          "name": "DVDD",
+          "type": "power",
+          "description": "Digital supply, 2.6 to 5.5V"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.6,
+    "vs_max_v": 5.5,
+    "extra": {
+      "resolution": "24-bit",
+      "channels": "2 (A with gain 128/64, B fixed gain 32)",
+      "sample_rate": "10 Hz or 80 Hz (RATE pin)",
+      "interface": "two-wire serial (PD_SCK clock + DOUT data), not SPI/I2C",
+      "output_coding": "2's complement",
+      "gain_select": "by number of PD_SCK pulses (25=A/128, 26=B/32, 27=A/64)"
+    }
+  },
+  "typical_application": "Reading a load cell or strain-gauge bridge in a digital weighing scale.",
+  "gotchas": [
+    "Channel and gain are not register-programmed; they are set by how many extra PD_SCK pulses you send after the 24 data bits (25 pulses = A gain 128, 26 = B gain 32, 27 = A gain 64)",
+    "It is NOT SPI or I2C despite looking like a clocked serial part; DOUT going low signals data-ready and you must clock exactly the right number of pulses",
+    "Holding PD_SCK high for >60 us powers the chip down; the protocol reuses the clock pin for power control",
+    "Tie XI to ground to use the internal oscillator; otherwise the chip waits on an external clock/crystal and appears dead",
+    "If the on-chip regulator is unused, connect VFB to AGND and leave BASE as NC; misconfiguring these analog pins gives unstable readings",
+    "Common breakout boards hardwire RATE to 10 Hz; to get 80 Hz you often must cut a trace or lift pin 15"
+  ],
+  "related": [
+    "ads1115",
+    "mcp3008"
+  ],
+  "datasheet_url": "https://cdn.sparkfun.com/datasheets/Sensors/ForceFlex/hx711_english.pdf",
+  "source": "human",
+  "verified": true
+}

@@ -1,0 +1,111 @@
+{
+  "id": "tda2822",
+  "name": "TDA2822M",
+  "aliases": [
+    "TDA2822"
+  ],
+  "full_name": "Dual Low-Voltage Audio Power Amplifier",
+  "manufacturers": [
+    "STMicroelectronics",
+    "SGS-Thomson"
+  ],
+  "category": "audio",
+  "subcategory": "power amplifier",
+  "tags": [
+    "audio",
+    "amplifier",
+    "power-amp",
+    "class-ab",
+    "stereo",
+    "bridge",
+    "low-voltage",
+    "battery",
+    "classic"
+  ],
+  "description": "Dual (stereo) low-voltage class-AB audio power amplifier in 8-lead Minidip (DIP-8), running from as little as 1.8V. Usable as a stereo pair or wired as a single bridge/BTL amp for more power into one speaker. A jellybean of portable cassette/radio designs.",
+  "packages": {
+    "DIP-8": {
+      "template": "dip",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "OUT1",
+          "type": "output",
+          "description": "amplifier 1 power output"
+        },
+        {
+          "pin": 2,
+          "name": "+Vs",
+          "type": "power",
+          "description": "positive supply rail (1.8-15V)"
+        },
+        {
+          "pin": 3,
+          "name": "OUT2",
+          "type": "output",
+          "description": "amplifier 2 power output"
+        },
+        {
+          "pin": 4,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground / negative supply (also the thermal reference pin)"
+        },
+        {
+          "pin": 5,
+          "name": "IN2-",
+          "type": "input",
+          "description": "amplifier 2 inverting (-) input"
+        },
+        {
+          "pin": 6,
+          "name": "IN2+",
+          "type": "input",
+          "description": "amplifier 2 non-inverting (+) input"
+        },
+        {
+          "pin": 7,
+          "name": "IN1-",
+          "type": "input",
+          "description": "amplifier 1 inverting (-) input"
+        },
+        {
+          "pin": 8,
+          "name": "IN1+",
+          "type": "input",
+          "description": "amplifier 1 non-inverting (+) input"
+        }
+      ],
+      "notes": "ST documents only the 8-lead Minidip (DIP-8). Note the inputs are split oddly: ch1 inputs on pins 7/8, ch2 inputs on pins 5/6, outputs on pins 1 (ch1) and 3 (ch2)."
+    }
+  },
+  "specs": {
+    "vs_min_v": 1.8,
+    "vs_max_v": 15.0,
+    "iq_ma": 6.0,
+    "extra": {
+      "supply": "1.8V to 15V (test at 6V)",
+      "Po stereo": "~380mW/ch into 8 ohm at 6V, d=10%; ~1W/ch into 8 ohm at 9V",
+      "Po bridge": "~1.35W into 8 ohm at 6V; ~2W into 8 ohm at 9V",
+      "Gv": "39dB typ",
+      "channel separation": "50dB typ",
+      "Io peak": "1A"
+    }
+  },
+  "typical_application": "Stereo amp for portable cassette players/radios: each channel non-inverting, input AC-coupled via 100uF, output via 470uF to a 4-8 ohm speaker with a 4.7R + 0.1uF Zobel network. Or wire as a single BTL/bridge amp (~1.35W into 8 ohm at 6V) for one louder speaker. Battery-friendly down to 1.8V.",
+  "gotchas": [
+    "ST documents only the DIP-8 Minidip; clone 'TDA2822D' SOP-8 SMD parts keep the pin order but are not ST silicon, so verify the vendor datasheet for SMD use",
+    "input pins are paired unintuitively (ch1 = 7/8, ch2 = 5/6, outputs = 1 and 3); easy to miswire",
+    "no negative rail: pin 2 is +Vs, pin 4 is GND",
+    "most cheap '2822' modules use clone silicon; the genuine ST part is obsolete"
+  ],
+  "related": [
+    "tda2030",
+    "lm386",
+    "njm2073"
+  ],
+  "datasheet_url": "https://www.st.com/resource/en/datasheet/cd00000134.pdf",
+  "source": "human",
+  "verified": true
+}

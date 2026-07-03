@@ -1,0 +1,88 @@
+{
+  "id": "lmv331",
+  "name": "LMV331",
+  "aliases": [
+    "GSV331"
+  ],
+  "full_name": "Single Micropower Comparator",
+  "manufacturers": [
+    "Texas Instruments",
+    "Gainsil"
+  ],
+  "category": "comparator",
+  "subcategory": "single comparator",
+  "tags": [
+    "comparator",
+    "micropower",
+    "single",
+    "push-pull",
+    "modern",
+    "sot-23-5"
+  ],
+  "description": "Single micropower comparator in SOT-23-5, part of the same TI family document as the LMV393 (dual) and LMV339 (quad). Push-pull output (unlike the open-collector LM311/LM393 classics), single-supply 2.7V-5.5V operation. Used on the Bus Pirate 5 (also GSV331, a Gainsil second-source with the same pinout).",
+  "packages": {
+    "SOT-23-5": {
+      "template": "sot23-5",
+      "pin_count": 5,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "IN+",
+          "type": "input",
+          "description": "noninverting comparator input"
+        },
+        {
+          "pin": 2,
+          "name": "GND",
+          "type": "ground",
+          "description": "negative supply / ground"
+        },
+        {
+          "pin": 3,
+          "name": "IN-",
+          "type": "input",
+          "description": "inverting comparator input"
+        },
+        {
+          "pin": 4,
+          "name": "OUT",
+          "type": "output",
+          "description": "push-pull output"
+        },
+        {
+          "pin": 5,
+          "name": "VCC+",
+          "type": "power",
+          "description": "positive supply"
+        }
+      ],
+      "notes": "Per TI's own pin table, DBV/DCK 5-pin SOT-23/SC-70 package. Same physical pin arrangement as the LMV321 op-amp in the same package family, but this is a comparator, not an op-amp: do not substitute one for the other in a linear feedback circuit."
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.7,
+    "vs_max_v": 5.5,
+    "extra": {
+      "Vs_abs_max": "5.5V (single supply)",
+      "output_type": "push-pull (no external pullup needed, unlike LM311/LM393)",
+      "Vos": "0.5mV typ (7mV max) @ Ta=25C, Vcc=2.7V",
+      "Ibias": "0.005uA typ (250nA max) @ Ta=25C (400nA max over -40 to 125C)",
+      "response_time": "1000ns typ @ 10mV overdrive (350ns typ @ 100mV overdrive), Vcc=2.7V, RL=5.1k",
+      "Iq": "26uA typ (100uA max) @ Vcc=2.7V"
+    }
+  },
+  "typical_application": "Low-power level detection and threshold sensing in space-constrained, battery-powered designs; push-pull output drives logic directly without a pullup resistor.",
+  "gotchas": [
+    "push-pull output, NOT open-collector; do not add a pullup resistor expecting LM311/LM393 behavior",
+    "single-supply part; GND (pin 2) is the negative rail, not necessarily earth ground",
+    "GSV331 (Gainsil) is a second-source with the same pinout and similar specs, not an identical die to TI's part; match numbers to whichever is actually on hand"
+  ],
+  "related": [
+    "lm311",
+    "lm393",
+    "lmv321"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/lmv331.pdf",
+  "source": "claude",
+  "verified": true
+}

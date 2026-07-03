@@ -1,0 +1,90 @@
+{
+  "id": "b772",
+  "name": "2SB772",
+  "aliases": [
+    "B772"
+  ],
+  "full_name": "PNP Medium-Power Transistor",
+  "manufacturers": [
+    "STMicroelectronics",
+    "NEC",
+    "UTC",
+    "various second-source"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "pnp medium-power",
+  "tags": [
+    "transistor",
+    "pnp",
+    "bjt",
+    "medium-power",
+    "audio",
+    "driver",
+    "japanese"
+  ],
+  "description": "PNP medium-power transistor (-3A) in TO-126 (ST calls it SOT-32), the standard complement to the NPN 2SD882 and pin-compatible with it. Collector is the center pin and the mounting tab. Marked 'B772'. Values are magnitudes; PNP rails are negative.",
+  "packages": {
+    "TO-126": {
+      "template": "to220",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "B",
+          "type": "passive",
+          "description": "base (rightmost lead in front view; ST numbers it pin 1)"
+        },
+        {
+          "pin": 2,
+          "name": "C",
+          "type": "passive",
+          "description": "collector (center, tied to the metal mounting tab)"
+        },
+        {
+          "pin": 3,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter (leftmost lead in front view; ST numbers it pin 3)"
+        }
+      ],
+      "ascii": "    \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n    \u2502 TAB = C\u2502\n    \u2514\u2500\u252c\u2500\u2500\u252c\u2500\u2500\u252c\u2518\n      \u2502  \u2502  \u2502\n      E  C  B\n     (3)(2)(1)",
+      "notes": "TO-126 (rendered with the TO-220 template). Printed face toward you, leads down: E-C-B left to right, collector in the CENTER tied to the tab. ST numbers the leads from the base end (pin 1 = B, pin 2 = C, pin 3 = E), so the datasheet pin numbers run right-to-left relative to this front view. Physically identical to the 2SD882 complement (both E-C-B)."
+    }
+  },
+  "specs": {
+    "vs_max_v": 30.0,
+    "iout_max_ma": 3000.0,
+    "pd_max_mw": 12500.0,
+    "hfe_min": 80,
+    "hfe_max": 300,
+    "freq_max_hz": 100000000.0,
+    "extra": {
+      "Vceo": "-30V",
+      "Vcbo": "-60V",
+      "Vebo": "-5V",
+      "Ic": "-3A (-6A peak)",
+      "Pd": "12.5W at Tc=25C",
+      "complement (npn)": "2SD882",
+      "polarity": "PNP (negative rails)",
+      "Vce(sat)": "-1.1V (max) @ Ic=-3A, Ib=-150mA (-0.4V max @ Ic=-1A, Ib=-50mA)",
+      "Vbe(on)": "-1.2V (max) @ Ic=-2A, Ib=-100mA (datasheet's VBE(sat))",
+      "Rth(JC)": "10 C/W"
+    },
+    "rth_jc_cw": 10.0
+  },
+  "typical_application": "Voltage regulation, relay/solenoid driver, ~3W audio output (PNP half with 2SD882), DC-DC converters and general medium-power switching; mount the tab to a heatsink near its rating.",
+  "gotchas": [
+    "TO-126 (not TO-92); collector is the CENTER pin and the mounting tab, at collector potential, so isolate from a grounded heatsink",
+    "ST numbers the leads pin1=B, pin2=C, pin3=E, which runs opposite to the front-view left-to-right order (E-C-B); identify the collector by the tab, not the printed number",
+    "PNP: all ratings are negative",
+    "ST names the package SOT-32, which is the same body as TO-126, not a small SMD package"
+  ],
+  "related": [
+    "2sd882",
+    "bd140",
+    "tip32"
+  ],
+  "datasheet_url": "https://www.st.com/resource/en/datasheet/cd00062866.pdf",
+  "source": "human",
+  "verified": true
+}

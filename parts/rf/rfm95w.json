@@ -1,0 +1,162 @@
+{
+  "id": "rfm95w",
+  "name": "RFM95W",
+  "aliases": [
+    "RFM95",
+    "RFM95W-868",
+    "RFM95W-915",
+    "HopeRF RFM95"
+  ],
+  "full_name": "HopeRF RFM95W LoRa / FSK Sub-GHz Transceiver Module (SX1276-based)",
+  "manufacturers": [
+    "HopeRF"
+  ],
+  "category": "rf",
+  "subcategory": "sub-GHz LoRa transceiver",
+  "tags": [
+    "rf",
+    "lora",
+    "sub-ghz",
+    "spi",
+    "868mhz",
+    "915mhz",
+    "sx1276",
+    "long-range",
+    "module"
+  ],
+  "description": "Sub-GHz long-range transceiver module built around the Semtech SX1276, controlled over SPI. It supports both LoRa spread-spectrum and (G)FSK/OOK modulation, giving long range at low data rates with high link budget. The RFM95W covers the high sub-GHz bands (around 868 MHz EU / 915 MHz US/AU); sibling RFM96/98 cover lower bands. It runs from 1.8 to 3.7 V (3.3 V typical) with NON-5 V-tolerant logic, and exposes several configurable DIO pins for interrupts such as RxDone/TxDone.",
+  "packages": {
+    "module (SMD pads)": {
+      "template": "module",
+      "pin_count": 16,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 2,
+          "name": "MISO",
+          "type": "output",
+          "description": "SPI data out (master-in-slave-out)"
+        },
+        {
+          "pin": 3,
+          "name": "MOSI",
+          "type": "input",
+          "description": "SPI data in (master-out-slave-in)"
+        },
+        {
+          "pin": 4,
+          "name": "SCK",
+          "type": "clock",
+          "description": "SPI clock"
+        },
+        {
+          "pin": 5,
+          "name": "NSS",
+          "type": "input",
+          "description": "SPI chip select, active low"
+        },
+        {
+          "pin": 6,
+          "name": "RESET",
+          "type": "reset",
+          "description": "active-low reset"
+        },
+        {
+          "pin": 7,
+          "name": "DIO5",
+          "type": "bidirectional",
+          "description": "configurable digital I/O (e.g. ModeReady/ClkOut)"
+        },
+        {
+          "pin": 8,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 9,
+          "name": "ANT",
+          "type": "passive",
+          "description": "50 ohm antenna connection"
+        },
+        {
+          "pin": 10,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 11,
+          "name": "DIO3",
+          "type": "bidirectional",
+          "description": "configurable digital I/O"
+        },
+        {
+          "pin": 12,
+          "name": "DIO4",
+          "type": "bidirectional",
+          "description": "configurable digital I/O"
+        },
+        {
+          "pin": 13,
+          "name": "3.3V",
+          "type": "power",
+          "description": "1.8-3.7 V supply (3.3 V typical)"
+        },
+        {
+          "pin": 14,
+          "name": "DIO0",
+          "type": "bidirectional",
+          "description": "configurable digital I/O; commonly RxDone/TxDone interrupt"
+        },
+        {
+          "pin": 15,
+          "name": "DIO1",
+          "type": "bidirectional",
+          "description": "configurable digital I/O (e.g. RxTimeout/FhssChangeChannel)"
+        },
+        {
+          "pin": 16,
+          "name": "DIO2",
+          "type": "bidirectional",
+          "description": "configurable digital I/O"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 1.8,
+    "vs_max_v": 3.7,
+    "extra": {
+      "interface": "SPI (up to 10 MHz)",
+      "chip": "Semtech SX1276",
+      "modulation": "LoRa spread-spectrum, (G)FSK, (G)MSK, OOK",
+      "band": "high sub-GHz (~862-1020 MHz; 868/915 typical)",
+      "max_tx_power": "+20 dBm (PA_BOOST)",
+      "sensitivity": "down to ~-148 dBm (LoRa)",
+      "supply": "1.8-3.7 V",
+      "logic": "3.3 V, NOT 5 V tolerant"
+    }
+  },
+  "typical_application": "Long-range, low-data-rate links: LoRaWAN nodes, remote telemetry/sensors over km distances, and point-to-point sub-GHz links.",
+  "gotchas": [
+    "logic is NOT 5 V tolerant; a 5 V MCU needs level shifting on all SPI/DIO lines or the module is damaged",
+    "you must connect a correct antenna (or 50 ohm load) to ANT before transmitting; transmitting unloaded can destroy the PA",
+    "RFM95 covers the high band (868/915 MHz); RFM96/97/98 cover the low band - they are NOT interchangeable across bands despite identical footprint",
+    "DIO0 must be wired to an MCU interrupt for efficient RxDone/TxDone handling; polling works but wastes time",
+    "use the band/region legally allowed where you operate (e.g. 868 MHz EU, 915 MHz US); transmitting on the wrong band is illegal",
+    "the PA_BOOST vs RFO output path must match how the module is wired; selecting the wrong PA pin in software gives very low or no output"
+  ],
+  "related": [
+    "nrf24l01",
+    "esp-01"
+  ],
+  "datasheet_url": "https://www.hoperf.com/data/upload/portal/20190801/RFM95W-V2.0.pdf",
+  "source": "human",
+  "verified": true
+}

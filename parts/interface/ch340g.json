@@ -1,0 +1,156 @@
+{
+  "id": "ch340g",
+  "name": "CH340G",
+  "aliases": [
+    "CH340"
+  ],
+  "full_name": "USB to serial-port (UART) bridge",
+  "manufacturers": [
+    "WCH (Nanjing Qinheng Microelectronics)"
+  ],
+  "category": "interface",
+  "subcategory": "usb-uart bridge",
+  "tags": [
+    "interface",
+    "usb",
+    "uart",
+    "serial",
+    "bridge",
+    "vcp"
+  ],
+  "description": "Low-cost USB 2.0 full-speed to UART bridge widely used on inexpensive serial adapters and Arduino clones. It emulates a standard serial port and provides the common modem-control signals (RTS, DTR, DCD, RI, DSR, CTS), supporting 50 bps to 2 Mbps. The G variant in SOP-16 requires an external 12 MHz crystal on XI/XO; it runs from 5 V or 3.3 V and is software-compatible with the CH341 driver. Cheap and ubiquitous, though it relies on the vendor (WCH) VCP driver rather than a class driver.",
+  "packages": {
+    "SOIC-16": {
+      "template": "soic",
+      "pin_count": 16,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 2,
+          "name": "TXD",
+          "type": "output",
+          "description": "UART transmit data output"
+        },
+        {
+          "pin": 3,
+          "name": "RXD",
+          "type": "input",
+          "description": "UART receive data input"
+        },
+        {
+          "pin": 4,
+          "name": "V3",
+          "type": "power",
+          "description": "regulator pin: 100 nF decoupling cap to GND when VCC=5 V; tie to VCC when running at 3.3 V"
+        },
+        {
+          "pin": 5,
+          "name": "UD+",
+          "type": "bidirectional",
+          "description": "USB D+ (connect directly to USB, no external resistor)"
+        },
+        {
+          "pin": 6,
+          "name": "UD-",
+          "type": "bidirectional",
+          "description": "USB D- (connect directly to USB, no external resistor)"
+        },
+        {
+          "pin": 7,
+          "name": "XI",
+          "type": "clock",
+          "description": "12 MHz crystal input"
+        },
+        {
+          "pin": 8,
+          "name": "XO",
+          "type": "clock",
+          "description": "12 MHz crystal output"
+        },
+        {
+          "pin": 9,
+          "name": "CTS#",
+          "type": "input",
+          "description": "clear to send modem input (active low)"
+        },
+        {
+          "pin": 10,
+          "name": "DSR#",
+          "type": "input",
+          "description": "data set ready modem input (active low)"
+        },
+        {
+          "pin": 11,
+          "name": "RI#",
+          "type": "input",
+          "description": "ring indicator modem input (active low)"
+        },
+        {
+          "pin": 12,
+          "name": "DCD#",
+          "type": "input",
+          "description": "data carrier detect modem input (active low)"
+        },
+        {
+          "pin": 13,
+          "name": "DTR#",
+          "type": "output",
+          "description": "data terminal ready modem output (active low)"
+        },
+        {
+          "pin": 14,
+          "name": "RTS#",
+          "type": "output",
+          "description": "request to send modem output (active low)"
+        },
+        {
+          "pin": 15,
+          "name": "R232",
+          "type": "input",
+          "description": "RS-232 enable / signal-inversion control; normally left unconnected (low) for standard TTL polarity"
+        },
+        {
+          "pin": 16,
+          "name": "VCC",
+          "type": "power",
+          "description": "+5 V or +3.3 V supply"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.3,
+    "vs_max_v": 5.5,
+    "extra": {
+      "Vcc": "5 V or 3.3 V",
+      "usb": "USB 2.0 full-speed",
+      "baud": "50 bps to 2 Mbps",
+      "clock": "external 12 MHz crystal on G variant (XI/XO)",
+      "interface": "asynchronous UART with RTS/DTR/DCD/RI/DSR/CTS",
+      "driver": "WCH VCP / CH341 compatible"
+    }
+  },
+  "typical_application": "USB-to-TTL-serial adapter and on-board USB programming/console interface for microcontroller boards.",
+  "gotchas": [
+    "CH340G needs an external 12 MHz crystal across XI (pin 7) and XO (pin 8) - the C/E/N/K/X/B variants have a built-in clock and need no crystal",
+    "V3 (pin 4) is a regulator pin: add a 100 nF cap to GND for 5 V operation, but tie V3 to VCC for 3.3 V operation",
+    "requires the WCH driver; older OS driver versions are buggy and many fake/older driver binaries float around - use a current WCH driver",
+    "the variants come in different packages (CH340G/C/B SOP-16, CH340N SOP-8, CH340E/X MSOP-10, CH340K ESSOP-10, CH340T/R SSOP-20) - pinouts differ, do not assume",
+    "UD+/UD- connect straight to the USB connector; WCH explicitly says do NOT add series/pull-up resistors on the data lines",
+    "for auto-reset on Arduino-style boards, DTR#/RTS# are wired through a capacitor to the MCU reset/DTR line"
+  ],
+  "related": [
+    "ft232rl",
+    "cp2102",
+    "pl2303",
+    "ch341"
+  ],
+  "datasheet_url": "https://www.wch-ic.com/downloads/CH340DS1_PDF.html",
+  "source": "human",
+  "verified": true
+}

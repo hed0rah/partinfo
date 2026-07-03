@@ -1,0 +1,104 @@
+{
+  "id": "decibel",
+  "title": "Decibels (dB)",
+  "topic": "rf",
+  "tags": [
+    "db",
+    "decibel",
+    "gain",
+    "ratio",
+    "dbm",
+    "logarithmic",
+    "power"
+  ],
+  "summary": "logarithmic ratios for power and voltage, plus the dBm absolute power reference.",
+  "body": "the decibel expresses a ratio on a log scale. power ratios use 10*log10, while\nvoltage (or current) ratios use 20*log10 because power goes as the square of\nvoltage. dBm is an absolute unit referenced to 1 mW into the system impedance.",
+  "formulas": [
+    {
+      "expr": "dB = 10 * log10(P2 / P1)",
+      "description": "power ratio in dB",
+      "vars": [
+        {
+          "symbol": "P1",
+          "meaning": "reference power",
+          "unit": "W"
+        },
+        {
+          "symbol": "P2",
+          "meaning": "measured power",
+          "unit": "W"
+        }
+      ]
+    },
+    {
+      "expr": "dB = 20 * log10(V2 / V1)",
+      "description": "voltage ratio in dB"
+    },
+    {
+      "expr": "dBm = 10 * log10(P / 1mW)",
+      "description": "absolute power referenced to 1 mW",
+      "vars": [
+        {
+          "symbol": "P",
+          "meaning": "power",
+          "unit": "mW"
+        }
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "title": "common ratios",
+      "headers": [
+        "dB",
+        "power ratio",
+        "voltage ratio"
+      ],
+      "rows": [
+        [
+          "0",
+          "1x",
+          "1x"
+        ],
+        [
+          "3",
+          "2x",
+          "1.41x"
+        ],
+        [
+          "6",
+          "4x",
+          "2x"
+        ],
+        [
+          "10",
+          "10x",
+          "3.16x"
+        ],
+        [
+          "20",
+          "100x",
+          "10x"
+        ],
+        [
+          "-3",
+          "0.5x",
+          "0.71x"
+        ]
+      ]
+    }
+  ],
+  "examples": [
+    "0 dBm = 1 mW; +30 dBm = 1 W; -10 dBm = 0.1 mW.",
+    "an amplifier turning 10 mW into 100 mW has 10 * log10(100/10) = 10 dB gain."
+  ],
+  "gotchas": [
+    "use 10*log for power, 20*log for voltage/current; mixing them up gives a 2x error in dB",
+    "dB is a ratio (dimensionless); dBm is absolute power -- do not treat them interchangeably",
+    "+3 dB doubles power but only raises voltage by ~41%"
+  ],
+  "related": [
+    "vswr-return-loss"
+  ],
+  "source": "human"
+}

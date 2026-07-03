@@ -1,0 +1,109 @@
+{
+  "id": "tl072",
+  "name": "TL072",
+  "aliases": [
+    "TL072CP",
+    "TL072IP"
+  ],
+  "full_name": "Dual Low-Noise JFET-Input Operational Amplifier",
+  "manufacturers": [
+    "Texas Instruments",
+    "STMicroelectronics",
+    "onsemi"
+  ],
+  "category": "opamp",
+  "subcategory": "dual jfet-input",
+  "tags": [
+    "opamp",
+    "dual",
+    "jfet",
+    "audio",
+    "low-noise",
+    "classic"
+  ],
+  "description": "Dual JFET-input op-amp, low noise and high input impedance. The default choice for guitar pedals, synth circuits, and general audio. Same pinout family as TL082/TL062.",
+  "packages": {
+    "DIP-8": {
+      "template": "dip",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "1OUT",
+          "type": "output",
+          "description": "channel 1 output"
+        },
+        {
+          "pin": 2,
+          "name": "1IN-",
+          "type": "input",
+          "description": "channel 1 inverting input"
+        },
+        {
+          "pin": 3,
+          "name": "1IN+",
+          "type": "input",
+          "description": "channel 1 noninverting input"
+        },
+        {
+          "pin": 4,
+          "name": "VCC-",
+          "type": "power",
+          "description": "negative supply"
+        },
+        {
+          "pin": 5,
+          "name": "2IN+",
+          "type": "input",
+          "description": "channel 2 noninverting input"
+        },
+        {
+          "pin": 6,
+          "name": "2IN-",
+          "type": "input",
+          "description": "channel 2 inverting input"
+        },
+        {
+          "pin": 7,
+          "name": "2OUT",
+          "type": "output",
+          "description": "channel 2 output"
+        },
+        {
+          "pin": 8,
+          "name": "VCC+",
+          "type": "power",
+          "description": "positive supply"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 6.0,
+    "vs_max_v": 36.0,
+    "iq_ma": 1.4,
+    "bw_hz": 3000000.0,
+    "extra": {
+      "slew rate": "13 V/us",
+      "input noise": "18 nV/rtHz",
+      "supply": "+-3V to +-18V (dual) or 6-36V single",
+      "Vos": "3mV typ (10mV max) @ Ta=25C, TL072C grade (13mV max full range)",
+      "Ibias": "65pA typ (200pA max) @ Ta=25C, TL072C grade (7nA max full range)",
+      "CMRR": "70dB min (100dB typ), TL072C grade"
+    }
+  },
+  "typical_application": "Audio gain stages, active filters, virtual-ground buffers. In single-supply pedals, bias inputs to Vcc/2.",
+  "gotchas": [
+    "JFET input means it does NOT work down to the negative rail; keep inputs a few volts inside the rails",
+    "not rail-to-rail output; expect ~1.5V headroom from each rail",
+    "for single-supply use you must create a half-supply reference for the inputs"
+  ],
+  "related": [
+    "tl074",
+    "ne5532",
+    "tl082"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/tl072.pdf"
+}

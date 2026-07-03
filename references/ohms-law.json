@@ -1,0 +1,78 @@
+{
+  "id": "ohms-law",
+  "title": "Ohm's Law",
+  "topic": "dc",
+  "tags": [
+    "ohm",
+    "voltage",
+    "current",
+    "resistance",
+    "power",
+    "watts-law"
+  ],
+  "summary": "the relationship between voltage, current, and resistance, plus the power-law variants.",
+  "body": "ohm's law states that the current through a conductor is proportional to the\nvoltage across it and inversely proportional to its resistance. combined with\nthe power law (P = V * I), the three quantities V, I, R and power P can each be\nfound from any two of the others.",
+  "formulas": [
+    {
+      "expr": "V = I * R",
+      "description": "voltage from current and resistance",
+      "vars": [
+        {
+          "symbol": "V",
+          "meaning": "voltage",
+          "unit": "V"
+        },
+        {
+          "symbol": "I",
+          "meaning": "current",
+          "unit": "A"
+        },
+        {
+          "symbol": "R",
+          "meaning": "resistance",
+          "unit": "ohm"
+        }
+      ]
+    },
+    {
+      "expr": "I = V / R",
+      "description": "current from voltage and resistance"
+    },
+    {
+      "expr": "R = V / I",
+      "description": "resistance from voltage and current"
+    },
+    {
+      "expr": "P = V * I",
+      "description": "power from voltage and current",
+      "vars": [
+        {
+          "symbol": "P",
+          "meaning": "power",
+          "unit": "W"
+        }
+      ]
+    },
+    {
+      "expr": "P = I^2 * R",
+      "description": "power dissipated in a resistance"
+    },
+    {
+      "expr": "P = V^2 / R",
+      "description": "power from voltage across a resistance"
+    }
+  ],
+  "examples": [
+    "5 V across a 220 ohm resistor: I = 5 / 220 = 22.7 mA, P = 5^2 / 220 = 114 mW (use a >=1/4 W part).",
+    "an LED dropping 2 V at 20 mA from 5 V needs R = (5 - 2) / 0.02 = 150 ohm."
+  ],
+  "gotchas": [
+    "ohm's law applies to resistive (linear) elements; diodes, LEDs and transistors are non-linear and do not obey it directly",
+    "always check resistor power rating: P = I^2 * R can exceed a 1/4 W part quickly at low resistances"
+  ],
+  "related": [
+    "voltage-divider",
+    "resistor-color-code"
+  ],
+  "source": "human"
+}

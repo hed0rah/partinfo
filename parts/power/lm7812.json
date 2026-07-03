@@ -1,0 +1,90 @@
+{
+  "id": "lm7812",
+  "name": "LM7812",
+  "aliases": [
+    "L77812",
+    "7812",
+    "MC77812",
+    "uA77812",
+    "KA77812",
+    "L77812CV"
+  ],
+  "full_name": "LM7812 three-terminal positive 12V fixed linear voltage regulator",
+  "manufacturers": [
+    "STMicroelectronics",
+    "Texas Instruments",
+    "onsemi",
+    "Fairchild"
+  ],
+  "category": "power",
+  "subcategory": "fixed linear regulator (positive)",
+  "tags": [
+    "regulator",
+    "linear",
+    "power",
+    "positive",
+    "fixed",
+    "12v",
+    "78xx",
+    "to220",
+    "classic"
+  ],
+  "description": "Positive fixed 12V three-terminal regulator from the 78xx family. Dropout about 2V at 1A, internally current-limited to ~1.5A with a heatsink. The metal tab is electrically GROUND, so the heatsink sits at circuit ground.",
+  "packages": {
+    "TO-220": {
+      "template": "to220",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "IN",
+          "type": "input",
+          "description": "unregulated positive DC input (Vi)"
+        },
+        {
+          "pin": 2,
+          "name": "GND",
+          "type": "ground",
+          "description": "common/ground reference; also bonded to the metal tab"
+        },
+        {
+          "pin": 3,
+          "name": "OUT",
+          "type": "output",
+          "description": "regulated 12V output (Vo)"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_max_v": 35.0,
+    "iout_max_ma": 1500.0,
+    "vs_typ_v": 12.0,
+    "extra": {
+      "Vout": "+12V",
+      "Vin_max": "35V (abs max DC input)",
+      "Iout_max": "1.5A (internally limited, ~1A with heatsink)",
+      "dropout": "~2V at 1A",
+      "Iq": "8mA (max) @ TJ=25C",
+      "Rth(JC)": "5 C/W (TO-220)",
+      "Rth(JA)": "50 C/W (TO-220)"
+    },
+    "rth_jc_cw": 5.0,
+    "rth_ja_cw": 50.0
+  },
+  "typical_application": "Local on-card 12V regulation downstream of a bulk filter cap; add 0.33uF in and 0.1uF out near the pins.",
+  "gotchas": [
+    "78xx pin order is IN-GND-OUT, the REVERSE of the 79xx (GND-IN-OUT); never socket-swap a 7812 with a 7912",
+    "the tab is GROUND on 78xx (safe to common-heatsink); on the 79xx complement the tab is INPUT and live",
+    "needs input (0.33uF) and output (0.1uF) bypass caps near the device for stability",
+    "1A continuous needs a heatsink; package dissipation is the real limit, not the current rating"
+  ],
+  "related": [
+    "lm7805",
+    "lm7912",
+    "l7824"
+  ],
+  "datasheet_url": "https://www.st.com/resource/en/datasheet/l78.pdf",
+  "source": "human",
+  "verified": true
+}

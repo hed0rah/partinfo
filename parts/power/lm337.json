@@ -1,0 +1,88 @@
+{
+  "id": "lm337",
+  "name": "LM337",
+  "aliases": [
+    "LM237",
+    "LM337T",
+    "LM337KC",
+    "L337",
+    "MC1337"
+  ],
+  "full_name": "LM337 three-terminal adjustable negative-voltage regulator (complement of the LM317)",
+  "manufacturers": [
+    "Texas Instruments",
+    "STMicroelectronics",
+    "onsemi"
+  ],
+  "category": "power",
+  "subcategory": "adjustable linear regulator (negative)",
+  "tags": [
+    "regulator",
+    "linear",
+    "power",
+    "negative",
+    "adjustable",
+    "lm337",
+    "to220",
+    "classic"
+  ],
+  "description": "Adjustable three-terminal NEGATIVE voltage regulator, the complement of the positive LM317. Output set from -1.2V to -37V by two external resistors, supplying over -1.5A. Recommended minimum input-to-output differential ~2.5V; the metal tab is the INPUT pin.",
+  "packages": {
+    "TO-220": {
+      "template": "to220",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "ADJ",
+          "type": "passive",
+          "description": "adjustment; sets output via the R1/R2 divider referenced to the output"
+        },
+        {
+          "pin": 2,
+          "name": "IN",
+          "type": "input",
+          "description": "unregulated negative input (Vi); also bonded to the metal tab"
+        },
+        {
+          "pin": 3,
+          "name": "OUT",
+          "type": "output",
+          "description": "regulated negative output (Vo), -1.2V to -37V"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_max_v": 40.0,
+    "iout_max_ma": 1500.0,
+    "extra": {
+      "Vout range": "-1.2V to -37V",
+      "reference": "-1.25V (OUT to ADJ)",
+      "Vin_max": "input-to-output differential 40V (abs max)",
+      "Iout_max": "1.5A",
+      "dropout": "~2V (min |Vi-Vo| ~2.5V)",
+      "formula": "Vout = -1.25 * (1 + R2/R1)",
+      "Iadj": "65uA typ (100 max)",
+      "Rth(JC)": "3 C/W (TO-220)",
+      "Rth(JA)": "24.8 C/W (TO-220)"
+    },
+    "rth_jc_cw": 3.0,
+    "rth_ja_cw": 24.8
+  },
+  "typical_application": "Adjustable negative rail set by R1 (~120 ohm, OUT to ADJ) and R2, mirroring an LM317 in a split adjustable supply.",
+  "gotchas": [
+    "LM337 pin order is NOT the same as LM317: LM337 TO-220 is ADJ-IN-OUT (pin2=IN, pin3=OUT), whereas LM317 is ADJ-OUT-IN; the IN and OUT pins are swapped between the two",
+    "the metal tab is the INPUT pin (negative input rail), not the output and not ground - the LM317 tab by contrast is OUTPUT; this heatsink is live at a negative potential",
+    "negative regulator: input and output are negative with respect to ground; the divider sits between OUTPUT and ADJ on the negative rail",
+    "needs ~1uF tantalum on input (if far from the filter cap) and ~1uF tantalum (or 10uF aluminum) on the output for stability"
+  ],
+  "related": [
+    "lm317",
+    "lm7912",
+    "tl431"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/lm337.pdf",
+  "source": "human",
+  "verified": true
+}

@@ -1,0 +1,85 @@
+{
+  "id": "s9013",
+  "name": "S9013",
+  "aliases": [
+    "SS9013",
+    "9013"
+  ],
+  "full_name": "NPN Medium-Power Transistor (TO-92)",
+  "manufacturers": [
+    "Fairchild",
+    "MCC",
+    "UTC",
+    "Jiangsu Changjiang"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "npn medium-power",
+  "tags": [
+    "transistor",
+    "npn",
+    "bjt",
+    "audio",
+    "driver",
+    "asian-jellybean"
+  ],
+  "description": "NPN medium-power transistor, the workhorse high-current small package in many Asian designs (audio output, LED/relay drive). TO-92 pin order is E-B-C, the reverse of European BC-series parts. Complement to the S9012.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter"
+        },
+        {
+          "pin": 2,
+          "name": "B",
+          "type": "passive",
+          "description": "base"
+        },
+        {
+          "pin": 3,
+          "name": "C",
+          "type": "passive",
+          "description": "collector"
+        }
+      ],
+      "notes": "flat face toward you, leads down: pin 1 (E) on the left. Verified from MCC and generic S901x datasheets."
+    }
+  },
+  "specs": {
+    "vs_max_v": 25.0,
+    "iout_max_ma": 500.0,
+    "pd_max_mw": 625.0,
+    "hfe_min": 64,
+    "hfe_max": 300,
+    "freq_max_hz": 150000000.0,
+    "extra": {
+      "Vceo": "25V",
+      "Vcbo": "40V",
+      "Vebo": "5V",
+      "complement (pnp)": "S9012",
+      "Vce(sat)": "0.6V (max) @ Ic=500mA, Ib=50mA",
+      "Vbe(on)": "1.2V (max) @ Ic=500mA, Ib=50mA (datasheet's VBE(sat))",
+      "Rth(JA)": "200 C/W"
+    },
+    "rth_ja_cw": 200.0
+  },
+  "typical_application": "High-current NPN switch and ~1W class-B push-pull audio output for portable radios; LED and small relay drive.",
+  "gotchas": [
+    "pinout is E-B-C, not the European C-B-E",
+    "Vceo 25V is below Vcbo 40V; rate by the 25V collector-emitter limit",
+    "shares pinout with the S9012 complement, so they pair cleanly in push-pull"
+  ],
+  "related": [
+    "s9012",
+    "s9014",
+    "s9018"
+  ],
+  "datasheet_url": "https://www.mccsemi.com/pdf/products/S9013(TO-92).pdf",
+  "source": "human",
+  "verified": true
+}

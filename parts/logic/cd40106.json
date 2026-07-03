@@ -1,0 +1,144 @@
+{
+  "id": "cd40106",
+  "name": "CD40106",
+  "aliases": [
+    "CD40106B",
+    "MC14106",
+    "40106",
+    "74HC14 (similar function)"
+  ],
+  "full_name": "Hex Schmitt-Trigger Inverter (CMOS)",
+  "manufacturers": [
+    "Texas Instruments",
+    "onsemi",
+    "STMicroelectronics"
+  ],
+  "category": "logic",
+  "subcategory": "schmitt-trigger inverter",
+  "tags": [
+    "logic",
+    "cmos",
+    "schmitt",
+    "inverter",
+    "oscillator",
+    "synth",
+    "classic"
+  ],
+  "description": "Six Schmitt-trigger inverters in one package. The hysteresis makes each gate a clean squarer of noisy/slow signals and, with one resistor and one capacitor, a simple relaxation oscillator. A staple of DIY synth (square/clock sources) and debouncing.",
+  "packages": {
+    "DIP-14": {
+      "template": "dip",
+      "pin_count": 14,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "1A",
+          "type": "input",
+          "description": "inverter 1 input"
+        },
+        {
+          "pin": 2,
+          "name": "1Y",
+          "type": "output",
+          "description": "inverter 1 output"
+        },
+        {
+          "pin": 3,
+          "name": "2A",
+          "type": "input",
+          "description": "inverter 2 input"
+        },
+        {
+          "pin": 4,
+          "name": "2Y",
+          "type": "output",
+          "description": "inverter 2 output"
+        },
+        {
+          "pin": 5,
+          "name": "3A",
+          "type": "input",
+          "description": "inverter 3 input"
+        },
+        {
+          "pin": 6,
+          "name": "3Y",
+          "type": "output",
+          "description": "inverter 3 output"
+        },
+        {
+          "pin": 7,
+          "name": "VSS",
+          "type": "ground",
+          "description": "ground (0V)"
+        },
+        {
+          "pin": 8,
+          "name": "4Y",
+          "type": "output",
+          "description": "inverter 4 output"
+        },
+        {
+          "pin": 9,
+          "name": "4A",
+          "type": "input",
+          "description": "inverter 4 input"
+        },
+        {
+          "pin": 10,
+          "name": "5Y",
+          "type": "output",
+          "description": "inverter 5 output"
+        },
+        {
+          "pin": 11,
+          "name": "5A",
+          "type": "input",
+          "description": "inverter 5 input"
+        },
+        {
+          "pin": 12,
+          "name": "6Y",
+          "type": "output",
+          "description": "inverter 6 output"
+        },
+        {
+          "pin": 13,
+          "name": "6A",
+          "type": "input",
+          "description": "inverter 6 input"
+        },
+        {
+          "pin": 14,
+          "name": "VDD",
+          "type": "power",
+          "description": "supply, 3V to 18V"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.0,
+    "vs_max_v": 18.0,
+    "extra": {
+      "hysteresis": "typ ~Vdd*0.3 at 10V",
+      "logic family": "CD40xx CMOS (4000B)",
+      "drive": "low (a few mA); buffer for heavier loads"
+    }
+  },
+  "typical_application": "RC relaxation oscillator: resistor from output to input, cap from input to ground, f ~ 1/(RC). Also squares slow/noisy signals and debounces switches. Tie all unused inputs to VSS or VDD.",
+  "gotchas": [
+    "CD40xx CMOS has weak output drive; do not drive LEDs or long lines directly, buffer first",
+    "never leave CMOS inputs floating; tie unused gate inputs to a rail or they oscillate and draw current",
+    "the 74HC14 is the faster, higher-drive 5V-centric equivalent but tops out at ~6V, while the 40106 runs to 18V",
+    "oscillator frequency drifts with supply voltage because the thresholds scale with Vdd"
+  ],
+  "related": [
+    "cd4093",
+    "cd4069",
+    "ne555"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/cd40106b.pdf"
+}

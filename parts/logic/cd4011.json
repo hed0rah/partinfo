@@ -1,0 +1,142 @@
+{
+  "id": "cd4011",
+  "name": "CD4011",
+  "aliases": [
+    "CD4011B",
+    "MC14011",
+    "HEF4011B",
+    "4011"
+  ],
+  "full_name": "Quad 2-Input NAND Gate (CMOS)",
+  "manufacturers": [
+    "Texas Instruments",
+    "onsemi",
+    "STMicroelectronics"
+  ],
+  "category": "logic",
+  "subcategory": "nand gate",
+  "tags": [
+    "logic",
+    "cmos",
+    "4000-series",
+    "nand",
+    "gate"
+  ],
+  "description": "Four independent 2-input NAND gates in the 4000B CMOS family; each outputs LOW only when both inputs are HIGH (Y = NOT(A AND B)). Buffered, supply 3V to 18V, weak standard-CMOS drive.",
+  "packages": {
+    "DIP-14": {
+      "template": "dip",
+      "pin_count": 14,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "1A",
+          "type": "input",
+          "description": "gate 1 input A"
+        },
+        {
+          "pin": 2,
+          "name": "1B",
+          "type": "input",
+          "description": "gate 1 input B"
+        },
+        {
+          "pin": 3,
+          "name": "1Y",
+          "type": "output",
+          "description": "gate 1 output (A NAND B)"
+        },
+        {
+          "pin": 4,
+          "name": "2Y",
+          "type": "output",
+          "description": "gate 2 output (C NAND D)"
+        },
+        {
+          "pin": 5,
+          "name": "2A",
+          "type": "input",
+          "description": "gate 2 input C"
+        },
+        {
+          "pin": 6,
+          "name": "2B",
+          "type": "input",
+          "description": "gate 2 input D"
+        },
+        {
+          "pin": 7,
+          "name": "VSS",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 8,
+          "name": "3A",
+          "type": "input",
+          "description": "gate 3 input E"
+        },
+        {
+          "pin": 9,
+          "name": "3B",
+          "type": "input",
+          "description": "gate 3 input F"
+        },
+        {
+          "pin": 10,
+          "name": "3Y",
+          "type": "output",
+          "description": "gate 3 output (E NAND F)"
+        },
+        {
+          "pin": 11,
+          "name": "4Y",
+          "type": "output",
+          "description": "gate 4 output (G NAND H)"
+        },
+        {
+          "pin": 12,
+          "name": "4A",
+          "type": "input",
+          "description": "gate 4 input G"
+        },
+        {
+          "pin": 13,
+          "name": "4B",
+          "type": "input",
+          "description": "gate 4 input H"
+        },
+        {
+          "pin": 14,
+          "name": "VDD",
+          "type": "power",
+          "description": "supply, 3V to 18V"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.0,
+    "vs_max_v": 18.0,
+    "extra": {
+      "function": "Y = NOT(A AND B)",
+      "logic family": "CD40xx CMOS (4000B)",
+      "gates": 4
+    }
+  },
+  "typical_application": "General logic, RC relaxation oscillators, debounce latches, and clock gating.",
+  "gotchas": [
+    "weak CMOS drive (microamps); buffer LEDs/relays with a transistor",
+    "do not float unused inputs; tie to VDD or VSS",
+    "identical pin layout to the CD4001 (NOR); verify the part number, the function differs",
+    "outputs are at pins 3,4,10,11; inputs are the remaining gate pins"
+  ],
+  "related": [
+    "cd4001",
+    "cd4093",
+    "cd4071"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/cd4011b.pdf",
+  "source": "human",
+  "verified": true
+}

@@ -1,0 +1,89 @@
+{
+  "id": "s8550",
+  "name": "SS8550",
+  "aliases": [
+    "S8550",
+    "8550"
+  ],
+  "full_name": "PNP Medium-Power Transistor (TO-92)",
+  "manufacturers": [
+    "Fairchild",
+    "onsemi",
+    "UTC",
+    "Jiangsu Changjiang"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "pnp medium-power",
+  "tags": [
+    "transistor",
+    "pnp",
+    "bjt",
+    "medium-power",
+    "audio",
+    "driver",
+    "asian-jellybean"
+  ],
+  "description": "PNP medium-power transistor (-1.5A) in TO-92, the complement to the NPN SS8050 and pin-compatible with it. TO-92 pin order is E-B-C, the reverse of European BC-series. Values are magnitudes; PNP rails are negative.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter (leftmost lead, flat face toward you)"
+        },
+        {
+          "pin": 2,
+          "name": "B",
+          "type": "passive",
+          "description": "base (center)"
+        },
+        {
+          "pin": 3,
+          "name": "C",
+          "type": "passive",
+          "description": "collector (rightmost lead)"
+        }
+      ],
+      "notes": "flat face toward you, leads down: E-B-C left to right (same physical layout as the SS8050 complement). Verified from Fairchild/onsemi SS8550 datasheet (1=E, 2=B, 3=C)."
+    }
+  },
+  "specs": {
+    "vs_max_v": 25.0,
+    "iout_max_ma": 1500.0,
+    "pd_max_mw": 1000.0,
+    "hfe_min": 85,
+    "hfe_max": 300,
+    "freq_max_hz": 100000000.0,
+    "extra": {
+      "Vceo": "-25V",
+      "Vcbo": "-40V",
+      "Vebo": "-6V",
+      "Ic": "-1.5A",
+      "complement (npn)": "SS8050",
+      "hFE groups": "B 85-160, C 120-200, D 160-300",
+      "polarity": "PNP (negative rails)",
+      "Vce(sat)": "-0.28V (typ), -0.50V (max) @ Ic=-800mA, Ib=-80mA",
+      "Vbe(on)": "-0.66V (typ), -1.00V (max) @ Ic=-10mA, Vce=-1V",
+      "Rth(JA)": "125 C/W"
+    },
+    "rth_ja_cw": 125.0
+  },
+  "typical_application": "PNP half of a ~2W push-pull output stage with the SS8050; general medium-power high-side switching and load driving.",
+  "gotchas": [
+    "pinout is E-B-C (pin 1 = emitter on the left), NOT C-B-E",
+    "PNP: all ratings are negative; do not confuse polarity with the NPN SS8050",
+    "the SMD S8550 in SOT-23 has a different pin map; this entry is the TO-92 only"
+  ],
+  "related": [
+    "s8050",
+    "s9012",
+    "bc327"
+  ],
+  "datasheet_url": "https://www.onsemi.com/pdf/datasheet/ss8550-d.pdf",
+  "source": "human",
+  "verified": true
+}

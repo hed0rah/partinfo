@@ -1,0 +1,75 @@
+{
+  "id": "bt134",
+  "name": "BT134",
+  "aliases": [
+    "BT134-500",
+    "BT134-600",
+    "BT134-800"
+  ],
+  "full_name": "4A Glass-Passivated Four-Quadrant Triac",
+  "manufacturers": [
+    "NXP (Philips)",
+    "WeEn Semiconductors"
+  ],
+  "category": "thyristor",
+  "subcategory": "triac",
+  "tags": [
+    "triac",
+    "thyristor",
+    "ac-switch",
+    "phase-control",
+    "four-quadrant"
+  ],
+  "description": "A 4A sensitive-gate triac for general-purpose AC switching and phase control. Comes in the SOT82 package (TO-126-like flat tab, but not JEDEC TO-126). The tab is electrically MT2.",
+  "packages": {
+    "SOT-82": {
+      "template": "to220",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "T1",
+          "type": "passive",
+          "description": "main terminal 1 (MT1)"
+        },
+        {
+          "pin": 2,
+          "name": "T2",
+          "type": "passive",
+          "description": "main terminal 2 (MT2); tied to the mounting tab"
+        },
+        {
+          "pin": 3,
+          "name": "G",
+          "type": "input",
+          "description": "gate"
+        }
+      ],
+      "notes": "SOT82 package (NXP/Philips), front face toward you and leads down: pin 1 (T1), pin 2 (T2/tab), pin 3 (G) left to right. Tab = MT2, not isolated."
+    }
+  },
+  "specs": {
+    "vs_max_v": 800.0,
+    "iout_max_ma": 4000.0,
+    "extra": {
+      "It_rms": "4A (Tmb <= 107C)",
+      "VDRM": "500/600/800V by suffix",
+      "IGT": "Q1 typ 5mA, max 25-50mA by suffix",
+      "VGT": "1.5V max",
+      "quadrants": "four; Q4 (T2-, G+) is the weakest"
+    }
+  },
+  "typical_application": "Bidirectional AC on/off and phase control: motor, lighting, and heating loads needing high blocking voltage and a sensitive gate.",
+  "gotchas": [
+    "package is SOT-82, NOT JEDEC TO-126; the footprint is similar but the designation differs",
+    "the tab is electrically MT2 (pin 2) and is not isolated; the heatsink sits at MT2 potential",
+    "Q4 (MT2-, gate+) is the weakest trigger quadrant; do not rely on it for low gate drive"
+  ],
+  "related": [
+    "bta06",
+    "mac97a6"
+  ],
+  "datasheet_url": "https://www.futurlec.com/Datasheet/Diodes/BT134.pdf",
+  "source": "human",
+  "verified": true
+}

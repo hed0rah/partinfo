@@ -1,0 +1,85 @@
+{
+  "id": "pc817",
+  "name": "PC817",
+  "aliases": [
+    "PC817C",
+    "EL817",
+    "LTV817",
+    "817"
+  ],
+  "full_name": "Phototransistor Optocoupler (Single Channel)",
+  "manufacturers": [
+    "Sharp",
+    "Everlight",
+    "Lite-On"
+  ],
+  "category": "interface",
+  "subcategory": "optocoupler",
+  "tags": [
+    "optocoupler",
+    "isolation",
+    "optoisolator",
+    "feedback",
+    "classic"
+  ],
+  "description": "Single-channel optocoupler: an infrared LED optically coupled to a phototransistor, giving galvanic isolation between input and output. Ubiquitous for mains/secondary feedback in SMPS, microcontroller input isolation, and level translation across ground domains.",
+  "packages": {
+    "DIP-4": {
+      "template": "dip",
+      "pin_count": 4,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "Anode",
+          "type": "input",
+          "description": "LED anode (IRED)"
+        },
+        {
+          "pin": 2,
+          "name": "Cathode",
+          "type": "input",
+          "description": "LED cathode (IRED)"
+        },
+        {
+          "pin": 3,
+          "name": "Emitter",
+          "type": "output",
+          "description": "phototransistor emitter"
+        },
+        {
+          "pin": 4,
+          "name": "Collector",
+          "type": "output",
+          "description": "phototransistor collector"
+        }
+      ],
+      "notes": "pin 1 marked with a dot/chamfer. Input LED on pins 1-2, output transistor on pins 3-4."
+    }
+  },
+  "specs": {
+    "vf_v": 1.2,
+    "vs_max_v": 35.0,
+    "extra": {
+      "isolation voltage": "5000 Vrms",
+      "CTR": "50-600% (grade dependent)",
+      "LED If": "~10-20mA typical",
+      "Vceo": "35V",
+      "bandwidth": "low (tens of kHz)"
+    }
+  },
+  "typical_application": "Drive the input LED through a series resistor (sized for ~10mA) from the isolated source; the phototransistor on the output side conducts proportionally. Standard secondary-to-primary feedback path in switching supplies (often paired with a TL431).",
+  "gotchas": [
+    "current transfer ratio (CTR) varies enormously by grade (suffix) and drops with age and temperature; design with margin",
+    "slow: bandwidth is only tens of kHz, not for fast data (use a logic-gate optocoupler for that)",
+    "the LED has a forward voltage like any LED; size the series resistor for the input supply",
+    "respect the isolation barrier on the PCB layout; do not run traces under the package between sides"
+  ],
+  "related": [
+    "tl431",
+    "4n35",
+    "6n137"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://global.sharp/products/device/lineup/data/pdf/datasheet/PC817XxNSZ1B_e.pdf"
+}

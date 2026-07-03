@@ -1,0 +1,106 @@
+{
+  "id": "ne555",
+  "name": "NE555",
+  "aliases": [
+    "555",
+    "LM555",
+    "555 timer",
+    "TLC555",
+    "ICM7555"
+  ],
+  "full_name": "Precision Timer / Oscillator",
+  "manufacturers": [
+    "Texas Instruments",
+    "STMicroelectronics",
+    "Signetics"
+  ],
+  "category": "timer",
+  "tags": [
+    "timer",
+    "oscillator",
+    "astable",
+    "monostable",
+    "pwm",
+    "classic"
+  ],
+  "description": "The quintessential timer IC. Generates accurate time delays (monostable) or oscillation (astable). Timing set by one external resistor and capacitor. Workhorse of hobby electronics.",
+  "packages": {
+    "DIP-8": {
+      "template": "dip",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 2,
+          "name": "TRIG",
+          "type": "input",
+          "description": "trigger, start of timing"
+        },
+        {
+          "pin": 3,
+          "name": "OUT",
+          "type": "output",
+          "description": "timer output"
+        },
+        {
+          "pin": 4,
+          "name": "RESET",
+          "type": "reset",
+          "description": "active-low reset"
+        },
+        {
+          "pin": 5,
+          "name": "CONT",
+          "type": "bidirectional",
+          "description": "control voltage"
+        },
+        {
+          "pin": 6,
+          "name": "THRES",
+          "type": "input",
+          "description": "threshold, end of timing"
+        },
+        {
+          "pin": 7,
+          "name": "DISCH",
+          "type": "output",
+          "description": "open-collector discharge"
+        },
+        {
+          "pin": 8,
+          "name": "VCC",
+          "type": "power",
+          "description": "supply 4.5V to 16V"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 4.5,
+    "vs_max_v": 16.0,
+    "iout_max_ma": 200.0,
+    "extra": {
+      "max astable freq": "~500 kHz",
+      "cmos variant": "TLC555/ICM7555 for low power and higher freq"
+    }
+  },
+  "typical_application": "Astable multivibrator (square wave): f = 1.44 / ((R1 + 2*R2) * C). Monostable one-shot: t = 1.1 * R * C.",
+  "gotchas": [
+    "bipolar NE555 injects large supply current spikes at each transition; decouple Vcc heavily (100nF + bulk)",
+    "output does not swing fully rail-to-rail on bipolar version; use CMOS TLC555 if that matters",
+    "tie RESET (pin 4) to Vcc when unused or it may not oscillate",
+    "minimum astable duty cycle is >50% in the classic config since R1+R2 charges but only R2 discharges"
+  ],
+  "related": [
+    "ne556",
+    "tlc555"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/ne555.pdf"
+}

@@ -1,0 +1,104 @@
+{
+  "id": "mn3007",
+  "name": "MN3007",
+  "aliases": [],
+  "full_name": "1024-Stage Low-Noise Bucket-Brigade Delay (BBD)",
+  "manufacturers": [
+    "Panasonic"
+  ],
+  "category": "audio",
+  "subcategory": "bucket-brigade delay (BBD)",
+  "tags": [
+    "bbd",
+    "delay",
+    "chorus",
+    "flanger",
+    "analog",
+    "vintage",
+    "classic"
+  ],
+  "description": "1024-stage bucket-brigade delay line, the shorter-delay half-sibling of the MN3005. Variable analog delay of 5.12-51.2ms depending on clock frequency (10-100kHz). The workhorse chorus/flanger BBD, used in classics like the Boss CE-1 and Electro-Harmonix Clone Theory. Needs an external clock generator (commonly an MN3101-style companion clock-driver chip) to drive CP1/CP2.",
+  "packages": {
+    "DIP-8": {
+      "template": "dip",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 2,
+          "name": "CP1",
+          "type": "input",
+          "description": "clock phase 1 input"
+        },
+        {
+          "pin": 3,
+          "name": "IN",
+          "type": "input",
+          "description": "analog signal input"
+        },
+        {
+          "pin": 4,
+          "name": "VCC",
+          "type": "power",
+          "description": "positive supply (a few volts above VDD, see datasheet bias network)"
+        },
+        {
+          "pin": 5,
+          "name": "VDD",
+          "type": "power",
+          "description": "negative supply (typically -15V referenced to GND in the classic bias scheme)"
+        },
+        {
+          "pin": 6,
+          "name": "CP2",
+          "type": "input",
+          "description": "clock phase 2 input"
+        },
+        {
+          "pin": 7,
+          "name": "OUT1",
+          "type": "output",
+          "description": "delayed signal output 1"
+        },
+        {
+          "pin": 8,
+          "name": "OUT2",
+          "type": "output",
+          "description": "delayed signal output 2"
+        }
+      ],
+      "notes": "Per Panasonic's own block diagram/pinout, DIP-8, top view. OUT1/OUT2 are two clock-phase-interleaved outputs of the same delay line, typically summed externally."
+    }
+  },
+  "specs": {
+    "extra": {
+      "stages": 1024,
+      "delay_range": "5.12 to 51.2ms",
+      "clock_range": "10 to 100kHz",
+      "SN_ratio": "80dB typ",
+      "THD": "0.5% typ @ Vi=0.78Vrms",
+      "insertion_loss": "0dB typ",
+      "supply": "VDD=-15V, VGG=VDD+1 (per Panasonic's bias scheme; see application notes for the exact bias network)"
+    }
+  },
+  "typical_application": "Analog chorus, flanger, and short-slapback delay/reverb effects in guitar pedals and electronic musical instruments. Requires an external clock (e.g. an MN3101-class clock driver) and a low-pass anti-aliasing filter on the output to remove residual clock feedthrough.",
+  "gotchas": [
+    "needs an external clock generator driving CP1/CP2 with complementary, non-overlapping phases; it is not self-clocking",
+    "delay time is inversely proportional to clock frequency: higher clock = shorter delay, lower clock = longer delay (and worse bandwidth/noise)",
+    "clock feedthrough onto the output is normal and expected; always follow with a low-pass filter tuned below the clock frequency",
+    "bias supply scheme (VDD/VGG relationship) matters for headroom and noise; follow a proven reference circuit (e.g. the classic Panasonic application notes) rather than guessing bias values",
+    "genuine NOS Panasonic/Matsushita chips are increasingly scarce; some modern builds substitute other MN3xxx-family or clone BBD chips with similar but not identical specs",
+    "read from a genuine Panasonic factory datasheet (clear letterhead, block diagram, and package drawing), but no current live-hosted URL was found for this decades-old scan; datasheet_url is left blank rather than citing a secondhand mirror"
+  ],
+  "related": [
+    "mn3005",
+    "pt2399"
+  ],
+  "source": "claude",
+  "verified": true
+}

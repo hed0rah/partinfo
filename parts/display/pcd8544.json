@@ -1,0 +1,110 @@
+{
+  "id": "pcd8544",
+  "name": "PCD8544",
+  "aliases": [
+    "Nokia 5110 LCD",
+    "Nokia 3310 LCD",
+    "84x48 LCD",
+    "PCD8544 module"
+  ],
+  "full_name": "Philips/NXP PCD8544 48x84 Pixel Matrix LCD Controller/Driver",
+  "manufacturers": [
+    "Philips",
+    "NXP"
+  ],
+  "category": "display",
+  "subcategory": "graphic-lcd-controller",
+  "tags": [
+    "graphic-lcd",
+    "spi",
+    "84x48",
+    "monochrome",
+    "nokia-5110",
+    "3.3v"
+  ],
+  "description": "The PCD8544 is a low-power controller for the 48x84 pixel monochrome LCD made famous by the Nokia 3310/5110 phones, now sold as a cheap 8-pin graphic display module. It uses a 3.3V SPI-style serial interface (DIN, CLK) plus a DC line that selects command versus data and active-low chip-select and reset lines. A separate LIGHT pin controls the backlight LEDs. Its tiny size, ultra-low power draw, and on-chip 504-byte display RAM make it a long-time favorite for battery-powered gadgets and retro displays.",
+  "packages": {
+    "8-pin module header": {
+      "template": "module",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "VCC",
+          "type": "power",
+          "description": "logic supply, 2.7V-3.3V (3.3V typical)"
+        },
+        {
+          "pin": 2,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground (0V)"
+        },
+        {
+          "pin": 3,
+          "name": "SCE",
+          "type": "input",
+          "description": "active-low chip enable / chip select (CE/CS)"
+        },
+        {
+          "pin": 4,
+          "name": "RST",
+          "type": "reset",
+          "description": "active-low reset; must be pulsed low at power-up"
+        },
+        {
+          "pin": 5,
+          "name": "DC",
+          "type": "input",
+          "description": "data/command select: high = data, low = command"
+        },
+        {
+          "pin": 6,
+          "name": "DIN",
+          "type": "input",
+          "description": "SPI serial data in (MOSI)"
+        },
+        {
+          "pin": 7,
+          "name": "CLK",
+          "type": "clock",
+          "description": "SPI serial clock (SCLK)"
+        },
+        {
+          "pin": 8,
+          "name": "LIGHT",
+          "type": "input",
+          "description": "backlight control (BL); LED backlight, often active-low on red modules"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.7,
+    "vs_max_v": 3.3,
+    "extra": {
+      "interface": "write-only SPI-style serial (up to ~4Mbit/s)",
+      "resolution": "84x48 pixels",
+      "display_ram": "504 bytes (48x84 / 8)",
+      "logic_voltage": "2.7-3.3V",
+      "addressing": "horizontal or vertical banks of 8 pixels",
+      "no_readback": "module wiring is write-only"
+    }
+  },
+  "typical_application": "An 84x48 graphics/text display for battery-powered projects, driven over SPI (DIN, CLK, DC, SCE, RST) at 3.3V with the LIGHT pin switching the backlight, using the Adafruit_PCD8544 or u8g2 libraries.",
+  "gotchas": [
+    "it is a 3.3V part: driving VCC or the logic lines at 5V can damage it; 5V MCUs need level shifting on all signal lines",
+    "RST must be pulsed low after power-up or the display stays blank or shows garbage",
+    "pin header order and labels vary between module batches (some swap RST/CE, some label BL/LED differently) - check the silkscreen",
+    "the LIGHT/backlight pin is active-low on many red modules (tie to GND to turn on) but active-high on others",
+    "the module is write-only; do not expect to read display RAM or status back",
+    "set a sensible contrast/bias (V_OP) in software or the image is invisible or all-black despite correct wiring"
+  ],
+  "related": [
+    "ssd1306",
+    "hd44780"
+  ],
+  "datasheet_url": "https://www.sparkfun.com/datasheets/LCD/Monochrome/Nokia/nokia_5110_lcd.pdf",
+  "source": "human",
+  "verified": true
+}

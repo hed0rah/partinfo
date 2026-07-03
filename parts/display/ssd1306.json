@@ -1,0 +1,84 @@
+{
+  "id": "ssd1306",
+  "name": "SSD1306",
+  "aliases": [
+    "0.96 OLED",
+    "128x64 OLED",
+    "SSD1306 I2C",
+    "0.96 inch OLED display"
+  ],
+  "full_name": "Solomon Systech SSD1306 128x64 Dot-Matrix OLED/PLED Controller-Driver",
+  "manufacturers": [
+    "Solomon Systech"
+  ],
+  "category": "display",
+  "subcategory": "oled-controller",
+  "tags": [
+    "oled",
+    "i2c",
+    "spi",
+    "128x64",
+    "128x32",
+    "graphic-display",
+    "monochrome"
+  ],
+  "description": "The SSD1306 drives small passive-matrix monochrome OLED panels, most famously the ubiquitous 0.96 inch 128x64 and 128x32 modules. The most common breakout is a 4-pin I2C board exposing GND, VCC, SCL and SDA, which hobbyists wire directly to an MCU's I2C bus. It has its own display RAM and an internal charge pump, so it needs no external high-voltage supply for the panel. Its tiny 4-wire I2C footprint and broad library support (U8g2, Adafruit_SSD1306) make it the default cheap graphic display for microcontroller projects.",
+  "packages": {
+    "4-pin I2C module header": {
+      "template": "module",
+      "pin_count": 4,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground (0V)"
+        },
+        {
+          "pin": 2,
+          "name": "VCC",
+          "type": "power",
+          "description": "supply; module typically accepts 3.3V-5V (onboard regulator on many boards)"
+        },
+        {
+          "pin": 3,
+          "name": "SCL",
+          "type": "clock",
+          "description": "I2C serial clock"
+        },
+        {
+          "pin": 4,
+          "name": "SDA",
+          "type": "bidirectional",
+          "description": "I2C serial data"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.3,
+    "vs_max_v": 5.0,
+    "extra": {
+      "interface": "I2C (this module); bare chip also does 4-wire/3-wire SPI and parallel",
+      "i2c_address": "0x3C default (0x3D if SA0 jumper changed)",
+      "resolution": "128x64 or 128x32",
+      "charge_pump": "internal, no external boost needed",
+      "color": "monochrome (white/blue/yellow panels)"
+    }
+  },
+  "typical_application": "Connecting a 0.96 inch 128x64 OLED to a microcontroller's I2C bus (4 wires) for status readouts, menus, and small graphics using U8g2 or Adafruit_SSD1306.",
+  "gotchas": [
+    "a 7-pin SPI variant of the same module exists (GND, VCC, D0/SCK, D1/MOSI, RES, DC, CS); do not confuse it with the 4-pin I2C board",
+    "default I2C address is 0x3C; some boards are 0x3D and a few need a solder-jumper change",
+    "bare SSD1306 logic is 1.65-3.3V; many 4-pin modules add a regulator for 5V tolerance, but cheap ones are 3.3V-only and 5V can damage them",
+    "I2C lines need pull-ups; most modules include them but stacking several can over-load the bus",
+    "the 128x32 panel uses the same controller and address, so wrong height in software shows a squashed or cropped image"
+  ],
+  "related": [
+    "pcd8544",
+    "hd44780"
+  ],
+  "datasheet_url": "https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf",
+  "source": "human",
+  "verified": true
+}

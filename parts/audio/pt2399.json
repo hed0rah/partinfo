@@ -1,0 +1,159 @@
+{
+  "id": "pt2399",
+  "name": "PT2399",
+  "aliases": [
+    "PT2399S"
+  ],
+  "full_name": "Echo / Audio Delay Processor IC",
+  "manufacturers": [
+    "Princeton Technology Corp."
+  ],
+  "category": "audio",
+  "subcategory": "echo/delay processor",
+  "tags": [
+    "echo",
+    "delay",
+    "audio-effects",
+    "cmos",
+    "adc",
+    "dac",
+    "guitar-pedal",
+    "karaoke"
+  ],
+  "description": "The PT2399 is a single-chip CMOS echo/delay audio processor from Princeton Technology. It digitizes the input with an internal ADC, stores samples in 44Kbit of on-chip RAM, and reconstructs the delayed signal through an internal DAC, giving low noise (No about -90dBV) and low distortion (THD < 0.5%). Delay time is set by the clock frequency, which is controlled by an external resistor on the VCO pin (pin 6); larger resistance gives longer delay but rising distortion. The chip also provides two on-board op-amps and two low-pass filter stages used to build the analog input, feedback, and reconstruction filtering around the delay core. It runs from a single 5V supply and is the workhorse of countless DIY guitar delay/echo pedals and karaoke mixers.",
+  "packages": {
+    "DIP-16": {
+      "template": "dip",
+      "pin_count": 16,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "VCC",
+          "type": "power",
+          "description": "Analog supply voltage input (5V)"
+        },
+        {
+          "pin": 2,
+          "name": "REF",
+          "type": "analog",
+          "description": "Analog reference voltage, 1/2 VCC; bypass to ground"
+        },
+        {
+          "pin": 3,
+          "name": "AGND",
+          "type": "ground",
+          "description": "Analog ground"
+        },
+        {
+          "pin": 4,
+          "name": "DGND",
+          "type": "ground",
+          "description": "Digital ground"
+        },
+        {
+          "pin": 5,
+          "name": "CLK_O",
+          "type": "clock",
+          "description": "System clock output"
+        },
+        {
+          "pin": 6,
+          "name": "VCO",
+          "type": "input",
+          "description": "VCO frequency adjustment; external resistor to ground sets clock and hence delay time"
+        },
+        {
+          "pin": 7,
+          "name": "CC1",
+          "type": "passive",
+          "description": "Current control 1; external timing capacitor for the internal clock VCO"
+        },
+        {
+          "pin": 8,
+          "name": "CC0",
+          "type": "passive",
+          "description": "Current control 0; external timing capacitor for the internal clock VCO"
+        },
+        {
+          "pin": 9,
+          "name": "OP1-OUT",
+          "type": "output",
+          "description": "Op-amp 1 output; with pin 10 forms a modulated/demodulated integrator via external capacitor"
+        },
+        {
+          "pin": 10,
+          "name": "OP1-IN",
+          "type": "input",
+          "description": "Op-amp 1 input; with pin 9 forms a modulated/demodulated integrator via external capacitor"
+        },
+        {
+          "pin": 11,
+          "name": "OP2-IN",
+          "type": "input",
+          "description": "Op-amp 2 input; with pin 12 forms a modulated/demodulated integrator via external capacitor"
+        },
+        {
+          "pin": 12,
+          "name": "OP2-OUT",
+          "type": "output",
+          "description": "Op-amp 2 output; with pin 11 forms a modulated/demodulated integrator via external capacitor"
+        },
+        {
+          "pin": 13,
+          "name": "LPF2-IN",
+          "type": "input",
+          "description": "Low-pass filter 2 input"
+        },
+        {
+          "pin": 14,
+          "name": "LPF2-OUT",
+          "type": "output",
+          "description": "Low-pass filter 2 output"
+        },
+        {
+          "pin": 15,
+          "name": "LPF1-OUT",
+          "type": "output",
+          "description": "Low-pass filter 1 output"
+        },
+        {
+          "pin": 16,
+          "name": "LPF1-IN",
+          "type": "input",
+          "description": "Low-pass filter 1 input"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 4.5,
+    "vs_max_v": 5.5,
+    "extra": {
+      "memory": "44Kbit internal RAM",
+      "architecture": "internal ADC + DAC, digital delay, internal VCO clock",
+      "delay_range": "approx 30ms to 340ms set by external R on VCO pin",
+      "clock_frequency_range": "approx 2MHz to 20MHz",
+      "thd_typ": "0.4% (THD < 0.5% typ)",
+      "output_noise": "-90dBV typ (A-weighted)",
+      "voltage_gain_db": "-0.5 typ (RL=47k)",
+      "supply_current_typ_ma": 15,
+      "supply_voltage_abs_max_v": 6.5,
+      "operating_temp_c": "-40 to +85"
+    }
+  },
+  "typical_application": "Analog guitar/vocal echo and delay effect where an external resistor on pin 6 sets the delay time and the internal op-amps build the feedback (repeats) path.",
+  "gotchas": [
+    "Delay time is set by the resistor on VCO (pin 6); longer delays (higher R) sharply increase noise and distortion, so the usable musical range is roughly 30 to 340ms.",
+    "Has separate AGND (pin 3) and DGND (pin 4); keep their grounding clean to minimize clock noise bleeding into audio.",
+    "There is no internal feedback for repeats; the echo repeat/regeneration loop must be built externally using the on-chip op-amps.",
+    "It is a sampled (digital) delay, not a bucket-brigade BBD device, despite its analog-friendly application circuit.",
+    "Pin 1 is the only supply (VCC); REF on pin 2 is a half-supply bias node, not a second power input."
+  ],
+  "related": [
+    "ne555",
+    "jrc4558"
+  ],
+  "datasheet_url": "https://www.experimentalistsanonymous.com/diy/Datasheets/PT2399.pdf",
+  "source": "human",
+  "verified": true
+}

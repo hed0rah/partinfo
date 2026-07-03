@@ -1,0 +1,107 @@
+{
+  "id": "lm393",
+  "name": "LM393",
+  "aliases": [
+    "LM393N",
+    "LM393P",
+    "LM2903",
+    "LM293",
+    "LM193"
+  ],
+  "full_name": "Dual Differential Comparator",
+  "manufacturers": [
+    "Texas Instruments",
+    "ON Semiconductor"
+  ],
+  "category": "comparator",
+  "subcategory": "dual comparator",
+  "tags": [
+    "comparator",
+    "open-collector",
+    "dual",
+    "single-supply"
+  ],
+  "description": "The LM393 is a dual independent voltage comparator designed to operate from a single supply of 2V to 36V (or a split supply of +/-1V to +/-18V). Each comparator has open-collector outputs, so an external pullup resistor to a positive rail is required and outputs can be wired-OR together or driven to a different logic level than VCC. Its input common-mode range includes ground, making it well suited to single-supply systems. It is ubiquitous on hobby sensor breakout boards (sound-detection, IR line-follower, soil-moisture, and flame modules) where it provides a clean digital threshold output.",
+  "packages": {
+    "PDIP-8": {
+      "template": "dip",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "1OUT",
+          "type": "output",
+          "description": "comparator 1 output, open-collector, needs external pullup"
+        },
+        {
+          "pin": 2,
+          "name": "1IN-",
+          "type": "input",
+          "description": "comparator 1 inverting (negative) input"
+        },
+        {
+          "pin": 3,
+          "name": "1IN+",
+          "type": "input",
+          "description": "comparator 1 noninverting (positive) input"
+        },
+        {
+          "pin": 4,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground / negative supply"
+        },
+        {
+          "pin": 5,
+          "name": "2IN+",
+          "type": "input",
+          "description": "comparator 2 noninverting (positive) input"
+        },
+        {
+          "pin": 6,
+          "name": "2IN-",
+          "type": "input",
+          "description": "comparator 2 inverting (negative) input"
+        },
+        {
+          "pin": 7,
+          "name": "2OUT",
+          "type": "output",
+          "description": "comparator 2 output, open-collector, needs external pullup"
+        },
+        {
+          "pin": 8,
+          "name": "VCC",
+          "type": "power",
+          "description": "positive supply, 2V to 36V single supply"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.0,
+    "vs_max_v": 36.0,
+    "extra": {
+      "supply_voltage": "2V to 36V single or +/-1V to +/-18V dual",
+      "output": "open-collector",
+      "input_offset_v": "typ 2mV, max 5mV",
+      "response_time": "typ 1.3us",
+      "common_mode_range": "includes ground, up to VCC - 2V"
+    }
+  },
+  "typical_application": "single-supply threshold detection on sensor modules, producing a clean digital output when an analog level crosses a set reference.",
+  "gotchas": [
+    "open-collector output REQUIRES an external pullup resistor to a positive rail",
+    "input common-mode range includes ground but the upper end is limited to VCC - 2V (only one input must stay in range)",
+    "shorting an output to VCC can cause excessive heating and destruction",
+    "not for rail-to-rail input applications"
+  ],
+  "related": [
+    "lm339",
+    "lm358",
+    "lm324"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/lm393.pdf",
+  "source": "human",
+  "verified": true
+}

@@ -1,0 +1,79 @@
+{
+  "id": "2n4125",
+  "name": "2N4125",
+  "full_name": "PNP General-Purpose Amplifier Transistor",
+  "manufacturers": [
+    "onsemi",
+    "Fairchild",
+    "Central Semiconductor"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "pnp small-signal",
+  "tags": [
+    "transistor",
+    "pnp",
+    "bjt",
+    "small-signal",
+    "amplifier"
+  ],
+  "description": "PNP general-purpose amplifier, complement to the NPN 2N4124. Higher ft (200MHz) makes it useful in small-signal and moderate-speed switching. TO-92 pinout is E-B-C (base center). Values are magnitudes; PNP rails are negative.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter (leftmost lead, flat face toward you)"
+        },
+        {
+          "pin": 2,
+          "name": "B",
+          "type": "passive",
+          "description": "base (center)"
+        },
+        {
+          "pin": 3,
+          "name": "C",
+          "type": "passive",
+          "description": "collector (rightmost lead)"
+        }
+      ],
+      "notes": "flat face toward you, leads down: E-B-C left to right (base center). Fairchild draws the package mirrored but the base stays center; identify the collector by the tab side, not the drawing viewpoint."
+    }
+  },
+  "specs": {
+    "vs_max_v": 30.0,
+    "iout_max_ma": 200.0,
+    "pd_max_mw": 625.0,
+    "hfe_min": 50,
+    "hfe_max": 150,
+    "freq_max_hz": 200000000.0,
+    "extra": {
+      "Vceo": "-30V",
+      "Vcbo": "-30V",
+      "Vebo": "-4V",
+      "complement (npn)": "2N4124",
+      "polarity": "PNP (negative rails)",
+      "Vce(sat)": "-0.4V (max) @ Ic=-50mA, Ib=-5mA",
+      "Vbe(on)": "-0.95V (max) @ Ic=-50mA, Ib=-5mA (datasheet's VBE(sat))"
+    }
+  },
+  "typical_application": "General-purpose PNP small-signal amplification and moderate-speed switching; complement to 2N4124 in low-voltage complementary stages.",
+  "gotchas": [
+    "pinout is E-B-C (base center), the American convention",
+    "Vebo is only -4V; keep reverse base-emitter voltage low",
+    "PNP: all ratings negative",
+    "low-voltage part (Vceo -30V); not for high-voltage use"
+  ],
+  "related": [
+    "2n4124",
+    "2n3906",
+    "bc557"
+  ],
+  "datasheet_url": "https://www.onsemi.com/pdf/datasheet/2n4124-d.pdf",
+  "source": "human",
+  "verified": true
+}

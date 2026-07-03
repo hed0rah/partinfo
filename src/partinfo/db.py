@@ -1,0 +1,214 @@
+"""
+SQLite index over the parts/ JSON directory.
+rebuild with: partinfo ingest
+"""
+
+from __future__ import annotations
+import json
+import re
+import sqlite3
+from pathlib import Path
+from .schema import Part, RefEntry
+
+_DB = Path(__file__).parent.parent.parent / "data" / "parts.db"
+_PARTS = Path(__file__).parent.parent.parent / "parts"
+_REFS = Path(__file__).parent.parent.parent / "references"
+
+
+def _conn(db: Path = _DB) -> sqlite3.Connection:
+    db.parent.mkdir(parents=True, exist_ok=True)
+    c = sqlite3.connect(db)
+    c.row_factory = sqlite3.Row
+    c.executescript("""
+        CREATE TABLE IF NOT EXISTS parts (
+            id          TEXT PRIMARY KEY,
+            name        TEXT NOT NULL,
+            category    TEXT NOT NULL,
+            tags        TEXT NOT NULL,   -- JSON array
+            description TEXT NOT NULL,
+            aliases     TEXT NOT NULL,   -- JSON array
+            blob        TEXT NOT NULL,   -- full JSON
+            source      TEXT NOT NULL DEFAULT 'human'
+        );
+        CREATE VIRTUAL TABLE IF NOT EXISTS parts_fts USING fts5(
+            id, name, aliases, tags, description,
+            content=parts, content_rowid=rowid
+        );
+        CREATE TABLE IF NOT EXISTS refs (
+            id          TEXT PRIMARY KEY,
+            title       TEXT NOT NULL,
+            topic       TEXT NOT NULL,
+            tags        TEXT NOT NULL,   -- JSON array
+            summary     TEXT NOT NULL,
+            body        TEXT NOT NULL DEFAULT '',
+            blob        TEXT NOT NULL,   -- full JSON
+            source      TEXT NOT NULL DEFAULT 'human'
+        );
+        CREATE VIRTUAL TABLE IF NOT EXISTS refs_fts USING fts5(
+            id, title, tags, summary, body,
+            content=refs, content_rowid=rowid
+        );
+    """)
+    return c
+
+
+def ingest(parts_dir: Path = _PARTS, db: Path = _DB,
+           refs_dir: Path = _REFS) -> tuple[int, list[str]]:
+    """scan parts/ and references/, rebuild parts.db.
+    returns (part count, list of "filename: error" strings for any file
+    that failed to parse or validate -- a non-empty list means the index
+    is missing entries, not just a cosmetic warning)."""
+    conn = _conn(db)
+    conn.execute("DELETE FROM parts")
+    conn.execute("DELETE FROM parts_fts")
+    count = 0
+    errors = []
+    for f in sorted(parts_dir.rglob("*.json")):
+        try:
+            data = json.loads(f.read_text())
+            part = Part(**data)
+            conn.execute(
+                "INSERT OR REPLACE INTO parts VALUES (?,?,?,?,?,?,?,?)",
+                (
+                    part.id,
+                    part.name,
+                    part.category,
+                    json.dumps(part.tags),
+                    part.description,
+                    json.dumps(part.aliases),
+                    f.read_text(),
+                    part.source,
+                )
+            )
+            count += 1
+        except Exception as e:
+            errors.append(f"{f.relative_to(parts_dir.parent)}: {e}")
+    conn.execute("INSERT INTO parts_fts(parts_fts) VALUES ('rebuild')")
+    ref_count, ref_errors = ingest_refs(conn, refs_dir)
+    errors.extend(ref_errors)
+    conn.commit()
+    return count, errors
+
+
+def ingest_refs(conn: sqlite3.Connection, refs_dir: Path = _REFS) -> tuple[int, list[str]]:
+    """scan references/, rebuild the refs tables. returns (ref count, errors)."""
+    conn.execute("DELETE FROM refs")
+    conn.execute("DELETE FROM refs_fts")
+    count = 0
+    errors = []
+    if refs_dir.exists():
+        for f in sorted(refs_dir.rglob("*.json")):
+            try:
+                ref = RefEntry(**json.loads(f.read_text()))
+                conn.execute(
+                    "INSERT OR REPLACE INTO refs VALUES (?,?,?,?,?,?,?,?)",
+                    (
+                        ref.id,
+                        ref.title,
+                        ref.topic,
+                        json.dumps(ref.tags),
+                        ref.summary,
+                        ref.body or "",
+                        f.read_text(),
+                        ref.source,
+                    )
+                )
+                count += 1
+            except Exception as e:
+                errors.append(f"{f.relative_to(refs_dir.parent)}: {e}")
+    conn.execute("INSERT INTO refs_fts(refs_fts) VALUES ('rebuild')")
+    return count, errors
+
+
+def lookup(query: str, db: Path = _DB) -> Part | None:
+    """exact match: id, name, or alias."""
+    conn = _conn(db)
+    q = query.strip().lower()
+    row = conn.execute("SELECT blob FROM parts WHERE id=? OR lower(name)=?", (q, q)).fetchone()
+    if not row:
+        # check aliases, then variant mpns (so "p2n2222a" resolves to "2n2222")
+        for r in conn.execute("SELECT blob, aliases FROM parts").fetchall():
+            aliases = json.loads(r["aliases"])
+            if q in [a.lower() for a in aliases]:
+                row = r
+                break
+            blob = json.loads(r["blob"])
+            if q in [v.get("mpn", "").lower() for v in blob.get("variants", [])]:
+                row = r
+                break
+    if row:
+        return Part(**json.loads(row["blob"]))
+    return None
+
+
+def _fts_query(query: str) -> str | None:
+    """turn a free-text query into a safe FTS5 MATCH expression.
+
+    the default fts5 tokenizer treats -, /, :, *, ", etc. as query syntax, so a
+    natural query like "h-bridge" or "i/o expander" raises a parse error. split
+    the input into bare word tokens and quote each as a string literal, so every
+    term is matched verbatim and all terms are required (implicit AND). returns
+    None when the query has no searchable tokens.
+    """
+    tokens = re.findall(r"\w+", query)
+    if not tokens:
+        return None
+    return " ".join(f'"{t}"' for t in tokens)
+
+
+def search(query: str, limit: int = 10, db: Path = _DB) -> list[Part]:
+    """full-text search across name, tags, description, aliases."""
+    match = _fts_query(query)
+    if match is None:
+        return []
+    conn = _conn(db)
+    rows = conn.execute(
+        """
+        SELECT p.blob FROM parts p
+        JOIN parts_fts f ON p.rowid = f.rowid
+        WHERE parts_fts MATCH ?
+        ORDER BY rank LIMIT ?
+        """,
+        (match, limit),
+    ).fetchall()
+    return [Part(**json.loads(r["blob"])) for r in rows]
+
+
+def all_ids(db: Path = _DB) -> list[str]:
+    conn = _conn(db)
+    return [r[0] for r in conn.execute("SELECT id FROM parts ORDER BY id").fetchall()]
+
+
+def ref_lookup(query: str, db: Path = _DB) -> RefEntry | None:
+    """exact match on a reference id or title."""
+    conn = _conn(db)
+    q = query.strip().lower()
+    row = conn.execute(
+        "SELECT blob FROM refs WHERE id=? OR lower(title)=?", (q, q)
+    ).fetchone()
+    if row:
+        return RefEntry(**json.loads(row["blob"]))
+    return None
+
+
+def ref_search(query: str, limit: int = 10, db: Path = _DB) -> list[RefEntry]:
+    """full-text search across reference title, tags, summary, body."""
+    match = _fts_query(query)
+    if match is None:
+        return []
+    conn = _conn(db)
+    rows = conn.execute(
+        """
+        SELECT r.blob FROM refs r
+        JOIN refs_fts f ON r.rowid = f.rowid
+        WHERE refs_fts MATCH ?
+        ORDER BY rank LIMIT ?
+        """,
+        (match, limit),
+    ).fetchall()
+    return [RefEntry(**json.loads(r["blob"])) for r in rows]
+
+
+def ref_all_ids(db: Path = _DB) -> list[str]:
+    conn = _conn(db)
+    return [r[0] for r in conn.execute("SELECT id FROM refs ORDER BY id").fetchall()]

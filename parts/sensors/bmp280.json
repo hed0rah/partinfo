@@ -1,0 +1,100 @@
+{
+  "id": "bmp280",
+  "name": "BMP280",
+  "aliases": [
+    "GY-BMP280",
+    "GY-BMP280-3.3",
+    "BMP280 breakout"
+  ],
+  "full_name": "BMP280 Digital Barometric Pressure and Temperature Sensor (GY-BMP280 module)",
+  "manufacturers": [
+    "Bosch Sensortec"
+  ],
+  "category": "sensor",
+  "subcategory": "digital barometric pressure and temperature sensor",
+  "tags": [
+    "pressure",
+    "barometer",
+    "temperature",
+    "i2c",
+    "spi",
+    "altimeter",
+    "module",
+    "bmp280"
+  ],
+  "description": "Digital barometric pressure and temperature sensor from Bosch Sensortec, commonly sold on the small GY-BMP280 breakout with an onboard 3.3 V regulator. It measures pressure from 300 to 1100 hPa and temperature from -40 to +85 C, and supports both I2C and SPI. On I2C the SDO pin selects the 7-bit address (0x76 low, 0x77 high). The bare chip is an LGA-8 that is not hand-solderable, so the breakout header is the practical form for hobbyists.",
+  "packages": {
+    "GY-BMP280 module": {
+      "template": "module",
+      "pin_count": 6,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "VCC",
+          "type": "power",
+          "description": "module supply (board regulator typically accepts 3.3-5 V depending on variant)"
+        },
+        {
+          "pin": 2,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 3,
+          "name": "SCL",
+          "type": "clock",
+          "description": "I2C clock (or SPI SCK in 4-wire SPI mode)"
+        },
+        {
+          "pin": 4,
+          "name": "SDA",
+          "type": "bidirectional",
+          "description": "I2C data (or SPI SDI/MOSI in SPI mode)"
+        },
+        {
+          "pin": 5,
+          "name": "CSB",
+          "type": "input",
+          "description": "chip select; high = I2C mode, pull low to select SPI"
+        },
+        {
+          "pin": 6,
+          "name": "SDO",
+          "type": "bidirectional",
+          "description": "I2C address select (low=0x76, high=0x77); SPI data out (MISO) in SPI mode"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 1.71,
+    "vs_max_v": 3.6,
+    "extra": {
+      "interface": "I2C (up to 3.4 MHz) and SPI (3- and 4-wire)",
+      "pressure_range": "300 to 1100 hPa",
+      "temperature_range": "-40 C to +85 C",
+      "pressure_absolute_accuracy": "+/-1 hPa (typ, 0-65 C)",
+      "relative_pressure_accuracy": "+/-0.12 hPa (~+/-1 m altitude)",
+      "vdd_chip": "1.71 V to 3.6 V",
+      "vddio_chip": "1.2 V to 3.6 V",
+      "i2c_addresses": "0x76 (SDO low) or 0x77 (SDO high)"
+    }
+  },
+  "typical_application": "Altitude estimation, indoor barometric/weather sensing, and drone/altimeter applications via I2C or SPI to an MCU.",
+  "gotchas": [
+    "default I2C address depends on SDO: 0x76 when low (most GY-BMP280 boards default here), 0x77 when high; libraries often assume 0x77 so this is a frequent no-device error",
+    "the BMP280 chip operates at 1.71-3.6 V (VDDIO down to 1.2 V); only the GY breakout regulator tolerates 5 V, never put 5 V on the bare chip",
+    "BMP280 measures pressure + temperature only - it has NO humidity sensor; the pin-compatible BME280 adds humidity and is easily confused",
+    "GY-BMP280 header order varies by board revision (this VCC, GND, SCL, SDA, CSB, SDO order is the common one); always confirm against the silkscreen",
+    "pulling CSB low switches the chip to SPI mode; for I2C keep CSB high (boards usually tie it high)",
+    "the chip-ID register tells siblings apart: 0x58 for BMP280 vs 0x60 for BME280, since both share the 0x76/0x77 I2C range"
+  ],
+  "related": [
+    "bme280",
+    "dht22"
+  ],
+  "datasheet_url": "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp280-ds001.pdf",
+  "source": "human",
+  "verified": true
+}

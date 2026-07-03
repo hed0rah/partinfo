@@ -1,0 +1,81 @@
+{
+  "id": "bc549",
+  "name": "BC549",
+  "aliases": [
+    "BC549C"
+  ],
+  "full_name": "NPN Low-Noise Amplifier Transistor",
+  "manufacturers": [
+    "onsemi",
+    "NXP",
+    "STMicroelectronics"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "npn low-noise",
+  "tags": [
+    "transistor",
+    "npn",
+    "bjt",
+    "low-noise",
+    "audio",
+    "european"
+  ],
+  "description": "Low-noise member of the BC547-549 family, specified for audio input stages. Same C-B-E TO-92 pinout as the BC547. The 'C' gain group has the highest hFE.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "C",
+          "type": "passive",
+          "description": "collector"
+        },
+        {
+          "pin": 2,
+          "name": "B",
+          "type": "passive",
+          "description": "base"
+        },
+        {
+          "pin": 3,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter"
+        }
+      ],
+      "notes": "flat face toward you, leads down: C-B-E (same as BC547)."
+    }
+  },
+  "specs": {
+    "vs_max_v": 30.0,
+    "iout_max_ma": 100.0,
+    "pd_max_mw": 500.0,
+    "hfe_min": 110,
+    "hfe_max": 800,
+    "freq_max_hz": 300000000.0,
+    "extra": {
+      "Vceo": "30V",
+      "noise figure": "low (audio input grade)",
+      "complement (pnp)": "BC559",
+      "gain groups": "A/B/C, C is highest hFE",
+      "Vce(sat)": "80mV (typ), 250mV (max) @ Ic=10mA, Ib=0.5mA",
+      "Vbe(on)": "580-700mV @ Vce=5V, Ic=2mA"
+    }
+  },
+  "typical_application": "Low-noise audio preamp input stages, microphone amps, the front end of phono and instrument preamps.",
+  "gotchas": [
+    "pinout is C-B-E (European), opposite the 2N3904",
+    "lower Vceo (30V) than the BC547 (45V); watch supply headroom",
+    "gain group suffix sets hFE; the C grade is the high-gain low-noise pick"
+  ],
+  "related": [
+    "bc547",
+    "bc559",
+    "2n5089"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://diotec.com/request/datasheet/bc546.pdf"
+}

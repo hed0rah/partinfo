@@ -1,0 +1,208 @@
+{
+  "id": "cd4067",
+  "name": "CD4067B",
+  "aliases": [
+    "CD4067",
+    "HEF4067B",
+    "MC14067B"
+  ],
+  "full_name": "Single 16-Channel Analog Multiplexer / Demultiplexer (CMOS)",
+  "manufacturers": [
+    "Texas Instruments",
+    "onsemi",
+    "STMicroelectronics"
+  ],
+  "category": "logic",
+  "subcategory": "analog mux",
+  "tags": [
+    "logic",
+    "cmos",
+    "4000-series",
+    "analog",
+    "multiplexer",
+    "demultiplexer",
+    "switch"
+  ],
+  "description": "Single 16-channel analog mux/demux connecting one of sixteen channels (CH0..CH15) to the common line, selected by four binary address lines A/B/C/D. Active-HIGH inhibit disconnects all channels. The 24-pin big brother of the CD4051 (8-channel); used as the I/O multiplexer on the Bus Pirate 5.",
+  "packages": {
+    "TSSOP-24": {
+      "template": "tssop",
+      "pin_count": 24,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "COM",
+          "type": "analog",
+          "description": "common analog in/out (the multiplexed line)"
+        },
+        {
+          "pin": 2,
+          "name": "CH7",
+          "type": "analog",
+          "description": "analog channel 7"
+        },
+        {
+          "pin": 3,
+          "name": "CH6",
+          "type": "analog",
+          "description": "analog channel 6"
+        },
+        {
+          "pin": 4,
+          "name": "CH5",
+          "type": "analog",
+          "description": "analog channel 5"
+        },
+        {
+          "pin": 5,
+          "name": "CH4",
+          "type": "analog",
+          "description": "analog channel 4"
+        },
+        {
+          "pin": 6,
+          "name": "CH3",
+          "type": "analog",
+          "description": "analog channel 3"
+        },
+        {
+          "pin": 7,
+          "name": "CH2",
+          "type": "analog",
+          "description": "analog channel 2"
+        },
+        {
+          "pin": 8,
+          "name": "CH1",
+          "type": "analog",
+          "description": "analog channel 1"
+        },
+        {
+          "pin": 9,
+          "name": "CH0",
+          "type": "analog",
+          "description": "analog channel 0"
+        },
+        {
+          "pin": 10,
+          "name": "A",
+          "type": "input",
+          "description": "address line A (LSB)"
+        },
+        {
+          "pin": 11,
+          "name": "B",
+          "type": "input",
+          "description": "address line B"
+        },
+        {
+          "pin": 12,
+          "name": "VSS",
+          "type": "ground",
+          "description": "negative supply / ground"
+        },
+        {
+          "pin": 13,
+          "name": "D",
+          "type": "input",
+          "description": "address line D (MSB)"
+        },
+        {
+          "pin": 14,
+          "name": "C",
+          "type": "input",
+          "description": "address line C"
+        },
+        {
+          "pin": 15,
+          "name": "INH",
+          "type": "input",
+          "description": "inhibit; HIGH disables all channels"
+        },
+        {
+          "pin": 16,
+          "name": "CH15",
+          "type": "analog",
+          "description": "analog channel 15"
+        },
+        {
+          "pin": 17,
+          "name": "CH14",
+          "type": "analog",
+          "description": "analog channel 14"
+        },
+        {
+          "pin": 18,
+          "name": "CH13",
+          "type": "analog",
+          "description": "analog channel 13"
+        },
+        {
+          "pin": 19,
+          "name": "CH12",
+          "type": "analog",
+          "description": "analog channel 12"
+        },
+        {
+          "pin": 20,
+          "name": "CH11",
+          "type": "analog",
+          "description": "analog channel 11"
+        },
+        {
+          "pin": 21,
+          "name": "CH10",
+          "type": "analog",
+          "description": "analog channel 10"
+        },
+        {
+          "pin": 22,
+          "name": "CH9",
+          "type": "analog",
+          "description": "analog channel 9"
+        },
+        {
+          "pin": 23,
+          "name": "CH8",
+          "type": "analog",
+          "description": "analog channel 8"
+        },
+        {
+          "pin": 24,
+          "name": "VDD",
+          "type": "power",
+          "description": "positive supply, 3V to 20V"
+        }
+      ],
+      "notes": "Also sold as 24-lead SOIC (DW) and PDIP (E); pin numbering is identical across packages, per TI's CD4067B/CD4097B datasheet, top view."
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.0,
+    "vs_max_v": 20.0,
+    "extra": {
+      "function": "1-of-16 analog mux/demux, bidirectional channels",
+      "logic family": "CD40xx CMOS (4000B)",
+      "channels": 16,
+      "address": "A (LSB), B, C, D (MSB); 4-bit binary select, 0000->CH0 ... 1111->CH15",
+      "inhibit": "active HIGH",
+      "Ron": "125 ohm typ over a 15Vpp signal range at VDD-VSS=15V (channel matching: 5 ohm typ)",
+      "channel_leakage": "+-10pA typ OFF-state at VDD-VSS=10V",
+      "Idd_quiescent": "0.2uW typ power dissipation at VDD-VSS=10V (i.e. negligible static current)"
+    }
+  },
+  "typical_application": "Routing one of sixteen analog or digital signals into a single line, e.g. selecting between many I/O pins or sensor lines with a shared ADC/logic input. Used as the buffered I/O multiplexer on the Bus Pirate 5.",
+  "gotchas": [
+    "16 channels need a 4-bit address (A/B/C/D) versus the CD4051's 3-bit (8 channels); do not reuse CD4051 control wiring unmodified",
+    "INHIBIT (pin 15) is active HIGH; tie LOW to enable the mux, do not float",
+    "channels are bidirectional analog switches (Ron ~125 ohm), not buffered outputs; signals must stay between VSS and VDD",
+    "TSSOP-24, SOIC-24, and PDIP-24 packages share the same pin numbering per TI's datasheet"
+  ],
+  "related": [
+    "cd4051",
+    "cd4066"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/cd4067b.pdf",
+  "source": "claude",
+  "verified": true
+}

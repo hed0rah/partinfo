@@ -1,0 +1,85 @@
+{
+  "id": "tip127",
+  "name": "TIP127",
+  "aliases": [
+    "TIP125 family"
+  ],
+  "full_name": "PNP Darlington Power Transistor",
+  "manufacturers": [
+    "onsemi",
+    "STMicroelectronics",
+    "Fairchild"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "pnp darlington power",
+  "tags": [
+    "transistor",
+    "pnp",
+    "darlington",
+    "power",
+    "switching",
+    "classic"
+  ],
+  "description": "PNP Darlington in TO-220 (TIP125/126/127 family), the complement to the TIP122. High-side switching and the PNP half of Darlington H-bridges. Internal B-E resistors and C-E freewheel diode. Lead order B-C-E.",
+  "packages": {
+    "TO-220": {
+      "template": "to220",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "B",
+          "type": "passive",
+          "description": "base"
+        },
+        {
+          "pin": 2,
+          "name": "C",
+          "type": "passive",
+          "description": "collector (also the metal tab)"
+        },
+        {
+          "pin": 3,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter"
+        }
+      ],
+      "notes": "TO-220, label toward you, leads down: B-C-E. Tab is the collector."
+    }
+  },
+  "specs": {
+    "vs_max_v": 100.0,
+    "iout_max_ma": 5000.0,
+    "pd_max_mw": 65000.0,
+    "hfe_min": 1000,
+    "vce_sat_v": 2.5,
+    "extra": {
+      "Vceo": "-100V",
+      "Ic max": "-5A",
+      "hFE": "1000+ (Darlington)",
+      "complement (npn)": "TIP122",
+      "built-in": "B-E resistors + C-E flyback diode",
+      "Vce(sat)": "-2V (max) @ Ic=-3A, Ib=-12mA (-4V max @ Ic=-5A, Ib=-20mA)",
+      "Vbe(on)": "-2.5V (max) @ Ic=-3A, Vce=-3V",
+      "Rth(JC)": "< 3 C/W",
+      "Rth(JA)": "< 63 C/W"
+    },
+    "rth_jc_cw": 3.0,
+    "rth_ja_cw": 63.0
+  },
+  "typical_application": "High-side load switching, PNP side of Darlington H-bridges paired with a TIP122, driving loads referenced to the positive rail.",
+  "gotchas": [
+    "high Vce(sat) means significant heat; heatsink it",
+    "needs ~1.2-1.4V of base-emitter drive (two junctions)",
+    "lead order B-C-E; tab is the collector"
+  ],
+  "related": [
+    "tip122",
+    "tip42c",
+    "bd140"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://diotec.com/request/datasheet/tip125.pdf"
+}

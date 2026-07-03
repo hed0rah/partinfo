@@ -1,0 +1,86 @@
+{
+  "id": "tip41c",
+  "name": "TIP41C",
+  "aliases": [
+    "TIP41"
+  ],
+  "full_name": "NPN Power Transistor",
+  "manufacturers": [
+    "onsemi",
+    "STMicroelectronics",
+    "Fairchild"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "npn power",
+  "tags": [
+    "transistor",
+    "npn",
+    "bjt",
+    "power",
+    "audio",
+    "classic"
+  ],
+  "description": "Workhorse NPN power transistor in TO-220, complementary to the TIP42C. Used for audio output, motor and solenoid drive, and linear pass elements up to 6A. Lead order is B-C-E with the tab as collector.",
+  "packages": {
+    "TO-220": {
+      "template": "to220",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "B",
+          "type": "passive",
+          "description": "base"
+        },
+        {
+          "pin": 2,
+          "name": "C",
+          "type": "passive",
+          "description": "collector (also the mounting tab)"
+        },
+        {
+          "pin": 3,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter"
+        }
+      ],
+      "notes": "TO-220, label toward you, leads down: B-C-E. The metal tab is the collector (electrically live)."
+    }
+  },
+  "specs": {
+    "vs_max_v": 100.0,
+    "iout_max_ma": 6000.0,
+    "pd_max_mw": 65000.0,
+    "hfe_min": 15,
+    "hfe_max": 75,
+    "freq_max_hz": 3000000.0,
+    "extra": {
+      "Vceo": "100V",
+      "Ic max": "6A",
+      "complement (pnp)": "TIP42C",
+      "C suffix": "highest voltage grade",
+      "Vce(sat)": "1.5V (max) @ Ic=6A, Ib=0.6A",
+      "Vbe(on)": "2V (max) @ Ic=6A, Vce=4V",
+      "Rth(JC)": "1.92 C/W",
+      "Rth(JA)": "62.5 C/W"
+    },
+    "rth_jc_cw": 1.92,
+    "rth_ja_cw": 62.5
+  },
+  "typical_application": "Audio power output stages, DC motor and solenoid drivers, linear regulator pass transistor. Always heatsink; isolate the tab from grounded sinks with a mica/silpad washer.",
+  "gotchas": [
+    "lead order is B-C-E; the tab is the collector and is electrically live",
+    "low hFE (15-75) means it needs substantial base current; often driven by a smaller transistor (Darlington or BD139)",
+    "the suffix letter sets the voltage grade: TIP41C is the 100V part",
+    "isolate the tab when bolting multiple devices to a shared heatsink"
+  ],
+  "related": [
+    "tip42c",
+    "tip122",
+    "bd139"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.st.com/resource/en/datasheet/tip41c.pdf"
+}

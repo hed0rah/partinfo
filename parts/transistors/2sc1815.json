@@ -1,0 +1,88 @@
+{
+  "id": "2sc1815",
+  "name": "2SC1815",
+  "aliases": [
+    "C1815",
+    "2SC1815-GR",
+    "2SC1815-BL",
+    "2SC1815-Y"
+  ],
+  "full_name": "NPN Audio-Frequency Low-Noise Amplifier Transistor",
+  "manufacturers": [
+    "Toshiba",
+    "UTC (Unisonic)"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "npn small-signal",
+  "tags": [
+    "transistor",
+    "npn",
+    "bjt",
+    "small-signal",
+    "low-noise",
+    "audio",
+    "japanese"
+  ],
+  "description": "Classic Toshiba NPN low-noise AF amplifier, ubiquitous in Japanese audio and small-signal designs. TO-92 pinout is E-C-B (the Japanese convention): emitter and base are the outer pins, collector is the center pin. This is a different physical layout from European C-B-E and American E-B-C parts. Complement to the 2SA1015.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter (leftmost lead, flat face toward you)"
+        },
+        {
+          "pin": 2,
+          "name": "C",
+          "type": "passive",
+          "description": "collector (center)"
+        },
+        {
+          "pin": 3,
+          "name": "B",
+          "type": "passive",
+          "description": "base (rightmost lead)"
+        }
+      ],
+      "notes": "flat face toward you, leads down: E-C-B left to right. Collector is the CENTER pin (Japanese convention), unlike base-center European/American parts. Verified from Toshiba and UTC datasheets (both 1=E, 2=C, 3=B)."
+    }
+  },
+  "specs": {
+    "vs_max_v": 50.0,
+    "iout_max_ma": 150.0,
+    "pd_max_mw": 400.0,
+    "hfe_min": 70,
+    "hfe_max": 700,
+    "freq_max_hz": 80000000.0,
+    "extra": {
+      "Vceo": "50V",
+      "Vcbo": "60V",
+      "Vebo": "5V",
+      "complement (pnp)": "2SA1015",
+      "hFE ranks": "O 70-140, Y 120-240, GR 200-400, BL 350-700",
+      "Cob": "~3.5pF max",
+      "NF": "~1dB typ",
+      "Vce(sat)": "0.1V (typ), 0.25V (max) @ Ic=100mA, Ib=10mA",
+      "Vbe(on)": "1.0V (max) @ Ic=100mA, Ib=10mA (datasheet's VBE(sat))"
+    }
+  },
+  "typical_application": "Low-noise audio-frequency voltage amplifier and driver stage; a default small-signal NPN in vintage and modern Japanese audio circuits.",
+  "gotchas": [
+    "pinout is E-C-B with COLLECTOR in the CENTER, not base; dropping it into a BC547 (C-B-E) or 2N3904 (E-B-C) footprint swaps leads",
+    "hFE rank suffix (O/Y/GR/BL) matters a lot: BL (350-700) and O (70-140) behave very differently; sort by suffix for matched pairs",
+    "marked 'C1815' on the body with the rank letter; do not read the rank letter as part of the type"
+  ],
+  "related": [
+    "2sa1015",
+    "2sc945",
+    "2n3904",
+    "bc547"
+  ],
+  "datasheet_url": "https://media.digikey.com/pdf/Data%20Sheets/Toshiba%20PDFs/2SC1815.pdf",
+  "source": "human",
+  "verified": true
+}

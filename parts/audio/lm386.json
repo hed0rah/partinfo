@@ -1,0 +1,106 @@
+{
+  "id": "lm386",
+  "name": "LM386",
+  "aliases": [
+    "386"
+  ],
+  "full_name": "Low Voltage Audio Power Amplifier",
+  "manufacturers": [
+    "Texas Instruments",
+    "STMicroelectronics"
+  ],
+  "category": "audio",
+  "subcategory": "power amplifier",
+  "tags": [
+    "audio",
+    "amplifier",
+    "speaker",
+    "battery",
+    "classic",
+    "lo-fi"
+  ],
+  "description": "Small audio power amp for battery and low-voltage use. Drives a small speaker directly. Gain fixed at 20 by default, raised to 200 with a capacitor across pins 1 and 8. Beloved in cmoy-style and lo-fi guitar circuits.",
+  "packages": {
+    "DIP-8": {
+      "template": "dip",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "GAIN",
+          "type": "passive",
+          "description": "gain setting pin"
+        },
+        {
+          "pin": 2,
+          "name": "-INPUT",
+          "type": "input",
+          "description": "inverting input"
+        },
+        {
+          "pin": 3,
+          "name": "+INPUT",
+          "type": "input",
+          "description": "noninverting input"
+        },
+        {
+          "pin": 4,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground reference"
+        },
+        {
+          "pin": 5,
+          "name": "VOUT",
+          "type": "output",
+          "description": "output"
+        },
+        {
+          "pin": 6,
+          "name": "VS",
+          "type": "power",
+          "description": "power supply voltage"
+        },
+        {
+          "pin": 7,
+          "name": "BYPASS",
+          "type": "passive",
+          "description": "bypass decoupling node"
+        },
+        {
+          "pin": 8,
+          "name": "GAIN",
+          "type": "passive",
+          "description": "gain setting pin"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 4.0,
+    "vs_max_v": 12.0,
+    "gain_db_min": 26.0,
+    "gain_db_max": 46.0,
+    "pout_mw": 700.0,
+    "iq_ma": 4.0,
+    "extra": {
+      "gain range": "20 to 200 (V/V)",
+      "load": "8 ohm typical",
+      "variants": "N-1/N-3/N-4 differ in max Vs and Pout"
+    }
+  },
+  "typical_application": "Tie pin 2 to GND, drive signal into pin 3 through a pot, output cap (220uF) from pin 5 to an 8 ohm speaker. Add 10uF across 1-8 for full gain.",
+  "gotchas": [
+    "prone to motorboating (low-freq oscillation) without a Boucherot/Zobel network (10 ohm + 47nF) from output to GND",
+    "decouple the supply well; it oscillates easily on long leads",
+    "gain of 200 is noisy; keep input wiring short",
+    "not hi-fi; THD rises fast near max output"
+  ],
+  "related": [
+    "ne5532",
+    "tda2822"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/lm386.pdf"
+}

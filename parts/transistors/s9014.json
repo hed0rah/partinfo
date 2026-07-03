@@ -1,0 +1,86 @@
+{
+  "id": "s9014",
+  "name": "S9014",
+  "aliases": [
+    "SS9014",
+    "9014"
+  ],
+  "full_name": "NPN Small-Signal Low-Noise Transistor (TO-92)",
+  "manufacturers": [
+    "Fairchild",
+    "MCC",
+    "UTC",
+    "Jiangsu Changjiang"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "npn small-signal",
+  "tags": [
+    "transistor",
+    "npn",
+    "bjt",
+    "small-signal",
+    "low-noise",
+    "audio",
+    "asian-jellybean"
+  ],
+  "description": "NPN small-signal low-noise transistor for audio preamp and general small-signal use. TO-92 pin order is E-B-C, the reverse of European BC-series. Complement to the S9015. Do not confuse with the higher-current S9013.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter"
+        },
+        {
+          "pin": 2,
+          "name": "B",
+          "type": "passive",
+          "description": "base"
+        },
+        {
+          "pin": 3,
+          "name": "C",
+          "type": "passive",
+          "description": "collector"
+        }
+      ],
+      "notes": "flat face toward you, leads down: pin 1 (E) on the left. Verified from Fairchild SS9014 and MCC datasheets."
+    }
+  },
+  "specs": {
+    "vs_max_v": 45.0,
+    "iout_max_ma": 100.0,
+    "pd_max_mw": 450.0,
+    "hfe_min": 60,
+    "hfe_max": 1000,
+    "freq_max_hz": 150000000.0,
+    "extra": {
+      "Vceo": "45V",
+      "Vcbo": "50V",
+      "Vebo": "5V",
+      "complement (pnp)": "S9015",
+      "hFE classes": "A 60-150, B 100-300, C 200-600, D 400-1000",
+      "NF": "~0.9dB typ",
+      "Vce(sat)": "0.3V (max) @ Ic=100mA, Ib=5mA",
+      "Vbe(on)": "1V (max) @ Ic=100mA, Ib=5mA (datasheet's VBE(sat))"
+    }
+  },
+  "typical_application": "Low-noise audio preamplifier input and general small-signal NPN amplification.",
+  "gotchas": [
+    "pinout is E-B-C, not the European C-B-E",
+    "small-signal part: Ic only 100mA, do not confuse with the 0.5A S9013",
+    "very wide hFE spread (classes A-D); sort by suffix if gain matters"
+  ],
+  "related": [
+    "s9015",
+    "s9013",
+    "bc549"
+  ],
+  "datasheet_url": "https://www.mccsemi.com/pdf/products/S9014(TO-92).pdf",
+  "source": "human",
+  "verified": true
+}

@@ -1,0 +1,146 @@
+{
+  "id": "74hc14",
+  "name": "74HC14",
+  "aliases": [
+    "74LS14",
+    "74HCT14",
+    "7414",
+    "SN74HC14",
+    "SN74LS14",
+    "SN74HCT14"
+  ],
+  "full_name": "Hex Inverter with Schmitt-trigger inputs",
+  "manufacturers": [
+    "Texas Instruments",
+    "Nexperia",
+    "onsemi"
+  ],
+  "category": "logic",
+  "subcategory": "inverter",
+  "tags": [
+    "logic",
+    "74-series",
+    "cmos",
+    "ttl",
+    "inverter",
+    "not",
+    "schmitt-trigger"
+  ],
+  "description": "Six independent inverters with input hysteresis for clean switching on slow or noisy edges; each performs Y = NOT(A). HC, HCT and LS share this pinout. HC supply 2-6V; HCT/LS are 5V (LS 4.75-5.25V).",
+  "packages": {
+    "DIP-14": {
+      "template": "dip",
+      "pin_count": 14,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "1A",
+          "type": "input",
+          "description": "inverter 1 Schmitt-trigger input"
+        },
+        {
+          "pin": 2,
+          "name": "1Y",
+          "type": "output",
+          "description": "inverter 1 output"
+        },
+        {
+          "pin": 3,
+          "name": "2A",
+          "type": "input",
+          "description": "inverter 2 Schmitt-trigger input"
+        },
+        {
+          "pin": 4,
+          "name": "2Y",
+          "type": "output",
+          "description": "inverter 2 output"
+        },
+        {
+          "pin": 5,
+          "name": "3A",
+          "type": "input",
+          "description": "inverter 3 Schmitt-trigger input"
+        },
+        {
+          "pin": 6,
+          "name": "3Y",
+          "type": "output",
+          "description": "inverter 3 output"
+        },
+        {
+          "pin": 7,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 8,
+          "name": "4Y",
+          "type": "output",
+          "description": "inverter 4 output"
+        },
+        {
+          "pin": 9,
+          "name": "4A",
+          "type": "input",
+          "description": "inverter 4 Schmitt-trigger input"
+        },
+        {
+          "pin": 10,
+          "name": "5Y",
+          "type": "output",
+          "description": "inverter 5 output"
+        },
+        {
+          "pin": 11,
+          "name": "5A",
+          "type": "input",
+          "description": "inverter 5 Schmitt-trigger input"
+        },
+        {
+          "pin": 12,
+          "name": "6Y",
+          "type": "output",
+          "description": "inverter 6 output"
+        },
+        {
+          "pin": 13,
+          "name": "6A",
+          "type": "input",
+          "description": "inverter 6 Schmitt-trigger input"
+        },
+        {
+          "pin": 14,
+          "name": "VCC",
+          "type": "power",
+          "description": "positive supply"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.0,
+    "vs_max_v": 6.0,
+    "extra": {
+      "function": "Y = NOT(A) , Schmitt-trigger inputs",
+      "logic family": "74HC/HCT/LS",
+      "VCC": "HC 2-6V, HCT/LS 4.75-5.25V",
+      "inverters": 6
+    }
+  },
+  "typical_application": "Debouncing switches, squaring up slow or noisy edges, and relaxation oscillators using the input hysteresis.",
+  "gotchas": [
+    "pin 7 = GND, pin 14 = VCC",
+    "inputs on pins 1,3,5,9,11,13; outputs on 2,4,6,8,10,12 (adjacency swaps after GND)",
+    "do not float CMOS (HC/HCT) inputs; tie unused inputs to a defined level",
+    "Schmitt-trigger inputs have hysteresis (VT+ and VT-); this is the key difference from the plain 7404"
+  ],
+  "related": [
+    "74hc04",
+    "cd40106"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/sn74hc14.pdf",
+  "source": "human",
+  "verified": true
+}

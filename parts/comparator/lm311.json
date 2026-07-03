@@ -1,0 +1,108 @@
+{
+  "id": "lm311",
+  "name": "LM311",
+  "aliases": [
+    "LM311N",
+    "LM311P",
+    "LM211",
+    "LM111"
+  ],
+  "full_name": "Single High-Speed Voltage Comparator",
+  "manufacturers": [
+    "Texas Instruments",
+    "ON Semiconductor"
+  ],
+  "category": "comparator",
+  "subcategory": "single comparator",
+  "tags": [
+    "comparator",
+    "high-speed",
+    "single",
+    "strobe",
+    "open-collector"
+  ],
+  "description": "The LM311 is a single high-speed voltage comparator that operates from a wide range of supplies, from a single 5V up to +/-15V split supplies, with a total supply voltage rating up to 36V. Its output stage brings out both the open-collector (COL OUT) and the emitter (EMIT OUT) of the output transistor independently, so it can drive loads referenced to ground or to a separate positive rail and interface to many logic families. It also provides BALANCE pins for input-offset trimming and a strobe (BAL/STRB) pin to force the output off on command. Typical uses include zero-crossing detectors, level detectors, oscillators, and driving relays or lamps directly.",
+  "packages": {
+    "PDIP-8": {
+      "template": "dip",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "EMIT OUT",
+          "type": "output",
+          "description": "emitter of output transistor, output emitter comparator"
+        },
+        {
+          "pin": 2,
+          "name": "IN+",
+          "type": "input",
+          "description": "noninverting (positive) comparator input"
+        },
+        {
+          "pin": 3,
+          "name": "IN-",
+          "type": "input",
+          "description": "inverting (negative) comparator input"
+        },
+        {
+          "pin": 4,
+          "name": "VCC-",
+          "type": "power",
+          "description": "negative supply (ground in single-supply use)"
+        },
+        {
+          "pin": 5,
+          "name": "BALANCE",
+          "type": "input",
+          "description": "offset balance/trim pin"
+        },
+        {
+          "pin": 6,
+          "name": "BAL/STRB",
+          "type": "input",
+          "description": "balance and strobe pin; pulling it forces the output off"
+        },
+        {
+          "pin": 7,
+          "name": "COL OUT",
+          "type": "output",
+          "description": "collector of output transistor, open-collector output, needs external pullup"
+        },
+        {
+          "pin": 8,
+          "name": "VCC+",
+          "type": "power",
+          "description": "positive supply"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 5.0,
+    "vs_max_v": 36.0,
+    "extra": {
+      "supply_voltage": "single 5V to 30V or +/-15V split; total supply 36V max",
+      "output": "open-collector (separate collector and emitter brought out)",
+      "input_offset_v": "typ 2mV, max 7.5mV (LM311)",
+      "response_time": "typ 200ns",
+      "output_current": "up to 50mA sink"
+    }
+  },
+  "typical_application": "high-speed zero-crossing or level detection driving a ground- or rail-referenced load via the separately accessible collector and emitter output terminals.",
+  "gotchas": [
+    "the open-collector COL OUT REQUIRES an external pullup resistor",
+    "both collector and emitter of the output transistor are brought out separately and must both be connected appropriately",
+    "the BAL/STRB strobe pin forces the output off when activated, watch for unintended strobing",
+    "total supply voltage across VCC+ and VCC- must not exceed 36V",
+    "input voltages must stay within the supply rails"
+  ],
+  "related": [
+    "lm393",
+    "lm339",
+    "ne555"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/lm311.pdf",
+  "source": "human",
+  "verified": true
+}

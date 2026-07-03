@@ -1,0 +1,145 @@
+{
+  "id": "lmv324",
+  "name": "LMV324",
+  "aliases": [
+    "GS324MT"
+  ],
+  "full_name": "Quad Rail-to-Rail Micropower Operational Amplifier",
+  "manufacturers": [
+    "Texas Instruments",
+    "Gainsil"
+  ],
+  "category": "opamp",
+  "subcategory": "micropower rail-to-rail",
+  "tags": [
+    "opamp",
+    "rail-to-rail",
+    "micropower",
+    "single-supply",
+    "quad",
+    "modern",
+    "tssop"
+  ],
+  "description": "Quad rail-to-rail input/output op-amp in TSSOP-14, the four-amplifier version of the LMV321/LMV358 family. Low-voltage single-supply operation (2.7V-5.5V). Modern small-package successor to older quad parts like the LM324; used on the Bus Pirate 5 (also GS324MT, a Gainsil second-source with the same pinout).",
+  "packages": {
+    "TSSOP-14": {
+      "template": "tssop",
+      "pin_count": 14,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "1OUT",
+          "type": "output",
+          "description": "amplifier 1 output"
+        },
+        {
+          "pin": 2,
+          "name": "1IN-",
+          "type": "input",
+          "description": "amplifier 1 inverting input"
+        },
+        {
+          "pin": 3,
+          "name": "1IN+",
+          "type": "input",
+          "description": "amplifier 1 noninverting input"
+        },
+        {
+          "pin": 4,
+          "name": "VCC+",
+          "type": "power",
+          "description": "positive supply"
+        },
+        {
+          "pin": 5,
+          "name": "2IN+",
+          "type": "input",
+          "description": "amplifier 2 noninverting input"
+        },
+        {
+          "pin": 6,
+          "name": "2IN-",
+          "type": "input",
+          "description": "amplifier 2 inverting input"
+        },
+        {
+          "pin": 7,
+          "name": "2OUT",
+          "type": "output",
+          "description": "amplifier 2 output"
+        },
+        {
+          "pin": 8,
+          "name": "3OUT",
+          "type": "output",
+          "description": "amplifier 3 output"
+        },
+        {
+          "pin": 9,
+          "name": "3IN-",
+          "type": "input",
+          "description": "amplifier 3 inverting input"
+        },
+        {
+          "pin": 10,
+          "name": "3IN+",
+          "type": "input",
+          "description": "amplifier 3 noninverting input"
+        },
+        {
+          "pin": 11,
+          "name": "GND",
+          "type": "ground",
+          "description": "negative supply / ground"
+        },
+        {
+          "pin": 12,
+          "name": "4IN+",
+          "type": "input",
+          "description": "amplifier 4 noninverting input"
+        },
+        {
+          "pin": 13,
+          "name": "4IN-",
+          "type": "input",
+          "description": "amplifier 4 inverting input"
+        },
+        {
+          "pin": 14,
+          "name": "4OUT",
+          "type": "output",
+          "description": "amplifier 4 output"
+        }
+      ],
+      "notes": "Per TI's own pin table for the D/PW 14-pin SOIC/TSSOP package."
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.7,
+    "vs_max_v": 5.5,
+    "extra": {
+      "Vs_abs_max": "5.5V (single supply)",
+      "Vin_range": "-0.2V to Vs+0.2V",
+      "Vos": "1.7mV typ (7mV max) @ Ta=25C, Vcc=2.7V or 5V (9mV max over -40 to 125C)",
+      "Ibias": "15nA typ (250nA max) @ Ta=25C, Vcc=5V (500nA max over -40 to 125C)",
+      "CMRR": "65dB typ (50dB min) @ Vcc=5V",
+      "Iout": "40mA typ short-circuit current per amplifier, sourcing and sinking @ Ta=25C",
+      "GBW": "1MHz typ @ CL=200pF",
+      "Iq": "260uA typ (680uA max), all four amplifiers @ Vcc=5V"
+    }
+  },
+  "typical_application": "Multi-channel single-supply signal conditioning where board space and low quiescent current matter; four independent amplifiers sharing one small package.",
+  "gotchas": [
+    "single-supply part; GND (pin 11) is the negative rail, not necessarily earth ground",
+    "rail-to-rail input/output, but check the datasheet's actual VOH/VOL vs load before assuming true rail-to-rail swing under heavy load",
+    "GS324MT (Gainsil) is a second-source with the same pinout and similar specs, not an identical die to TI's part; match numbers to whichever is actually on hand"
+  ],
+  "related": [
+    "lmv321",
+    "lmv331",
+    "lm324"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/lmv324.pdf",
+  "source": "claude",
+  "verified": true
+}

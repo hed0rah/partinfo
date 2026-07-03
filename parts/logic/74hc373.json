@@ -1,0 +1,178 @@
+{
+  "id": "74hc373",
+  "name": "74HC373",
+  "aliases": [
+    "74LS373",
+    "74HCT373",
+    "SN74HC373",
+    "SN54HC373"
+  ],
+  "full_name": "Octal Transparent D-Type Latch with 3-State Outputs",
+  "manufacturers": [
+    "Texas Instruments",
+    "Nexperia",
+    "onsemi"
+  ],
+  "category": "logic",
+  "subcategory": "latch",
+  "tags": [
+    "logic",
+    "74-series",
+    "cmos",
+    "latch",
+    "transparent",
+    "3-state"
+  ],
+  "description": "Eight transparent D latches with 3-state outputs. While LE is HIGH the outputs follow the D inputs (transparent); when LE goes LOW the outputs hold. Active-low OE independently 3-states all outputs without affecting latched data. Level-controlled (contrast the '374). HC/HCT/LS share this pinout.",
+  "packages": {
+    "DIP-20": {
+      "template": "dip",
+      "pin_count": 20,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "OE",
+          "type": "input",
+          "description": "output enable, active LOW; HIGH 3-states all outputs"
+        },
+        {
+          "pin": 2,
+          "name": "1Q",
+          "type": "output",
+          "description": "latch output 1 (3-state)"
+        },
+        {
+          "pin": 3,
+          "name": "1D",
+          "type": "input",
+          "description": "latch data input 1"
+        },
+        {
+          "pin": 4,
+          "name": "2D",
+          "type": "input",
+          "description": "latch data input 2"
+        },
+        {
+          "pin": 5,
+          "name": "2Q",
+          "type": "output",
+          "description": "latch output 2 (3-state)"
+        },
+        {
+          "pin": 6,
+          "name": "3Q",
+          "type": "output",
+          "description": "latch output 3 (3-state)"
+        },
+        {
+          "pin": 7,
+          "name": "3D",
+          "type": "input",
+          "description": "latch data input 3"
+        },
+        {
+          "pin": 8,
+          "name": "4D",
+          "type": "input",
+          "description": "latch data input 4"
+        },
+        {
+          "pin": 9,
+          "name": "4Q",
+          "type": "output",
+          "description": "latch output 4 (3-state)"
+        },
+        {
+          "pin": 10,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 11,
+          "name": "LE",
+          "type": "input",
+          "description": "latch enable, active HIGH; follows D while HIGH, latches when LOW"
+        },
+        {
+          "pin": 12,
+          "name": "5Q",
+          "type": "output",
+          "description": "latch output 5 (3-state)"
+        },
+        {
+          "pin": 13,
+          "name": "5D",
+          "type": "input",
+          "description": "latch data input 5"
+        },
+        {
+          "pin": 14,
+          "name": "6D",
+          "type": "input",
+          "description": "latch data input 6"
+        },
+        {
+          "pin": 15,
+          "name": "6Q",
+          "type": "output",
+          "description": "latch output 6 (3-state)"
+        },
+        {
+          "pin": 16,
+          "name": "7Q",
+          "type": "output",
+          "description": "latch output 7 (3-state)"
+        },
+        {
+          "pin": 17,
+          "name": "7D",
+          "type": "input",
+          "description": "latch data input 7"
+        },
+        {
+          "pin": 18,
+          "name": "8D",
+          "type": "input",
+          "description": "latch data input 8"
+        },
+        {
+          "pin": 19,
+          "name": "8Q",
+          "type": "output",
+          "description": "latch output 8 (3-state)"
+        },
+        {
+          "pin": 20,
+          "name": "VCC",
+          "type": "power",
+          "description": "positive supply"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.0,
+    "vs_max_v": 6.0,
+    "extra": {
+      "function": "octal transparent D latch",
+      "logic family": "74HC/HCT/LS",
+      "outputs": "3-state, level-controlled (transparent)"
+    }
+  },
+  "typical_application": "Address/data latch for demultiplexed buses (latching the address off a multiplexed AD bus) and I/O port registers.",
+  "gotchas": [
+    "GND = pin 10, VCC = pin 20",
+    "LE (pin 11) is active-HIGH and level-sensitive: transparent while HIGH, holds when LOW (a latch, not edge-triggered)",
+    "OE (pin 1) is active-LOW and only controls the 3-state outputs; it does not change latched data",
+    "pins interleave D and Q (e.g. 1Q=2, 1D=3); not sequential D-then-Q blocks"
+  ],
+  "related": [
+    "74hc374",
+    "74hc245"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/sn74hc373.pdf",
+  "source": "human",
+  "verified": true
+}

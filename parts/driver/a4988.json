@@ -1,0 +1,229 @@
+{
+  "id": "a4988",
+  "name": "A4988",
+  "aliases": [
+    "A4988SETTR-T",
+    "A4988ET"
+  ],
+  "full_name": "DMOS Microstepping Driver with Translator and Overcurrent Protection",
+  "manufacturers": [
+    "Allegro MicroSystems"
+  ],
+  "category": "driver",
+  "subcategory": "bipolar stepper motor driver",
+  "tags": [
+    "stepper",
+    "microstepping",
+    "translator",
+    "dmos",
+    "bipolar",
+    "motor-driver"
+  ],
+  "description": "Complete microstepping motor driver with a built-in translator for easy operation of bipolar stepper motors. A single STEP pulse advances the motor one increment; DIR sets rotation. Supports full, half, quarter, eighth, and sixteenth steps, with adjustable current limiting (sense resistors + VREF), automatic mixed-decay current control, and protection including thermal shutdown, UVLO, and crossover-current protection. Operates from 8 to 35 V load supply, up to +/-2 A per phase. Supplied in a 28-lead 5x5 mm QFN with exposed thermal pad.",
+  "packages": {
+    "QFN-28": {
+      "template": "qfn",
+      "pin_count": 28,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "OUT2B",
+          "type": "output",
+          "description": "DMOS full bridge 2 output B (motor winding 2)"
+        },
+        {
+          "pin": 2,
+          "name": "ENABLE",
+          "type": "input",
+          "description": "Logic input, enables the DMOS outputs (active low)"
+        },
+        {
+          "pin": 3,
+          "name": "GND",
+          "type": "ground",
+          "description": "Ground; must be tied to PAD ground plane"
+        },
+        {
+          "pin": 4,
+          "name": "CP1",
+          "type": "passive",
+          "description": "Charge pump capacitor terminal"
+        },
+        {
+          "pin": 5,
+          "name": "CP2",
+          "type": "passive",
+          "description": "Charge pump capacitor terminal"
+        },
+        {
+          "pin": 6,
+          "name": "VCP",
+          "type": "passive",
+          "description": "Charge pump reservoir capacitor terminal"
+        },
+        {
+          "pin": 7,
+          "name": "NC",
+          "type": "nc",
+          "description": "No connection"
+        },
+        {
+          "pin": 8,
+          "name": "VREG",
+          "type": "passive",
+          "description": "Internal regulator decoupling terminal"
+        },
+        {
+          "pin": 9,
+          "name": "MS1",
+          "type": "input",
+          "description": "Microstep resolution select 1 (logic input)"
+        },
+        {
+          "pin": 10,
+          "name": "MS2",
+          "type": "input",
+          "description": "Microstep resolution select 2 (logic input)"
+        },
+        {
+          "pin": 11,
+          "name": "MS3",
+          "type": "input",
+          "description": "Microstep resolution select 3 (logic input)"
+        },
+        {
+          "pin": 12,
+          "name": "RESET",
+          "type": "reset",
+          "description": "Logic input; active-low reset, sets translator to home state and disables outputs"
+        },
+        {
+          "pin": 13,
+          "name": "ROSC",
+          "type": "analog",
+          "description": "Timing-set terminal; sets off-time / mixed-decay (resistor to GND, or tie to GND for fixed off-time)"
+        },
+        {
+          "pin": 14,
+          "name": "SLEEP",
+          "type": "input",
+          "description": "Logic input; active-low sleep, minimizes power consumption"
+        },
+        {
+          "pin": 15,
+          "name": "VDD",
+          "type": "power",
+          "description": "Logic supply (3 to 5.5 V)"
+        },
+        {
+          "pin": 16,
+          "name": "STEP",
+          "type": "input",
+          "description": "Logic input; rising edge advances the motor one microstep"
+        },
+        {
+          "pin": 17,
+          "name": "REF",
+          "type": "analog",
+          "description": "Gm reference voltage input (VREF) sets the current-limit threshold"
+        },
+        {
+          "pin": 18,
+          "name": "GND",
+          "type": "ground",
+          "description": "Ground; must be tied to PAD ground plane"
+        },
+        {
+          "pin": 19,
+          "name": "DIR",
+          "type": "input",
+          "description": "Logic input; sets direction of rotation"
+        },
+        {
+          "pin": 20,
+          "name": "NC",
+          "type": "nc",
+          "description": "No connection"
+        },
+        {
+          "pin": 21,
+          "name": "OUT1B",
+          "type": "output",
+          "description": "DMOS full bridge 1 output B (motor winding 1)"
+        },
+        {
+          "pin": 22,
+          "name": "VBB1",
+          "type": "power",
+          "description": "Load (motor) supply for bridge 1"
+        },
+        {
+          "pin": 23,
+          "name": "SENSE1",
+          "type": "analog",
+          "description": "Sense resistor terminal for bridge 1"
+        },
+        {
+          "pin": 24,
+          "name": "OUT1A",
+          "type": "output",
+          "description": "DMOS full bridge 1 output A (motor winding 1)"
+        },
+        {
+          "pin": 25,
+          "name": "NC",
+          "type": "nc",
+          "description": "No connection"
+        },
+        {
+          "pin": 26,
+          "name": "OUT2A",
+          "type": "output",
+          "description": "DMOS full bridge 2 output A (motor winding 2)"
+        },
+        {
+          "pin": 27,
+          "name": "SENSE2",
+          "type": "analog",
+          "description": "Sense resistor terminal for bridge 2"
+        },
+        {
+          "pin": 28,
+          "name": "VBB2",
+          "type": "power",
+          "description": "Load (motor) supply for bridge 2"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 8.0,
+    "vs_max_v": 35.0,
+    "extra": {
+      "load_supply": "8 V to 35 V",
+      "logic_supply": "3 V to 5.5 V",
+      "max_current": "+/-2 A per phase",
+      "microsteps": "full, 1/2, 1/4, 1/8, 1/16",
+      "rds_on": "320 mOhm typ (per driver)",
+      "thermal_pad": "exposed PAD = GND, solder to ground plane"
+    }
+  },
+  "typical_application": "Driving one bipolar stepper motor in 3D printers, CNC, and small automation from STEP/DIR signals with adjustable current limit.",
+  "gotchas": [
+    "set the VREF current limit (Itrip = VREF / (8 x Rsense)) before running a motor or you can overheat the motor/driver",
+    "MS1/MS2/MS3 select microstep resolution; all low = full step (default), all high = 1/16 step",
+    "place a large bulk electrolytic (100 uF or more) across VBB close to the chip; supply inductance/spikes can destroy the output MOSFETs without it",
+    "on the common Pololu/generic red breakout module only ~16 of the 28 pins are broken out, and RESET and SLEEP are usually tied together (RESET must be pulled high to operate)",
+    "the QFN has an exposed thermal PAD that must be soldered to the GND plane; the GND pins (3 and 18) are only joined through it",
+    "never connect or disconnect the motor while the driver is powered, it can destroy the outputs",
+    "absolute-max load supply is 35 V; outputs swing -2 V to 37 V transiently"
+  ],
+  "related": [
+    "drv8833",
+    "uln2003",
+    "irlz44n"
+  ],
+  "datasheet_url": "https://www.allegromicro.com/-/media/files/datasheets/a4988-datasheet.pdf",
+  "source": "human",
+  "verified": true
+}

@@ -1,0 +1,88 @@
+{
+  "id": "l7905",
+  "name": "L7905",
+  "aliases": [
+    "7905",
+    "LM7905",
+    "MC7905",
+    "79xx"
+  ],
+  "full_name": "5V Fixed Negative Voltage Regulator",
+  "manufacturers": [
+    "STMicroelectronics",
+    "Texas Instruments",
+    "onsemi"
+  ],
+  "category": "power",
+  "subcategory": "fixed negative linear regulator",
+  "tags": [
+    "regulator",
+    "linear",
+    "negative",
+    "fixed",
+    "79xx",
+    "dual-supply",
+    "classic"
+  ],
+  "description": "Fixed -5V negative regulator from the 79xx family, the negative-rail partner to the 7805. The 79xx pinout is GND-IN-OUT, which is different from the 78xx (IN-GND-OUT). A classic wiring trap when building dual supplies.",
+  "packages": {
+    "TO-220": {
+      "template": "to220",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "GND",
+          "type": "ground",
+          "description": "common/ground"
+        },
+        {
+          "pin": 2,
+          "name": "IN",
+          "type": "power",
+          "description": "unregulated negative input supply"
+        },
+        {
+          "pin": 3,
+          "name": "OUT",
+          "type": "output",
+          "description": "regulated -5V output"
+        }
+      ],
+      "notes": "TO-220, label toward you, leads down: GND-IN-OUT. Note the tab is connected to the INPUT on the 79xx, not ground."
+    }
+  },
+  "specs": {
+    "vs_min_v": -7.0,
+    "vs_max_v": -35.0,
+    "iout_max_ma": 1000.0,
+    "vs_typ_v": -5.0,
+    "extra": {
+      "Vout": "-5V",
+      "family": "7905/7912/7915",
+      "tab": "connected to INPUT (not GND)",
+      "Vin abs max": "-35V",
+      "dropout": "1.4V typ @ Io=1A",
+      "Iq": "3mA (max) @ TJ=25C",
+      "Rth(JC)": "5 C/W (TO-220)",
+      "Rth(JA)": "50 C/W (TO-220)"
+    },
+    "rth_jc_cw": 5.0,
+    "rth_ja_cw": 50.0
+  },
+  "typical_application": "Negative rail of a split +-5V supply alongside a 7805. Use a 2.2uF tantalum (or 1uF) on the output as the datasheet recommends for stability.",
+  "gotchas": [
+    "79xx pinout is GND-IN-OUT, DIFFERENT from the 78xx IN-GND-OUT; the most common dual-supply mistake",
+    "the tab is connected to the INPUT on 79xx parts, not ground; isolate it from grounded heatsinks",
+    "79xx parts can be fussy about output capacitor type; follow the datasheet (often a tantalum)",
+    "input must be at least ~2V more negative than the output"
+  ],
+  "related": [
+    "lm7805",
+    "lm337",
+    "79l05"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.st.com/resource/en/datasheet/l79.pdf"
+}

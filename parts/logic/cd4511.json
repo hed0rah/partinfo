@@ -1,0 +1,160 @@
+{
+  "id": "cd4511",
+  "name": "CD4511",
+  "aliases": [
+    "CD4511B",
+    "MC14511",
+    "4511"
+  ],
+  "full_name": "BCD-to-7-Segment Latch / Decoder / Driver (CMOS)",
+  "manufacturers": [
+    "Texas Instruments",
+    "onsemi",
+    "STMicroelectronics"
+  ],
+  "category": "logic",
+  "subcategory": "display decoder/driver",
+  "tags": [
+    "logic",
+    "cmos",
+    "4000-series",
+    "bcd",
+    "7-segment",
+    "decoder",
+    "driver",
+    "latch"
+  ],
+  "description": "BCD-to-7-segment latch/decoder/driver. Stores a 4-bit BCD code (A-D) in input latches and drives segment outputs a-g. Outputs are active HIGH with built-in bipolar transistors sourcing up to 25mA, driving common-cathode LED displays directly. Includes Lamp Test, Blanking, and Latch Enable. Supply 3V to 18V.",
+  "packages": {
+    "DIP-16": {
+      "template": "dip",
+      "pin_count": 16,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "B",
+          "type": "input",
+          "description": "BCD input B (bit 1)"
+        },
+        {
+          "pin": 2,
+          "name": "C",
+          "type": "input",
+          "description": "BCD input C (bit 2)"
+        },
+        {
+          "pin": 3,
+          "name": "LT",
+          "type": "input",
+          "description": "lamp test; active LOW lights all segments"
+        },
+        {
+          "pin": 4,
+          "name": "BL",
+          "type": "input",
+          "description": "blanking; active LOW blanks all segments"
+        },
+        {
+          "pin": 5,
+          "name": "LE",
+          "type": "input",
+          "description": "latch enable; LOW = transparent, HIGH = latched"
+        },
+        {
+          "pin": 6,
+          "name": "D",
+          "type": "input",
+          "description": "BCD input D (bit 3, MSB)"
+        },
+        {
+          "pin": 7,
+          "name": "A",
+          "type": "input",
+          "description": "BCD input A (bit 0, LSB)"
+        },
+        {
+          "pin": 8,
+          "name": "VSS",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 9,
+          "name": "e",
+          "type": "output",
+          "description": "segment e (active HIGH)"
+        },
+        {
+          "pin": 10,
+          "name": "d",
+          "type": "output",
+          "description": "segment d (active HIGH)"
+        },
+        {
+          "pin": 11,
+          "name": "c",
+          "type": "output",
+          "description": "segment c (active HIGH)"
+        },
+        {
+          "pin": 12,
+          "name": "b",
+          "type": "output",
+          "description": "segment b (active HIGH)"
+        },
+        {
+          "pin": 13,
+          "name": "a",
+          "type": "output",
+          "description": "segment a (active HIGH)"
+        },
+        {
+          "pin": 14,
+          "name": "g",
+          "type": "output",
+          "description": "segment g (active HIGH)"
+        },
+        {
+          "pin": 15,
+          "name": "f",
+          "type": "output",
+          "description": "segment f (active HIGH)"
+        },
+        {
+          "pin": 16,
+          "name": "VDD",
+          "type": "power",
+          "description": "supply, 3V to 18V"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.0,
+    "vs_max_v": 18.0,
+    "extra": {
+      "function": "BCD-to-7-segment latch/decoder/driver",
+      "logic family": "CD40xx CMOS (4000B)",
+      "output_polarity": "active HIGH (sourcing)",
+      "output_drive": "up to 25mA per segment, drives common-cathode LEDs",
+      "controls": "LT (lamp test, active LOW), BL (blanking, active LOW), LE (latch, HIGH = hold)",
+      "blanking": "BCD codes above 1001 (9) blank all segments",
+      "segment_pin_map": "a=13 b=12 c=11 d=10 e=9 f=15 g=14"
+    }
+  },
+  "typical_application": "Driving a common-cathode 7-segment LED digit directly from a 4-bit BCD bus.",
+  "gotchas": [
+    "outputs are ACTIVE HIGH and source current; use with common-cathode displays (common-anode needs an inverting driver)",
+    "LT and BL are active LOW; tie both HIGH for normal operation, do not float",
+    "LE LOW = transparent, HIGH = freezes the displayed digit; tie LOW if not latching",
+    "still use a series resistor on each segment despite the 25mA drive",
+    "segment outputs are not in alphabetical pin order: a=13, b=12, c=11, d=10, e=9, f=15, g=14",
+    "BCD codes 10-15 blank the display rather than showing hex"
+  ],
+  "related": [
+    "cd4017"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/cd4511b.pdf",
+  "source": "human",
+  "verified": true
+}

@@ -1,0 +1,160 @@
+{
+  "id": "cd4017",
+  "name": "CD4017",
+  "aliases": [
+    "CD4017B",
+    "MC14017",
+    "HEF4017B",
+    "4017"
+  ],
+  "full_name": "Decade Counter / Divider with 10 Decoded Outputs (CMOS)",
+  "manufacturers": [
+    "Texas Instruments",
+    "onsemi",
+    "STMicroelectronics"
+  ],
+  "category": "logic",
+  "subcategory": "counter",
+  "tags": [
+    "logic",
+    "cmos",
+    "4000-series",
+    "counter",
+    "decade",
+    "johnson",
+    "decoder"
+  ],
+  "description": "5-stage Johnson decade counter with ten fully decoded, mutually exclusive outputs (Q0..Q9); exactly one output is HIGH per state. CLOCK, CLOCK INHIBIT, RESET, and a CARRY-OUT (one pulse per 10 clocks) for cascading. Supply 3V to 18V.",
+  "packages": {
+    "DIP-16": {
+      "template": "dip",
+      "pin_count": 16,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "Q5",
+          "type": "output",
+          "description": "decoded output 5"
+        },
+        {
+          "pin": 2,
+          "name": "Q1",
+          "type": "output",
+          "description": "decoded output 1"
+        },
+        {
+          "pin": 3,
+          "name": "Q0",
+          "type": "output",
+          "description": "decoded output 0 (HIGH at reset)"
+        },
+        {
+          "pin": 4,
+          "name": "Q2",
+          "type": "output",
+          "description": "decoded output 2"
+        },
+        {
+          "pin": 5,
+          "name": "Q6",
+          "type": "output",
+          "description": "decoded output 6"
+        },
+        {
+          "pin": 6,
+          "name": "Q7",
+          "type": "output",
+          "description": "decoded output 7"
+        },
+        {
+          "pin": 7,
+          "name": "Q3",
+          "type": "output",
+          "description": "decoded output 3"
+        },
+        {
+          "pin": 8,
+          "name": "VSS",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 9,
+          "name": "Q8",
+          "type": "output",
+          "description": "decoded output 8"
+        },
+        {
+          "pin": 10,
+          "name": "Q4",
+          "type": "output",
+          "description": "decoded output 4"
+        },
+        {
+          "pin": 11,
+          "name": "Q9",
+          "type": "output",
+          "description": "decoded output 9"
+        },
+        {
+          "pin": 12,
+          "name": "CO",
+          "type": "output",
+          "description": "carry-out; one pulse per 10 clocks (HIGH counts 0-4) for cascading"
+        },
+        {
+          "pin": 13,
+          "name": "CE",
+          "type": "input",
+          "description": "clock inhibit/enable; counts only when LOW"
+        },
+        {
+          "pin": 14,
+          "name": "CLK",
+          "type": "clock",
+          "description": "clock; advances on rising edge"
+        },
+        {
+          "pin": 15,
+          "name": "MR",
+          "type": "reset",
+          "description": "master reset; HIGH clears to count 0"
+        },
+        {
+          "pin": 16,
+          "name": "VDD",
+          "type": "power",
+          "description": "supply, 3V to 18V"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.0,
+    "vs_max_v": 18.0,
+    "extra": {
+      "function": "decade Johnson counter, 1-of-10 decoded outputs",
+      "logic family": "CD40xx CMOS (4000B)",
+      "clock edge": "rising (when CE LOW)",
+      "reset": "active HIGH (async)",
+      "carry_out": "one pulse per 10 clocks",
+      "output_pin_map": "Q0=3 Q1=2 Q2=4 Q3=7 Q4=10 Q5=1 Q6=5 Q7=6 Q8=9 Q9=11"
+    }
+  },
+  "typical_application": "Sequencers, LED chasers, and frequency division stepping through ten decoded outputs in order.",
+  "gotchas": [
+    "decoded outputs are NOT in pin-number order: Q0=3, Q1=2, Q2=4, Q3=7, Q4=10, Q5=1, Q6=5, Q7=6, Q8=9, Q9=11",
+    "RESET (MR, pin 15) is active HIGH; tie LOW for normal counting, do not float",
+    "advances on the rising edge only while CLOCK INHIBIT (pin 13) is LOW; clock on a falling edge by feeding pin 13 and holding pin 14 HIGH",
+    "CARRY OUT (pin 12) is distinct from Q9 (pin 11); easy to confuse",
+    "only one output is HIGH at a time; do not wire-OR expecting overlap"
+  ],
+  "related": [
+    "cd4040",
+    "cd4060",
+    "cd4013"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/cd4017b.pdf",
+  "source": "human",
+  "verified": true
+}

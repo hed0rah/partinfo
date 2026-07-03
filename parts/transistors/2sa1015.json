@@ -1,0 +1,87 @@
+{
+  "id": "2sa1015",
+  "name": "2SA1015",
+  "aliases": [
+    "A1015",
+    "2SA1015-GR",
+    "2SA1015-Y"
+  ],
+  "full_name": "PNP Audio-Frequency Low-Noise Amplifier Transistor",
+  "manufacturers": [
+    "Toshiba",
+    "UTC (Unisonic)"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "pnp small-signal",
+  "tags": [
+    "transistor",
+    "pnp",
+    "bjt",
+    "small-signal",
+    "low-noise",
+    "audio",
+    "japanese"
+  ],
+  "description": "Toshiba PNP low-noise AF amplifier, the standard complement to the 2SC1815, used together in complementary and push-pull audio stages. TO-92 pinout is E-C-B (Japanese convention): collector is the center pin. Values are magnitudes; PNP rails are negative.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter (leftmost lead, flat face toward you)"
+        },
+        {
+          "pin": 2,
+          "name": "C",
+          "type": "passive",
+          "description": "collector (center)"
+        },
+        {
+          "pin": 3,
+          "name": "B",
+          "type": "passive",
+          "description": "base (rightmost lead)"
+        }
+      ],
+      "notes": "flat face toward you, leads down: E-C-B left to right. Collector is the CENTER pin (same physical layout as the 2SC1815 complement). Verified from Toshiba datasheet (1=E, 2=C, 3=B)."
+    }
+  },
+  "specs": {
+    "vs_max_v": 50.0,
+    "iout_max_ma": 150.0,
+    "pd_max_mw": 400.0,
+    "hfe_min": 70,
+    "hfe_max": 400,
+    "freq_max_hz": 80000000.0,
+    "extra": {
+      "Vceo": "-50V",
+      "Vcbo": "-50V",
+      "Vebo": "-5V",
+      "complement (npn)": "2SC1815",
+      "hFE ranks": "O 70-140, Y 120-240, GR 200-400",
+      "polarity": "PNP (negative rails)",
+      "Vce(sat)": "-0.1V (typ), -0.3V (max) @ Ic=-100mA, Ib=-10mA",
+      "Vbe(on)": "-1.1V (max) @ Ic=-100mA, Ib=-10mA (datasheet's VBE(sat))"
+    }
+  },
+  "typical_application": "Low-noise audio-frequency voltage amplifier / driver; PNP partner to the 2SC1815 in complementary and push-pull stages.",
+  "gotchas": [
+    "pinout is E-C-B with COLLECTOR in the CENTER, not base",
+    "PNP: all ratings negative; do not read -50V Vceo as a positive limit",
+    "tops out at the GR rank (200-400) whereas the NPN 2SC1815 also offers a BL rank; the pair is not gain-symmetric at the high end",
+    "marked 'A1015' on the body with the rank letter"
+  ],
+  "related": [
+    "2sc1815",
+    "2sa733",
+    "2n3906",
+    "bc557"
+  ],
+  "datasheet_url": "https://xtronics.com/uploads/2SA1015.pdf",
+  "source": "human",
+  "verified": true
+}

@@ -1,0 +1,143 @@
+{
+  "id": "cd4093",
+  "name": "CD4093",
+  "aliases": [
+    "CD4093B",
+    "MC14093",
+    "4093"
+  ],
+  "full_name": "Quad 2-Input NAND Schmitt Trigger (CMOS)",
+  "manufacturers": [
+    "Texas Instruments",
+    "onsemi",
+    "STMicroelectronics"
+  ],
+  "category": "logic",
+  "subcategory": "nand schmitt trigger",
+  "tags": [
+    "logic",
+    "cmos",
+    "nand",
+    "schmitt",
+    "oscillator",
+    "synth",
+    "classic"
+  ],
+  "description": "Four 2-input NAND gates, each with Schmitt-trigger inputs. The gating input lets you build enable-able oscillators and clean logic from noisy signals. Common in synth clock/gate circuits and simple control logic.",
+  "packages": {
+    "DIP-14": {
+      "template": "dip",
+      "pin_count": 14,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "1A",
+          "type": "input",
+          "description": "gate 1 input A"
+        },
+        {
+          "pin": 2,
+          "name": "1B",
+          "type": "input",
+          "description": "gate 1 input B"
+        },
+        {
+          "pin": 3,
+          "name": "1Y",
+          "type": "output",
+          "description": "gate 1 output (NAND)"
+        },
+        {
+          "pin": 4,
+          "name": "2Y",
+          "type": "output",
+          "description": "gate 2 output (NAND)"
+        },
+        {
+          "pin": 5,
+          "name": "2A",
+          "type": "input",
+          "description": "gate 2 input A"
+        },
+        {
+          "pin": 6,
+          "name": "2B",
+          "type": "input",
+          "description": "gate 2 input B"
+        },
+        {
+          "pin": 7,
+          "name": "VSS",
+          "type": "ground",
+          "description": "ground (0V)"
+        },
+        {
+          "pin": 8,
+          "name": "3A",
+          "type": "input",
+          "description": "gate 3 input A"
+        },
+        {
+          "pin": 9,
+          "name": "3B",
+          "type": "input",
+          "description": "gate 3 input B"
+        },
+        {
+          "pin": 10,
+          "name": "3Y",
+          "type": "output",
+          "description": "gate 3 output (NAND)"
+        },
+        {
+          "pin": 11,
+          "name": "4Y",
+          "type": "output",
+          "description": "gate 4 output (NAND)"
+        },
+        {
+          "pin": 12,
+          "name": "4A",
+          "type": "input",
+          "description": "gate 4 input A"
+        },
+        {
+          "pin": 13,
+          "name": "4B",
+          "type": "input",
+          "description": "gate 4 input B"
+        },
+        {
+          "pin": 14,
+          "name": "VDD",
+          "type": "power",
+          "description": "supply, 3V to 18V"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.0,
+    "vs_max_v": 18.0,
+    "extra": {
+      "function": "Y = NOT(A AND B), Schmitt inputs",
+      "logic family": "CD40xx CMOS (4000B)",
+      "drive": "low"
+    }
+  },
+  "typical_application": "Gateable RC oscillators (tie one input high to enable), debouncing, clean logic from slow edges. Tie unused inputs to a rail.",
+  "gotchas": [
+    "weak CMOS drive; buffer heavier loads",
+    "do not float unused inputs",
+    "frequency of an RC oscillator built from it drifts with supply voltage",
+    "the 74HC132 is the faster low-voltage equivalent"
+  ],
+  "related": [
+    "cd40106",
+    "cd4011",
+    "cd4070"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/cd4093b.pdf"
+}

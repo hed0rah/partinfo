@@ -1,0 +1,89 @@
+{
+  "id": "l7824",
+  "name": "L7824",
+  "aliases": [
+    "7824",
+    "LM7824",
+    "MC7824",
+    "uA7824",
+    "L7824CV"
+  ],
+  "full_name": "Positive 24V Three-Terminal Voltage Regulator (up to 1.5A)",
+  "manufacturers": [
+    "STMicroelectronics",
+    "onsemi",
+    "Fairchild",
+    "Texas Instruments"
+  ],
+  "category": "power",
+  "subcategory": "linear regulator (positive)",
+  "tags": [
+    "regulator",
+    "linear",
+    "positive",
+    "24v",
+    "power",
+    "to220",
+    "classic"
+  ],
+  "description": "Positive 24V fixed linear regulator from the 78xx family, up to 1.5A with a heatsink, in TO-220. TO-220 pin order is IN(1)/GND(2)/OUT(3) with the metal tab electrically GND.",
+  "packages": {
+    "TO-220": {
+      "template": "to220",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "VIN",
+          "type": "power",
+          "description": "unregulated input voltage (leftmost lead, face toward you)"
+        },
+        {
+          "pin": 2,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground / common (center, also the metal tab)"
+        },
+        {
+          "pin": 3,
+          "name": "VOUT",
+          "type": "output",
+          "description": "regulated +24V output (rightmost lead)"
+        }
+      ],
+      "notes": "printed face toward you, leads down: IN, GND, OUT left to right. The metal tab is electrically GROUND (pin 2). ST draws the datasheet figure tab-left/leads-right (top view); rotate to the leads-down pose to get this order."
+    }
+  },
+  "specs": {
+    "vs_min_v": 27.0,
+    "vs_max_v": 40.0,
+    "iout_max_ma": 1500.0,
+    "extra": {
+      "Vout": "+24V (2% tolerance, A version)",
+      "Iout max": "1.5A with heatsink",
+      "Vin abs max": "40V",
+      "dropout": "~2V typ",
+      "tab": "GND",
+      "Iq": "8mA (max) @ TJ=25C",
+      "Rth(JC)": "5 C/W (TO-220)",
+      "Rth(JA)": "50 C/W (TO-220)"
+    },
+    "rth_jc_cw": 5.0,
+    "rth_ja_cw": 50.0
+  },
+  "typical_application": "Fixed +24V on-card supply (industrial / sensor / motor-logic rails) from an unregulated ~28-35V source, with a heatsink for currents near 1.5A.",
+  "gotchas": [
+    "positive 78xx TO-220 is IN/GND/OUT with tab=GND; this is OPPOSITE the negative 79xx TO-220 (GND/IN/OUT) whose tab is NOT ground",
+    "the tab is GND, so it can mount directly to a grounded heatsink without an insulator (unlike a 79xx)",
+    "ST's datasheet figure is drawn tab-left/leads-right; reading it literally without rotating can fool you into thinking pin 1 is OUTPUT",
+    "needs ~2V headroom (dropout); input must stay above ~26V to hold 24V out"
+  ],
+  "related": [
+    "7805",
+    "7812",
+    "7924"
+  ],
+  "datasheet_url": "https://www.st.com/resource/en/datasheet/l78.pdf",
+  "source": "human",
+  "verified": true
+}

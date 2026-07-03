@@ -1,0 +1,83 @@
+{
+  "id": "bc517",
+  "name": "BC517",
+  "aliases": [],
+  "full_name": "NPN Darlington Transistor",
+  "manufacturers": [
+    "Fairchild",
+    "onsemi",
+    "NXP"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "npn darlington",
+  "tags": [
+    "transistor",
+    "npn",
+    "bjt",
+    "darlington",
+    "high-gain",
+    "small-signal"
+  ],
+  "description": "NPN Darlington (two cascaded NPN transistors in one TO-92) with very high current gain (hFE >= 30000). Logic-level drive of relays, LEDs, small motors up to about 1A. C-B-E pinout, the European TO-92 layout.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "C",
+          "type": "passive",
+          "description": "collector"
+        },
+        {
+          "pin": 2,
+          "name": "B",
+          "type": "passive",
+          "description": "base"
+        },
+        {
+          "pin": 3,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter"
+        }
+      ],
+      "notes": "flat face toward you, leads down: C-B-E. Opposite of the 2N3904 (E-B-C)."
+    }
+  },
+  "specs": {
+    "vs_max_v": 30.0,
+    "iout_max_ma": 1200.0,
+    "pd_max_mw": 625.0,
+    "hfe_min": 30000,
+    "extra": {
+      "Vceo": "30V",
+      "Vcbo": "40V",
+      "Vebo": "10V",
+      "Ic": "1.2A",
+      "type": "Darlington (plain 2-transistor, no internal base-emitter shunt resistors or clamp diode)",
+      "ft": "not specified in primary datasheet",
+      "Vce(sat)": "1V (max) @ Ic=100mA, Ib=0.1mA",
+      "Vbe(on)": "1.4V (max) @ Ic=10mA, Vce=5V",
+      "Rth(JC)": "83.3 C/W",
+      "Rth(JA)": "200 C/W"
+    },
+    "rth_jc_cw": 83.3,
+    "rth_ja_cw": 200.0
+  },
+  "typical_application": "High-gain low-power switching from a microcontroller or logic pin: relay, LED, and small-motor drive needing very little base current.",
+  "gotchas": [
+    "C-B-E pin order, not the E-B-C of common US TO-92 parts; easy to insert backwards",
+    "Darlington Vbe(on) is high (up to ~1.4V, two junctions) and Vce(sat) up to ~1.0V at 100mA; it never saturates as low as a single BJT, so it dissipates more as a switch",
+    "no internal flyback/clamp diode; add one externally for inductive loads",
+    "huge hFE means tiny base current; leakage can turn it on, consider an external base-emitter resistor in hot or high-impedance designs"
+  ],
+  "related": [
+    "bc547",
+    "tip120"
+  ],
+  "datasheet_url": "https://www.onsemi.com/download/data-sheet/pdf/bc517-d74z-d.pdf",
+  "source": "human",
+  "verified": true
+}

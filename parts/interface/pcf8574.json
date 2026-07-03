@@ -1,0 +1,157 @@
+{
+  "id": "pcf8574",
+  "name": "PCF8574",
+  "aliases": [
+    "PCF8574A",
+    "PCF8574T",
+    "PCF8574N"
+  ],
+  "full_name": "Remote 8-bit I/O expander for I2C",
+  "manufacturers": [
+    "Texas Instruments",
+    "NXP"
+  ],
+  "category": "interface",
+  "subcategory": "i2c gpio expander",
+  "tags": [
+    "interface",
+    "i2c",
+    "gpio",
+    "io-expander",
+    "expander",
+    "lcd-backpack"
+  ],
+  "description": "8-bit quasi-bidirectional I/O expander on the I2C bus, the chip behind nearly every I2C LCD 'backpack'. Three address pins (A0-A2) give eight selectable addresses, and an open-drain INT output flags input changes without polling. Operates 2.5-6 V. The ports are quasi-bidirectional (a weak internal pull-up to source, a strong pull-down to sink), so loads are normally wired active-low. The PCF8574A is identical but occupies a different address block.",
+  "packages": {
+    "DIP-16": {
+      "template": "dip",
+      "pin_count": 16,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "A0",
+          "type": "input",
+          "description": "address select bit 0"
+        },
+        {
+          "pin": 2,
+          "name": "A1",
+          "type": "input",
+          "description": "address select bit 1"
+        },
+        {
+          "pin": 3,
+          "name": "A2",
+          "type": "input",
+          "description": "address select bit 2"
+        },
+        {
+          "pin": 4,
+          "name": "P0",
+          "type": "bidirectional",
+          "description": "quasi-bidirectional I/O port 0"
+        },
+        {
+          "pin": 5,
+          "name": "P1",
+          "type": "bidirectional",
+          "description": "quasi-bidirectional I/O port 1"
+        },
+        {
+          "pin": 6,
+          "name": "P2",
+          "type": "bidirectional",
+          "description": "quasi-bidirectional I/O port 2"
+        },
+        {
+          "pin": 7,
+          "name": "P3",
+          "type": "bidirectional",
+          "description": "quasi-bidirectional I/O port 3"
+        },
+        {
+          "pin": 8,
+          "name": "VSS",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 9,
+          "name": "P4",
+          "type": "bidirectional",
+          "description": "quasi-bidirectional I/O port 4"
+        },
+        {
+          "pin": 10,
+          "name": "P5",
+          "type": "bidirectional",
+          "description": "quasi-bidirectional I/O port 5"
+        },
+        {
+          "pin": 11,
+          "name": "P6",
+          "type": "bidirectional",
+          "description": "quasi-bidirectional I/O port 6"
+        },
+        {
+          "pin": 12,
+          "name": "P7",
+          "type": "bidirectional",
+          "description": "quasi-bidirectional I/O port 7"
+        },
+        {
+          "pin": 13,
+          "name": "INT",
+          "type": "output",
+          "description": "active-low open-drain interrupt on input change"
+        },
+        {
+          "pin": 14,
+          "name": "SCL",
+          "type": "clock",
+          "description": "I2C serial clock"
+        },
+        {
+          "pin": 15,
+          "name": "SDA",
+          "type": "bidirectional",
+          "description": "I2C serial data (open-drain)"
+        },
+        {
+          "pin": 16,
+          "name": "VDD",
+          "type": "power",
+          "description": "+2.5 to +6 V supply"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.5,
+    "vs_max_v": 6.0,
+    "extra": {
+      "Vdd": "2.5-6 V",
+      "ports": "8 quasi-bidirectional",
+      "i2c": "100 kHz standard-mode",
+      "address_PCF8574": "0x20-0x27 (A0-A2 set low 3 bits)",
+      "address_PCF8574A": "0x38-0x3F",
+      "interrupt": "open-drain active-low on input change"
+    }
+  },
+  "typical_application": "Add 8 GPIO over I2C, or drive an HD44780 character LCD as an I2C 'backpack'; cascade up to 8 (PCF8574) plus 8 (PCF8574A) on one bus.",
+  "gotchas": [
+    "ports are QUASI-bidirectional: the internal pull-up sources only ~100 uA but the pull-down sinks ~25 mA, so wire LEDs/loads active-low (sink current), not active-high",
+    "to use a pin as an input, first write a 1 to it (releasing it to the weak pull-up) - it has no separate direction register",
+    "PCF8574 answers at 0x20-0x27 while the PCF8574A answers at 0x38-0x3F; mixing them up is the most common 'I2C device not found'",
+    "no internal SDA/SCL pull-ups; the I2C bus needs external pull-up resistors",
+    "INT is open-drain active-low and needs a pull-up; it asserts on any input change and clears on an I2C read"
+  ],
+  "related": [
+    "mcp23017",
+    "pcf8575",
+    "pca9555"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/pcf8574.pdf",
+  "source": "human",
+  "verified": true
+}

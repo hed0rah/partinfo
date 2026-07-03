@@ -1,0 +1,83 @@
+{
+  "id": "tl431",
+  "name": "TL431",
+  "aliases": [
+    "TL431A",
+    "TL431ACLP",
+    "LM431"
+  ],
+  "full_name": "Adjustable Precision Shunt Voltage Reference",
+  "manufacturers": [
+    "Texas Instruments",
+    "onsemi",
+    "Diodes Inc"
+  ],
+  "category": "power",
+  "subcategory": "shunt voltage reference",
+  "tags": [
+    "reference",
+    "shunt",
+    "precision",
+    "regulator",
+    "feedback",
+    "classic"
+  ],
+  "description": "Programmable precision shunt reference: behaves like a zener whose voltage you set from 2.5V to 36V with two resistors. The internal 2.5V reference and error amp make it the standard feedback element in switching supplies and a cheap accurate reference. WARNING: TO-92 pinout differs between manufacturers.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "CATHODE",
+          "type": "passive",
+          "description": "cathode, shunt current/voltage input terminal"
+        },
+        {
+          "pin": 2,
+          "name": "ANODE",
+          "type": "passive",
+          "description": "anode, common pin (normally to ground)"
+        },
+        {
+          "pin": 3,
+          "name": "REF",
+          "type": "input",
+          "description": "reference/threshold input relative to anode"
+        }
+      ],
+      "notes": "TI TO-92 (LP), flat face toward you: REF-ANODE-CATHODE. Other vendors and packages reorder these; always confirm against the specific datasheet."
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.5,
+    "vs_max_v": 36.0,
+    "iout_max_ma": 100.0,
+    "extra": {
+      "Vref": "2.495V",
+      "tolerance": "0.5% (A grade) / 2% (standard)",
+      "cathode current": "1mA to 100mA",
+      "Vka range": "2.5V to 36V",
+      "Rth(JC)": "55 C/W (TO-92/LP)",
+      "Rth(JA)": "140 C/W (TO-92/LP)"
+    },
+    "rth_jc_cw": 55.0,
+    "rth_ja_cw": 140.0
+  },
+  "typical_application": "Set output by a divider from cathode to REF to anode: Vka = 2.5 * (1 + R1/R2). Universal secondary-side feedback reference in flyback/SMPS designs (drives an optocoupler), and a low-cost adjustable shunt reference.",
+  "gotchas": [
+    "pinout VARIES by manufacturer and package; the TI TO-92 is REF-A-K but others differ. Verify the exact datasheet before wiring",
+    "needs at least ~1mA of cathode current to regulate",
+    "stability depends on the cathode capacitor; some load capacitance values cause oscillation (see the datasheet stability boundary)",
+    "it is a shunt (parallel) reference, not a series regulator; it sinks current through a series resistor"
+  ],
+  "related": [
+    "lm317",
+    "pc817",
+    "lm4040"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/tl431.pdf"
+}

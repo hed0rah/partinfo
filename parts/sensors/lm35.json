@@ -1,0 +1,79 @@
+{
+  "id": "lm35",
+  "name": "LM35",
+  "aliases": [
+    "LM35DZ",
+    "LM35CZ",
+    "LM35-DT"
+  ],
+  "full_name": "LM35 Precision Centigrade Temperature Sensor",
+  "manufacturers": [
+    "Texas Instruments"
+  ],
+  "category": "sensor",
+  "subcategory": "analog centigrade temperature sensor",
+  "tags": [
+    "temperature",
+    "analog",
+    "centigrade",
+    "linear",
+    "to-92",
+    "10mv-per-c"
+  ],
+  "description": "Precision analog temperature sensor whose output voltage is linearly proportional to temperature in degrees Celsius at 10 mV/C. Calibrated directly in Celsius, it needs no external calibration or trimming. It runs from a 4 to 30 V single supply and draws under 60 uA, giving minimal self-heating. The 0 mV = 0 C transfer characteristic is simple to read but means it cannot output negative voltages on a single supply.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "+Vs",
+          "type": "power",
+          "description": "positive supply, 4-30 V"
+        },
+        {
+          "pin": 2,
+          "name": "Vout",
+          "type": "analog",
+          "description": "analog output, 10 mV per degree Celsius"
+        },
+        {
+          "pin": 3,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 4.0,
+    "vs_max_v": 30.0,
+    "extra": {
+      "interface": "analog voltage output",
+      "scale_factor": "10 mV/C",
+      "temperature_range": "-55 C to +150 C (full range, LM35/LM35A)",
+      "accuracy": "+/-0.5 C typ at +25 C",
+      "supply_current": "~60 uA max",
+      "output_impedance": "0.1 ohm for 1 mA load",
+      "nonlinearity": "+/-0.25 C typ"
+    }
+  },
+  "typical_application": "Direct Celsius temperature readout into an ADC or analog meter for thermostats, power-supply thermal monitoring, and general ambient sensing.",
+  "gotchas": [
+    "on a single supply the LM35 cannot read below 0 C because the output cannot go negative; sub-zero sensing needs a negative bias resistor to a -Vs rail",
+    "TO-92 pin order (flat face toward you, leads down) is +Vs, Vout, GND left-to-right",
+    "output is 0 V at 0 C (not offset like the TMP36), so 25 C = 250 mV",
+    "long wires or capacitive loads on Vout can cause oscillation; may need a series R / load cap per datasheet",
+    "self-heating is low but mounting and airflow still affect accuracy",
+    "do not confuse with the LM34 (Fahrenheit), which has an identical pinout but a different scale"
+  ],
+  "related": [
+    "tmp36",
+    "ds18b20"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/lm35.pdf",
+  "source": "human",
+  "verified": true
+}

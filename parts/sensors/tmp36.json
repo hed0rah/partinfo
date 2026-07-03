@@ -1,0 +1,80 @@
+{
+  "id": "tmp36",
+  "name": "TMP36",
+  "aliases": [
+    "TMP36GT9Z",
+    "TMP35",
+    "TMP37"
+  ],
+  "full_name": "TMP36 Low Voltage Temperature Sensor (TMP35/TMP36/TMP37 family)",
+  "manufacturers": [
+    "Analog Devices"
+  ],
+  "category": "sensor",
+  "subcategory": "analog centigrade temperature sensor",
+  "tags": [
+    "temperature",
+    "analog",
+    "centigrade",
+    "linear",
+    "to-92",
+    "low-voltage",
+    "offset"
+  ],
+  "description": "Low-voltage analog temperature sensor with a 10 mV/C output and a 500 mV offset, so its output is 750 mV at 25 C. The 500 mV offset lets it report sub-zero temperatures from a single supply, unlike the LM35. It runs from 2.7 to 5.5 V and draws under 50 uA. Sister parts differ only in scaling: the TMP35 has no offset and the TMP37 uses 20 mV/C for higher resolution over a narrower range.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "+Vs",
+          "type": "power",
+          "description": "positive supply, 2.7-5.5 V"
+        },
+        {
+          "pin": 2,
+          "name": "Vout",
+          "type": "analog",
+          "description": "analog output, 10 mV/C with 500 mV offset (750 mV at 25 C)"
+        },
+        {
+          "pin": 3,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.7,
+    "vs_max_v": 5.5,
+    "extra": {
+      "interface": "analog voltage output",
+      "scale_factor": "10 mV/C",
+      "output_offset": "500 mV (output = 500 mV at 0 C)",
+      "temperature_range": "-40 C to +125 C",
+      "accuracy": "+/-1 C typ, +/-2 C max at +25 C",
+      "supply_current": "<50 uA",
+      "load_drive": "down to 50 kohm without buffer"
+    }
+  },
+  "typical_application": "Battery-powered and low-voltage Celsius sensing into an ADC where sub-zero readings are needed on a single supply (portable instruments, environmental loggers).",
+  "gotchas": [
+    "Vout has a 500 mV offset, so temperature C = (Vout_mV - 500) / 10; forgetting the offset gives a +50 C error",
+    "because of the 500 mV offset it CAN read below 0 C on a single supply (e.g. -40 C = 100 mV), unlike the LM35",
+    "TO-92 (RT-3) pin order is +Vs, Vout, GND, identical to LM35 but the transfer function differs - do not swap firmware between them",
+    "TMP35 (no offset) and TMP37 (20 mV/C) share the same package and pinout; verify the exact part marking",
+    "drive only light/known capacitive loads; large caps on Vout can cause instability",
+    "supply ripple couples into the output, so use a clean/bypassed Vs for accurate readings"
+  ],
+  "related": [
+    "lm35",
+    "ds18b20"
+  ],
+  "datasheet_url": "https://www.analog.com/media/en/technical-documentation/data-sheets/TMP35_36_37.pdf",
+  "source": "human",
+  "verified": true
+}

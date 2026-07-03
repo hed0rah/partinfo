@@ -1,0 +1,108 @@
+{
+  "id": "lm358",
+  "name": "LM358",
+  "aliases": [
+    "LM358N",
+    "LM2904"
+  ],
+  "full_name": "Dual Low-Power Operational Amplifier",
+  "manufacturers": [
+    "Texas Instruments",
+    "STMicroelectronics",
+    "onsemi"
+  ],
+  "category": "opamp",
+  "subcategory": "dual bipolar single-supply",
+  "tags": [
+    "opamp",
+    "dual",
+    "single-supply",
+    "low-power",
+    "classic"
+  ],
+  "description": "Dual bipolar op-amp designed for single-supply operation; inputs work down to the negative rail (ground). Cheap and ubiquitous for sensors, comparators, and non-audio signal conditioning. Noisy for audio.",
+  "packages": {
+    "DIP-8": {
+      "template": "dip",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "OUT1",
+          "type": "output",
+          "description": "channel 1 output"
+        },
+        {
+          "pin": 2,
+          "name": "IN1-",
+          "type": "input",
+          "description": "channel 1 inverting input"
+        },
+        {
+          "pin": 3,
+          "name": "IN1+",
+          "type": "input",
+          "description": "channel 1 noninverting input"
+        },
+        {
+          "pin": 4,
+          "name": "V-",
+          "type": "power",
+          "description": "negative supply / ground in single-supply use"
+        },
+        {
+          "pin": 5,
+          "name": "IN2+",
+          "type": "input",
+          "description": "channel 2 noninverting input"
+        },
+        {
+          "pin": 6,
+          "name": "IN2-",
+          "type": "input",
+          "description": "channel 2 inverting input"
+        },
+        {
+          "pin": 7,
+          "name": "OUT2",
+          "type": "output",
+          "description": "channel 2 output"
+        },
+        {
+          "pin": 8,
+          "name": "V+",
+          "type": "power",
+          "description": "positive supply"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.0,
+    "vs_max_v": 32.0,
+    "iq_ma": 0.7,
+    "bw_hz": 1000000.0,
+    "extra": {
+      "slew rate": "0.3 V/us",
+      "input common-mode": "includes ground",
+      "automotive variant": "LM2904",
+      "Vos": "3mV typ (7mV max) @ Ta=25C, LM358 grade (9mV max full range)",
+      "Ibias": "-20nA typ (-250nA max) @ Ta=25C, LM358 grade (-500nA max full range)",
+      "Iout": "20mA min source, 10mA min sink @ Vs=15V (short-circuit current +-40mA typ, +-60mA max)",
+      "CMRR": "65dB min (80dB typ), LM358 grade"
+    }
+  },
+  "typical_application": "Single-supply sensor amplification, comparators, level detection. Inputs can sit at 0V which is why it suits ground-referenced sensors.",
+  "gotchas": [
+    "output cannot swing to the positive rail; tops out about 1.5V below Vcc",
+    "crossover distortion near 0V output makes it poor for audio",
+    "slow slew rate (0.3 V/us) limits it to low-frequency signals"
+  ],
+  "related": [
+    "lm324",
+    "tl072"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/lm358.pdf"
+}

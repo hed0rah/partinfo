@@ -1,0 +1,98 @@
+{
+  "id": "irf540",
+  "name": "IRF540",
+  "aliases": [
+    "IRF540N"
+  ],
+  "full_name": "N-Channel Power MOSFET",
+  "manufacturers": [
+    "Infineon",
+    "Vishay",
+    "onsemi"
+  ],
+  "category": "transistor_mosfet",
+  "subcategory": "n-channel power mosfet",
+  "tags": [
+    "mosfet",
+    "n-channel",
+    "power",
+    "switching",
+    "classic"
+  ],
+  "description": "Popular N-channel power MOSFET in TO-220, ~100V / 33A. Common in DC switching, motor drive, and class-D. Note it is a standard-threshold (not logic-level) part, so 5V/3.3V logic does not fully turn it on. Lead order G-D-S, tab is drain.",
+  "packages": {
+    "TO-220": {
+      "template": "to220",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "G",
+          "type": "input",
+          "description": "gate"
+        },
+        {
+          "pin": 2,
+          "name": "D",
+          "type": "passive",
+          "description": "drain (connected to tab)"
+        },
+        {
+          "pin": 3,
+          "name": "S",
+          "type": "passive",
+          "description": "source"
+        }
+      ],
+      "notes": "TO-220, label toward you, leads down: G-D-S. The tab is the drain (electrically live)."
+    }
+  },
+  "specs": {
+    "vs_max_v": 100.0,
+    "iout_max_ma": 33000.0,
+    "rds_on_ohm": 0.044,
+    "vgs_th_v": 4.0,
+    "pd_max_mw": 130000.0,
+    "extra": {
+      "Vds": "100V",
+      "Id": "33A",
+      "Vgs(th)": "2-4V",
+      "full enhancement Vgs": "~10V",
+      "Vgs max": "+-20V",
+      "logic-level": "no",
+      "Qg": "71nC (max) @ Id=16A",
+      "Qgs": "14nC (max)",
+      "Qgd": "21nC (max)",
+      "Ciss": "1960pF",
+      "Coss": "250pF",
+      "Crss": "40pF",
+      "td(on)": "11ns",
+      "tr": "35ns",
+      "td(off)": "39ns",
+      "tf": "35ns",
+      "Rth(JC)": "1.15 C/W",
+      "Rth(JA)": "62 C/W",
+      "Rth(CS)": "0.50 C/W (greased)",
+      "Vsd": "1.2V (max) @ Is=16A",
+      "trr": "115ns (170 max)",
+      "Qrr": "505nC (760 max)"
+    },
+    "rth_jc_cw": 1.15,
+    "rth_ja_cw": 62.0
+  },
+  "typical_application": "Low-side DC switching, brushed-motor and heater drive, class-D and buck power stages. Drive the gate to 10V for low Rds(on); add a gate resistor (~10-100 ohm) and a pulldown.",
+  "gotchas": [
+    "NOT logic-level: Vgs(th) up to 4V and full turn-on needs ~10V, so a bare 5V/3.3V pin leaves it half-on and hot. Use a gate driver or pick a logic-level part (IRL540, IRLZ44N)",
+    "gate is a capacitor; needs current to switch fast and a pulldown so it does not float on",
+    "tab is the drain and live; isolate from grounded heatsinks",
+    "add a flyback diode for inductive loads (the body diode is slow)"
+  ],
+  "related": [
+    "irfz44",
+    "irlz44n",
+    "irf640"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.infineon.com/assets/row/public/documents/24/49/infineon-irf540n-datasheet-en.pdf"
+}

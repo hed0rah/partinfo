@@ -1,0 +1,113 @@
+{
+  "id": "jrc4558",
+  "name": "JRC4558",
+  "aliases": [
+    "NJM4558",
+    "RC4558",
+    "4558",
+    "JRC4558D"
+  ],
+  "full_name": "Dual High-Gain Operational Amplifier",
+  "manufacturers": [
+    "JRC (Nisshinbo)",
+    "Texas Instruments",
+    "onsemi"
+  ],
+  "category": "opamp",
+  "subcategory": "dual bipolar",
+  "tags": [
+    "opamp",
+    "dual",
+    "bipolar",
+    "audio",
+    "guitar",
+    "tubescreamer",
+    "classic"
+  ],
+  "description": "Dual bipolar op-amp famous as the heart of the Ibanez TS808 Tube Screamer. Musically smooth, modest bandwidth. Standard dual op-amp pinout. The JRC/NJM brand is the sought-after one for pedals.",
+  "packages": {
+    "DIP-8": {
+      "template": "dip",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "A OUT",
+          "type": "output",
+          "description": "amplifier A output"
+        },
+        {
+          "pin": 2,
+          "name": "A IN-",
+          "type": "input",
+          "description": "amplifier A inverting input"
+        },
+        {
+          "pin": 3,
+          "name": "A IN+",
+          "type": "input",
+          "description": "amplifier A noninverting input"
+        },
+        {
+          "pin": 4,
+          "name": "V-",
+          "type": "power",
+          "description": "negative supply"
+        },
+        {
+          "pin": 5,
+          "name": "B IN+",
+          "type": "input",
+          "description": "amplifier B noninverting input"
+        },
+        {
+          "pin": 6,
+          "name": "B IN-",
+          "type": "input",
+          "description": "amplifier B inverting input"
+        },
+        {
+          "pin": 7,
+          "name": "B OUT",
+          "type": "output",
+          "description": "amplifier B output"
+        },
+        {
+          "pin": 8,
+          "name": "V+",
+          "type": "power",
+          "description": "positive supply"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 8.0,
+    "vs_max_v": 36.0,
+    "iq_ma": 2.5,
+    "bw_hz": 3000000.0,
+    "extra": {
+      "slew rate": "1 V/us",
+      "input": "bipolar",
+      "supply": "+-4V to +-18V or 8-36V single",
+      "Vos": "0.3mV typ (6mV max) @ Ta=25C (7.5mV max full range) -- from TI's co-branded RC4558 sheet, Nisshinbo's own site was unreachable",
+      "Ibias": "80nA typ (500nA max) @ Ta=25C (800nA max full range) -- TI RC4558 sheet",
+      "Iout": "+-125mA abs max output current rating -- TI RC4558 sheet",
+      "CMRR": "70dB min (94dB typ) -- TI RC4558 sheet"
+    }
+  },
+  "typical_application": "Tube Screamer and overdrive gain/clipping stages, general audio. In single-supply pedals bias inputs to Vcc/2.",
+  "gotchas": [
+    "bipolar inputs draw bias current; in high-impedance pedal circuits this affects biasing",
+    "modest 1 V/us slew rate is part of the smooth sound but limits high-frequency headroom",
+    "many fakes and rebrands exist; the genuine JRC/NJM part is what pedal builders specify"
+  ],
+  "related": [
+    "tl072",
+    "ne5532",
+    "rc4558"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.nisshinbo-microdevices.co.jp/en/pdf/datasheet/NJM4558_E.pdf"
+}

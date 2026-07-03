@@ -1,0 +1,76 @@
+{
+  "id": "j201",
+  "name": "J201",
+  "aliases": [
+    "MMBFJ201 (SMD)"
+  ],
+  "full_name": "N-Channel JFET (Low-Voltage, Audio)",
+  "manufacturers": [
+    "onsemi",
+    "Fairchild",
+    "Linear Systems"
+  ],
+  "category": "transistor_jfet",
+  "subcategory": "n-channel jfet",
+  "tags": [
+    "jfet",
+    "n-channel",
+    "audio",
+    "guitar",
+    "amp-sim",
+    "classic"
+  ],
+  "description": "Low-pinch-off N-channel JFET prized in guitar pedals for tube-like soft clipping and high-impedance buffers. The through-hole TO-92 part is increasingly scarce; the MMBFJ201 SMD version is the common substitute.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "D",
+          "type": "passive",
+          "description": "drain"
+        },
+        {
+          "pin": 2,
+          "name": "S",
+          "type": "passive",
+          "description": "source (center lead)"
+        },
+        {
+          "pin": 3,
+          "name": "G",
+          "type": "passive",
+          "description": "gate"
+        }
+      ],
+      "notes": "flat face toward you, leads down: D-S-G (pin 1 drain on the left)."
+    }
+  },
+  "specs": {
+    "vs_max_v": 40.0,
+    "idss_ma": 0.8,
+    "vgs_off_v": -1.0,
+    "pd_max_mw": 625.0,
+    "extra": {
+      "Vgs(off) range": "-0.3V to -1.5V",
+      "IDSS range": "0.2 to 1.0 mA",
+      "smd equivalent": "MMBFJ201"
+    }
+  },
+  "typical_application": "JFET amp-sim gain stages (Fetzer Valve, AMZ), high-impedance instrument buffers, soft-clipping stages. Self-bias with a source resistor.",
+  "gotchas": [
+    "very low IDSS and pinch-off; parameters scatter widely, so bias circuits often need trimming per device",
+    "MMBFJ201 SMD substitute has a DIFFERENT pinout than the TO-92; check the package before swapping",
+    "depletion-mode: conducts at Vgs=0, needs negative gate-source voltage to pinch off",
+    "static-sensitive gate; observe ESD handling"
+  ],
+  "related": [
+    "2n5457",
+    "2n5952"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.linearsystems.com/_files/ugd/7e8069_eac72fcda83f42c7942bbf15c07a36c7.pdf"
+}

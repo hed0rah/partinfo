@@ -1,0 +1,106 @@
+{
+  "id": "mcp2551",
+  "name": "MCP2551",
+  "aliases": [
+    "MCP2551-I/P",
+    "MCP2551-I/SN"
+  ],
+  "full_name": "High-speed CAN transceiver",
+  "manufacturers": [
+    "Microchip"
+  ],
+  "category": "interface",
+  "subcategory": "can transceiver",
+  "tags": [
+    "interface",
+    "can",
+    "can-bus",
+    "transceiver",
+    "phy",
+    "automotive"
+  ],
+  "description": "High-speed CAN transceiver providing the physical-layer interface between a CAN protocol controller (such as the MCP2515 or an MCU's on-chip CAN) and the differential two-wire bus. It is fault-tolerant (handles bus shorts), supports up to 1 Mbit/s and at least 112 nodes, and offers a slope-control mode via the Rs pin to reduce EMI on slower buses. A 5 V part: it converts the controller's logic-level TXD/RXD to the CANH/CANL differential pair.",
+  "packages": {
+    "DIP-8": {
+      "template": "dip",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "TXD",
+          "type": "input",
+          "description": "transmit data input from the CAN controller"
+        },
+        {
+          "pin": 2,
+          "name": "VSS",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 3,
+          "name": "VDD",
+          "type": "power",
+          "description": "+4.5 to +5.5 V supply"
+        },
+        {
+          "pin": 4,
+          "name": "RXD",
+          "type": "output",
+          "description": "receive data output to the CAN controller"
+        },
+        {
+          "pin": 5,
+          "name": "VREF",
+          "type": "output",
+          "description": "reference output, nominally VDD/2"
+        },
+        {
+          "pin": 6,
+          "name": "CANL",
+          "type": "bidirectional",
+          "description": "low-side CAN differential bus line"
+        },
+        {
+          "pin": 7,
+          "name": "CANH",
+          "type": "bidirectional",
+          "description": "high-side CAN differential bus line"
+        },
+        {
+          "pin": 8,
+          "name": "Rs",
+          "type": "input",
+          "description": "slope/mode select: resistor to ground sets slew rate; high = standby mode"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 4.5,
+    "vs_max_v": 5.5,
+    "extra": {
+      "Vdd": "4.5-5.5 V (5 V part)",
+      "can": "up to 1 Mbit/s",
+      "nodes": "up to 112",
+      "modes": "high-speed, slope-control (Rs resistor), standby",
+      "vref": "VDD/2 output"
+    }
+  },
+  "typical_application": "Physical-layer driver between a CAN controller (MCP2515 or MCU CAN core) and the differential bus; pairs with the MCP2515 on most CAN shields.",
+  "gotchas": [
+    "a 5 V part (4.5-5.5 V); if your controller/MCU runs at 3.3 V, TXD/RXD logic levels must be reconciled - many 3.3 V designs use the 3.3 V SN65HVD230 instead",
+    "Rs (pin 8) sets the mode: tie to ground for high-speed, add a resistor to ground for slope control (lower EMI), pull high for standby - leaving it floating misbehaves",
+    "CANH/CANL need 120 ohm termination at both ends of the bus, not at every node",
+    "it is a transceiver only, no protocol logic; it must be driven by a CAN controller",
+    "newer designs often prefer the TJA1050/TJA1051 or SN65HVD230; the MCP2551 has a higher minimum current draw"
+  ],
+  "related": [
+    "mcp2515",
+    "tja1050",
+    "sn65hvd230"
+  ],
+  "datasheet_url": "https://ww1.microchip.com/downloads/en/DeviceDoc/21667E.pdf",
+  "source": "human",
+  "verified": true
+}

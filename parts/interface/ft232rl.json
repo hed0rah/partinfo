@@ -1,0 +1,231 @@
+{
+  "id": "ft232rl",
+  "name": "FT232RL",
+  "aliases": [
+    "FT232R",
+    "FT232RQ"
+  ],
+  "full_name": "USB to UART/serial bridge with integrated clock and EEPROM",
+  "manufacturers": [
+    "FTDI (Future Technology Devices International)"
+  ],
+  "category": "interface",
+  "subcategory": "usb-uart bridge",
+  "tags": [
+    "interface",
+    "usb",
+    "uart",
+    "serial",
+    "bridge",
+    "vcp",
+    "ttl"
+  ],
+  "description": "Single-chip USB 2.0 full-speed to UART bridge that handles the entire USB protocol on-chip, requiring no external crystal (integrated clock) and no external configuration ROM (internal EEPROM). It provides a full UART with modem-control and handshake lines, plus five configurable CBUS pins for TX/RX LED drives, clock output, or bit-bang I/O. An internal 3.3 V LDO (3V3OUT) powers the USB transceiver, while VCCIO sets the logic I/O voltage (1.8-5.25 V). Hugely popular on serial adapters and Arduino-style boards thanks to FTDI's mature VCP/D2XX drivers.",
+  "packages": {
+    "SSOP-28": {
+      "template": "ssop",
+      "pin_count": 28,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "TXD",
+          "type": "output",
+          "description": "UART transmit data output"
+        },
+        {
+          "pin": 2,
+          "name": "DTR#",
+          "type": "output",
+          "description": "data terminal ready / handshake output (active low)"
+        },
+        {
+          "pin": 3,
+          "name": "RTS#",
+          "type": "output",
+          "description": "request to send / handshake output (active low)"
+        },
+        {
+          "pin": 4,
+          "name": "VCCIO",
+          "type": "power",
+          "description": "+1.8 to +5.25 V supply that sets UART/CBUS logic level (tie to 3V3OUT for 3.3 V, or VCC for 5 V)"
+        },
+        {
+          "pin": 5,
+          "name": "RXD",
+          "type": "input",
+          "description": "UART receive data input"
+        },
+        {
+          "pin": 6,
+          "name": "RI#",
+          "type": "input",
+          "description": "ring indicator control input (active low); can do USB remote wakeup"
+        },
+        {
+          "pin": 7,
+          "name": "GND",
+          "type": "ground",
+          "description": "device ground"
+        },
+        {
+          "pin": 8,
+          "name": "NC",
+          "type": "nc",
+          "description": "no internal connection"
+        },
+        {
+          "pin": 9,
+          "name": "DSR#",
+          "type": "input",
+          "description": "data set ready / handshake input (active low)"
+        },
+        {
+          "pin": 10,
+          "name": "DCD#",
+          "type": "input",
+          "description": "data carrier detect control input (active low)"
+        },
+        {
+          "pin": 11,
+          "name": "CTS#",
+          "type": "input",
+          "description": "clear to send / handshake input (active low)"
+        },
+        {
+          "pin": 12,
+          "name": "CBUS4",
+          "type": "output",
+          "description": "configurable CBUS output-only pin (EEPROM default SLEEP#)"
+        },
+        {
+          "pin": 13,
+          "name": "CBUS2",
+          "type": "bidirectional",
+          "description": "configurable CBUS I/O pin (EEPROM default TXDEN)"
+        },
+        {
+          "pin": 14,
+          "name": "CBUS3",
+          "type": "bidirectional",
+          "description": "configurable CBUS I/O pin (EEPROM default PWREN#, use 10k pullup)"
+        },
+        {
+          "pin": 15,
+          "name": "USBDP",
+          "type": "bidirectional",
+          "description": "USB D+ (internal series resistor and 1.5k pull-up to 3.3 V)"
+        },
+        {
+          "pin": 16,
+          "name": "USBDM",
+          "type": "bidirectional",
+          "description": "USB D- (internal series resistor)"
+        },
+        {
+          "pin": 17,
+          "name": "3V3OUT",
+          "type": "output",
+          "description": "+3.3 V output from internal LDO; decouple with 100 nF, powers USB cell, up to 50 mA"
+        },
+        {
+          "pin": 18,
+          "name": "GND",
+          "type": "ground",
+          "description": "device ground"
+        },
+        {
+          "pin": 19,
+          "name": "RESET#",
+          "type": "input",
+          "description": "active-low reset; leave open or pull to VCC if unused"
+        },
+        {
+          "pin": 20,
+          "name": "VCC",
+          "type": "power",
+          "description": "+3.3 to +5.25 V supply to device core"
+        },
+        {
+          "pin": 21,
+          "name": "GND",
+          "type": "ground",
+          "description": "device ground"
+        },
+        {
+          "pin": 22,
+          "name": "CBUS1",
+          "type": "bidirectional",
+          "description": "configurable CBUS I/O pin (EEPROM default RXLED#)"
+        },
+        {
+          "pin": 23,
+          "name": "CBUS0",
+          "type": "bidirectional",
+          "description": "configurable CBUS I/O pin (EEPROM default TXLED#)"
+        },
+        {
+          "pin": 24,
+          "name": "NC",
+          "type": "nc",
+          "description": "no internal connection"
+        },
+        {
+          "pin": 25,
+          "name": "AGND",
+          "type": "ground",
+          "description": "analog ground for internal clock multiplier"
+        },
+        {
+          "pin": 26,
+          "name": "TEST",
+          "type": "input",
+          "description": "IC test mode; MUST be tied to GND for normal operation"
+        },
+        {
+          "pin": 27,
+          "name": "OSCI",
+          "type": "clock",
+          "description": "12 MHz oscillator input; leave unconnected when using internal clock"
+        },
+        {
+          "pin": 28,
+          "name": "OSCO",
+          "type": "clock",
+          "description": "12 MHz oscillator output; leave unconnected when using internal clock"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.3,
+    "vs_max_v": 5.25,
+    "extra": {
+      "Vcc": "3.3-5.25 V core; VCCIO 1.8-5.25 V sets logic level",
+      "usb": "USB 2.0 full-speed (12 Mbps)",
+      "baud": "300 baud to 3 Mbaud",
+      "clock": "integrated (no external crystal needed)",
+      "eeprom": "internal (VID/PID/serial/CBUS config)",
+      "3v3out": "internal LDO, up to 50 mA external",
+      "interface": "asynchronous UART, TTL/CMOS, modem control"
+    }
+  },
+  "typical_application": "USB-to-serial cable/adapter or on-board programming/console UART; VCCIO tied to the target logic rail (3.3 V via 3V3OUT or 5 V via VCC) to match TXD/RXD levels.",
+  "gotchas": [
+    "counterfeit FT232RL chips are rampant - FTDI drivers have in the past bricked or zeroed the PID of clones; buy from reputable sources",
+    "TEST (pin 26) must be tied to GND or the device appears to fail - a very common board bug",
+    "VCCIO sets the I/O voltage: do not assume 3.3 V - if VCCIO is tied to 5 V the UART pins swing 5 V and can damage 3.3 V targets",
+    "internal clock needs VCC >= 4.0 V (e.g. USB 5 V); running the core at 3.3 V requires an external crystal/oscillator",
+    "3V3OUT is an output, not an input - do not feed external 3.3 V into it; decouple with 100 nF",
+    "CBUS pins default to TX/RX LED etc. and require the FTDI EEPROM utility (FT_PROG) to reconfigure"
+  ],
+  "related": [
+    "cp2102",
+    "ch340g",
+    "ft232h",
+    "ft231x"
+  ],
+  "datasheet_url": "https://ftdichip.com/wp-content/uploads/2020/08/DS_FT232R.pdf",
+  "source": "human",
+  "verified": true
+}

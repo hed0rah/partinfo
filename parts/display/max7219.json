@@ -1,0 +1,206 @@
+{
+  "id": "max7219",
+  "name": "MAX7219",
+  "aliases": [
+    "MAX7221",
+    "MAX7219CNG",
+    "8-digit LED driver"
+  ],
+  "full_name": "Maxim Integrated MAX7219 Serially Interfaced 8-Digit LED Display Driver",
+  "manufacturers": [
+    "Maxim Integrated",
+    "Analog Devices"
+  ],
+  "category": "display",
+  "subcategory": "led-driver",
+  "tags": [
+    "led-driver",
+    "7-segment",
+    "8x8-matrix",
+    "spi",
+    "daisy-chainable",
+    "constant-current"
+  ],
+  "description": "The MAX7219 is a compact serial driver for up to eight 7-segment digits, an 8x8 LED matrix, or 64 individual LEDs, controlled over a 3-wire SPI-like interface (DIN, CLK, LOAD/CS). It integrates a BCD code-B decoder, multiplex scan circuitry, segment/digit drivers, and an 8x8 static display RAM. A single external resistor on ISET sets the peak segment current for all LEDs, and the DOUT pin lets multiple chips be daisy-chained from one MCU. Its all-in-one design (no external transistors or current-limit resistors per LED) is why it dominates hobbyist 7-segment and matrix builds.",
+  "packages": {
+    "DIP-24": {
+      "template": "dip",
+      "pin_count": 24,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "DIN",
+          "type": "input",
+          "description": "serial data input; loaded into the shift register on CLK rising edge"
+        },
+        {
+          "pin": 2,
+          "name": "DIG0",
+          "type": "output",
+          "description": "digit 0 drive (common-cathode digit, current sink)"
+        },
+        {
+          "pin": 3,
+          "name": "DIG4",
+          "type": "output",
+          "description": "digit 4 drive line"
+        },
+        {
+          "pin": 4,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground; both GND pins (4 and 9) must be connected"
+        },
+        {
+          "pin": 5,
+          "name": "DIG6",
+          "type": "output",
+          "description": "digit 6 drive line"
+        },
+        {
+          "pin": 6,
+          "name": "DIG2",
+          "type": "output",
+          "description": "digit 2 drive line"
+        },
+        {
+          "pin": 7,
+          "name": "DIG3",
+          "type": "output",
+          "description": "digit 3 drive line"
+        },
+        {
+          "pin": 8,
+          "name": "DIG7",
+          "type": "output",
+          "description": "digit 7 drive line"
+        },
+        {
+          "pin": 9,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground; both GND pins (4 and 9) must be connected"
+        },
+        {
+          "pin": 10,
+          "name": "DIG5",
+          "type": "output",
+          "description": "digit 5 drive line"
+        },
+        {
+          "pin": 11,
+          "name": "DIG1",
+          "type": "output",
+          "description": "digit 1 drive line"
+        },
+        {
+          "pin": 12,
+          "name": "LOAD (CS)",
+          "type": "input",
+          "description": "load/chip-select; the last 16 bits are latched on its rising edge (CS on MAX7221)"
+        },
+        {
+          "pin": 13,
+          "name": "CLK",
+          "type": "clock",
+          "description": "serial clock input, max 10MHz; data shifts on rising edge"
+        },
+        {
+          "pin": 14,
+          "name": "SEG A",
+          "type": "output",
+          "description": "segment A drive (current source)"
+        },
+        {
+          "pin": 15,
+          "name": "SEG F",
+          "type": "output",
+          "description": "segment F drive"
+        },
+        {
+          "pin": 16,
+          "name": "SEG B",
+          "type": "output",
+          "description": "segment B drive"
+        },
+        {
+          "pin": 17,
+          "name": "SEG G",
+          "type": "output",
+          "description": "segment G drive"
+        },
+        {
+          "pin": 18,
+          "name": "ISET",
+          "type": "passive",
+          "description": "peak segment current set; connect resistor (e.g. 9.53k) to V+"
+        },
+        {
+          "pin": 19,
+          "name": "V+",
+          "type": "power",
+          "description": "positive supply, +5V"
+        },
+        {
+          "pin": 20,
+          "name": "SEG C",
+          "type": "output",
+          "description": "segment C drive"
+        },
+        {
+          "pin": 21,
+          "name": "SEG E",
+          "type": "output",
+          "description": "segment E drive"
+        },
+        {
+          "pin": 22,
+          "name": "SEG DP",
+          "type": "output",
+          "description": "segment decimal-point drive"
+        },
+        {
+          "pin": 23,
+          "name": "SEG D",
+          "type": "output",
+          "description": "segment D drive"
+        },
+        {
+          "pin": 24,
+          "name": "DOUT",
+          "type": "output",
+          "description": "serial data output for daisy-chaining; DIN data appears here 16.5 clocks later, never high-Z"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 4.0,
+    "vs_max_v": 5.5,
+    "extra": {
+      "interface": "3-wire serial (SPI-like), up to 10MHz",
+      "drives": "8 x 7-seg digits, or 8x8 LED matrix, or 64 LEDs",
+      "current_set": "single external resistor on ISET",
+      "brightness": "16 steps, digital (PWM) plus analog via ISET",
+      "segment_source_current": "~40mA typ with 9.53k RSET",
+      "display_ram": "8x8 static RAM",
+      "shutdown_current": "150uA (data retained)",
+      "decode": "BCD Code-B or no-decode, per-digit"
+    }
+  },
+  "typical_application": "Driving an 8-digit common-cathode 7-segment display or an 8x8 LED matrix from an MCU over 3 wires (DIN, CLK, LOAD), with a single RSET resistor setting brightness; chain modules via DOUT.",
+  "gotchas": [
+    "both GND pins (4 and 9) must be tied to ground, not just one",
+    "the DIG and SEG pins are NOT in numeric order on the package (e.g. DIG4 is pin 3, SEG F is pin 15) - follow the datasheet map, not intuition",
+    "designed for common-cathode displays; common-anode digits will not work without rewiring",
+    "RSET on ISET is mandatory and sets current for all segments; too small a resistor can exceed LED ratings",
+    "put a ~10uF + 0.1uF decoupling cap close to V+/GND or the multiplexed switching causes flicker/glitches",
+    "MAX7221 is the SPI-compliant, slew-rate-limited (lower EMI) sibling with the same pinout but CS instead of LOAD"
+  ],
+  "related": [
+    "74hc595"
+  ],
+  "datasheet_url": "https://www.analog.com/media/en/technical-documentation/data-sheets/MAX7219-MAX7221.pdf",
+  "source": "human",
+  "verified": true
+}

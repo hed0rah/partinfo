@@ -1,0 +1,145 @@
+{
+  "id": "lm324",
+  "name": "LM324",
+  "aliases": [
+    "LM324N",
+    "LM2902"
+  ],
+  "full_name": "Quad Low-Power Operational Amplifier",
+  "manufacturers": [
+    "Texas Instruments",
+    "STMicroelectronics",
+    "onsemi"
+  ],
+  "category": "opamp",
+  "subcategory": "quad bipolar single-supply",
+  "tags": [
+    "opamp",
+    "quad",
+    "single-supply",
+    "low-power",
+    "classic"
+  ],
+  "description": "Quad version of the LM358: four single-supply bipolar op-amps whose inputs work down to the negative rail. Cheap workhorse for sensor conditioning, comparators, and non-audio multi-channel processing. Noisy and slow for audio.",
+  "packages": {
+    "DIP-14": {
+      "template": "dip",
+      "pin_count": 14,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "1OUT",
+          "type": "output",
+          "description": "channel 1 output"
+        },
+        {
+          "pin": 2,
+          "name": "1IN-",
+          "type": "input",
+          "description": "channel 1 inverting input"
+        },
+        {
+          "pin": 3,
+          "name": "1IN+",
+          "type": "input",
+          "description": "channel 1 noninverting input"
+        },
+        {
+          "pin": 4,
+          "name": "VCC+",
+          "type": "power",
+          "description": "positive supply"
+        },
+        {
+          "pin": 5,
+          "name": "2IN+",
+          "type": "input",
+          "description": "channel 2 noninverting input"
+        },
+        {
+          "pin": 6,
+          "name": "2IN-",
+          "type": "input",
+          "description": "channel 2 inverting input"
+        },
+        {
+          "pin": 7,
+          "name": "2OUT",
+          "type": "output",
+          "description": "channel 2 output"
+        },
+        {
+          "pin": 8,
+          "name": "3OUT",
+          "type": "output",
+          "description": "channel 3 output"
+        },
+        {
+          "pin": 9,
+          "name": "3IN-",
+          "type": "input",
+          "description": "channel 3 inverting input"
+        },
+        {
+          "pin": 10,
+          "name": "3IN+",
+          "type": "input",
+          "description": "channel 3 noninverting input"
+        },
+        {
+          "pin": 11,
+          "name": "VCC-",
+          "type": "power",
+          "description": "negative supply / ground in single-supply use"
+        },
+        {
+          "pin": 12,
+          "name": "4IN+",
+          "type": "input",
+          "description": "channel 4 noninverting input"
+        },
+        {
+          "pin": 13,
+          "name": "4IN-",
+          "type": "input",
+          "description": "channel 4 inverting input"
+        },
+        {
+          "pin": 14,
+          "name": "4OUT",
+          "type": "output",
+          "description": "channel 4 output"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.0,
+    "vs_max_v": 32.0,
+    "iq_ma": 0.7,
+    "bw_hz": 1000000.0,
+    "extra": {
+      "slew rate": "0.3 V/us",
+      "input common-mode": "includes ground",
+      "automotive variant": "LM2902",
+      "amps": "4",
+      "Vos": "3mV typ (7mV max) @ Ta=25C, LM324 grade (9mV max full range)",
+      "Ibias": "-20nA typ (-250nA max) @ Ta=25C, LM324 grade (-500nA max full range)",
+      "Iout": "-20mA min source (-30mA typ, -60mA max), 10mA min sink (20mA typ) @ Vcc=15V",
+      "CMRR": "65dB min (80dB typ), LM324 grade"
+    }
+  },
+  "typical_application": "Single-supply multi-channel sensor amplification, comparators, simple active filters. Inputs can sit at 0V, suiting ground-referenced sensors.",
+  "gotchas": [
+    "output will not swing to the positive rail; tops out about 1.5V below Vcc",
+    "crossover distortion near 0V output makes it poor for audio",
+    "slow 0.3 V/us slew rate limits it to low-frequency signals"
+  ],
+  "related": [
+    "lm358",
+    "tl074"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/lm324.pdf"
+}

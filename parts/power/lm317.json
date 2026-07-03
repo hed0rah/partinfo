@@ -1,0 +1,82 @@
+{
+  "id": "lm317",
+  "name": "LM317",
+  "aliases": [
+    "LM317T",
+    "LM317"
+  ],
+  "full_name": "Adjustable Positive Voltage Regulator (1.2V to 37V)",
+  "manufacturers": [
+    "Texas Instruments",
+    "STMicroelectronics",
+    "onsemi"
+  ],
+  "category": "power",
+  "subcategory": "adjustable linear regulator",
+  "tags": [
+    "regulator",
+    "linear",
+    "adjustable",
+    "power",
+    "classic"
+  ],
+  "description": "Adjustable three-terminal positive linear regulator. Output set by two resistors; maintains 1.25V between OUT and ADJ. Can also serve as a constant-current source. TO-220 pin order is ADJ-OUT-IN.",
+  "packages": {
+    "TO-220": {
+      "template": "to220",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "ADJUST",
+          "type": "input",
+          "description": "adjustment/feedback pin, sets output via resistor divider"
+        },
+        {
+          "pin": 2,
+          "name": "OUTPUT",
+          "type": "output",
+          "description": "regulated adjustable output"
+        },
+        {
+          "pin": 3,
+          "name": "INPUT",
+          "type": "power",
+          "description": "unregulated input supply"
+        }
+      ],
+      "notes": "metal tab is connected to OUT (pin 2); isolate it from grounded heatsinks."
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.0,
+    "vs_max_v": 40.0,
+    "iout_max_ma": 1500.0,
+    "extra": {
+      "Vout range": "1.25V to 37V",
+      "reference": "1.25V (OUT to ADJ)",
+      "dropout": "~3V",
+      "formula": "Vout = 1.25 * (1 + R2/R1) + Iadj*R2",
+      "Iadj": "50uA typ (100 max)",
+      "Rth(JC)": "15.9 C/W (TO-220, legacy chip)",
+      "Rth(JA)": "23.5 C/W (TO-220, legacy chip)"
+    },
+    "rth_jc_cw": 15.9,
+    "rth_ja_cw": 23.5
+  },
+  "typical_application": "Vout = 1.25 * (1 + R2/R1). Use R1=240 ohm (OUT to ADJ) and R2 (ADJ to GND) to set voltage. Add a 10uF cap on ADJ for ripple rejection and protection diodes on big outputs.",
+  "gotchas": [
+    "the TAB is OUT, not ground; an LM317 bolted bare to a grounded heatsink shorts the output",
+    "needs a minimum load (~10mA) to regulate; the divider current usually satisfies this",
+    "about 3V dropout: input must stay at least ~3V above output",
+    "add a protection diode from OUT to IN on high-capacitance outputs to prevent reverse discharge"
+  ],
+  "related": [
+    "lm337",
+    "lm7805",
+    "lm1117"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/lm317.pdf"
+}

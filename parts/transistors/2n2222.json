@@ -1,0 +1,112 @@
+{
+  "id": "2n2222",
+  "name": "2N2222",
+  "aliases": [
+    "PN2222",
+    "PN2222A",
+    "P2N2222",
+    "2N2222A"
+  ],
+  "full_name": "NPN General-Purpose Switching Transistor",
+  "manufacturers": [
+    "onsemi",
+    "STMicroelectronics",
+    "Fairchild"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "npn small-signal/switching",
+  "tags": [
+    "transistor",
+    "npn",
+    "bjt",
+    "switching",
+    "classic"
+  ],
+  "description": "Classic general-purpose NPN, a notch beefier than the 2N3904 (up to ~600-800mA). The original metal-can TO-18 part is pinout-reversed from the modern TO-92 PN2222A; this entry covers the common TO-92 plastic version, which is E-B-C.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter"
+        },
+        {
+          "pin": 2,
+          "name": "B",
+          "type": "passive",
+          "description": "base"
+        },
+        {
+          "pin": 3,
+          "name": "C",
+          "type": "passive",
+          "description": "collector"
+        }
+      ],
+      "notes": "TO-92 (PN2222A), flat face toward you: E-B-C. The metal-can TO-18 2N2222 is E-B-C too but in a different physical arrangement; check the package."
+    }
+  },
+  "specs": {
+    "vs_max_v": 40.0,
+    "iout_max_ma": 600.0,
+    "pd_max_mw": 625.0,
+    "hfe_min": 100,
+    "hfe_max": 300,
+    "freq_max_hz": 300000000.0,
+    "extra": {
+      "Vceo": "40V",
+      "Ic max": "600mA (800mA peak)",
+      "complement (pnp)": "2N2907",
+      "Vce(sat)": "0.3V (max) @ Ic=150mA, Ib=15mA (1.0V max @ Ic=500mA, Ib=50mA)",
+      "Vbe(on)": "1.2V (max) @ Ic=150mA, Ib=15mA (datasheet's VBE(sat), from the onsemi P2N2222A variant sheet)"
+    }
+  },
+  "typical_application": "Switching relays and small loads, driving the base of a bigger transistor, general gain. Handles more collector current than the 2N3904.",
+  "gotchas": [
+    "pinout is MANUFACTURER-DEPENDENT. the common TO-92 convention (and the metal-can 2N2222A, TO-18) is E-B-C, but onsemi's P2N2222A is mirrored to C-B-E -- collector and emitter swapped. always check the specific part number against its own datasheet; a mismatch swaps collector and emitter.",
+    "TO-92 plastic (PN2222A) is E-B-C; do not assume metal-can ordering",
+    "the metal-can TO-18 original has the leads in a triangle, easy to misread",
+    "add a flyback diode across inductive loads (relays, motors)"
+  ],
+  "related": [
+    "2n3904",
+    "2n2907",
+    "bc337"
+  ],
+  "source": "human",
+  "verified": false,
+  "variants": [
+    {
+      "mpn": "P2N2222A",
+      "manufacturer": "onsemi",
+      "package": "TO-92",
+      "pins": [
+        {
+          "pin": 1,
+          "name": "C",
+          "type": "passive",
+          "description": "collector"
+        },
+        {
+          "pin": 2,
+          "name": "B",
+          "type": "passive",
+          "description": "base"
+        },
+        {
+          "pin": 3,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter"
+        }
+      ],
+      "datasheet_url": "https://www.onsemi.com/pdf/datasheet/p2n2222a-d.pdf",
+      "verified": true,
+      "note": "mirror of the common E-B-C pinout: collector and emitter swapped. verified against the onsemi P2N2222A package drawing."
+    }
+  ]
+}

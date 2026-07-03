@@ -1,0 +1,85 @@
+{
+  "id": "bd139",
+  "name": "BD139",
+  "aliases": [
+    "BD139-16"
+  ],
+  "full_name": "NPN Medium-Power Transistor",
+  "manufacturers": [
+    "onsemi",
+    "STMicroelectronics",
+    "Diotec"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "npn medium-power",
+  "tags": [
+    "transistor",
+    "npn",
+    "bjt",
+    "medium-power",
+    "audio-output",
+    "classic"
+  ],
+  "description": "Medium-power NPN in TO-126, complementary to the BD140 PNP. Common in class-AB audio output stages, linear regulators, and 1.5A loads. Lead order is E-C-B with the printed face toward you.",
+  "packages": {
+    "TO-126": {
+      "template": "to220",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "B",
+          "type": "passive",
+          "description": "base"
+        },
+        {
+          "pin": 2,
+          "name": "C",
+          "type": "passive",
+          "description": "collector (also the mounting tab)"
+        },
+        {
+          "pin": 3,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter"
+        }
+      ],
+      "notes": "TO-126, printed face toward you, leads down: E-C-B. The metal tab is the collector."
+    }
+  },
+  "specs": {
+    "vs_max_v": 80.0,
+    "iout_max_ma": 1500.0,
+    "pd_max_mw": 12500.0,
+    "hfe_min": 40,
+    "hfe_max": 250,
+    "freq_max_hz": 250000000.0,
+    "extra": {
+      "Vceo": "80V",
+      "Ic max": "1.5A",
+      "complement (pnp)": "BD140",
+      "gain groups": "-6/-10/-16 suffix",
+      "Vce(sat)": "0.5V (max) @ Ic=0.5A, Ib=0.05A",
+      "Vbe(on)": "1V (max) @ Ic=0.5A, Vce=2V",
+      "Rth(JC)": "10 C/W",
+      "Rth(JA)": "100 C/W"
+    },
+    "rth_jc_cw": 10.0,
+    "rth_ja_cw": 100.0
+  },
+  "typical_application": "Push-pull audio output stage paired with a BD140, series-pass element in linear supplies, driving relays and small motors. Needs a heatsink near full dissipation.",
+  "gotchas": [
+    "lead order is E-C-B, not the BJT 'EBC' you might expect; the tab is the collector",
+    "Pd of 12.5W is the heatsinked figure; without a heatsink it is far lower (~1.25W in free air)",
+    "for matched complementary pairs, buy BD139/BD140 from the same gain group"
+  ],
+  "related": [
+    "bd140",
+    "tip41c",
+    "2n3904"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.st.com/resource/en/datasheet/bd139.pdf"
+}

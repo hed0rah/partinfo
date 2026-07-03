@@ -1,0 +1,91 @@
+{
+  "id": "bh1750",
+  "name": "BH1750",
+  "aliases": [
+    "GY-302",
+    "BH1750FVI",
+    "BH1750FVI-TR"
+  ],
+  "full_name": "ROHM BH1750FVI Digital Ambient Light Sensor (GY-302 breakout)",
+  "manufacturers": [
+    "ROHM"
+  ],
+  "category": "sensor",
+  "subcategory": "ambient light sensor",
+  "tags": [
+    "ambient-light",
+    "lux",
+    "i2c",
+    "illuminance",
+    "photodiode",
+    "digital"
+  ],
+  "description": "Digital 16-bit ambient light sensor with an I2C interface that outputs illuminance directly in lux, removing host-side calculation. It has a range of roughly 1 to 65535 lx with selectable high/low resolution modes (down to 0.5 lx), and a spectral response close to the human eye. Its built-in ADC and low IR influence suit display backlight control. The common GY-302 breakout adds a 3.3 V regulator and I2C pull-ups so it works from a 3.3-5 V supply.",
+  "packages": {
+    "GY-302 module": {
+      "template": "module",
+      "pin_count": 5,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "VCC",
+          "type": "power",
+          "description": "supply; GY-302 accepts 3.3-5 V (BH1750FVI chip VDD is 2.4-3.6 V)"
+        },
+        {
+          "pin": 2,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 3,
+          "name": "SCL",
+          "type": "clock",
+          "description": "I2C serial clock"
+        },
+        {
+          "pin": 4,
+          "name": "SDA",
+          "type": "bidirectional",
+          "description": "I2C serial data"
+        },
+        {
+          "pin": 5,
+          "name": "ADDR",
+          "type": "input",
+          "description": "I2C address select (DVI/ADDR): low = 0x23, high = 0x5C"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.3,
+    "vs_max_v": 5.0,
+    "extra": {
+      "interface": "I2C",
+      "i2c_address": "0x23 (ADDR low/floating) / 0x5C (ADDR high)",
+      "range": "1 - 65535 lx",
+      "resolution": "1 lx (H-res), 0.5 lx (H-res mode2), 4 lx (L-res)",
+      "output": "16-bit direct lux value",
+      "chip_supply_vdd": "2.4-3.6 V",
+      "module_supply": "3.3-5 V (GY-302 with regulator)",
+      "spectral_response": "near human eye (photopic)"
+    }
+  },
+  "typical_application": "Display/keypad backlight auto-brightness, light-level logging, plant/grow-light monitoring, ambient light feedback in cameras and IoT nodes.",
+  "gotchas": [
+    "the ADDR pin sets the 7-bit I2C address: low/floating = 0x23 (default), tied high to VCC = 0x5C",
+    "the bare BH1750FVI is a 3.x V part (VDD 2.4-3.6 V); only the GY-302 board's regulator makes 5 V safe",
+    "it reports lux directly but you must apply the measurement-time (MTreg) scaling factor for accuracy if you change it",
+    "the DVI pin on the bare chip is the interface logic reset/reference; on the GY-302 it is exposed as ADDR - do not confuse with a separate reset",
+    "a measurement is not instantaneous: H-resolution mode takes ~120 ms, so poll after the conversion time or readings are stale",
+    "ADDR left floating reads as low (0x23); to use two sensors on one bus, pull one ADDR high for 0x5C"
+  ],
+  "related": [
+    "tsl2561"
+  ],
+  "datasheet_url": "https://www.mouser.com/datasheet/2/348/bh1750fvi-e-186247.pdf",
+  "source": "human",
+  "verified": true
+}

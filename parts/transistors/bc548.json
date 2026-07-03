@@ -1,0 +1,84 @@
+{
+  "id": "bc548",
+  "name": "BC548",
+  "aliases": [
+    "BC548B"
+  ],
+  "full_name": "NPN General-Purpose Amplifier Transistor",
+  "manufacturers": [
+    "onsemi",
+    "NXP",
+    "STMicroelectronics",
+    "Fairchild"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "npn small-signal",
+  "tags": [
+    "transistor",
+    "npn",
+    "bjt",
+    "small-signal",
+    "european",
+    "classic"
+  ],
+  "description": "NPN small-signal transistor in the European BC546-550 family, the 30V member. Functionally a lower-voltage BC547; same TO-92 C-B-E pinout. Complement to the BC558.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "C",
+          "type": "passive",
+          "description": "collector"
+        },
+        {
+          "pin": 2,
+          "name": "B",
+          "type": "passive",
+          "description": "base"
+        },
+        {
+          "pin": 3,
+          "name": "E",
+          "type": "passive",
+          "description": "emitter"
+        }
+      ],
+      "notes": "flat face toward you, leads down: C-B-E (BC546-550 family layout, same as BC547). Opposite of the 2N3904."
+    }
+  },
+  "specs": {
+    "vs_max_v": 30.0,
+    "iout_max_ma": 100.0,
+    "pd_max_mw": 500.0,
+    "hfe_min": 110,
+    "hfe_max": 800,
+    "freq_max_hz": 300000000.0,
+    "extra": {
+      "Vceo": "30V",
+      "complement (pnp)": "BC558",
+      "family": "BC546 (65V), BC547 (45V), BC548 (30V)",
+      "gain groups": "A/B/C suffix sets hFE band",
+      "Vce(sat)": "90mV (typ), 250mV (max) @ Ic=10mA, Ib=0.5mA",
+      "Vbe(on)": "580mV (min), 660mV (typ), 700mV (max) @ Vce=5V, Ic=2mA"
+    }
+  },
+  "typical_application": "Audio preamp and small-signal gain stages, general small-load switching where 30V is sufficient.",
+  "gotchas": [
+    "pinout is C-B-E, the REVERSE of the American 2N3904 (E-B-C)",
+    "only 30V Vceo, the lowest-voltage of the BC547 family; use BC546/547 for higher rails",
+    "100mA max collector current",
+    "gain group suffix (A/B/C) sets the hFE band"
+  ],
+  "related": [
+    "bc547",
+    "bc549",
+    "bc558",
+    "2n3904"
+  ],
+  "datasheet_url": "https://www.onsemi.com/pdf/datasheet/bc550-d.pdf",
+  "source": "human",
+  "verified": true
+}

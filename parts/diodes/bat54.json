@@ -1,0 +1,81 @@
+{
+  "id": "bat54",
+  "name": "BAT54",
+  "aliases": [
+    "BAT54A",
+    "BAT54C",
+    "BAT54S"
+  ],
+  "full_name": "30V 200mA small-signal Schottky barrier diode (SOT-23)",
+  "manufacturers": [
+    "Nexperia",
+    "Vishay",
+    "Diodes Inc",
+    "onsemi"
+  ],
+  "category": "diode",
+  "subcategory": "schottky small-signal",
+  "tags": [
+    "diode",
+    "schottky",
+    "small-signal",
+    "smd",
+    "sot-23",
+    "low-vf",
+    "fast"
+  ],
+  "description": "Planar small-signal Schottky in SOT-23 with a guard ring, 30V / 200mA, low drop and ~5ns recovery. Signal detection/clamping, voltage clamping, steering/OR-ing, and small DC/DC catch diodes. The plain BAT54 is a single diode; the A/C/S suffixes are dual-diode variants differing only in internal interconnection.",
+  "packages": {
+    "SOT-23": {
+      "template": "sot23",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "A",
+          "type": "passive",
+          "description": "single BAT54: anode. A=K1, C=A1, S=A1 on the dual variants (see gotchas)"
+        },
+        {
+          "pin": 2,
+          "name": "NC",
+          "type": "nc",
+          "description": "single BAT54: no connection. A=K2, C=A2, S=K2 on the dual variants"
+        },
+        {
+          "pin": 3,
+          "name": "K",
+          "type": "passive",
+          "description": "single BAT54: cathode. A=common anode, C=common cathode, S=series midpoint"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_max_v": 30.0,
+    "iout_max_ma": 200.0,
+    "extra": {
+      "Vr": "30V",
+      "If": "200mA continuous",
+      "Ifsm": "600mA surge",
+      "Vf": "240mV at 0.1mA, 400mV at 10mA, 800mV at 100mA",
+      "Ir": "2uA max at 25V",
+      "trr": "5ns",
+      "Cd": "10pF typ"
+    }
+  },
+  "typical_application": "Signal-level rectification/detection, clamping, and steering; the A/C/S variants pack two diodes in one SOT-23 for clamp networks and OR-ing.",
+  "gotchas": [
+    "the suffix changes the internal topology, not just packaging: BAT54=single (pin2 NC), BAT54A=common anode pair, BAT54C=common cathode pair, BAT54S=two in series with midpoint on pin3 - swapping suffixes silently breaks the circuit (verify the marking code)",
+    "plain BAT54 single has NO connection on pin 2; do not route a net through it",
+    "Schottky reverse leakage (up to 2uA at 25V, rising with temperature) is far higher than a silicon 1N4148; matters on high-impedance / sample-and-hold nodes",
+    "only 30V reverse and 200mA; it is a small-signal part, not a power rectifier"
+  ],
+  "related": [
+    "1n5817",
+    "1n4148"
+  ],
+  "datasheet_url": "https://assets.nexperia.com/documents/data-sheet/BAT54_SER.pdf",
+  "source": "human",
+  "verified": true
+}

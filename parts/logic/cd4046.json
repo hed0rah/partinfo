@@ -1,0 +1,155 @@
+{
+  "id": "cd4046",
+  "name": "CD4046B",
+  "aliases": [
+    "CD4046",
+    "HEF4046B",
+    "MC14046B"
+  ],
+  "full_name": "Micropower Phase-Locked Loop (PLL)",
+  "manufacturers": [
+    "Texas Instruments",
+    "onsemi",
+    "STMicroelectronics"
+  ],
+  "category": "logic",
+  "subcategory": "phase-locked loop",
+  "tags": [
+    "logic",
+    "cmos",
+    "4000-series",
+    "pll",
+    "vco",
+    "phase-locked-loop",
+    "synth"
+  ],
+  "description": "Micropower CMOS phase-locked loop containing a voltage-controlled oscillator (VCO), a source follower, a zener diode, and two independent phase comparators sharing a common signal input and comparator input. Wide supply range (3V-18V), low power. Common building block in frequency synthesis, FM demodulation, tone decoding, and (in the synth/pedal world) VCO and frequency-multiplier circuits.",
+  "packages": {
+    "DIP-16": {
+      "template": "dip",
+      "pin_count": 16,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "PC1OUT",
+          "type": "output",
+          "description": "phase comparator I output (phase pulses)"
+        },
+        {
+          "pin": 2,
+          "name": "PC1",
+          "type": "output",
+          "description": "phase comparator I output"
+        },
+        {
+          "pin": 3,
+          "name": "COMPIN",
+          "type": "input",
+          "description": "comparator input (feedback signal for phase comparison)"
+        },
+        {
+          "pin": 4,
+          "name": "VCOOUT",
+          "type": "output",
+          "description": "VCO output"
+        },
+        {
+          "pin": 5,
+          "name": "INHIBIT",
+          "type": "input",
+          "description": "inhibit; disables VCO and source follower when high, for power saving"
+        },
+        {
+          "pin": 6,
+          "name": "C1A",
+          "type": "passive",
+          "description": "external timing capacitor terminal A (VCO frequency-setting)"
+        },
+        {
+          "pin": 7,
+          "name": "C1B",
+          "type": "passive",
+          "description": "external timing capacitor terminal B (VCO frequency-setting)"
+        },
+        {
+          "pin": 8,
+          "name": "VSS",
+          "type": "ground",
+          "description": "negative supply / ground"
+        },
+        {
+          "pin": 9,
+          "name": "VCOIN",
+          "type": "input",
+          "description": "VCO control voltage input (from the loop filter)"
+        },
+        {
+          "pin": 10,
+          "name": "DEMOUT",
+          "type": "output",
+          "description": "demodulator output (source-follower output)"
+        },
+        {
+          "pin": 11,
+          "name": "R1",
+          "type": "passive",
+          "description": "external timing resistor R1 (VCO frequency-setting)"
+        },
+        {
+          "pin": 12,
+          "name": "R2",
+          "type": "passive",
+          "description": "external timing resistor R2 (VCO offset/range)"
+        },
+        {
+          "pin": 13,
+          "name": "PC2OUT",
+          "type": "output",
+          "description": "phase comparator II output"
+        },
+        {
+          "pin": 14,
+          "name": "SIGIN",
+          "type": "input",
+          "description": "signal input to phase comparators"
+        },
+        {
+          "pin": 15,
+          "name": "ZENER",
+          "type": "passive",
+          "description": "on-chip zener diode terminal, used for the demodulator's source-follower reference"
+        },
+        {
+          "pin": 16,
+          "name": "VDD",
+          "type": "power",
+          "description": "positive supply, 3V to 18V"
+        }
+      ],
+      "notes": "Per the CD4046BC connection diagram, DIP-16, top view: PHASE PULSES=1, PHASE COMP I OUT=2, COMPARATOR IN=3, VCO OUT=4, INHIBIT=5, C1A=6, C1B=7, VSS=8, VCO IN=9, DEMODULATOR OUT=10, R1=11, R2=12, PHASE COMP II OUT=13, SIGNAL IN=14, ZENER=15, VDD=16."
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.0,
+    "vs_max_v": 18.0,
+    "extra": {
+      "VCO_freq": "1.3MHz typ @ VDD=10V (external R1/C1 dependent; see the datasheet's VCO frequency-vs-Vin curves)",
+      "power_consumption": "70uW typ dynamic @ fo=10kHz, VDD=5V",
+      "phase_comparators": "two independent phase comparators (PC1: XOR-type, works with 50% duty cycle signals; PC2: edge-triggered, works with any duty cycle and offers zero phase/frequency offset at lock)"
+    }
+  },
+  "typical_application": "Frequency synthesis, clock recovery, FM demodulation, tone decoding, and in synth/pedal circuits: voltage-controlled oscillators, frequency doublers, and frequency-to-voltage-adjacent tricks that reuse the VCO or phase comparators alone.",
+  "gotchas": [
+    "the VCO (pins 4/6/7/9/11/12) and the phase comparators (pins 1/2/3/13/14) can be used independently; many synth/pedal circuits use only the VCO half and leave the PLL loop unconnected",
+    "R1 sets the VCO's basic frequency range, R2 (optional) sets a frequency offset; omitting R2 is fine but changes the tuning equation, follow the datasheet's formula for the topology actually used",
+    "PC1 (XOR-type) needs roughly 50% duty cycle inputs to lock cleanly; PC2 (edge-triggered) is more tolerant of duty cycle but responds differently to noise, pick based on the actual signal",
+    "INHIBIT (pin 5) powers down the VCO and source follower; leave it low for continuous operation, do not float"
+  ],
+  "related": [
+    "cd4067",
+    "ne555"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/cd4046b.pdf",
+  "source": "claude",
+  "verified": true
+}

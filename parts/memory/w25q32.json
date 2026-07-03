@@ -1,0 +1,115 @@
+{
+  "id": "w25q32",
+  "name": "W25Q32",
+  "aliases": [
+    "W25Q32JV",
+    "W25Q32JVSSIQ",
+    "W25Q32FV"
+  ],
+  "full_name": "Winbond W25Q32JV 32Mbit (4M x 8) Serial SPI NOR Flash Memory",
+  "manufacturers": [
+    "Winbond"
+  ],
+  "category": "memory",
+  "subcategory": "SPI NOR flash",
+  "tags": [
+    "flash",
+    "nor",
+    "spi",
+    "qspi",
+    "quad-spi",
+    "nonvolatile",
+    "memory",
+    "32mbit",
+    "winbond"
+  ],
+  "description": "The W25Q32JV is a 32 Mbit (4 MB) serial NOR flash memory supporting standard SPI, Dual SPI, and Quad SPI on a single 8-pin package. It runs at 2.7V-3.6V with clocks up to 133 MHz and is organized into 64 KB blocks, 4 KB sectors, and 256-byte program pages. With QE set in Status Register-2, the /WP and /HOLD pins become IO2 and IO3 for quad I/O. Endurance is 100,000 program/erase cycles per sector with 20-year retention. Its standout trait is being the ubiquitous low-cost SPI flash for firmware/QSPI XIP storage on ESP32, RP2040, and countless dev boards.",
+  "packages": {
+    "SOIC-8": {
+      "template": "soic",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "/CS",
+          "type": "input",
+          "description": "chip select, active low; high tristates DO and puts device in standby"
+        },
+        {
+          "pin": 2,
+          "name": "DO (IO1)",
+          "type": "bidirectional",
+          "description": "data output in standard SPI; IO1 in dual/quad mode"
+        },
+        {
+          "pin": 3,
+          "name": "/WP (IO2)",
+          "type": "bidirectional",
+          "description": "write protect (active low) in SPI; becomes IO2 when quad enable is set"
+        },
+        {
+          "pin": 4,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 5,
+          "name": "DI (IO0)",
+          "type": "bidirectional",
+          "description": "data input in standard SPI; IO0 in dual/quad mode"
+        },
+        {
+          "pin": 6,
+          "name": "CLK",
+          "type": "clock",
+          "description": "serial clock input"
+        },
+        {
+          "pin": 7,
+          "name": "/HOLD (IO3)",
+          "type": "bidirectional",
+          "description": "hold (active low), pauses device while selected; becomes IO3 when quad enable is set (may be /RESET on some packages)"
+        },
+        {
+          "pin": 8,
+          "name": "VCC",
+          "type": "power",
+          "description": "supply voltage 2.7V to 3.6V"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.7,
+    "vs_max_v": 3.6,
+    "extra": {
+      "capacity": "32 Mbit (4 MB)",
+      "organization": "4M x 8",
+      "interface": "SPI / Dual SPI / Quad SPI",
+      "max_clock": "133 MHz (up to 532 MHz equivalent quad)",
+      "block_size": "64 KB",
+      "sector_size": "4 KB",
+      "page_size": "256 bytes (program)",
+      "endurance": "100,000 program/erase cycles",
+      "data_retention": "20 years",
+      "package_width": "208-mil SOIC-8"
+    }
+  },
+  "typical_application": "External firmware/code (XIP via QSPI), filesystem, or asset storage for microcontrollers like ESP32 and RP2040.",
+  "gotchas": [
+    "3.3V part only; applying 5V will damage it, level-shift if driving from a 5V MCU",
+    "in standard SPI you must keep /WP and /HOLD high (or tie to VCC) or the device stalls; many designs hardwire them high",
+    "Quad mode reuses /WP as IO2 and /HOLD as IO3 only after the Quad Enable (QE) bit in Status Register-2 is set",
+    "program pages are 256 bytes and writes wrap within the page; erase is sector (4 KB) or block granularity, you cannot byte-erase",
+    "dedicated /RESET only exists on SOIC-16/TFBGA packages; on SOIC-8 pin 7 is /HOLD or /RESET-as-IO3, not an independent reset",
+    "/CS needs a pull-up so it stays high during MCU reset/power-up to avoid spurious commands"
+  ],
+  "related": [
+    "23lc1024",
+    "24lc256"
+  ],
+  "datasheet_url": "https://www.winbond.com/resource-files/w25q32jv%20revg%2003272018%20plus.pdf",
+  "source": "human",
+  "verified": true
+}

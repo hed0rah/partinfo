@@ -1,0 +1,81 @@
+{
+  "id": "ds18b20",
+  "name": "DS18B20",
+  "aliases": [
+    "DS18B20+",
+    "DS18B20Z"
+  ],
+  "full_name": "DS18B20 Programmable Resolution 1-Wire Digital Thermometer",
+  "manufacturers": [
+    "Maxim Integrated",
+    "Analog Devices"
+  ],
+  "category": "sensor",
+  "subcategory": "1-wire digital temperature sensor",
+  "tags": [
+    "temperature",
+    "1-wire",
+    "digital",
+    "onewire",
+    "thermometer",
+    "to-92",
+    "parasite-power"
+  ],
+  "description": "Digital temperature sensor that communicates over a single-wire 1-Wire bus, needing only one data line (plus ground) to a microcontroller. Each device has a unique 64-bit factory-lasered ROM code, so many sensors can share one bus. It reports temperature in 9 to 12 bits of user-configurable resolution and operates from 3.0 to 5.5 V. It can also draw power parasitically from the data line, removing the need for a dedicated VDD connection.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground reference"
+        },
+        {
+          "pin": 2,
+          "name": "DQ",
+          "type": "bidirectional",
+          "description": "1-Wire data input/output (open-drain); requires external pull-up"
+        },
+        {
+          "pin": 3,
+          "name": "VDD",
+          "type": "power",
+          "description": "optional 3.0-5.5 V supply; tie to GND for parasite-power mode"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.0,
+    "vs_max_v": 5.5,
+    "extra": {
+      "interface": "1-Wire (single data line, open-drain)",
+      "temperature_range": "-55 C to +125 C",
+      "accuracy": "+/-0.5 C from -10 C to +85 C",
+      "resolution": "9 to 12 bits, programmable (12-bit default = 0.0625 C)",
+      "conversion_time": "up to 750 ms at 12-bit",
+      "supply_current_active": "~1 mA typ, 1.5 mA max",
+      "rom": "unique 64-bit serial code"
+    }
+  },
+  "typical_application": "Multi-drop temperature monitoring (thermostats, HVAC, equipment thermal monitoring) where multiple sensors share a single MCU GPIO over a long bus.",
+  "gotchas": [
+    "DQ requires an external pull-up resistor, typically 4.7k to VDD, for normal operation",
+    "TO-92 pin order (flat face toward you, leads down) is GND, DQ, VDD left-to-right; reversing VDD and GND can destroy the part",
+    "in parasite-power mode VDD is tied to GND and a strong bus pull-up (e.g. MOSFET) is needed during temperature conversion",
+    "12-bit conversions take up to 750 ms; do not poll faster than the conversion completes",
+    "counterfeit DS18B20 parts are common and often have poor accuracy or wrong ROM behavior",
+    "long bus runs need proper pull-up sizing and may require lower resolution or an active pull-up for reliability"
+  ],
+  "related": [
+    "dht22",
+    "lm35",
+    "tmp36"
+  ],
+  "datasheet_url": "https://www.analog.com/media/en/technical-documentation/data-sheets/ds18b20.pdf",
+  "source": "human",
+  "verified": true
+}

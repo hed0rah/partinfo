@@ -1,0 +1,233 @@
+{
+  "id": "cp2102",
+  "name": "CP2102",
+  "aliases": [
+    "CP2109",
+    "CP2102N"
+  ],
+  "full_name": "Single-chip USB to UART bridge",
+  "manufacturers": [
+    "Silicon Labs"
+  ],
+  "category": "interface",
+  "subcategory": "usb-uart bridge",
+  "tags": [
+    "interface",
+    "usb",
+    "uart",
+    "serial",
+    "bridge",
+    "vcp",
+    "qfn"
+  ],
+  "description": "Highly integrated USB 2.0 full-speed to UART bridge that needs essentially no external components: it includes the USB transceiver, an internal clock/oscillator, an on-chip voltage regulator, and a programmable ROM for the USB VID/PID and serial/description strings. It implements a full UART with all RS-232 modem-control signals and supports 300 bps to 1 Mbps. Silicon Labs provides royalty-free Virtual COM Port drivers. Only offered in a 28-pin QFN (5x5 mm) - no through-hole option. (CP2102N is the recommended pin-compatible successor.)",
+  "packages": {
+    "QFN-28": {
+      "template": "qfn",
+      "pin_count": 28,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "DCD",
+          "type": "input",
+          "description": "data carrier detect control input (active low)"
+        },
+        {
+          "pin": 2,
+          "name": "RI",
+          "type": "input",
+          "description": "ring indicator control input (active low)"
+        },
+        {
+          "pin": 3,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 4,
+          "name": "D+",
+          "type": "bidirectional",
+          "description": "USB D+"
+        },
+        {
+          "pin": 5,
+          "name": "D-",
+          "type": "bidirectional",
+          "description": "USB D-"
+        },
+        {
+          "pin": 6,
+          "name": "VDD",
+          "type": "power",
+          "description": "3.0-3.6 V supply input, or 3.3 V regulator output"
+        },
+        {
+          "pin": 7,
+          "name": "REGIN",
+          "type": "power",
+          "description": "5 V input to the on-chip voltage regulator"
+        },
+        {
+          "pin": 8,
+          "name": "VBUS",
+          "type": "input",
+          "description": "VBUS sense input; connect to USB VBUS (5 V indicates USB connected)"
+        },
+        {
+          "pin": 9,
+          "name": "RST",
+          "type": "bidirectional",
+          "description": "device reset (open-drain output of internal POR/VDD monitor; drive low >=15 us to reset)"
+        },
+        {
+          "pin": 10,
+          "name": "NC",
+          "type": "nc",
+          "description": "no connect (leave open or tie to VDD)"
+        },
+        {
+          "pin": 11,
+          "name": "SUSPEND",
+          "type": "output",
+          "description": "driven high when the device enters USB suspend"
+        },
+        {
+          "pin": 12,
+          "name": "SUSPEND#",
+          "type": "output",
+          "description": "driven low when the device enters USB suspend (active-low SUSPEND)"
+        },
+        {
+          "pin": 13,
+          "name": "NC",
+          "type": "nc",
+          "description": "no connect (leave open or tie to VDD)"
+        },
+        {
+          "pin": 14,
+          "name": "NC",
+          "type": "nc",
+          "description": "no connect (leave open or tie to VDD)"
+        },
+        {
+          "pin": 15,
+          "name": "NC",
+          "type": "nc",
+          "description": "no connect (leave open or tie to VDD)"
+        },
+        {
+          "pin": 16,
+          "name": "NC",
+          "type": "nc",
+          "description": "no connect (leave open or tie to VDD)"
+        },
+        {
+          "pin": 17,
+          "name": "NC",
+          "type": "nc",
+          "description": "no connect (leave open or tie to VDD)"
+        },
+        {
+          "pin": 18,
+          "name": "NC/VPP",
+          "type": "nc",
+          "description": "NC on CP2102 (unused); VPP programming-supply pin on CP2109, kept for footprint compatibility"
+        },
+        {
+          "pin": 19,
+          "name": "NC",
+          "type": "nc",
+          "description": "no connect (leave open or tie to VDD)"
+        },
+        {
+          "pin": 20,
+          "name": "NC",
+          "type": "nc",
+          "description": "no connect (leave open or tie to VDD)"
+        },
+        {
+          "pin": 21,
+          "name": "NC",
+          "type": "nc",
+          "description": "no connect (leave open or tie to VDD)"
+        },
+        {
+          "pin": 22,
+          "name": "NC",
+          "type": "nc",
+          "description": "no connect (leave open or tie to VDD)"
+        },
+        {
+          "pin": 23,
+          "name": "CTS",
+          "type": "input",
+          "description": "clear to send control input (active low)"
+        },
+        {
+          "pin": 24,
+          "name": "RTS",
+          "type": "output",
+          "description": "ready/request to send control output (active low)"
+        },
+        {
+          "pin": 25,
+          "name": "RXD",
+          "type": "input",
+          "description": "UART receive data input"
+        },
+        {
+          "pin": 26,
+          "name": "TXD",
+          "type": "output",
+          "description": "UART transmit data output"
+        },
+        {
+          "pin": 27,
+          "name": "DSR",
+          "type": "input",
+          "description": "data set ready control input (active low)"
+        },
+        {
+          "pin": 28,
+          "name": "DTR",
+          "type": "output",
+          "description": "data terminal ready control output (active low)"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.0,
+    "vs_max_v": 5.25,
+    "extra": {
+      "Vcc": "self-powered 3.0-3.6 V (VDD); USB bus-powered 4.0-5.25 V (into REGIN)",
+      "usb": "USB 2.0 full-speed (12 Mbps)",
+      "baud": "300 bps to 1 Mbps",
+      "clock": "internal oscillator (no external crystal)",
+      "regulator": "on-chip 3.3 V (REGIN in, VDD out)",
+      "rom": "1024-byte programmable (VID/PID/serial/strings)",
+      "buffers": "576 B RX / 640 B TX",
+      "exposed_pad": "center GND pad must be grounded",
+      "interface": "asynchronous UART, full modem control"
+    }
+  },
+  "typical_application": "USB-bus-powered USB-to-UART/RS-232 adapter: VBUS to REGIN through the on-chip 3.3 V regulator feeding VDD, with TXD/RXD/modem lines to the target or an RS-232 transceiver.",
+  "gotchas": [
+    "QFN-28 only (5x5 mm) - there is no DIP/through-hole version, so it needs a breakout board or reflow for hand use",
+    "the center exposed pad is GND and must be soldered to the ground plane",
+    "bus-powered designs feed 5 V into REGIN and take 3.3 V from VDD; self-powered designs feed 3.0-3.6 V directly into VDD - wire the regulator correctly for your power scheme",
+    "pin 18 is NC on the CP2102 but VPP on the CP2109 (EPROM) variant - do not repurpose it if you want cross-compatibility",
+    "for Arduino-style auto-reset, DTR is wired through a capacitor to the target reset line (modem signals here are active-low though not named with the # suffix of the FT232R)",
+    "the original CP2102 is increasingly hard to source; the pin-compatible CP2102N is the recommended replacement for new designs"
+  ],
+  "related": [
+    "cp2102n",
+    "cp2109",
+    "ft232rl",
+    "ch340g"
+  ],
+  "datasheet_url": "https://www.silabs.com/documents/public/data-sheets/CP2102-9.pdf",
+  "source": "human",
+  "verified": true
+}

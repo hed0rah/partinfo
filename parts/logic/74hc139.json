@@ -1,0 +1,153 @@
+{
+  "id": "74hc139",
+  "name": "74HC139",
+  "aliases": [
+    "74LS139",
+    "74HCT139",
+    "SN74HC139",
+    "SN54HC139"
+  ],
+  "full_name": "Dual 2-to-4 Line Decoder/Demultiplexer",
+  "manufacturers": [
+    "Texas Instruments",
+    "Nexperia",
+    "onsemi"
+  ],
+  "category": "logic",
+  "subcategory": "decoder",
+  "tags": [
+    "logic",
+    "74-series",
+    "cmos",
+    "decoder",
+    "demultiplexer",
+    "dual"
+  ],
+  "description": "Two independent 2-to-4 line decoders, each with its own active-low enable (1G,2G), two select inputs (A,B), and four active-LOW outputs (Y0..Y3). A high enable forces that decoder's outputs high. Push-pull outputs. HC/HCT/LS share this pinout.",
+  "packages": {
+    "DIP-16": {
+      "template": "dip",
+      "pin_count": 16,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "1G",
+          "type": "input",
+          "description": "decoder 1 active-low enable/strobe"
+        },
+        {
+          "pin": 2,
+          "name": "1A",
+          "type": "input",
+          "description": "decoder 1 select A (LSB)"
+        },
+        {
+          "pin": 3,
+          "name": "1B",
+          "type": "input",
+          "description": "decoder 1 select B (MSB)"
+        },
+        {
+          "pin": 4,
+          "name": "1Y0",
+          "type": "output",
+          "description": "decoder 1 active-low output 0"
+        },
+        {
+          "pin": 5,
+          "name": "1Y1",
+          "type": "output",
+          "description": "decoder 1 active-low output 1"
+        },
+        {
+          "pin": 6,
+          "name": "1Y2",
+          "type": "output",
+          "description": "decoder 1 active-low output 2"
+        },
+        {
+          "pin": 7,
+          "name": "1Y3",
+          "type": "output",
+          "description": "decoder 1 active-low output 3"
+        },
+        {
+          "pin": 8,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 9,
+          "name": "2Y3",
+          "type": "output",
+          "description": "decoder 2 active-low output 3"
+        },
+        {
+          "pin": 10,
+          "name": "2Y2",
+          "type": "output",
+          "description": "decoder 2 active-low output 2"
+        },
+        {
+          "pin": 11,
+          "name": "2Y1",
+          "type": "output",
+          "description": "decoder 2 active-low output 1"
+        },
+        {
+          "pin": 12,
+          "name": "2Y0",
+          "type": "output",
+          "description": "decoder 2 active-low output 0"
+        },
+        {
+          "pin": 13,
+          "name": "2B",
+          "type": "input",
+          "description": "decoder 2 select B (MSB)"
+        },
+        {
+          "pin": 14,
+          "name": "2A",
+          "type": "input",
+          "description": "decoder 2 select A (LSB)"
+        },
+        {
+          "pin": 15,
+          "name": "2G",
+          "type": "input",
+          "description": "decoder 2 active-low enable/strobe"
+        },
+        {
+          "pin": 16,
+          "name": "VCC",
+          "type": "power",
+          "description": "positive supply"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.0,
+    "vs_max_v": 6.0,
+    "extra": {
+      "function": "dual 2-to-4 line decoder/demultiplexer",
+      "logic family": "74HC/HCT/LS",
+      "outputs": "4 active-low per decoder, push-pull"
+    }
+  },
+  "typical_application": "Two independent chip-select / 1-of-4 demux functions, e.g. bank or quadrant decoding.",
+  "gotchas": [
+    "GND = pin 8, VCC = pin 16",
+    "outputs are active-LOW; addressed output goes low, others stay high",
+    "each enable (1G pin 1, 2G pin 15) is active-LOW; a high enable forces that decoder's outputs high",
+    "the two decoders are fully independent (decoder 1 = pins 1-7, decoder 2 = pins 9-15)"
+  ],
+  "related": [
+    "74hc138"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/sn74hc139.pdf",
+  "source": "human",
+  "verified": true
+}

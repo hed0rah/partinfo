@@ -1,0 +1,77 @@
+{
+  "id": "bs170",
+  "name": "BS170",
+  "aliases": [],
+  "full_name": "N-channel enhancement small-signal MOSFET, 60V 500mA (TO-92)",
+  "manufacturers": [
+    "onsemi",
+    "Fairchild",
+    "Vishay"
+  ],
+  "category": "transistor_mosfet",
+  "subcategory": "n-channel small-signal",
+  "tags": [
+    "mosfet",
+    "n-channel",
+    "enhancement",
+    "small-signal",
+    "switching",
+    "to92"
+  ],
+  "description": "N-channel enhancement-mode small-signal MOSFET in TO-92, 60V / 500mA. Relay/LED drive, level shifting, small servo control, and gate driving for larger MOSFETs. Rds(on) ~1.8 ohm typ (5 ohm max) at Vgs=10V, threshold 0.8-3.0V.",
+  "packages": {
+    "TO-92": {
+      "template": "to92",
+      "pin_count": 3,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "D",
+          "type": "passive",
+          "description": "drain; to the load / positive side in a low-side switch"
+        },
+        {
+          "pin": 2,
+          "name": "G",
+          "type": "passive",
+          "description": "gate; voltage-controlled, high input impedance (center lead)"
+        },
+        {
+          "pin": 3,
+          "name": "S",
+          "type": "passive",
+          "description": "source; usually tied to ground/common"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_max_v": 60.0,
+    "iout_max_ma": 500.0,
+    "extra": {
+      "Vds_max": "60V",
+      "Vgs_max": "+/-20V",
+      "Vgs_th": "0.8/2.0/3.0V (min/typ/max)",
+      "Id": "500mA continuous",
+      "Rds_on": "1.8 ohm typ, 5 ohm max at Vgs=10V",
+      "Pd": "350mW",
+      "Ciss": "60pF (max)",
+      "ton": "4.0ns (10 max)",
+      "toff": "4.0ns (10 max)"
+    }
+  },
+  "typical_application": "Low-side load switching (relays, LEDs, small motors/servos), logic-to-power level shifting, and gate driving for larger MOSFETs.",
+  "gotchas": [
+    "pinout is D-G-S (pin1=Drain), the REVERSE of the 2N7000 (S-G-D); they are NOT pin-compatible despite similar specs",
+    "Vgs absolute max is only +/-20V; ESD-sensitive",
+    "not a true logic-level FET: Vgs(th) can reach 3.0V and Rds(on) is rated at Vgs=10V, so 3.3/5V drive gives higher on-resistance than spec",
+    "500mA is absolute max; the 350mW package dissipation usually limits continuous current well below that"
+  ],
+  "related": [
+    "2n7000",
+    "bss138"
+  ],
+  "datasheet_url": "https://www.onsemi.com/download/data-sheet/pdf/bs170-d.pdf",
+  "source": "human",
+  "verified": true
+}

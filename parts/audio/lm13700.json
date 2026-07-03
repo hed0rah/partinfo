@@ -1,0 +1,154 @@
+{
+  "id": "lm13700",
+  "name": "LM13700",
+  "aliases": [
+    "LM13700M",
+    "LM13700N"
+  ],
+  "full_name": "Dual Operational Transconductance Amplifier (OTA) with Linearizing Diodes and Buffers",
+  "manufacturers": [
+    "Texas Instruments"
+  ],
+  "category": "audio",
+  "subcategory": "operational transconductance amplifier (OTA)",
+  "tags": [
+    "ota",
+    "transconductance",
+    "vca",
+    "ring-modulator",
+    "vcf",
+    "analog",
+    "vintage",
+    "classic"
+  ],
+  "description": "Dual current-controlled transconductance amplifier, each with differential inputs and a push-pull output, plus a built-in linearizing-diode network and a high-impedance buffer per channel. The amplifier's gain (transconductance, gm) is set by an external bias current (IABC) rather than a resistor, making it the classic building block for voltage-controlled amplifiers (VCAs), voltage-controlled filters, ring modulators, and current-controlled oscillators in analog synths and effects. Successor/companion to the older LM13600, with output buffers whose DC level does not depend on IABC.",
+  "packages": {
+    "DIP-16": {
+      "template": "dip",
+      "pin_count": 16,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "1 BIAS",
+          "type": "input",
+          "description": "amplifier 1 amp bias input (IABC1, sets gm)"
+        },
+        {
+          "pin": 2,
+          "name": "1 D BIAS",
+          "type": "input",
+          "description": "amplifier 1 diode bias"
+        },
+        {
+          "pin": 3,
+          "name": "1 IN+",
+          "type": "input",
+          "description": "amplifier 1 noninverting input"
+        },
+        {
+          "pin": 4,
+          "name": "1 IN-",
+          "type": "input",
+          "description": "amplifier 1 inverting input"
+        },
+        {
+          "pin": 5,
+          "name": "1 OUT",
+          "type": "output",
+          "description": "amplifier 1 output (high-impedance current output)"
+        },
+        {
+          "pin": 6,
+          "name": "V-",
+          "type": "power",
+          "description": "negative supply"
+        },
+        {
+          "pin": 7,
+          "name": "1 BUF IN",
+          "type": "input",
+          "description": "amplifier 1 buffer input"
+        },
+        {
+          "pin": 8,
+          "name": "1 BUF OUT",
+          "type": "output",
+          "description": "amplifier 1 buffer output"
+        },
+        {
+          "pin": 9,
+          "name": "2 BUF OUT",
+          "type": "output",
+          "description": "amplifier 2 buffer output"
+        },
+        {
+          "pin": 10,
+          "name": "2 BUF IN",
+          "type": "input",
+          "description": "amplifier 2 buffer input"
+        },
+        {
+          "pin": 11,
+          "name": "V+",
+          "type": "power",
+          "description": "positive supply"
+        },
+        {
+          "pin": 12,
+          "name": "2 OUT",
+          "type": "output",
+          "description": "amplifier 2 output (high-impedance current output)"
+        },
+        {
+          "pin": 13,
+          "name": "2 IN-",
+          "type": "input",
+          "description": "amplifier 2 inverting input"
+        },
+        {
+          "pin": 14,
+          "name": "2 IN+",
+          "type": "input",
+          "description": "amplifier 2 noninverting input"
+        },
+        {
+          "pin": 15,
+          "name": "2 D BIAS",
+          "type": "input",
+          "description": "amplifier 2 diode bias"
+        },
+        {
+          "pin": 16,
+          "name": "2 BIAS",
+          "type": "input",
+          "description": "amplifier 2 amp bias input (IABC2, sets gm)"
+        }
+      ],
+      "notes": "Per TI's own connection diagram, DIP-16/SOIC-16, top view. Both amplifiers share V+ (pin 11) and V- (pin 6) but otherwise operate independently."
+    }
+  },
+  "specs": {
+    "vs_max_v": 36.0,
+    "extra": {
+      "supply_split": "up to +-18V split supply (36V total)",
+      "IABC_max": "2mA per amplifier",
+      "gm_law": "transconductance is set by IABC (roughly linear over ~6 decades of bias current per TI's own claim); consult the datasheet's gm-vs-IABC curve rather than assuming a fixed constant",
+      "buffer_output_current": "20mA max per buffer",
+      "output_short_circuit": "continuous, both amplifier outputs"
+    }
+  },
+  "typical_application": "Voltage/current-controlled amplifiers (VCAs), voltage-controlled filters, ring modulators, current-controlled oscillators, multiplexers, and sample-and-hold circuits in analog synthesizers and effects pedals. The built-in linearizing diodes reduce distortion versus a bare OTA at higher input levels.",
+  "gotchas": [
+    "gain is set by a bias CURRENT (IABC) into the bias pin, not a bias voltage; needs a current-source or current-limiting resistor from a control voltage, not a direct voltage connection",
+    "the OUT pins are high-impedance current outputs, not low-impedance voltage outputs; they need the on-chip buffer (or an external one) to drive most loads directly",
+    "both amplifiers share the same supply pins but are otherwise independent; cross-talk and layout matter in tight VCA/filter designs",
+    "the linearizing diodes need the diode-bias pin properly biased per the datasheet's application circuits to actually reduce distortion; skipping that defeats the point of using the LM13700 over a bare LM13600"
+  ],
+  "related": [
+    "mn3007",
+    "mn3005"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/lm13700.pdf",
+  "source": "claude",
+  "verified": true
+}

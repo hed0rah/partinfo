@@ -1,0 +1,104 @@
+{
+  "id": "mn3005",
+  "name": "MN3005",
+  "aliases": [],
+  "full_name": "4096-Stage Long-Delay Bucket-Brigade Delay (BBD)",
+  "manufacturers": [
+    "Panasonic"
+  ],
+  "category": "audio",
+  "subcategory": "bucket-brigade delay (BBD)",
+  "tags": [
+    "bbd",
+    "delay",
+    "chorus",
+    "flanger",
+    "analog",
+    "vintage",
+    "classic"
+  ],
+  "description": "4096-stage bucket-brigade delay line, the long-delay member of the MN3000 series, 4x the stage count of the MN3007. Variable analog delay of 20.48-204.8ms. The classic long-delay BBD used in the Electro-Harmonix Deluxe Memory Man and many other analog delay pedals. Needs an external clock generator to drive CP1/CP2.",
+  "packages": {
+    "DIP-8": {
+      "template": "dip",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 2,
+          "name": "CP2",
+          "type": "input",
+          "description": "clock phase 2 input"
+        },
+        {
+          "pin": 3,
+          "name": "OUT1",
+          "type": "output",
+          "description": "delayed signal output 1"
+        },
+        {
+          "pin": 4,
+          "name": "OUT2",
+          "type": "output",
+          "description": "delayed signal output 2"
+        },
+        {
+          "pin": 5,
+          "name": "VDD",
+          "type": "power",
+          "description": "negative supply (typically -15V referenced to GND in the classic bias scheme)"
+        },
+        {
+          "pin": 6,
+          "name": "CP1",
+          "type": "input",
+          "description": "clock phase 1 input"
+        },
+        {
+          "pin": 7,
+          "name": "IN",
+          "type": "input",
+          "description": "analog signal input"
+        },
+        {
+          "pin": 8,
+          "name": "VGG",
+          "type": "power",
+          "description": "positive supply (a few volts above VDD, see datasheet bias network)"
+        }
+      ],
+      "notes": "Per Panasonic's own block diagram/pinout, DIP-8, top view. This is Panasonic's 'special' 8-lead DIP outline for the MN3005; the pin FUNCTION order differs from the MN3007's DIP-8 (e.g. IN is pin 7 here, pin 3 on the MN3007), despite both being 8-pin DIPs -- do not assume the two are pin-compatible."
+    }
+  },
+  "specs": {
+    "extra": {
+      "stages": 4096,
+      "delay_range": "20.48 to 204.8ms",
+      "clock_range": "5 to 100kHz (10kHz gives 205ms per Panasonic's own description)",
+      "SN_ratio": "75dB typ",
+      "THD": "1% typ",
+      "insertion_loss": "0dB typ",
+      "supply": "VDD=-15V, VGG=VDD+1 (per Panasonic's bias scheme; see application notes for the exact bias network)"
+    }
+  },
+  "typical_application": "Long analog delay/echo effects (100+ ms) in guitar pedals and electronic musical instruments; the classic chip in vintage analog delay units. Requires an external clock and a low-pass anti-aliasing filter on the output.",
+  "gotchas": [
+    "pin arrangement is NOT the same as the MN3007 despite both being 8-pin DIPs; check the pin list here, don't assume cross-compatibility",
+    "needs an external clock generator driving CP1/CP2 with complementary, non-overlapping phases; it is not self-clocking",
+    "delay time is inversely proportional to clock frequency: higher clock = shorter delay, lower clock = longer delay (and worse bandwidth/noise)",
+    "clock feedthrough onto the output is normal and expected; always follow with a low-pass filter tuned below the clock frequency",
+    "genuine NOS Panasonic/Matsushita chips are increasingly scarce and sought after (this is THE Deluxe Memory Man chip); some modern builds substitute other MN3xxx-family or clone BBD chips with similar but not identical specs",
+    "read from a genuine Panasonic factory datasheet (clear letterhead, block diagram, and package drawing), but no current live-hosted URL was found for this decades-old scan; datasheet_url is left blank rather than citing a secondhand mirror"
+  ],
+  "related": [
+    "mn3007",
+    "pt2399"
+  ],
+  "source": "claude",
+  "verified": true
+}

@@ -1,0 +1,55 @@
+{
+  "id": "e-series",
+  "title": "E-Series Preferred Values",
+  "topic": "passive",
+  "tags": [
+    "e-series",
+    "e12",
+    "e24",
+    "e6",
+    "preferred-values",
+    "standard-values"
+  ],
+  "summary": "the standard preferred resistor/capacitor value sets (E6/E12/E24) and why they are spaced logarithmically.",
+  "body": "components come in preferred values spaced so that tolerance bands tile the\nrange with minimal overlap. E12 (10% tolerance) has 12 values per decade, E24\n(5%) has 24, E6 (20%) has 6. multiply any base value by a power of ten to reach\nother decades (e.g. 4.7 -> 47, 470, 4.7k...).",
+  "tables": [
+    {
+      "title": "values per decade",
+      "headers": [
+        "series",
+        "tolerance",
+        "values"
+      ],
+      "rows": [
+        [
+          "E6",
+          "20%",
+          "10 15 22 33 47 68"
+        ],
+        [
+          "E12",
+          "10%",
+          "10 12 15 18 22 27 33 39 47 56 68 82"
+        ],
+        [
+          "E24",
+          "5%",
+          "10 11 12 13 15 16 18 20 22 24 27 30 33 36 39 43 47 51 56 62 68 75 82 91"
+        ]
+      ]
+    }
+  ],
+  "examples": [
+    "need ~3.1k at 5%: nearest E24 is 3.0k or 3.3k.",
+    "need ~5k: not an E12 value; use 4.7k (E12) or combine 4.7k + 330 in series."
+  ],
+  "gotchas": [
+    "5000 ohm and 2000 ohm are NOT standard values; common mistakes are 4.7k/5.1k and 2.0k/2.2k",
+    "E96 (1%) and E192 (0.5%) exist for precision work with 96 and 192 values per decade"
+  ],
+  "related": [
+    "resistor-color-code",
+    "voltage-divider"
+  ],
+  "source": "human"
+}

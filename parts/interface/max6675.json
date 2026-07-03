@@ -1,0 +1,108 @@
+{
+  "id": "max6675",
+  "name": "MAX6675",
+  "aliases": [
+    "MAX6675ISA",
+    "MAX6675ISA+"
+  ],
+  "full_name": "Maxim Integrated (Analog Devices) MAX6675 Cold-Junction-Compensated K-Thermocouple-to-Digital Converter (0C to +1024C)",
+  "manufacturers": [
+    "Maxim Integrated",
+    "Analog Devices"
+  ],
+  "category": "interface",
+  "subcategory": "Thermocouple ADC",
+  "tags": [
+    "adc",
+    "spi",
+    "thermocouple",
+    "temperature",
+    "12-bit"
+  ],
+  "description": "The MAX6675 performs cold-junction compensation and digitizes the signal from a type-K thermocouple. It outputs 12-bit data with 0.25 C resolution over a read-only SPI-compatible interface, covering 0 C to +1024 C. The device includes built-in open-thermocouple detection, flagging a disconnected probe in the data word. Because it integrates the cold-junction sensing, ADC, and reference, it turns a bare thermocouple into a clean digital temperature reading with minimal external parts. It is a long-standing favorite for reflow ovens, kilns, and industrial temperature monitoring.",
+  "packages": {
+    "SO-8": {
+      "template": "soic",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "GND",
+          "type": "ground",
+          "description": "Ground"
+        },
+        {
+          "pin": 2,
+          "name": "T-",
+          "type": "analog",
+          "description": "Alumel lead of type-K thermocouple; connect to ground externally"
+        },
+        {
+          "pin": 3,
+          "name": "T+",
+          "type": "analog",
+          "description": "Chromel lead of type-K thermocouple (positive)"
+        },
+        {
+          "pin": 4,
+          "name": "VCC",
+          "type": "power",
+          "description": "Positive supply; bypass with 0.1 uF to GND"
+        },
+        {
+          "pin": 5,
+          "name": "SCK",
+          "type": "clock",
+          "description": "Serial clock input"
+        },
+        {
+          "pin": 6,
+          "name": "CS",
+          "type": "input",
+          "description": "Chip select; set low to enable the serial interface and latch a reading"
+        },
+        {
+          "pin": 7,
+          "name": "SO",
+          "type": "output",
+          "description": "Serial data output (read-only)"
+        },
+        {
+          "pin": 8,
+          "name": "N.C.",
+          "type": "nc",
+          "description": "No connection"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.0,
+    "vs_max_v": 5.5,
+    "extra": {
+      "resolution": "12-bit, 0.25 C per LSB",
+      "range": "0 C to +1023.75 C",
+      "thermocouple_type": "K-type",
+      "interface": "SPI-compatible, read-only (SO/SCK/CS, no data input)",
+      "cold_junction_range": "-20 C to +85 C",
+      "open_detection": "yes (bit D2 in data word)"
+    }
+  },
+  "typical_application": "Reading a K-type thermocouple temperature into a microcontroller for reflow ovens, kilns, or process control.",
+  "gotchas": [
+    "Read-only interface: there is no data-input (MOSI/DIN) pin; you only clock 16 bits out on SO, no commands are written",
+    "T- (pin 2) must be tied to ground externally; floating it gives garbage readings",
+    "Bit D2 of the 16-bit word is the open-thermocouple flag; always check it before trusting a reading",
+    "Thermocouple polarity matters: chromel to T+ (pin 3), alumel to T- (pin 2); swapping reads backwards",
+    "Cold-junction (ambient at the chip) is only valid from -20 C to +85 C, so keep the IC away from the hot zone",
+    "VCC minimum is 3.0 V; do not run it at the 2.6-2.7 V floor common to the other converters here",
+    "The pin-compatible MAX31855 is the modern successor with wider range and SPI; do not assume identical data format"
+  ],
+  "related": [
+    "ads1115",
+    "mcp3008"
+  ],
+  "datasheet_url": "https://www.analog.com/media/en/technical-documentation/data-sheets/MAX6675.pdf",
+  "source": "human",
+  "verified": true
+}

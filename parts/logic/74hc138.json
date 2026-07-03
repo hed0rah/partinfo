@@ -1,0 +1,153 @@
+{
+  "id": "74hc138",
+  "name": "74HC138",
+  "aliases": [
+    "74LS138",
+    "74HCT138",
+    "SN74HC138",
+    "SN54HC138"
+  ],
+  "full_name": "3-to-8 Line Decoder/Demultiplexer",
+  "manufacturers": [
+    "Texas Instruments",
+    "Nexperia",
+    "onsemi"
+  ],
+  "category": "logic",
+  "subcategory": "decoder",
+  "tags": [
+    "logic",
+    "74-series",
+    "cmos",
+    "decoder",
+    "demultiplexer"
+  ],
+  "description": "Decodes a 3-bit address (A,B,C) to one of eight active-LOW outputs (Y0..Y7); the selected output goes low, the rest stay high. Enabled only when G1=HIGH and G2A=G2B=LOW. Push-pull outputs (not 3-state). HC/HCT/LS share this pinout.",
+  "packages": {
+    "DIP-16": {
+      "template": "dip",
+      "pin_count": 16,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "A",
+          "type": "input",
+          "description": "select input A (LSB)"
+        },
+        {
+          "pin": 2,
+          "name": "B",
+          "type": "input",
+          "description": "select input B"
+        },
+        {
+          "pin": 3,
+          "name": "C",
+          "type": "input",
+          "description": "select input C (MSB)"
+        },
+        {
+          "pin": 4,
+          "name": "G2A",
+          "type": "input",
+          "description": "active-low enable A"
+        },
+        {
+          "pin": 5,
+          "name": "G2B",
+          "type": "input",
+          "description": "active-low enable B"
+        },
+        {
+          "pin": 6,
+          "name": "G1",
+          "type": "input",
+          "description": "active-high enable"
+        },
+        {
+          "pin": 7,
+          "name": "Y7",
+          "type": "output",
+          "description": "active-low output 7"
+        },
+        {
+          "pin": 8,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 9,
+          "name": "Y6",
+          "type": "output",
+          "description": "active-low output 6"
+        },
+        {
+          "pin": 10,
+          "name": "Y5",
+          "type": "output",
+          "description": "active-low output 5"
+        },
+        {
+          "pin": 11,
+          "name": "Y4",
+          "type": "output",
+          "description": "active-low output 4"
+        },
+        {
+          "pin": 12,
+          "name": "Y3",
+          "type": "output",
+          "description": "active-low output 3"
+        },
+        {
+          "pin": 13,
+          "name": "Y2",
+          "type": "output",
+          "description": "active-low output 2"
+        },
+        {
+          "pin": 14,
+          "name": "Y1",
+          "type": "output",
+          "description": "active-low output 1"
+        },
+        {
+          "pin": 15,
+          "name": "Y0",
+          "type": "output",
+          "description": "active-low output 0"
+        },
+        {
+          "pin": 16,
+          "name": "VCC",
+          "type": "power",
+          "description": "positive supply"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.0,
+    "vs_max_v": 6.0,
+    "extra": {
+      "function": "3-to-8 line decoder/demultiplexer",
+      "logic family": "74HC/HCT/LS",
+      "outputs": "8 active-low, push-pull (not 3-state)"
+    }
+  },
+  "typical_application": "Address decoding / chip-select generation for memory and peripherals.",
+  "gotchas": [
+    "GND = pin 8, VCC = pin 16",
+    "outputs are active-LOW: the selected Yn goes low, the rest stay high",
+    "two enables (G2A, G2B) are active-low and one (G1) is active-high; enabled only when G1=H and G2A=G2B=L",
+    "outputs are standard push-pull, NOT 3-state"
+  ],
+  "related": [
+    "74hc139",
+    "74hc245"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/sn74hc138.pdf",
+  "source": "human",
+  "verified": true
+}

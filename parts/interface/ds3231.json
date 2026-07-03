@@ -1,0 +1,158 @@
+{
+  "id": "ds3231",
+  "name": "DS3231",
+  "aliases": [
+    "DS3231SN",
+    "DS3231S",
+    "DS3231N"
+  ],
+  "full_name": "Extremely Accurate I2C-Integrated RTC/TCXO/Crystal",
+  "manufacturers": [
+    "Maxim Integrated",
+    "Analog Devices"
+  ],
+  "category": "interface",
+  "subcategory": "I2C RTC",
+  "tags": [
+    "rtc",
+    "i2c",
+    "tcxo",
+    "real-time-clock",
+    "timekeeping",
+    "temperature-compensated",
+    "battery-backup",
+    "alarm"
+  ],
+  "description": "The DS3231 is a low-cost, extremely accurate I2C real-time clock with an integrated temperature-compensated crystal oscillator (TCXO) and crystal, so no external crystal is required. It keeps seconds, minutes, hours, day, date, month and year with automatic leap-year and month-length correction, in 12 or 24 hour format. Accuracy is plus/minus 2ppm from 0C to +40C and plus/minus 3.5ppm from -40C to +85C; the SN suffix is the industrial -40C to +85C grade. It provides two programmable time-of-day alarms, a programmable square-wave output, a 32kHz output, and battery-backup switchover. It is the heart of the ubiquitous ZS-042 and Pi RTC breakout modules, which add a CR2032 holder and often an AT24C32 EEPROM.",
+  "packages": {
+    "SO-16": {
+      "template": "soic",
+      "pin_count": 16,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "32kHz",
+          "type": "clock",
+          "description": "32kHz output. Open-drain, requires an external pullup resistor. May be left open if not used."
+        },
+        {
+          "pin": 2,
+          "name": "VCC",
+          "type": "power",
+          "description": "DC power pin for primary supply (2.3V to 5.5V). Decouple with 0.1uF to 1.0uF. If not used, connect to ground."
+        },
+        {
+          "pin": 3,
+          "name": "INT/SQW",
+          "type": "output",
+          "description": "Active-low interrupt or square-wave output. Open-drain, requires external pullup. Function selected by the INTCN bit; defaults to interrupt output at power-up."
+        },
+        {
+          "pin": 4,
+          "name": "RST",
+          "type": "reset",
+          "description": "Active-low reset. Open-drain I/O with internal 50k nominal pullup to VCC; indicates VCC vs VPF and provides a debounced pushbutton input. Do not add an external pullup."
+        },
+        {
+          "pin": 5,
+          "name": "N.C.",
+          "type": "nc",
+          "description": "No connection. Must be connected to ground."
+        },
+        {
+          "pin": 6,
+          "name": "N.C.",
+          "type": "nc",
+          "description": "No connection. Must be connected to ground."
+        },
+        {
+          "pin": 7,
+          "name": "N.C.",
+          "type": "nc",
+          "description": "No connection. Must be connected to ground."
+        },
+        {
+          "pin": 8,
+          "name": "N.C.",
+          "type": "nc",
+          "description": "No connection. Must be connected to ground."
+        },
+        {
+          "pin": 9,
+          "name": "N.C.",
+          "type": "nc",
+          "description": "No connection. Must be connected to ground."
+        },
+        {
+          "pin": 10,
+          "name": "N.C.",
+          "type": "nc",
+          "description": "No connection. Must be connected to ground."
+        },
+        {
+          "pin": 11,
+          "name": "N.C.",
+          "type": "nc",
+          "description": "No connection. Must be connected to ground."
+        },
+        {
+          "pin": 12,
+          "name": "N.C.",
+          "type": "nc",
+          "description": "No connection. Must be connected to ground."
+        },
+        {
+          "pin": 13,
+          "name": "GND",
+          "type": "ground",
+          "description": "Ground."
+        },
+        {
+          "pin": 14,
+          "name": "VBAT",
+          "type": "power",
+          "description": "Backup power-supply input (typ 3.0V coin cell, 2.3V to 5.5V). Decouple with 0.1uF to 1.0uF low-leakage cap. If not used, connect to ground."
+        },
+        {
+          "pin": 15,
+          "name": "SDA",
+          "type": "bidirectional",
+          "description": "I2C serial data input/output. Open-drain, requires an external pullup resistor."
+        },
+        {
+          "pin": 16,
+          "name": "SCL",
+          "type": "clock",
+          "description": "I2C serial clock input."
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.3,
+    "vs_max_v": 5.5,
+    "extra": {
+      "i2c_address": "0x68 fixed (7-bit; address byte 0xD0 write / 0xD1 read). Not user-selectable.",
+      "accuracy": "+/-2ppm (0C to +40C), +/-3.5ppm (-40C to +85C); about +/-2 min/year over temperature",
+      "oscillator": "integrated TCXO + crystal, no external crystal needed",
+      "temp_sensor": "on-chip, +/-3C, readable over I2C (registers 11h/12h)",
+      "outputs": "32kHz output, programmable INT/SQW (1Hz/1.024kHz/4.096kHz/8.192kHz)",
+      "alarms": "two programmable time-of-day alarms",
+      "vbat_range": "2.3V to 5.5V (typ 3.0V)"
+    }
+  },
+  "typical_application": "Accurate battery-backed timekeeping for microcontrollers, dataloggers, and single-board computers over I2C without an external crystal.",
+  "gotchas": [
+    "I2C address is fixed at 0x68 and cannot be changed; multiple DS3231 on one bus require an I2C mux or separate buses.",
+    "Pins 5-12 are N.C. but the datasheet says to connect them to ground, not leave floating.",
+    "32kHz, INT/SQW, SDA, and SCL are all open-drain and need external pullups; RST has an internal 50k pullup so do NOT add an external one.",
+    "Encoded here is the bare SO-16 chip; the common ZS-042 / Pi RTC module breaks out only VCC, GND, SDA, SCL, SQW, 32K and adds a CR2032 holder (often with a charging resistor to be removed for non-rechargeable cells) plus frequently an AT24C32 EEPROM at 0x57.",
+    "The DS3231M is a MEMS-resonator variant (+/-5ppm, lower pin count behavior); do not confuse its specs with the TCXO DS3231."
+  ],
+  "related": [
+    "at24c32"
+  ],
+  "datasheet_url": "https://www.analog.com/media/en/technical-documentation/data-sheets/ds3231.pdf",
+  "source": "human",
+  "verified": true
+}

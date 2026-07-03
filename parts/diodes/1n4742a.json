@@ -1,0 +1,78 @@
+{
+  "id": "1n4742a",
+  "name": "1N4742A",
+  "aliases": [
+    "1N4742",
+    "1N4742A-E3"
+  ],
+  "full_name": "12V 1W Zener diode",
+  "manufacturers": [
+    "Vishay",
+    "onsemi",
+    "Diodes Inc",
+    "Nexperia"
+  ],
+  "category": "diode",
+  "subcategory": "zener diode",
+  "tags": [
+    "diode",
+    "zener",
+    "voltage-reference",
+    "regulator",
+    "clamp",
+    "axial",
+    "do-41"
+  ],
+  "description": "12V, 1W silicon Zener from the 1N4728A series with +/-5% tolerance (A suffix). A 12V shunt reference/regulator and overvoltage clamp, e.g. protecting 12V logic/relay rails or gate-clamping. Reverse-biased in breakdown.",
+  "packages": {
+    "DO-41": {
+      "template": "custom",
+      "pin_count": 2,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "A",
+          "type": "passive",
+          "description": "anode"
+        },
+        {
+          "pin": 2,
+          "name": "K",
+          "type": "passive",
+          "description": "cathode (band/stripe end)"
+        }
+      ],
+      "ascii": "  A \u2500\u2500\u25b7|\u2500\u2500 K\n  band/stripe end = K (cathode)"
+    }
+  },
+  "specs": {
+    "vs_max_v": 12.0,
+    "iout_max_ma": 76.0,
+    "extra": {
+      "Vz": "12V at Izt=21mA",
+      "tolerance": "+/-5% (A suffix)",
+      "Pd": "1.0W nominal (Vishay rates 1300mW)",
+      "Zzt": "9 ohm at Izt",
+      "Izt": "21mA",
+      "Izm": "76mA (max Zener current)",
+      "Tj_max": "200C",
+      "Ir": "5uA max @ Vr=9.1V",
+      "Vf": "1.2V max @ If=200mA",
+      "Rth(JA)": "110 C/W typ"
+    },
+    "rth_ja_cw": 110.0
+  },
+  "typical_application": "12V shunt regulator/reference and clamp across a 12V rail, fed via a series resistor sized for load plus test current.",
+  "gotchas": [
+    "REVERSE biased in use; band/cathode to the positive node - forward it conducts as a plain diode",
+    "requires a series resistor; max Zener current is only ~76mA (1W / 12V), easy to exceed and cook",
+    "above ~5-6V the tempco is positive, so 12V Vz rises with temperature; account for drift",
+    "soft knee and 5% tolerance make it a regulator, not a precision reference"
+  ],
+  "related": [
+    "1n4733a"
+  ],
+  "datasheet_url": "https://www.vishay.com/docs/85816/1n4728a.pdf",
+  "source": "human",
+  "verified": true
+}

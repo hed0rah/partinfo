@@ -100,5 +100,6 @@ blind.
   convention is E-B-C, but onsemi's P2N2222A is mirrored to C-B-E). The full
   entry shows the common pinout plus a VARIANTS section listing the specific
   parts that differ; always match the user's actual part number.
-- To add or correct a part: edit/add a JSON file under `parts/<category>/`
-  then run `partinfo ingest` to rebuild the index.
+- To add or correct a part: edit/add a JSON file under
+  `src/partinfo/data/parts/<category>/` (in a checkout, not an installed
+  copy) then run `partinfo ingest` to rebuild the index.

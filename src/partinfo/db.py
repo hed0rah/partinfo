@@ -1,18 +1,30 @@
 """
-SQLite index over the parts/ JSON directory.
+SQLite index over the bundled parts/ and references/ JSON directories.
 rebuild with: partinfo ingest
 """
 
 from __future__ import annotations
 import json
+import os
 import re
 import sqlite3
+import sys
+from importlib import resources
 from pathlib import Path
 from .schema import Part, RefEntry
 
-_DB = Path(__file__).parent.parent.parent / "data" / "parts.db"
-_PARTS = Path(__file__).parent.parent.parent / "parts"
-_REFS = Path(__file__).parent.parent.parent / "references"
+# parts/ and references/ ship inside the package (src/partinfo/data/) so they're
+# read-only bundled data, found the same way whether this is an editable dev
+# checkout or a real pip/pipx install -- never write into this location.
+_DATA = resources.files(__package__) / "data"
+_PARTS = _DATA / "parts"
+_REFS = _DATA / "references"
+
+# the SQLite index is a derived, writable cache -- it does not belong inside
+# the installed package. XDG_DATA_HOME (default ~/.local/share) is standard
+# on Linux; override with the env var if you want it somewhere else.
+_DATA_HOME = Path(os.environ.get("XDG_DATA_HOME", Path.home() / ".local" / "share"))
+_DB = _DATA_HOME / "partinfo" / "parts.db"
 
 
 def _conn(db: Path = _DB) -> sqlite3.Connection:
@@ -50,6 +62,21 @@ def _conn(db: Path = _DB) -> sqlite3.Connection:
         );
     """)
     return c
+
+
+def _ensure_index(db: Path = _DB) -> None:
+    """build the index into db on first use -- a fresh install has no
+    ~/.local/share/partinfo/parts.db yet. safe to call on every read; it's a
+    no-op once the index is populated. explicit `partinfo ingest` remains the
+    way to refresh it after editing the bundled JSON or upgrading the package."""
+    conn = _conn(db)
+    try:
+        count = conn.execute("SELECT COUNT(*) FROM parts").fetchone()[0]
+    finally:
+        conn.close()
+    if count == 0:
+        print("partinfo: building local index (first run)...", file=sys.stderr)
+        ingest(db=db)
 
 
 def ingest(parts_dir: Path = _PARTS, db: Path = _DB,
@@ -122,6 +149,7 @@ def ingest_refs(conn: sqlite3.Connection, refs_dir: Path = _REFS) -> tuple[int, 
 
 def lookup(query: str, db: Path = _DB) -> Part | None:
     """exact match: id, name, or alias."""
+    _ensure_index(db)
     conn = _conn(db)
     q = query.strip().lower()
     row = conn.execute("SELECT blob FROM parts WHERE id=? OR lower(name)=?", (q, q)).fetchone()
@@ -158,6 +186,7 @@ def _fts_query(query: str) -> str | None:
 
 def search(query: str, limit: int = 10, db: Path = _DB) -> list[Part]:
     """full-text search across name, tags, description, aliases."""
+    _ensure_index(db)
     match = _fts_query(query)
     if match is None:
         return []
@@ -175,12 +204,14 @@ def search(query: str, limit: int = 10, db: Path = _DB) -> list[Part]:
 
 
 def all_ids(db: Path = _DB) -> list[str]:
+    _ensure_index(db)
     conn = _conn(db)
     return [r[0] for r in conn.execute("SELECT id FROM parts ORDER BY id").fetchall()]
 
 
 def ref_lookup(query: str, db: Path = _DB) -> RefEntry | None:
     """exact match on a reference id or title."""
+    _ensure_index(db)
     conn = _conn(db)
     q = query.strip().lower()
     row = conn.execute(
@@ -193,6 +224,7 @@ def ref_lookup(query: str, db: Path = _DB) -> RefEntry | None:
 
 def ref_search(query: str, limit: int = 10, db: Path = _DB) -> list[RefEntry]:
     """full-text search across reference title, tags, summary, body."""
+    _ensure_index(db)
     match = _fts_query(query)
     if match is None:
         return []
@@ -210,5 +242,6 @@ def ref_search(query: str, limit: int = 10, db: Path = _DB) -> list[RefEntry]:
 
 
 def ref_all_ids(db: Path = _DB) -> list[str]:
+    _ensure_index(db)
     conn = _conn(db)
     return [r[0] for r in conn.execute("SELECT id FROM refs ORDER BY id").fetchall()]

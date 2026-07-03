@@ -6,7 +6,7 @@ is clear. These notes are the bar an entry has to meet.
 
 ## Adding or editing a part
 
-Parts are one JSON file each under `parts/<category>/`, validated against the
+Parts are one JSON file each under `src/partinfo/data/parts/<category>/`, validated against the
 Pydantic schema in `src/partinfo/schema.py`. After any change, rebuild the
 index:
 
@@ -18,7 +18,7 @@ Directory names are cosmetic; the `category` field is what matters. Before a
 new entry, check for an id collision:
 
 ```sh
-find parts -name '*.json' -exec basename {} \; | sort | uniq -d
+find src/partinfo/data/parts -name '*.json' -exec basename {} \; | sort | uniq -d
 ```
 
 ## Provenance rules (non-negotiable)
@@ -82,7 +82,7 @@ with conditions in `extra` alongside it, don't drop it. Most other parameters
 argument against typing everything in the project history if you're
 wondering why.
 
-**MOSFET** (see `parts/mosfet/irf520.json` for the reference example):
+**MOSFET** (see `src/partinfo/data/parts/mosfet/irf520.json` for the reference example):
 
 | group | parameters | feeds |
 |-------|-----------|-------|
@@ -131,7 +131,7 @@ of the bar, not optional extras.
 | dc precision | V_os, I_bias, CMRR | offset / error |
 | output | I_out (drive), input noise | load, noise budget |
 
-**Germanium transistor** (`transistor_germanium`, see `parts/germanium/ac128.json` for
+**Germanium transistor** (`transistor_germanium`, see `src/partinfo/data/parts/germanium/ac128.json` for
 the reference example):
 
 | group | parameters | feeds |
@@ -161,7 +161,7 @@ wrong is worse than an honest gap; see the `db107` bridge-rectifier entry
 for how much cross-referencing a position claim can take when the case
 style isn't self-evident.
 
-**JFET** (`transistor_jfet`, see `parts/jfet/2n5457.json`):
+**JFET** (`transistor_jfet`, see `src/partinfo/data/parts/jfet/2n5457.json`):
 
 | group | parameters | feeds |
 |-------|-----------|-------|
@@ -175,7 +175,7 @@ V_GS(off) and I_DSS (often 5-10x range within one part number); store the
 range, never collapse it to a single "typical" value, the spread is exactly
 what a builder needs to design a self-bias network from a real part in hand.
 
-**Comparator** (`comparator`, see `parts/comparator/lm311.json`):
+**Comparator** (`comparator`, see `src/partinfo/data/parts/comparator/lm311.json`):
 
 | group | parameters | feeds |
 |-------|-----------|-------|

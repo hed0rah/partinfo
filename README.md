@@ -21,7 +21,8 @@ drawn in ASCII so you can wire it without opening a PDF.
 ## Install
 
 ```sh
-pip install partinfo        # once published
+pip install partinfo                                    # once published
+pip install git+https://github.com/hed0rah/partinfo.git # straight from github
 # or, from a checkout:
 pip install -e .
 ```
@@ -35,7 +36,7 @@ partinfo ne555 --ascii      # ascii package diagram
 partinfo lm317 --specs      # key specs only
 partinfo search comparator  # full-text search
 partinfo list               # list all part ids
-partinfo ingest             # rebuild the index from parts/
+partinfo ingest             # rebuild the local index from the bundled JSON
 ```
 
 Pin diagrams and warnings are colored by default on a real terminal (pins by
@@ -54,7 +55,7 @@ trusting"; only curated entries are treated as authoritative.
 
 ## Data model
 
-Each part is one JSON file under `parts/<category>/`. The schema is defined and
+Each part is one JSON file under `src/partinfo/data/parts/<category>/`. The schema is defined and
 validated by Pydantic in `src/partinfo/schema.py`. Key fields:
 
 - `id`, `name`, `aliases`, `full_name`, `manufacturers`, `category`, `tags`
@@ -67,6 +68,10 @@ Add a part by dropping a JSON file in the right category folder and running
 `partinfo ingest`. The ASCII diagram is rendered from the pin data
 automatically; supply a pre-rendered `ascii` string on a package only to
 override.
+
+The JSON ships inside the package; the SQLite index is a derived, writable
+cache at `$XDG_DATA_HOME/partinfo/parts.db` (`~/.local/share/partinfo/parts.db`
+by default), built automatically on first use and left alone after that.
 
 ## License
 

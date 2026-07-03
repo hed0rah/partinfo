@@ -9,12 +9,31 @@ description = "Electronic component reference database with ASCII pinout diagram
 readme = "README.md"
 license = {text = "MIT"}
 requires-python = ">=3.11"
+authors = [
+    {name = "hed0rah", email = "18272116+hed0rah@users.noreply.github.com"},
+]
+keywords = ["electronics", "cli", "reference", "datasheet", "pinout", "offline"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)",
+    "Topic :: Utilities",
+]
 dependencies = [
     "pydantic>=2.0",
 ]
 
+[project.urls]
+Homepage = "https://github.com/hed0rah/partinfo"
+Repository = "https://github.com/hed0rah/partinfo"
+Issues = "https://github.com/hed0rah/partinfo/issues"
+
 [project.optional-dependencies]
-dev = ["pytest", "ruff"]
+dev = ["pytest", "ruff", "build"]
 
 [project.scripts]
 partinfo = "partinfo.cli:main"

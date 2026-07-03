@@ -84,10 +84,13 @@ blind.
 ## Notes
 
 - If a lookup misses, run `partinfo search <term>` to find related parts
-  before telling the user it is unknown. `partinfo <name> --fallback ollama`
-  will ask a local model to guess a part it doesn't have -- the result is
-  unverified (`source: ollama`), treat it with real skepticism and say so.
-  `--fallback claude` is not implemented; it exits with an error.
+  before telling the user it is unknown. Do not reach for `--fallback` on
+  your own initiative -- it's a deliberate opt-in for when the user
+  explicitly wants a guess, not a normal next step after a miss.
+  `partinfo <name> --fallback ollama` asks a local model to guess a part it
+  doesn't have -- the result is unverified (`source: ollama`), treat it with
+  real skepticism and say so. `--fallback claude` is not implemented; it
+  exits with an error.
 - Curated entries are authoritative. An entry tagged with a non-human
   `source` (a local-model fallback, or a from-scratch AI-authored entry)
   prints a "verify before trusting" warning unless `human_reviewed` is set on

@@ -44,7 +44,9 @@ function, warnings in red) and plain everywhere else (piped, redirected, or
 read by a script/model). Override with `--color {auto,semantic,minimal,mixed,off}`,
 or set `NO_COLOR=1` to force plain output unconditionally.
 
-Unknown part, optional local-model fallback (requires a running Ollama):
+Unknown part, optional local-model fallback (requires a running Ollama).
+This is opt-in per invocation, not a default or a persistent setting --
+without `--fallback`, a miss just suggests similar parts and exits 1:
 
 ```sh
 partinfo someobscurepart --fallback ollama --model nemotron-nano-4b

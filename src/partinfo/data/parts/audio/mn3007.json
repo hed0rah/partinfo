@@ -43,9 +43,9 @@
         },
         {
           "pin": 4,
-          "name": "VCC",
+          "name": "VGG",
           "type": "power",
-          "description": "positive supply (a few volts above VDD, see datasheet bias network)"
+          "description": "bias supply, a few volts above VDD (see datasheet bias network) -- not a VCC/ground-referenced positive rail, this is BBD bias terminology"
         },
         {
           "pin": 5,

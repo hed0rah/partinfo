@@ -92,7 +92,7 @@
         },
         {
           "pin": 12,
-          "name": "SHND",
+          "name": "SHDN",
           "type": "input",
           "description": "Shutdown control input, active low (logic high for normal operation)"
         },
@@ -140,7 +140,7 @@
   "typical_application": "Battery- or USB-powered portable stereo speaker driving two 4 to 8 ohm speakers directly with no output filter.",
   "gotchas": [
     "Outputs are bridge-tied (BTL): wire each speaker between +OUT and -OUT of a channel; never connect an output to ground.",
-    "Both MUTE (pin 5) and SHND (pin 12) are active low; tie them high (to VDD) for normal operation.",
+    "Both MUTE (pin 5) and SHDN (pin 12) are active low; tie them high (to VDD) for normal operation.",
     "This is the bare chip pinout; the common red PAM8403 amplifier board adds a volume pot, input/output headers, and decoupling, so its connector labels do not map directly to these pin numbers.",
     "Filterless output is a high-frequency PWM square wave; keep speaker wires short and use ferrite beads for long runs to limit EMI.",
     "Marked not recommended for new design by Diodes; PAM8406 is the suggested replacement."

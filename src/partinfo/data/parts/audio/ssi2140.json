@@ -155,7 +155,7 @@
     "vs_max_v": 16.0,
     "extra": {
       "supply (split)": "+-4V to +-16V (each rail); +-18V absolute max",
-      "Is": "+-3.5mA typ (+-6.5mA max)",
+      "Is": "+-3.5mA min, +-4.8mA typ, +-6.5mA max",
       "gm @ VEXPO=0V": "215uS typ (160-270uS range)",
       "gm @ VEXPO=-36mV": "850uS typ (700-1000uS range)",
       "frequency control sensitivity": "-18.4mV/octave",

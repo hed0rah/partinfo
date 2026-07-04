@@ -78,7 +78,7 @@
     "the ADDR pin sets the 7-bit I2C address: low/floating = 0x23 (default), tied high to VCC = 0x5C",
     "the bare BH1750FVI is a 3.x V part (VDD 2.4-3.6 V); only the GY-302 board's regulator makes 5 V safe",
     "it reports lux directly but you must apply the measurement-time (MTreg) scaling factor for accuracy if you change it",
-    "the DVI pin on the bare chip is the interface logic reset/reference; on the GY-302 it is exposed as ADDR - do not confuse with a separate reset",
+    "DVI (async reset/I2C reference) and ADDR are separate pins on the bare BH1750FVI; the GY-302 board exposes ADDR at the header and handles DVI on-board with its own RC network, it does not repurpose one pin as the other",
     "a measurement is not instantaneous: H-resolution mode takes ~120 ms, so poll after the conversion time or readings are stale",
     "ADDR left floating reads as low (0x23); to use two sensors on one bus, pull one ADDR high for 0x5C"
   ],

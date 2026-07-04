@@ -69,7 +69,7 @@
           "pin": 8,
           "name": "VGG",
           "type": "power",
-          "description": "positive supply (a few volts above VDD, see datasheet bias network)"
+          "description": "bias supply, a few volts above VDD (see datasheet bias network) -- still negative relative to GND (VDD=-15V, VGG=VDD+1~=-14V), not a VCC/ground-referenced positive rail"
         }
       ],
       "notes": "Per Panasonic's own block diagram/pinout, DIP-8, top view. This is Panasonic's 'special' 8-lead DIP outline for the MN3005; the pin FUNCTION order differs from the MN3007's DIP-8 (e.g. IN is pin 7 here, pin 3 on the MN3007), despite both being 8-pin DIPs -- do not assume the two are pin-compatible."
@@ -79,7 +79,7 @@
     "extra": {
       "stages": 4096,
       "delay_range": "20.48 to 204.8ms",
-      "clock_range": "5 to 100kHz (10kHz gives 205ms per Panasonic's own description)",
+      "clock_range": "10 to 100kHz (matches the 20.48-204.8ms delay range: delay = stages / (2 x clock))",
       "SN_ratio": "75dB typ",
       "THD": "1% typ",
       "insertion_loss": "0dB typ",

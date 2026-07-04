@@ -11,6 +11,7 @@ import sqlite3
 import sys
 from importlib import resources
 from pathlib import Path
+from . import __version__
 from .schema import Part, RefEntry
 
 # parts/ and references/ ship inside the package (src/partinfo/data/) so they're
@@ -60,22 +61,33 @@ def _conn(db: Path = _DB) -> sqlite3.Connection:
             id, title, tags, summary, body,
             content=refs, content_rowid=rowid
         );
+        CREATE TABLE IF NOT EXISTS meta (
+            key   TEXT PRIMARY KEY,
+            value TEXT
+        );
     """)
     return c
 
 
 def _ensure_index(db: Path = _DB) -> None:
-    """build the index into db on first use -- a fresh install has no
-    ~/.local/share/partinfo/parts.db yet. safe to call on every read; it's a
-    no-op once the index is populated. explicit `partinfo ingest` remains the
-    way to refresh it after editing the bundled JSON or upgrading the package."""
+    """build the index into db on first use, and rebuild it if the installed
+    package version has changed since it was built -- otherwise `pip install
+    -U partinfo` keeps serving the previous version's data (new/changed parts
+    invisible) until someone thinks to run `partinfo ingest` manually. safe to
+    call on every read; a no-op once the index matches the current version."""
     conn = _conn(db)
     try:
         count = conn.execute("SELECT COUNT(*) FROM parts").fetchone()[0]
+        row = conn.execute("SELECT value FROM meta WHERE key='version'").fetchone()
+        indexed_version = row[0] if row else None
     finally:
         conn.close()
     if count == 0:
         print("partinfo: building local index (first run)...", file=sys.stderr)
+        ingest(db=db)
+    elif indexed_version != __version__:
+        print(f"partinfo: rebuilding local index ({indexed_version} -> {__version__})...",
+              file=sys.stderr)
         ingest(db=db)
 
 
@@ -113,6 +125,7 @@ def ingest(parts_dir: Path = _PARTS, db: Path = _DB,
     conn.execute("INSERT INTO parts_fts(parts_fts) VALUES ('rebuild')")
     ref_count, ref_errors = ingest_refs(conn, refs_dir)
     errors.extend(ref_errors)
+    conn.execute("INSERT OR REPLACE INTO meta VALUES ('version', ?)", (__version__,))
     conn.commit()
     return count, errors
 

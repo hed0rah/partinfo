@@ -78,9 +78,9 @@
     "10W rating is at Tc=25C (heatsinked); without a heatsink it is only ~1W"
   ],
   "related": [
-    "2sb772",
+    "b772",
     "bd139",
-    "tip31"
+    "tip31c"
   ],
   "datasheet_url": "https://akizukidenshi.com/goodsaffix/2sd882_nec.pdf",
   "source": "human",

@@ -79,8 +79,8 @@
     "needs ~2V headroom (dropout); input must stay above ~26V to hold 24V out"
   ],
   "related": [
-    "7805",
-    "7812",
+    "lm7805",
+    "lm7812",
     "7924"
   ],
   "datasheet_url": "https://www.st.com/resource/en/datasheet/l78.pdf",

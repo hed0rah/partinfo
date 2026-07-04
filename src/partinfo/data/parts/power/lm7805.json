@@ -78,8 +78,8 @@
   "related": [
     "lm317",
     "lm7812",
-    "lm1117",
-    "lm7905"
+    "ams1117",
+    "l7905"
   ],
   "source": "human",
   "verified": true,

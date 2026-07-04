@@ -57,7 +57,7 @@
     }
   },
   "specs": {
-    "vs_max_v": 35.0,
+    "vs_max_v": -35.0,
     "iout_max_ma": 1500.0,
     "extra": {
       "Vout": "-15V",

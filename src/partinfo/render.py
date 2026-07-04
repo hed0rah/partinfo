@@ -26,29 +26,39 @@ def fmt_pins(part: Part, package: str | None = None, mode: ColorMode = "off") ->
     return "\n".join(lines)
 
 
+def _range(lo: float | None, hi: float | None, unit: str = "") -> str | None:
+    """format a min/max pair, tolerating either half being absent -- never
+    interpolate a bare None into the string just because the other half exists."""
+    if lo is None and hi is None:
+        return None
+    if lo is not None and hi is not None:
+        return f"{lo}{unit} – {hi}{unit}"
+    return f"{hi}{unit} max" if lo is None else f"{lo}{unit} min"
+
+
 def fmt_specs(part: Part) -> str:
     if not part.specs:
         return "  no specs recorded"
     lines = []
     s = part.specs
     fields = {
-        "supply voltage":   f"{s.vs_min_v}V – {s.vs_max_v}V" if s.vs_min_v else None,
-        "quiescent current": f"{s.iq_ma} mA" if s.iq_ma else None,
-        "gain":             f"{s.gain_db_min} – {s.gain_db_max} dB" if s.gain_db_min else None,
+        "supply voltage":   _range(s.vs_min_v, s.vs_max_v, "V"),
+        "quiescent current": f"{s.iq_ma} mA" if s.iq_ma is not None else None,
+        "gain":             _range(s.gain_db_min, s.gain_db_max, " dB"),
         "bandwidth":        f"{s.bw_hz/1e3:.0f} kHz" if s.bw_hz else None,
         "max freq":         f"{s.freq_max_hz/1e6:.0f} MHz" if s.freq_max_hz else None,
-        "output power":     f"{s.pout_mw} mW" if s.pout_mw else None,
-        "max dissipation":  f"{s.pd_max_mw} mW" if s.pd_max_mw else None,
-        "hFE":              f"{s.hfe_min} – {s.hfe_max}" if s.hfe_min else None,
-        "IDSS":             f"{s.idss_ma} mA" if s.idss_ma else None,
-        "Vgs(off)":         f"{s.vgs_off_v} V" if s.vgs_off_v else None,
-        "Rds(on)":          f"{s.rds_on_ohm} Ω" if s.rds_on_ohm else None,
-        "Vgs(th)":          f"{s.vgs_th_v} V" if s.vgs_th_v else None,
+        "output power":     f"{s.pout_mw} mW" if s.pout_mw is not None else None,
+        "max dissipation":  f"{s.pd_max_mw} mW" if s.pd_max_mw is not None else None,
+        "hFE":              _range(s.hfe_min, s.hfe_max),
+        "IDSS":             f"{s.idss_ma} mA" if s.idss_ma is not None else None,
+        "Vgs(off)":         f"{s.vgs_off_v} V" if s.vgs_off_v is not None else None,
+        "Rds(on)":          f"{s.rds_on_ohm} Ω" if s.rds_on_ohm is not None else None,
+        "Vgs(th)":          f"{s.vgs_th_v} V" if s.vgs_th_v is not None else None,
         "flash":            f"{s.flash_kb} KB" if s.flash_kb else None,
         "RAM":              f"{s.ram_kb} KB" if s.ram_kb else None,
         "CPU":              f"{s.cpu_mhz} MHz" if s.cpu_mhz else None,
-        "GPIO":             f"{s.gpio_count}" if s.gpio_count else None,
-        "Vf":               f"{s.vf_v} V" if s.vf_v else None,
+        "GPIO":             f"{s.gpio_count}" if s.gpio_count is not None else None,
+        "Vf":               f"{s.vf_v} V" if s.vf_v is not None else None,
     }
     # if extra carries a matching label (usually with test conditions the
     # bare typed number doesn't), let extra's richer version win the display

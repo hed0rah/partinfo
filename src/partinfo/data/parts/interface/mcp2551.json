@@ -19,7 +19,7 @@
     "phy",
     "automotive"
   ],
-  "description": "High-speed CAN transceiver providing the physical-layer interface between a CAN protocol controller (such as the MCP2515 or an MCU's on-chip CAN) and the differential two-wire bus. It is fault-tolerant (handles bus shorts), supports up to 1 Mbit/s and at least 112 nodes, and offers a slope-control mode via the Rs pin to reduce EMI on slower buses. A 5 V part: it converts the controller's logic-level TXD/RXD to the CANH/CANL differential pair.",
+  "description": "High-speed CAN transceiver providing the physical-layer interface between a CAN protocol controller (such as the MCP2515 or an MCU's on-chip CAN) and the differential two-wire bus. It has short-circuit protection on the bus lines (not the same thing as a "fault-tolerant" ISO 11898-3 transceiver, a different device class that keeps communicating on a broken/shorted wire), supports up to 1 Mbit/s and at least 112 nodes, and offers a slope-control mode via the Rs pin to reduce EMI on slower buses. A 5 V part: it converts the controller's logic-level TXD/RXD to the CANH/CANL differential pair.",
   "packages": {
     "DIP-8": {
       "template": "dip",

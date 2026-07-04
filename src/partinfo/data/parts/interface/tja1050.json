@@ -23,7 +23,7 @@
     "differential",
     "low-eme"
   ],
-  "description": "The TJA1050 is NXP's 5 V high-speed CAN physical-layer transceiver, the interface between a CAN protocol controller's TXD/RXD pins and the differential CANH/CANL bus. Like all transceivers it is a PHY, not a controller, so it pairs with an MCP2515 or an MCU's CAN peripheral to do the actual protocol work. It is the direct successor to the PCA82C250, adding very low electromagnetic emission, a TXD dominant time-out, and a silent mode, while keeping input levels compatible with 3.3 V controllers. It runs from 4.75 to 5.25 V and handles data rates from 40 kbaud up to 1 Mbaud over a wide-common-mode differential receiver. Its standout trait is the silent mode (S pin tied to VCC) that disables only the transmitter while everything else keeps running, letting a node listen without ever disturbing the bus.",
+  "description": "The TJA1050 is NXP's 5 V high-speed CAN physical-layer transceiver, the interface between a CAN protocol controller's TXD/RXD pins and the differential CANH/CANL bus. Like all transceivers it is a PHY, not a controller, so it pairs with an MCP2515 or an MCU's CAN peripheral to do the actual protocol work. It is the direct successor to the PCA82C250, adding very low electromagnetic emission, a TXD dominant time-out, and a silent mode, while keeping input levels compatible with 3.3 V controllers. It runs from 4.75 to 5.25 V and handles data rates from 60 kbaud up to 1 Mbaud over a wide-common-mode differential receiver. Its standout trait is the silent mode (S pin tied to VCC) that disables only the transmitter while everything else keeps running, letting a node listen without ever disturbing the bus.",
   "packages": {
     "SO8": {
       "template": "soic",
@@ -84,7 +84,7 @@
     "vs_min_v": 4.75,
     "vs_max_v": 5.25,
     "extra": {
-      "data_rate": "40 kbaud to 1 Mbaud",
+      "data_rate": "60 kbaud to 1 Mbaud (the TXD dominant time-out sets the floor)",
       "supply": "single 5 V",
       "vref": "0.5 x VCC output",
       "silent_mode": "S = VCC disables transmitter (listen-only)",

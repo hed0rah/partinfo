@@ -125,9 +125,9 @@
   },
   "specs": {
     "vs_min_v": 3.3,
-    "vs_max_v": 5.5,
+    "vs_max_v": 5.3,
     "extra": {
-      "Vcc": "5 V or 3.3 V",
+      "Vcc": "5V mode: 4.5-5.3V (V3 not tied to VCC). 3.3V mode: 3.3-3.8V (V3 tied to VCC). Abs max VCC: -0.5 to 6.5V",
       "usb": "USB 2.0 full-speed",
       "baud": "50 bps to 2 Mbps",
       "clock": "external 12 MHz crystal on G variant (XI/XO)",

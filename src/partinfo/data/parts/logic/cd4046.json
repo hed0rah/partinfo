@@ -117,7 +117,7 @@
           "pin": 15,
           "name": "ZENER",
           "type": "passive",
-          "description": "on-chip zener diode terminal, used for the demodulator's source-follower reference"
+          "description": "on-chip zener diode terminal, provided to assist supply regulation (per TI's own feature list), not tied to the demodulator output"
         },
         {
           "pin": 16,

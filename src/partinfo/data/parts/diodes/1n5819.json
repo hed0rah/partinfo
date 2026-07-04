@@ -44,14 +44,14 @@
     }
   },
   "specs": {
-    "vf_v": 0.45,
+    "vf_v": 0.60,
     "vs_max_v": 40.0,
     "iout_max_ma": 1000.0,
     "extra": {
       "Vr (1N5817)": "20V",
       "Vr (1N5819)": "40V",
       "If average": "1A",
-      "Vf at 1A": "~0.45V",
+      "Vf at 1A": "0.60V max (Diodes Inc DS23001: 0.45V is 1N5817, 0.55V is 1N5818, 0.60V is 1N5819)",
       "recovery": "fast (Schottky)",
       "Ir": "1.0mA max @ Ta=25C (10mA max @ Ta=100C)",
       "Rth(JA)": "50 C/W typ",

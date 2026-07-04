@@ -168,11 +168,13 @@
     "vs_min_v": 2.0,
     "vs_max_v": 6.0,
     "iout_max_ma": 35.0,
-    "freq_max_hz": 100000000.0,
+    "freq_max_hz": 25000000.0,
     "extra": {
       "outputs": "8 tri-state",
       "logic family": "HC (CMOS) / HCT (TTL-compatible inputs)",
-      "per-pin drive": "+-6mA typical, 35mA absolute"
+      "per-pin drive": "+-6mA typical, 35mA absolute",
+      "fclock (guaranteed, full temp range)": "25MHz min @ Vcc=4.5V, 29MHz min @ Vcc=6V",
+      "fclock (TA=25C only, not a guarantee)": "31MHz @ Vcc=4.5V, 36MHz @ Vcc=6V"
     }
   },
   "typical_application": "Drive the data and shift clock from an MCU (or hardware SPI MOSI/SCK), pulse the latch (STCP) after 8 bits to update outputs. Chain Q7S into the next chip's DS to expand to 16/24/... outputs.",

@@ -67,7 +67,7 @@
   },
   "typical_application": "Set output by a divider from cathode to REF to anode: Vka = 2.5 * (1 + R1/R2). Universal secondary-side feedback reference in flyback/SMPS designs (drives an optocoupler), and a low-cost adjustable shunt reference.",
   "gotchas": [
-    "pinout VARIES by manufacturer and package; the TI TO-92 is REF-A-K but others differ. Verify the exact datasheet before wiring",
+    "pinout VARIES by manufacturer and package; the TI TO-92 (LP) is CATHODE-ANODE-REF for pins 1-2-3 (per TI SLVS543S Table 5-1) but others differ. Verify the exact datasheet before wiring",
     "needs at least ~1mA of cathode current to regulate",
     "stability depends on the cathode capacitor; some load capacitance values cause oscillation (see the datasheet stability boundary)",
     "it is a shunt (parallel) reference, not a series regulator; it sinks current through a series resistor"

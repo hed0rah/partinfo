@@ -23,7 +23,7 @@
   "description": "Digital 16-bit ambient light sensor with an I2C interface that outputs illuminance directly in lux, removing host-side calculation. It has a range of roughly 1 to 65535 lx with selectable high/low resolution modes (down to 0.5 lx), and a spectral response close to the human eye. Its built-in ADC and low IR influence suit display backlight control. The common GY-302 breakout adds a 3.3 V regulator and I2C pull-ups so it works from a 3.3-5 V supply.",
   "packages": {
     "GY-302 module": {
-      "template": "module",
+      "template": "sip",
       "pin_count": 5,
       "pins": [
         {

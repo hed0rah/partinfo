@@ -68,8 +68,16 @@ def _cname(p: Pin | None, mode: ColorMode, width: int = 0, align: str = ">") -> 
 
 
 def _render_dip(pkg: Package, part_name: str, mode: ColorMode = "off") -> str:
-    """dual inline package -- any even pin count."""
+    """dual inline package -- even pin count only. an odd count here silently
+    dropped one pin from the diagram until this check existed (found on a
+    module template used for a physically single-row part -- see sip
+    instead for anything with pins along one edge, not split across two)."""
     n = pkg.pin_count
+    if n % 2 != 0:
+        raise ValueError(
+            f"{part_name}: dip/module template needs an even pin_count, got {n} -- "
+            "a single-row part belongs on the sip template instead"
+        )
     half = n // 2
     # left column: pins 1..half (top to bottom)
     # right column: pins n..half+1 (top to bottom)

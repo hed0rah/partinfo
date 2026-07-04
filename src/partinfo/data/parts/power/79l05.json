@@ -55,13 +55,13 @@
     }
   },
   "specs": {
-    "vs_min_v": -30.0,
-    "vs_max_v": -30.0,
+    "vs_min_v": -7.5,
+    "vs_max_v": -20.0,
     "iout_max_ma": 100.0,
     "extra": {
       "Vout": "-5V typ (-4.6 to -5.4V)",
       "Iout max": "100mA",
-      "Vin abs max": "-30V",
+      "Vin abs max": "-35V",
       "dropout": "~1.7V typ",
       "polarity": "negative regulator",
       "Iq": "2mA typ (6mA max) @ Io=100mA",
@@ -79,8 +79,8 @@
   ],
   "related": [
     "78l05",
-    "7905",
-    "7805"
+    "l7905",
+    "lm7805"
   ],
   "datasheet_url": "https://www.ti.com/lit/ds/symlink/lm79l.pdf",
   "source": "human",

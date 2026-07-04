@@ -31,15 +31,15 @@
       "pins": [
         {
           "pin": 1,
-          "name": "PC1OUT",
+          "name": "PCPOUT",
           "type": "output",
-          "description": "phase comparator I output (phase pulses)"
+          "description": "phase pulses output; a lock-indicator/edge signal, distinct from phase comparator I's main output on pin 2"
         },
         {
           "pin": 2,
-          "name": "PC1",
+          "name": "PC1OUT",
           "type": "output",
-          "description": "phase comparator I output"
+          "description": "phase comparator I output (XOR-type comparator, drives the loop filter)"
         },
         {
           "pin": 3,
@@ -151,5 +151,6 @@
   ],
   "datasheet_url": "https://www.ti.com/lit/ds/symlink/cd4046b.pdf",
   "source": "claude",
-  "verified": true
+  "verified": true,
+  "human_reviewed": true
 }

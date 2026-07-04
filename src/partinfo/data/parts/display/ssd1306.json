@@ -25,7 +25,7 @@
   "description": "The SSD1306 drives small passive-matrix monochrome OLED panels, most famously the ubiquitous 0.96 inch 128x64 and 128x32 modules. The most common breakout is a 4-pin I2C board exposing GND, VCC, SCL and SDA, which hobbyists wire directly to an MCU's I2C bus. It has its own display RAM and an internal charge pump, so it needs no external high-voltage supply for the panel. Its tiny 4-wire I2C footprint and broad library support (U8g2, Adafruit_SSD1306) make it the default cheap graphic display for microcontroller projects.",
   "packages": {
     "4-pin I2C module header": {
-      "template": "module",
+      "template": "sip",
       "pin_count": 4,
       "pins": [
         {

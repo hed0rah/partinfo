@@ -23,7 +23,7 @@
   "description": "Calibrated digital sensor that reports both relative humidity and temperature over a proprietary single-wire serial protocol. It contains a capacitive humidity element and a thermistor with an onboard MCU that outputs a 40-bit frame. It runs from 3.3 to 6 V and offers better range and accuracy than the cheaper DHT11. The single-wire data line is open-drain style and needs a pull-up; the sensor must not be polled faster than once every 2 seconds.",
   "packages": {
     "module (4-pin)": {
-      "template": "module",
+      "template": "sip",
       "pin_count": 4,
       "pins": [
         {

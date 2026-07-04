@@ -171,7 +171,7 @@
           "pin": 24,
           "name": "VDD",
           "type": "power",
-          "description": "positive supply, 3V to 20V"
+          "description": "positive supply, 3V to 18V recommended (20V absolute max)"
         }
       ],
       "notes": "Also sold as 24-lead SOIC (DW) and PDIP (E); pin numbering is identical across packages, per TI's CD4067B/CD4097B datasheet, top view."
@@ -179,7 +179,7 @@
   },
   "specs": {
     "vs_min_v": 3.0,
-    "vs_max_v": 20.0,
+    "vs_max_v": 18.0,
     "extra": {
       "function": "1-of-16 analog mux/demux, bidirectional channels",
       "logic family": "CD40xx CMOS (4000B)",

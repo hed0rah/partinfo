@@ -25,7 +25,7 @@
   "description": "Digital barometric pressure and temperature sensor from Bosch Sensortec, commonly sold on the small GY-BMP280 breakout with an onboard 3.3 V regulator. It measures pressure from 300 to 1100 hPa and temperature from -40 to +85 C, and supports both I2C and SPI. On I2C the SDO pin selects the 7-bit address (0x76 low, 0x77 high). The bare chip is an LGA-8 that is not hand-solderable, so the breakout header is the practical form for hobbyists.",
   "packages": {
     "GY-BMP280 module": {
-      "template": "module",
+      "template": "sip",
       "pin_count": 6,
       "pins": [
         {

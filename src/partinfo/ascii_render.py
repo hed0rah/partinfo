@@ -106,10 +106,13 @@ def _render_dip(pkg: Package, part_name: str, mode: ColorMode = "off") -> str:
 
 
 def _render_sip(pkg: Package, part_name: str, mode: ColorMode = "off") -> str:
-    """single inline package."""
+    """single inline package. number field width is set by the widest pin
+    number so double-digit pins (10, 11, ...) still get a visible gap --
+    a fixed width-2 field made them run together (e.g. "101112...")."""
     lines = [f"  {part_name}"]
     lines.append("  " + "┬" * pkg.pin_count)
-    nums = "  " + "".join(f"{p.pin:<2}" if isinstance(p.pin, int) else f"{p.pin:<2}" for p in pkg.pins)
+    numw = max((len(str(p.pin)) for p in pkg.pins), default=1) + 1
+    nums = "  " + "".join(f"{p.pin:<{numw}}" for p in pkg.pins)
     lines.append(nums)
     for p in pkg.pins:
         lines.append(f"  {p.pin}: {_cname(p, mode)}")

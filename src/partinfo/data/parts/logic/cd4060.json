@@ -80,21 +80,21 @@
         },
         {
           "pin": 9,
-          "name": "RS",
-          "type": "output",
-          "description": "oscillator pin: inverted oscillator output, external resistor Rs node"
+          "name": "CEXT",
+          "type": "passive",
+          "description": "external timing capacitor connection (Ct to GND in the RC oscillator circuit)"
         },
         {
           "pin": 10,
-          "name": "CTC",
-          "type": "output",
-          "description": "oscillator pin: buffered oscillator output, timing R/C node"
+          "name": "REXT",
+          "type": "passive",
+          "description": "external timing resistor connection (Rt, per the datasheet's RC oscillator circuit)"
         },
         {
           "pin": 11,
-          "name": "CLK",
+          "name": "RS",
           "type": "input",
-          "description": "oscillator input / external clock input (Schmitt-trigger); timing capacitor node in RC mode"
+          "description": "oscillator reset/enable input, gated together with MR; part of the RC oscillator startup network (small R2/C2 per the datasheet's oscillator circuit figure)"
         },
         {
           "pin": 12,
@@ -143,7 +143,7 @@
   "gotchas": [
     "stages Q1, Q2, Q3 and Q11 are NOT pinned out; only Q4-Q10 and Q12-Q14 are accessible",
     "RESET is active HIGH; tie pin 12 LOW for normal counting",
-    "the RC oscillator network connects across pins 9-10-11 (Rs on 9, Rtc/Ctc across 10-11); a high RESET also stops the oscillator",
+    "the RC oscillator network: timing capacitor (Ct) on pin 9 (CEXT), timing resistor (Rt) on pin 10 (REXT), and pin 11 (RS) carries a small R2/C2 startup network per the datasheet's own oscillator circuit figure; a high RESET also stops the oscillator",
     "outputs are not in pin-number order; check the stage labels"
   ],
   "related": [
@@ -151,7 +151,7 @@
     "ne555",
     "cd4094"
   ],
-  "datasheet_url": "https://www.ti.com/lit/gpn/CD4060B",
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/cd4060b.pdf",
   "source": "human",
   "verified": true
 }

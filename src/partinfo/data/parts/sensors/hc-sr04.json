@@ -23,7 +23,7 @@
   "description": "4-pin ultrasonic distance module measuring roughly 2 cm to 400 cm with about 3 mm resolution. A 10 us pulse on Trig starts a burst of eight 40 kHz cycles; the module then drives Echo high for a duration proportional to the round-trip time, and distance is derived from the speed of sound (distance_cm = echo_us / 58). It runs from 5 V and uses simple GPIO timing rather than a serial bus. The default low-cost rangefinder for hobby robotics and obstacle avoidance.",
   "packages": {
     "module (4-pin)": {
-      "template": "module",
+      "template": "sip",
       "pin_count": 4,
       "pins": [
         {

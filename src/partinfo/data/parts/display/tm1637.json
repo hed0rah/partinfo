@@ -22,7 +22,7 @@
   "description": "The TM1637 is a low-cost LED driver with a built-in display memory and keypad-scan capability, sold mainly as a 4-digit 7-segment clock-style module with a 4-pin header (VCC, GND, DIO, CLK). It talks over a custom two-wire protocol that looks like I2C electrically but has no device address and uses a different ack scheme, so a hardware I2C peripheral cannot drive it directly. The driver handles multiplexing and 8-level brightness internally, so the MCU just sends segment data and a brightness command. Its bit-banged two-wire interface and the iconic clock module with a center colon make it the go-to for hobby clocks and counters.",
   "packages": {
     "4-pin module header": {
-      "template": "module",
+      "template": "sip",
       "pin_count": 4,
       "pins": [
         {

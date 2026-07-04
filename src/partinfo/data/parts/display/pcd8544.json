@@ -25,7 +25,7 @@
   "description": "The PCD8544 is a low-power controller for the 48x84 pixel monochrome LCD made famous by the Nokia 3310/5110 phones, now sold as a cheap 8-pin graphic display module. It uses a 3.3V SPI-style serial interface (DIN, CLK) plus a DC line that selects command versus data and active-low chip-select and reset lines. A separate LIGHT pin controls the backlight LEDs. Its tiny size, ultra-low power draw, and on-chip 504-byte display RAM make it a long-time favorite for battery-powered gadgets and retro displays.",
   "packages": {
     "8-pin module header": {
-      "template": "module",
+      "template": "sip",
       "pin_count": 8,
       "pins": [
         {

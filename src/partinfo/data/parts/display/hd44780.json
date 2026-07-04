@@ -28,7 +28,7 @@
   "description": "The HD44780 is the de facto standard controller behind nearly every monochrome character LCD module (16x2, 20x4, etc.). Hobbyists almost never touch the bare chip; they wire the 16-pin module header it sits behind. The parallel interface can run in 8-bit mode (D0-D7) or 4-bit mode (D4-D7 only) to save four MCU pins, with RS/RW/E as the control lines. Contrast is set with an analog voltage on V0, usually from a trimpot between VDD and VSS. Its 4-bit mode and the universally cloned instruction set make decades-old code and libraries work on virtually any compatible module.",
   "packages": {
     "16-pin module header": {
-      "template": "module",
+      "template": "sip",
       "pin_count": 16,
       "pins": [
         {

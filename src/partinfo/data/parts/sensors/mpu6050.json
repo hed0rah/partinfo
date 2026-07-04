@@ -26,7 +26,7 @@
   "description": "6-axis MEMS motion tracking device combining a 3-axis gyroscope and a 3-axis accelerometer on one die, with an on-chip Digital Motion Processor (DMP). It communicates over I2C (up to 400 kHz) and includes a 1024-byte FIFO and a 16-bit ADC per channel. The popular GY-521 breakout adds a 3.3 V LDO and I2C pull-ups so it can run from 5 V. An auxiliary I2C master bus (XDA/XCL) lets it read an external magnetometer for a 9-axis solution.",
   "packages": {
     "GY-521 module": {
-      "template": "module",
+      "template": "sip",
       "pin_count": 8,
       "pins": [
         {

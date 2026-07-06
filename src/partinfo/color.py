@@ -69,3 +69,11 @@ def colorize_section(text: str, mode: ColorMode) -> str:
     if mode == "off":
         return text
     return f"{_SECTION}{text}{_RESET}"
+
+
+def colorize_dim(text: str, mode: ColorMode) -> str:
+    """de-emphasize secondary text (table headers/rules, spec labels). low-risk,
+    so every non-off mode gets it, matching colorize_section's philosophy."""
+    if mode == "off":
+        return text
+    return f"{_DIM}{text}{_RESET}"

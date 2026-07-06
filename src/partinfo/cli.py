@@ -184,7 +184,7 @@ def main():
         return
 
     if args.specs:
-        print(fmt_specs(part))
+        print(fmt_specs(part, color_mode))
         return
 
     print(fmt_full(part, color_mode))

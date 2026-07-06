@@ -121,19 +121,20 @@ def _render_sip(pkg: Package, part_name: str, mode: ColorMode = "off") -> str:
 
 
 def _render_sot23(pkg: Package, mode: ColorMode = "off") -> str:
-    """SOT-23 3-pin."""
+    """SOT-23 3-pin: leads 1 and 2 share one side, lead 3 sits alone opposite --
+    the standard TO-236 arrangement (leads 1,2 bottom, lead 3 top)."""
     pins = {p.pin: p for p in pkg.pins}
     p1 = _cname(pins.get(1), mode)
     p2 = _cname(pins.get(2), mode)
     p3 = _cname(pins.get(3), mode)
     return (
-        f"   {p1}  {p3}\n"
-        f"    │    │\n"
-        f"  ┌┴────┴┐\n"
-        f"  │ SOT  │\n"
-        f"  └──┬───┘\n"
-        f"     │\n"
-        f"    {p2}"
+        f"      {p3}\n"
+        f"       │\n"
+        f"   ┌───┴───┐\n"
+        f"   │  SOT  │\n"
+        f"   └─┬───┬─┘\n"
+        f"     │   │\n"
+        f"    {p1}   {p2}"
     )
 
 
@@ -230,12 +231,12 @@ def _render_qfp_square(pkg: Package, part_name: str, mode: ColorMode = "off") ->
     def row(cells):     # cells already centered to cw, joined by one space
         return pad + " ".join(cells)
 
-    def border(l, mid, r):
+    def border(lc, mid, rc):
         buf = ["─"] * interior
         for k in range(side):
             c = k * (cw + 1) + (cw - 1) // 2   # match str.center's single-char slot
             buf[c] = mid
-        return " " * gutter + l + "".join(buf) + r
+        return " " * gutter + lc + "".join(buf) + rc
 
     ticks = lambda pins: row([("│" if p else " ").center(cw) for p in pins])
     nums = lambda pins: row([(str(p.pin) if p else "").center(cw) for p in pins])

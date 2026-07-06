@@ -1,0 +1,221 @@
+{
+  "id": "adc0832",
+  "name": "ADC0832",
+  "aliases": [
+    "ADC0832-N",
+    "ADC0832BCIWM",
+    "ADC0832CCIWM"
+  ],
+  "full_name": "8-Bit Serial I/O A/D Converter with 2-Channel Multiplexer",
+  "manufacturers": [
+    "Texas Instruments"
+  ],
+  "category": "interface",
+  "subcategory": "MICROWIRE serial ADC",
+  "tags": [
+    "adc",
+    "serial",
+    "microwire",
+    "8-bit",
+    "multiplexed",
+    "differential",
+    "single-ended",
+    "successive-approximation",
+    "analog"
+  ],
+  "description": "8-bit successive-approximation A/D converter with a serial I/O compliant with TI's MICROWIRE standard for direct interface to COPS-family processors, and easily bit-banged from any microprocessor or shift register. The ADC0832 is the 2-channel-mux member of the ADC0831/2/4/8 family (0831 is a fixed single differential channel with no address pin; 0834 adds a 4-channel mux; 0838 an 8-channel mux). Unlike the ADC0831, the ADC0832 has a DI (data in / mux address) pin: after CS goes low, the host clocks in a start bit followed by SGL/DIF and ODD/SIGN address bits on DI to select CH0 or CH1 as single-ended inputs, or CH0/CH1 as a differential pair (with selectable polarity), before the conversion result is clocked out on DO. Originally a National Semiconductor design, continued by TI (National's ADC family retains the '-N' suffix post-acquisition). Operates ratiometrically from a single 5V supply or with an external VREF to encode a smaller analog span across the full 8 bits; needs no zero or full-scale adjustment.",
+  "packages": {
+    "PDIP-8": {
+      "template": "dip",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "CS",
+          "type": "input",
+          "description": "chip select, active low; must be low to enable CLK/DI and start/continue a conversion, high tri-states DO"
+        },
+        {
+          "pin": 2,
+          "name": "CH0",
+          "type": "analog",
+          "description": "analog input channel 0; usable single-ended or, paired with CH1, as one side of a differential input depending on the SGL/DIF and ODD/SIGN bits clocked in on DI"
+        },
+        {
+          "pin": 3,
+          "name": "CH1",
+          "type": "analog",
+          "description": "analog input channel 1; usable single-ended or, paired with CH0, as the other side of a differential input depending on the SGL/DIF and ODD/SIGN bits clocked in on DI"
+        },
+        {
+          "pin": 4,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground reference for both analog and digital sections; also the internal COM node used for single-ended conversions"
+        },
+        {
+          "pin": 5,
+          "name": "DI",
+          "type": "input",
+          "description": "serial data/mux-address input; after CS falls, clocks in the start bit, then SGL/DIF (1=single-ended, 0=differential) and ODD/SIGN (selects CH0 vs CH1, or polarity of the CH0/CH1 differential pair) to configure the mux before conversion; don't-care once the mux is set until the next conversion cycle"
+        },
+        {
+          "pin": 6,
+          "name": "DO",
+          "type": "output",
+          "description": "serial data output, tri-state; after the MUX settling time, shifts out the conversion result MSB-first then re-shifts it LSB-first on CLK edges, tri-states when CS goes high"
+        },
+        {
+          "pin": 7,
+          "name": "CLK",
+          "type": "clock",
+          "description": "external clock input; also times the successive-approximation conversion (10 kHz min to 400 kHz design limit, 40-60% duty cycle)"
+        },
+        {
+          "pin": 8,
+          "name": "VCC (VREF)",
+          "type": "power",
+          "description": "positive supply, 4.5V to 6.3V operating (6.5V absolute max); pin is internally tied to VREF, so this single pin also sets the ratiometric full-scale (256-code) span -- there is no separate VREF pin on this package"
+        }
+      ],
+      "notes": "Per TI datasheet SNAS531B (Aug 1999, rev March 2013), Figure 5 'ADC0832-N 2-Channel MUX PDIP Package (P) Top View', page 2. Figure notes: 'COM internally connected to GND. VREF internally connected to VCC.' Pin numbering confirmed from the connection diagram, not inferred from function names."
+    },
+    "SOIC-14": {
+      "template": "soic",
+      "pin_count": 14,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "CS",
+          "type": "input",
+          "description": "chip select, active low; must be low to enable CLK/DI and start/continue a conversion, high tri-states DO"
+        },
+        {
+          "pin": 2,
+          "name": "NC",
+          "type": "nc",
+          "description": "no connect; pin position exists for mechanical/pinout compatibility with the wider ADC0834-N/0838-N family packages"
+        },
+        {
+          "pin": 3,
+          "name": "CH0",
+          "type": "analog",
+          "description": "analog input channel 0; usable single-ended or, paired with CH1, as one side of a differential input depending on the SGL/DIF and ODD/SIGN bits clocked in on DI"
+        },
+        {
+          "pin": 4,
+          "name": "NC",
+          "type": "nc",
+          "description": "no connect; pin position exists for mechanical/pinout compatibility with the wider ADC0834-N/0838-N family packages"
+        },
+        {
+          "pin": 5,
+          "name": "CH1",
+          "type": "analog",
+          "description": "analog input channel 1; usable single-ended or, paired with CH0, as the other side of a differential input depending on the SGL/DIF and ODD/SIGN bits clocked in on DI"
+        },
+        {
+          "pin": 6,
+          "name": "NC",
+          "type": "nc",
+          "description": "no connect; pin position exists for mechanical/pinout compatibility with the wider ADC0834-N/0838-N family packages"
+        },
+        {
+          "pin": 7,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground reference for both analog and digital sections; also the internal COM node used for single-ended conversions"
+        },
+        {
+          "pin": 8,
+          "name": "DI",
+          "type": "input",
+          "description": "serial data/mux-address input; after CS falls, clocks in the start bit, then SGL/DIF (1=single-ended, 0=differential) and ODD/SIGN (selects CH0 vs CH1, or polarity of the CH0/CH1 differential pair) to configure the mux before conversion; don't-care once the mux is set until the next conversion cycle"
+        },
+        {
+          "pin": 9,
+          "name": "NC",
+          "type": "nc",
+          "description": "no connect; pin position exists for mechanical/pinout compatibility with the wider ADC0834-N/0838-N family packages"
+        },
+        {
+          "pin": 10,
+          "name": "DO",
+          "type": "output",
+          "description": "serial data output, tri-state; after the MUX settling time, shifts out the conversion result MSB-first then re-shifts it LSB-first on CLK edges, tri-states when CS goes high"
+        },
+        {
+          "pin": 11,
+          "name": "NC",
+          "type": "nc",
+          "description": "no connect; pin position exists for mechanical/pinout compatibility with the wider ADC0834-N/0838-N family packages"
+        },
+        {
+          "pin": 12,
+          "name": "CLK",
+          "type": "clock",
+          "description": "external clock input; also times the successive-approximation conversion (10 kHz min to 400 kHz design limit, 40-60% duty cycle)"
+        },
+        {
+          "pin": 13,
+          "name": "NC",
+          "type": "nc",
+          "description": "no connect; pin position exists for mechanical/pinout compatibility with the wider ADC0834-N/0838-N family packages"
+        },
+        {
+          "pin": 14,
+          "name": "VCC (VREF)",
+          "type": "power",
+          "description": "positive supply, 4.5V to 6.3V operating (6.5V absolute max); pin is internally tied to VREF, so this single pin also sets the ratiometric full-scale (256-code) span -- there is no separate VREF pin on this package"
+        }
+      ],
+      "notes": "Per TI datasheet SNAS531B (Aug 1999, rev March 2013), Figure 2 'ADC0832-N 2-Channel MUX SOIC Package (NPA) Top View', page 2. This is the 14-pin narrow-body SOIC shared mechanically with the ADC0834-N; the ADC0832-N only uses 8 of the 14 pins and the rest are NC. Pin numbering confirmed from the connection diagram, not inferred from function names."
+    }
+  },
+  "specs": {
+    "vs_min_v": 4.5,
+    "vs_max_v": 6.3,
+    "freq_max_hz": 400000,
+    "extra": {
+      "resolution": "8-bit",
+      "input configuration": "2-channel mux (CH0, CH1), software-configured via DI for single-ended or differential (with selectable polarity) operation",
+      "mux addressing protocol": "with CS low, clock in on DI: start bit (must be 1), then SGL/DIF (1=single-ended, 0=differential), then ODD/SIGN (single-ended: 0=CH0, 1=CH1; differential: selects which of CH0/CH1 is + vs -); DI is don't-care after mux settling until the next conversion",
+      "total unadjusted error": "+-1/2 LSB (B-grade, e.g. ADC0832BCIWM) or +-1 LSB (C-grade, e.g. ADC0832CCIWM), tested at VREF=5.00V",
+      "conversion time": "32us typ, tC = 8 clock periods (not including CS setup/MUX addressing time) at fCLK=250kHz",
+      "clock frequency": "10kHz min to 400kHz design limit; specs given typ at fCLK=250kHz",
+      "clock duty cycle": "40% to 60% (clock may be stopped low indefinitely if analog input is stable, or high up to 60us max)",
+      "power dissipation": "15mW typ at VCC=5V",
+      "ICC supply current": "2.3mA typ, 6.5mA max (includes ladder/mux current, VCC=5V, fCLK=250kHz, CS=1) -- notably higher than the fixed-channel ADC0831/0834/0838 (0.9mA typ/2.5mA max) because of the resistor ladder mux",
+      "VIN(1) logic high min": "2.0V at VCC=5.25V",
+      "VIN(0) logic low max": "0.8V at VCC=4.75V",
+      "output source current": "-14mA typ, -6.5mA design limit min (VOUT=0V)",
+      "output sink current": "16mA typ, 8.0mA design limit min (VOUT=VCC)",
+      "reference input resistance": "1.3kohm (tested limit min) to 5.9kohm (design limit max)",
+      "input voltage range": "0V to 5V with single 5V supply; VIN(-) staying within ~50mV of the rails avoids input-protection-diode conduction (needs VCC >= 4.95V for a true full 0-5V span)",
+      "package dissipation": "0.8W at TA=25C, board mount",
+      "storage temperature": "-65C to +150C",
+      "operating temperature range": "-40C to +85C (BCIWM/CCIWM grades)",
+      "ESD susceptibility": "2000V (human body model, 100pF through 1.5kohm)",
+      "output data order": "MSB-first, then LSB-first re-shift on the same DO transmission (unlike the ADC0831 which outputs MSB-first only)"
+    }
+  },
+  "typical_application": "Low-cost 8-bit data acquisition of one or two analog channels (single-ended or differential) over a simple CS/CLK/DI/DO serial interface compatible with TI MICROWIRE and easily bit-banged by any microprocessor; typical uses include reading two single-ended potentiometer/sensor channels from one part, or a differential bridge/pressure sensor with software-selectable polarity, feeding a COPS or general-purpose MCU.",
+  "gotchas": [
+    "the -N suffix (ADC0831-N/0832-N/0834-N/0838-N) marks TI's continuation of the original National Semiconductor ADC0831 family after the 2011 acquisition; it is not TI's usual NRND marker",
+    "ADC0832 is the only member of the family with a plain 8-pin PDIP that also carries a 14-pin SOIC option (NPA) sharing the ADC0834's mechanical footprint with 6 NC pins -- do not assume all 14 legs on the SOIC part are active",
+    "unlike the ADC0831 (no DI pin, fixed single differential channel), the ADC0832 needs 3 address bits (start, SGL/DIF, ODD/SIGN) clocked in on DI before the conversion result appears -- get the address bit order wrong and you'll read the wrong channel or wrong polarity, not just garbage data",
+    "VCC and VREF are the same physical pin on the ADC0832 package (unlike the ADC0834-N/0838-N which break out a separate VREF) -- you cannot use an external reference below VCC without also dropping the supply rail",
+    "DO shifts out MSB-first immediately, then re-shifts the same result LSB-first afterward; a receiver expecting only one bit order will misread half the transmission if it doesn't stop clocking after 8 bits",
+    "ICC is notably higher than the fixed-channel siblings (2.3mA typ vs 0.9mA typ) because the mux resistor ladder draws current whenever CS is low -- factor this into low-power designs",
+    "VIN(-) must stay close to GND (within ~50mV) or its internal protection diode conducts and corrupts the conversion; a true 0V-5V single-supply input range requires VCC >= 4.95V to keep enough diode margin",
+    "the 6.3-8.5V internal zener/shunt-regulator trick for running from higher supply voltages needs the separate V+ pin, which the PDIP-8/SOIC-14 ADC0832 package does not break out (only VCC) -- that trick applies to the ADC0834-N/0838-N packages that do expose V+"
+  ],
+  "related": [
+    "adc0831",
+    "mcp3008",
+    "ads1115"
+  ],
+  "source": "claude",
+  "verified": true,
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/adc0832-n.pdf"
+}

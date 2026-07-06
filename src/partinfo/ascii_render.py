@@ -238,9 +238,14 @@ def _render_qfp_square(pkg: Package, part_name: str, mode: ColorMode = "off") ->
             buf[c] = mid
         return " " * gutter + lc + "".join(buf) + rc
 
-    ticks = lambda pins: row([("│" if p else " ").center(cw) for p in pins])
-    nums = lambda pins: row([(str(p.pin) if p else "").center(cw) for p in pins])
-    names = lambda pins: row([_cname(p, mode, cw, "^") for p in pins])
+    def ticks(pins):
+        return row([("│" if p else " ").center(cw) for p in pins])
+
+    def nums(pins):
+        return row([(str(p.pin) if p else "").center(cw) for p in pins])
+
+    def names(pins):
+        return row([_cname(p, mode, cw, "^") for p in pins])
 
     out = [names(top), nums(top), ticks(top), border("┌", "┬", "┐")]
     mid = side // 2

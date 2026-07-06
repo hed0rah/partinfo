@@ -73,6 +73,8 @@ def main():
     p.add_argument("--pins",  action="store_true", help="pinout only")
     p.add_argument("--ascii", action="store_true", help="ascii package diagram")
     p.add_argument("--specs", action="store_true", help="specs only")
+    p.add_argument("-b", "--brief", action="store_true",
+                   help="with --specs: headline specs only, skip the detailed extras")
     p.add_argument("--pkg",   help="filter to specific package (e.g. DIP-8)")
     p.add_argument("--fallback", choices=["ollama", "claude"], help="fallback if not in db")
     p.add_argument("--model", default="nemotron-nano-4b", help="ollama model for fallback")
@@ -184,7 +186,7 @@ def main():
         return
 
     if args.specs:
-        print(fmt_specs(part, color_mode))
+        print(fmt_specs(part, color_mode, brief=args.brief))
         return
 
     print(fmt_full(part, color_mode))

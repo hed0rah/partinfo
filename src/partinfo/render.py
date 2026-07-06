@@ -6,6 +6,8 @@ the CLI and parsing text.
 """
 
 from __future__ import annotations
+import shutil
+import textwrap
 from .schema import Part
 from .color import (
     ColorMode, colorize_warning, colorize_section, colorize_pin, colorize_dim,
@@ -53,9 +55,10 @@ def _range(lo, hi, unit: str = "") -> str | None:
     return f"{_num(hi)}{unit} max" if lo is None else f"{_num(lo)}{unit} min"
 
 
-def _spec_rows(s) -> list[tuple[str, str]]:
-    """(label, value) rows: typed headline fields first (skipping any that `extra`
-    re-states with richer test conditions), then everything in `extra` verbatim."""
+def _typed_fields(s) -> dict[str, str]:
+    """the curated, short-labeled headline specs -- the ones that align into a
+    clean table. everything datasheet-specific (values that need a test condition)
+    lives in `extra` instead and shows in the detail block."""
     fields = {
         "supply voltage":    _range(s.vs_min_v, s.vs_max_v, "V"),
         "supply (typ)":      f"{_num(s.vs_typ_v)} V" if s.vs_typ_v is not None else None,
@@ -80,24 +83,52 @@ def _spec_rows(s) -> list[tuple[str, str]]:
         "CPU":               f"{s.cpu_mhz} MHz" if s.cpu_mhz else None,
         "GPIO":              f"{s.gpio_count}" if s.gpio_count is not None else None,
     }
-    rows = [(k, v) for k, v in fields.items() if v and k not in s.extra]
-    rows += [(k, str(v)) for k, v in s.extra.items()]
-    return rows
+    return {k: v for k, v in fields.items() if v}
 
 
-def fmt_specs(part: Part, mode: ColorMode = "off") -> str:
+def _detail_block(detail: list[tuple[str, str]], mode: ColorMode) -> list[str]:
+    """the conditioned `extra` specs, always tidy: short labels align in a column
+    with the value wrapped under it; long labels get their own line, value indented."""
+    width = min(shutil.get_terminal_size((100, 24)).columns, 100)
+    lw = min(max(len(k) for k, _ in detail), 22)
+    out: list[str] = []
+    for k, v in detail:
+        if len(k) <= lw:
+            vw = max(24, width - lw - 4)
+            wrapped = textwrap.wrap(v, vw) or [""]
+            out.append(f"  {colorize_dim(f'{k:<{lw}}', mode)}  {wrapped[0]}")
+            out += [f"  {' '*lw}  {c}" for c in wrapped[1:]]
+        else:
+            out.append(f"  {colorize_dim(k, mode)}")
+            out += [f"      {c}" for c in (textwrap.wrap(v, max(24, width - 6)) or [""])]
+    return out
+
+
+def fmt_specs(part: Part, mode: ColorMode = "off", brief: bool = False) -> str:
     if not part.specs:
         return "  no specs recorded"
-    rows = _spec_rows(part.specs)
-    if not rows:
+    s = part.specs
+    # headline = typed fields NOT already restated in extra (extra's version has
+    # the test conditions, so it wins and stays in the detail -- no label twice).
+    extra_labels = {k.lower() for k in s.extra}
+    headline = {k: v for k, v in _typed_fields(s).items() if k.lower() not in extra_labels}
+    detail = [(k, str(v)) for k, v in s.extra.items()]
+    if not headline and not detail:
         return "  no specs recorded"
-    lw = min(max(len(k) for k, _ in rows), 24)     # label column, capped
-    lines = [
-        colorize_dim(f"  {'SPEC':<{lw}}  VALUE", mode),
-        colorize_dim(f"  {'─'*lw}  {'─'*26}", mode),
-    ]
-    for label, val in rows:
-        lines.append(f"  {colorize_dim(f'{label:<{lw}}', mode)}  {val}")
+
+    lines: list[str] = []
+    if headline:
+        lw = min(max(len(k) for k in headline), 24)
+        lines.append(colorize_dim(f"  {'SPEC':<{lw}}  VALUE", mode))
+        lines.append(colorize_dim(f"  {'─'*lw}  {'─'*26}", mode))
+        for k, v in headline.items():
+            lines.append(f"  {colorize_dim(f'{k:<{lw}}', mode)}  {v}")
+    # --brief drops the detail only when there's a headline to stand on its own;
+    # a part whose specs live entirely in extra still shows them.
+    if detail and not (brief and headline):
+        if headline:
+            lines.append(colorize_dim("\n  detail " + "─" * 40, mode))
+        lines += _detail_block(detail, mode)
     return "\n".join(lines)
 
 

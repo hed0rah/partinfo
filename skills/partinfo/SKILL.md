@@ -25,7 +25,8 @@ Run the CLI; do not read the JSON files directly unless editing the database.
 partinfo <name>            # full entry: pinout, specs, typical use, gotchas
 partinfo <name> --pins     # pinout table only
 partinfo <name> --ascii    # ascii package diagram
-partinfo <name> --specs    # key specs only
+partinfo <name> --specs    # specs: headline table + detailed extras
+partinfo <name> --specs -b # --brief: headline specs only, skip the details
 partinfo <name> --pkg DIP-8  # restrict to one package
 partinfo <name> --json     # machine-readable output
 partinfo search <query>    # full-text search across name/tags/description

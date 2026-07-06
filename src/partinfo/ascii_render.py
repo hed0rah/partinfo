@@ -180,42 +180,54 @@ def _render_to220(pkg: Package, mode: ColorMode = "off") -> str:
     )
 
 
+def _two_column_box(left: list[Pin | None], right: list[Pin | None],
+                    label: str, mode: ColorMode = "off") -> str:
+    """a DIP-style box with an arbitrary pin on each row of the left and right
+    columns, each tagged with its real pin number. the building block for the
+    two-view QFP/QFN diagram, where horizontal names only read cleanly on the
+    left/right edges -- so we rotate to bring every edge to a side in turn."""
+    rows = max(len(left), len(right))
+    lw = max((len(_plain(p)) for p in left if p), default=3)
+    nw = max((len(str(p.pin)) for p in left + right if p), default=1)
+    body_w = max(len(label), 10)
+    out = [f"{'':>{lw+nw+2}}┌{'─'*body_w}┐"]
+    for i in range(rows):
+        lp = left[i] if i < len(left) else None
+        rp = right[i] if i < len(right) else None
+        ln = _cname(lp, mode, lw, ">")
+        lnum = f"{lp.pin:>{nw}}" if lp else " " * nw
+        rnum = f"{rp.pin:<{nw}}" if rp else " " * nw
+        rn = _cname(rp, mode)
+        mid = label if i == rows // 2 else ""
+        out.append(f"{ln} -{lnum}┤{mid:^{body_w}}├{rnum}- {rn}")
+    out.append(f"{'':>{lw+nw+2}}└{'─'*body_w}┘")
+    return "\n".join(out)
+
+
 def _render_qfp(pkg: Package, part_name: str, mode: ColorMode = "off") -> str:
-    """four-sided package -- QFP/QFN/LQFP."""
+    """four-sided package (QFP/QFN/LQFP). ascii can't rotate text, so a single
+    top-view would have to stack the top/bottom pin names vertically -- spatially
+    misleading. instead we show two views: the left/right edges as-is, then the
+    chip turned 90° so the top/bottom pins become a readable side too."""
     n = pkg.pin_count
     side = n // 4
     by_num = {p.pin: p for p in pkg.pins}
 
-    bottom_p = [by_num.get(i) for i in range(1, side + 1)]
-    left_p   = [by_num.get(i) for i in range(side + 1, 2 * side + 1)]
-    top_p    = [by_num.get(i) for i in range(2 * side + 1, 3 * side + 1)]
-    right_p  = [by_num.get(i) for i in range(3 * side + 1, n + 1)]
+    bottom = [by_num.get(i) for i in range(1, side + 1)]                 # L->R
+    left   = [by_num.get(i) for i in range(side + 1, 2 * side + 1)]      # top->bottom
+    top    = [by_num.get(i) for i in range(2 * side + 1, 3 * side + 1)]  # L->R
+    right  = [by_num.get(i) for i in range(3 * side + 1, n + 1)]         # bottom->top
 
-    pw = max(len(_plain(p)) for p in bottom_p + left_p + top_p + right_p)
-    inner_w = max(len(part_name) + 4, (pw + 2) * side)
+    # view 1: the physical left and right edges (right edge read top->bottom).
+    v1 = _two_column_box(left, list(reversed(right)), part_name, mode)
+    # view 2: turn the chip 90° CW -- the bottom edge swings to the left column,
+    # the top edge to the right column, both now horizontally readable.
+    v2 = _two_column_box(bottom, top, part_name, mode)
 
-    bottom_pins = [_cname(p, mode, inner_w, "^") for p in bottom_p]
-    left_pins   = [_cname(p, mode, pw, ">") for p in left_p]
-    top_pins    = [_cname(p, mode, inner_w, "^") for p in top_p]
-    right_pins  = [_cname(p, mode) for p in right_p]
-
-    lines = []
-    # top pins (above body)
-    for p in reversed(top_pins):
-        lines.append(f"  {' ' * pw}  {p}")
-    lines.append(f"  {' ' * pw}  ┌{'─' * inner_w}┐")
-    # left + right side rows
-    mid = side // 2
-    for i in range(side):
-        lp = left_pins[i]
-        rp = right_pins[side - 1 - i]
-        label = part_name if i == mid else ""
-        lines.append(f"  {lp} ─┤{label:^{inner_w}}├─ {rp}")
-    lines.append(f"  {' ' * pw}  └{'─' * inner_w}┘")
-    # bottom pins
-    for p in bottom_pins:
-        lines.append(f"  {' ' * pw}  {p}")
-    return "\n".join(lines)
+    return (
+        f"  left + right edges:\n{v1}\n\n"
+        f"  top + bottom edges (chip turned 90°):\n{v2}"
+    )
 
 
 def _render_module(pkg: Package, part_name: str, mode: ColorMode = "off") -> str:

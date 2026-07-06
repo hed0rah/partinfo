@@ -90,7 +90,9 @@ def _render_dip(pkg: Package, part_name: str, mode: ColorMode = "off") -> str:
     body_w = max(len(part_name), 10)
 
     lines = []
-    lines.append(f"{'':>{lw+nw+2}}┌{'─'*body_w}┐")
+    notch = list("─" * body_w)                 # pin-1 orientation notch, top center
+    notch[body_w // 2] = "◡"
+    lines.append(f"{'':>{lw+nw+2}}┌{''.join(notch)}┐")
     for i in range(half):
         lpin = left[i]
         rpin = right[i]

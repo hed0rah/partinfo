@@ -1,0 +1,274 @@
+{
+  "id": "ssi2130",
+  "name": "SSI2130",
+  "aliases": [
+    "SSI2130Q-RT"
+  ],
+  "full_name": "FatKeys Voltage Controlled Oscillator (highly integrated analog synth voice front-end)",
+  "manufacturers": [
+    "Sound Semiconductor"
+  ],
+  "category": "audio",
+  "subcategory": "voltage-controlled oscillator (VCO)",
+  "tags": [
+    "vco",
+    "analog-synth",
+    "eurorack",
+    "oscillator",
+    "exponential-converter",
+    "fatkeys",
+    "through-zero-fm",
+    "pwm"
+  ],
+  "description": "Highly-integrated analog VCO subsystem for electronic musical instruments, generating triangle, sawtooth, buffered PWM-capable pulse, and open-collector square waveforms from a single precision timing capacitor, plus an on-chip sine shaper and a five-channel current-controlled mixer (triangle/saw/pulse plus two auxiliary inputs). A precision analog multiplier gives temperature-compensated exponential control with high frequency-tracking accuracy, and both soft and hard sync plus optional through-zero FM/PM (via the TIME REVERSE pin and external circuitry) are supported. Combine one or more SSI2130s with an SSI2140/SSI2144 VCF and SSI2162/SSI2164 VCA for a complete analog synth voice. Occupies the role classic CEM3340-style discrete/analog VCO cores play in vintage synth voices, though it is an original Sound Semiconductor design (not a pin-for-pin clone) with far greater integration.",
+  "packages": {
+    "QFN-32": {
+      "template": "qfn",
+      "pin_count": 32,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "TRI OUT",
+          "type": "output",
+          "description": "buffered output of the triangle generator, swings GND to VREF at a rate set by the TCAP capacitor and the current into EXPO FREQ; also fed internally to the mixer"
+        },
+        {
+          "pin": 2,
+          "name": "SINE IN+",
+          "type": "input",
+          "description": "noninverting input to the temperature-compensated sine converter; must be connected to GND through a 4.7k ohm resistor for correct operation. For best sine wave, feed TRI OUT through a 10uF cap and 4k ohm resistor into this pin"
+        },
+        {
+          "pin": 3,
+          "name": "SINE IN-",
+          "type": "input",
+          "description": "inverting input to the sine converter; same biasing as SINE IN+ but opposite polarity"
+        },
+        {
+          "pin": 4,
+          "name": "AUX 1 IN",
+          "type": "input",
+          "description": "auxiliary signal input to the voltage-controlled mixer; 50k ohm input impedance, recommend amplitude under +-2.5V, AC-couple to minimize CV bleedthrough"
+        },
+        {
+          "pin": 5,
+          "name": "AUX 2 IN",
+          "type": "input",
+          "description": "second auxiliary signal input to the mixer; same characteristics as AUX 1 IN"
+        },
+        {
+          "pin": 6,
+          "name": "HF TRACK",
+          "type": "input",
+          "description": "current output pin used to trim high-frequency tuning error in the exponential converter caused by bulk emitter resistance; two fixed resistors handle most applications, an optional trim improves further. Leave unconnected if unused"
+        },
+        {
+          "pin": 7,
+          "name": "EXPO FREQ",
+          "type": "input",
+          "description": "ground-referenced current input to the exponential converter; sensitivity set by current into EXPO SCALE, typically 20uA/octave via a 50k ohm resistor for the common 1V/octave response"
+        },
+        {
+          "pin": 8,
+          "name": "V-",
+          "type": "power",
+          "description": "negative supply, -4.75V to -18V; recommend a 100nF local decoupling capacitor close to the package with a low-inductance ground trace"
+        },
+        {
+          "pin": 9,
+          "name": "TRI MIX",
+          "type": "input",
+          "description": "control current input setting the mixer level of the internal triangle waveform; 0uA cutoff to 50uA max typical range, 0uA mutes the input"
+        },
+        {
+          "pin": 10,
+          "name": "SAW MIX",
+          "type": "input",
+          "description": "control current input setting the mixer level of the internal sawtooth waveform; same 0-50uA range as TRI MIX"
+        },
+        {
+          "pin": 11,
+          "name": "PULSE MIX",
+          "type": "input",
+          "description": "control current input setting the mixer level of the internal pulse waveform; same 0-50uA range as TRI MIX"
+        },
+        {
+          "pin": 12,
+          "name": "AUX 1 MIX",
+          "type": "input",
+          "description": "control current input setting the mixer level of the AUX 1 IN signal; same 0-50uA range as TRI MIX"
+        },
+        {
+          "pin": 13,
+          "name": "AUX 2 MIX",
+          "type": "input",
+          "description": "control current input setting the mixer level of the AUX 2 IN signal; same 0-50uA range as TRI MIX"
+        },
+        {
+          "pin": 14,
+          "name": "TCAP",
+          "type": "passive",
+          "description": "oscillator timing capacitor to ground; use a low dielectric-absorption, low-tempco type (C0G/NP0 or polystyrene), 3.9nF recommended for standard audio range, usable range 1nF-10nF"
+        },
+        {
+          "pin": 15,
+          "name": "DGND",
+          "type": "ground",
+          "description": "digital ground for the exponential converter; typically connects to AGND externally"
+        },
+        {
+          "pin": 16,
+          "name": "AGND",
+          "type": "ground",
+          "description": "analog ground connection for the output stages and mixer"
+        },
+        {
+          "pin": 17,
+          "name": "HARD SYNC",
+          "type": "input",
+          "description": "level-sensitive hard sync input; when driven high, internally discharges TCAP to reset the oscillator to the start of its cycle regardless of phase. Connect to ground if unused"
+        },
+        {
+          "pin": 18,
+          "name": "TIME REVERSE",
+          "type": "input",
+          "description": "controls direction of the triangle core and slope of the sawtooth generator; tied to V+ gives rising-saw-with-fast-fall, tied to ground gives fast-rise-with-falling-saw. Toggling at audio rates produces through-zero FM tones"
+        },
+        {
+          "pin": 19,
+          "name": "SOFT SYNC",
+          "type": "input",
+          "description": "connects to an internal 5k ohm resistor setting the triangle's lower threshold; an AC-coupled pulse here makes the falling slope of the triangle reverse direction. No effect if TCAP is at or below the sync pulse level. Leave unconnected if unused"
+        },
+        {
+          "pin": 20,
+          "name": "HFT BASE",
+          "type": "passive",
+          "description": "direct connection to the base of the internal high-frequency trim transistor; connect to ground for normal operation"
+        },
+        {
+          "pin": 21,
+          "name": "LIN FREQ",
+          "type": "input",
+          "description": "ground-referenced current input setting the linear scale of the exponential converter's output; used for linear FM, or together with TIME REVERSE for through-zero FM. Tie to a constant ~5uA (e.g. via 499k ohm from VREF) if linear FM is not used"
+        },
+        {
+          "pin": 22,
+          "name": "EXPO SCALE",
+          "type": "input",
+          "description": "ground-referenced current input setting the sensitivity (scale) of the EXPO FREQ pin; feed 94.34uA in for the common 20uA/octave sensitivity"
+        },
+        {
+          "pin": 23,
+          "name": "VREF",
+          "type": "input",
+          "description": "reference voltage input; must be externally fixed at 2.5V (0.5% tolerance) from a low-noise, low-impedance voltage reference. Sets waveform amplitude and critical EXPO SCALE/LIN FREQ current scaling"
+        },
+        {
+          "pin": 24,
+          "name": "SINE OUT",
+          "type": "output",
+          "description": "voltage output of the sine converter; range -VREF to +VREF volts when driven from TRI OUT, 10k ohm recommended load"
+        },
+        {
+          "pin": 25,
+          "name": "MIX OUT",
+          "type": "output",
+          "description": "high-compliance current output of the internal 5-channel mixer; drive a resistor to convert to voltage, or feed directly into a ground-referenced current input such as an SSI2140 VCF or SSI2164 VCA"
+        },
+        {
+          "pin": 26,
+          "name": "BW COMP",
+          "type": "passive",
+          "description": "frequency compensation node for the exponential converter; connect a 270 ohm resistor in series with a 10nF capacitor to ground"
+        },
+        {
+          "pin": 27,
+          "name": "V+",
+          "type": "power",
+          "description": "positive supply, must be a regulated +4.75V to +5.25V (+5.0V typ) source; recommend a 100nF local decoupling capacitor close to the package with a low-inductance ground trace"
+        },
+        {
+          "pin": 28,
+          "name": "SQUARE OUT",
+          "type": "output",
+          "description": "open-collector output from the oscillator's internal S-R flip-flop; requires an external pullup resistor to V+ (or a lower rail), high impedance when not pulled low. Leave unconnected if unused"
+        },
+        {
+          "pin": 29,
+          "name": "SAW OUT",
+          "type": "output",
+          "description": "output of the internal triangle-to-sawtooth converter, range 0V to VREF. Direction set by TIME REVERSE: floating/V+ gives slow rise/fast fall, grounded gives fast rise/slow fall. Also fed internally to the mixer"
+        },
+        {
+          "pin": 30,
+          "name": "PULSE OUT",
+          "type": "output",
+          "description": "output of an internal comparator producing a variable-width pulse; driven hard to ground or VREF depending on the PWM+/PWM- comparator inputs. Also fed to the internal mixer"
+        },
+        {
+          "pin": 31,
+          "name": "PWM-",
+          "type": "input",
+          "description": "inverting input of the internal PWM comparator; input range 0V to VREF, typically driven by the buffered triangle/saw"
+        },
+        {
+          "pin": 32,
+          "name": "PWM+",
+          "type": "input",
+          "description": "noninverting input of the internal PWM comparator; input range 0V to VREF, typically driven by a wiper/pot or voltage source to set pulse width"
+        }
+      ],
+      "notes": "Per Sound Semiconductor's own PIN CONNECTIONS diagram and SSI2130 PIN DESCRIPTIONS table (Rev 2.4, December 2020), 32-lead 4x4mm QFN, top view. QFN has a standard exposed metal thermal pad on the underside (SSI package ID PQN32); per the datasheet, if a corresponding PCB land pad is used it must NOT have any electrical or ground connection."
+    }
+  },
+  "specs": {
+    "vs_min_v": 4.75,
+    "vs_max_v": 5.25,
+    "vs_typ_v": 5.0,
+    "iq_ma": 3.75,
+    "freq_max_hz": 60000,
+    "extra": {
+      "supply topology": "asymmetric split supply: V+ regulated +4.75 to +5.25V (typ +5.0V, abs max +5.25V); V- flexible -4.75 to -18V (abs max -18V)",
+      "Isy-": "-2.90mA typ",
+      "VREF": "must be fixed at 2.5V +-0.5% (2.49-2.51V) from a low-noise low-impedance reference; 100uA max current draw",
+      "frequency sweep range": "1000:1, calibrated to +-1 cent error",
+      "max charging current": "1.2mA typ (TCAP=3.9nF)",
+      "exponential conformity": "0.3% typ (calibrated per datasheet Expo Setup procedure)",
+      "expo scale factor drift": "200 ppm/C typ, 0-50C, <=4kHz, 1/10th semitone",
+      "expo control constant": "20uA/octave typ (Ib-mult)",
+      "multiplier offset": "0.5mV typ",
+      "multiplier input bias current": "10nA typ",
+      "soft sync input resistance": "5k ohm typ",
+      "hard sync thresholds": "upper 1.55V typ, lower 1.0V typ",
+      "time reverse thresholds": "upper 1.55V typ, lower 1.0V typ",
+      "triangle output": "0V (GND) to VREF swing, 6mA max source / 1mA max sink",
+      "sawtooth output": "0V to VREF swing, 6mA max source/sink, 1.6us typ discharge time",
+      "pulse output/PWM": "0V to VREF swing, 6mA max source current, rise time 70ns typ, fall time 125ns typ, PWM bias current 40nA typ",
+      "square output": "open-collector; VOL 80mV typ at 5mA sink, fall time 37ns typ; needs external pullup",
+      "sine shaper": "differential input +-2.5V into SINE IN+/-, bias current 20nA typ; output swing +-2.5V into 10k ohm load; THD+N 0.76% typ @1kHz, 22Hz-22kHz, 1.7Vrms; output offset 3mV typ",
+      "mixer (audio)": "aux input handling +-2.5V, 50k ohm typ input impedance, recommended max output current 500uA, output noise -106dBu (20Hz-20kHz, 1% THD), THD+N 0.3% typ @1kHz, 1Vrms",
+      "mixer (control)": "mute attenuation 100dB typ, 0uA control current at full attenuation, 50uA recommended max control current, control feedthrough -60dB typ",
+      "timing capacitor": "3.9nF recommended (C0G/NP0 or polystyrene) for standard music-synth audio range; usable range 1nF-10nF",
+      "Top_op": "-40 to +85C",
+      "Tstg": "-65 to +150C",
+      "lead temp (soldering, 10s)": "260C"
+    }
+  },
+  "typical_application": "Core analog VCO of a synth voice: pair with an SSI2140/SSI2144 VCF and SSI2162/SSI2164 VCA for a complete voice. Generates triangle, sawtooth, PWM pulse, open-collector square, and (via the built-in sine shaper) sine waveforms from one timing capacitor, plus a 5-channel current-controlled mixer for combining internal waveforms with two auxiliary inputs before feeding a downstream filter or VCA.",
+  "gotchas": [
+    "asymmetric split supply: V+ must be a regulated +5V rail (+4.75 to +5.25V), while V- is flexible from -4.75V to -18V; do not assume symmetric rails",
+    "VREF (pin 23) is not internally generated -- it must be driven externally with a stable, low-noise, low-impedance 2.5V reference held within 0.5%, since it sets waveform amplitude and the EXPO SCALE/LIN FREQ current scaling",
+    "SQUARE OUT (pin 28) is open-collector and floats/high-Z unless pulled up externally to V+ (or another suitable rail)",
+    "TCAP (pin 14) needs a low-dielectric-absorption, low-tempco capacitor (C0G/NP0 or polystyrene); using a generic ceramic will hurt tuning stability",
+    "the QFN's exposed thermal pad provides no real thermal benefit at this power level -- if a matching PCB land pad is included, it must NOT have any electrical or ground connection",
+    "the mixer's MIX/CONTROL pins (9-13) expect ground-referenced control currents (typ 0-50uA via 100k ohm resistors for a 0-5V CV range), not direct voltage drive; do not tie them straight to ground if unused, use a resistor no less than 50k ohm",
+    "sold only directly by Sound Semiconductor and its authorized resellers, not a general second-sourced part"
+  ],
+  "related": [
+    "ssi2140"
+  ],
+  "source": "claude",
+  "verified": true,
+  "datasheet_url": "https://www.soundsemiconductor.com/downloads/ssi2130datasheet.pdf"
+}

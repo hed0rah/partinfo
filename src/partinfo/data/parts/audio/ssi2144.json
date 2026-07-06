@@ -1,0 +1,172 @@
+{
+  "id": "ssi2144",
+  "name": "SSI2144",
+  "aliases": [
+    "SSI2144SS-TU",
+    "SSI2144SS-RT"
+  ],
+  "full_name": "FatKeys Four-Pole Voltage Controlled Filter (transistor-ladder VCF)",
+  "manufacturers": [
+    "Sound Semiconductor"
+  ],
+  "category": "audio",
+  "subcategory": "voltage-controlled filter (transistor-ladder)",
+  "tags": [
+    "vcf",
+    "ladder-filter",
+    "filter",
+    "analog-synth",
+    "eurorack",
+    "classic",
+    "moog-style"
+  ],
+  "description": "Four-pole transistor-ladder voltage-controlled lowpass filter that reprises Solid State Micro Technology's SSM2044, based on Dave Rossum's patented improved-ladder topology and widely regarded as one of the best-sounding analog synth filter ICs ever made. Uses the same internal circuit as the SSM2044 with improvements by the original designer and modern process technology: minimum 10,000:1 (typ 20,000:1) frequency sweep range, on-chip resonance control with improved unit-to-unit consistency, differential signal inputs, high control feedthrough rejection, and minimized external component count. Pin connections were revised from the SSM2044 for easier PCB layout, so it is not pin-compatible with its predecessor despite sharing the same die design.",
+  "packages": {
+    "SSOP-16": {
+      "template": "ssop",
+      "pin_count": 16,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "SIG IN+",
+          "type": "input",
+          "description": "non-inverting differential signal input; nominal \u00b120mV signal level, clips at \u00b150mV; ground unused input via a 200 ohm resistor"
+        },
+        {
+          "pin": 2,
+          "name": "SIG IN-",
+          "type": "input",
+          "description": "inverting differential signal input; same level/clipping as SIG IN+; typically attenuated 3dB relative to SIG IN+ to prevent cancellation of in-phase signals when driving two oscillators"
+        },
+        {
+          "pin": 3,
+          "name": "OUT",
+          "type": "output",
+          "description": "filter signal output; max output current \u00b1300uA min/\u00b1400uA typ/\u00b1520uA max; carries a small DC offset (10uA typ, 55uA max) unless trimmed, or AC-couple with a 10uF cap for direct connection to a current-input VCA (e.g. SSI2164)"
+        },
+        {
+          "pin": 4,
+          "name": "C4A",
+          "type": "passive",
+          "description": "differential integrating capacitor pin, pole 4 (pairs with C4B); also the attachment point for the optional sub-audio cutoff compensation diode network (see datasheet Figure 8)"
+        },
+        {
+          "pin": 5,
+          "name": "C4B",
+          "type": "passive",
+          "description": "differential integrating capacitor pin, pole 4 (pairs with C4A); see C4A for sub-audio compensation note"
+        },
+        {
+          "pin": 6,
+          "name": "C3A",
+          "type": "passive",
+          "description": "differential integrating capacitor pin, pole 3 (pairs with C3B)"
+        },
+        {
+          "pin": 7,
+          "name": "C3B",
+          "type": "passive",
+          "description": "differential integrating capacitor pin, pole 3 (pairs with C3A)"
+        },
+        {
+          "pin": 8,
+          "name": "V-",
+          "type": "power",
+          "description": "negative supply; \u00b14V to \u00b116V range, \u00b118V absolute max; typ 5.2mA draw"
+        },
+        {
+          "pin": 9,
+          "name": "GND",
+          "type": "ground",
+          "description": "analog signal ground"
+        },
+        {
+          "pin": 10,
+          "name": "C2B",
+          "type": "passive",
+          "description": "differential integrating capacitor pin, pole 2 (pairs with C2A)"
+        },
+        {
+          "pin": 11,
+          "name": "C2A",
+          "type": "passive",
+          "description": "differential integrating capacitor pin, pole 2 (pairs with C2B)"
+        },
+        {
+          "pin": 12,
+          "name": "C1B",
+          "type": "passive",
+          "description": "differential integrating capacitor pin, pole 1 (pairs with C1A)"
+        },
+        {
+          "pin": 13,
+          "name": "C1A",
+          "type": "passive",
+          "description": "differential integrating capacitor pin, pole 1 (pairs with C1B); pole 1 is the input-side pole of the ladder"
+        },
+        {
+          "pin": 14,
+          "name": "Q CTRL",
+          "type": "input",
+          "description": "resonance control; ground-referenced current-summing input, 0 to 1000uA range; oscillation begins around 350-450uA (400uA typ); a reverse-audio-taper pot (e.g. Bourns PDB181, 90% rotation = 50% resistance) into a 26.7k series resistor is the recommended manual control network"
+        },
+        {
+          "pin": 15,
+          "name": "FREQ CTRL",
+          "type": "input",
+          "description": "exponential frequency control; ground-referenced voltage-summing input, -19mV/octave typ sensitivity, usable range -120mV to +150mV; avoid exceeding ~175mV (see gotchas) for sub-audio cutoff use"
+        },
+        {
+          "pin": 16,
+          "name": "V+",
+          "type": "power",
+          "description": "positive supply; \u00b14V to \u00b116V range, \u00b118V absolute max; typ 5.0mA draw"
+        }
+      ],
+      "notes": "Per Sound Semiconductor SSI2144 datasheet Rev. 3.0 (January 2018), 'PIN CONNECTIONS 16-LEAD SSOP (JEDEC MO-137-AB)' diagram, page 1, top view; cross-checked against the same page's functional block diagram pin numbering. Each pole's differential cap pin pair (e.g. C1A/C1B) is a matched pair internal to one ladder stage, not two independent nodes."
+    }
+  },
+  "specs": {
+    "vs_min_v": 4.0,
+    "vs_max_v": 16.0,
+    "extra": {
+      "Icc (positive supply current)": "4.0mA min, 5.0mA typ, 6.2mA max (VFC and Q CTRL grounded)",
+      "Iee (negative supply current)": "4.2mA min, 5.2mA typ, 6.4mA max (VFC and Q CTRL grounded)",
+      "absolute max supply": "\u00b118V",
+      "frequency sweep range": "10,000:1 min, 20,000:1 typ",
+      "frequency control sensitivity": "-20mV/oct min, -19mV/oct typ, -18mV/oct max",
+      "frequency control input bias current": "4uA typ, 10uA max",
+      "frequency control input range": "-120mV to +150mV",
+      "frequency control feedthrough": "-36dB max, -50dB typ (-90mV<=VFC<=+90mV)",
+      "frequency control offset voltage (untrimmed)": "-10mV to +10mV",
+      "maximum available control current": "500uA min, 720uA typ, 1000uA max @ VFC=-120mV",
+      "Q current input range": "0 to 1000uA",
+      "Q current at oscillation": "350uA min, 400uA typ, 450uA max (0<IQ<400uA)",
+      "Q control feedthrough": "-40dB typ, -20dB max",
+      "input bias current": "40nA typ, 150nA max, either input",
+      "differential input signal range": "\u00b120mV nominal, \u00b150mV clipping",
+      "maximum output signal current": "\u00b1300uA min, \u00b1400uA typ, \u00b1520uA max",
+      "dynamic range": "92dB typ, A-weighted, noise floor to 1% THD",
+      "output offset current": "10uA typ, 55uA max",
+      "Top_op": "-40 to +85C",
+      "Tstg": "-65 to +150C",
+      "lead temperature (soldering, 10s)": "260C"
+    }
+  },
+  "typical_application": "Four-pole transistor-ladder lowpass VCF core for analog synthesizers: each pole produces 3dB attenuation at cutoff (24dB/octave total rolloff), with cutoff swept exponentially by the FREQ CTRL current-summing input and resonance/self-oscillation controlled by the Q CTRL current input. Differential signal inputs allow directly summing two oscillators. Output can drive an op-amp buffer or connect directly (AC-coupled) to a current-input VCA such as the SSI2164.",
+  "gotchas": [
+    "split supply only, minimum +-4V; will not run from a single rail",
+    "direct successor to the SSM2044 and uses the same internal ladder circuit/sound, but pin connections were revised for PCB layout and are NOT pin-compatible with the SSM2044",
+    "at very low (sub-audio) cutoff settings, voltage above ~175mV at FREQ CTRL (pin 15) can cause ladder current to drop below the output amp's bias current, latching the output to an unrelated fixed voltage with an audible thump; normal operation only resumes below ~135mV; a matched diode-pair bias network on the C4A/C4B pins (datasheet Figure 8) fixes this for modular systems needing sub-audio sweeps",
+    "passband gain drops as Q/resonance is increased (attenuates below cutoff as resonance rises) -- part of the classic SSM2044/SSI2144 character, but can be defeated with an external LM13700-based Q VCA replacing the internal one (datasheet Figures 9 and 10) if constant DC gain is wanted instead",
+    "Q CTRL and FREQ CTRL are both ground-referenced current/voltage summing nodes, not high-impedance inputs; drive them through the resistor networks shown in the datasheet's application circuit, not directly from a low-impedance source",
+    "for accurate 1V/octave tracking during self-oscillation, a temperature-compensating resistor (e.g. Panasonic ERA-V33J102V) and V/oct trim are required; without them, oscillation pitch will drift with temperature"
+  ],
+  "related": [
+    "ssi2140",
+    "lm13700"
+  ],
+  "source": "claude",
+  "verified": true,
+  "datasheet_url": "https://www.soundsemiconductor.com/downloads/ssi2144datasheet.pdf"
+}

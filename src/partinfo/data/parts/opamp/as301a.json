@@ -1,0 +1,181 @@
+{
+  "id": "as301a",
+  "name": "AS301A",
+  "aliases": [
+    "AS301AH",
+    "AS301AN"
+  ],
+  "full_name": "General Purpose Operational Amplifier (externally compensated)",
+  "manufacturers": [
+    "Alfa RPAR (JSC Alfa)"
+  ],
+  "category": "opamp",
+  "subcategory": "general-purpose op-amp (externally compensated)",
+  "tags": [
+    "opamp",
+    "general-purpose",
+    "externally-compensated",
+    "alfa",
+    "clone",
+    "dip-8",
+    "to5-8"
+  ],
+  "description": "General purpose externally-compensated operational amplifier, a modern Alfa RPAR clone of the classic National Semiconductor LM301A. Unlike the internally-compensated 741, the user supplies their own frequency-compensation network across the BAL/COMP and COMP pins, trading foolproof stability for tunable bandwidth/stability tradeoffs (overcompensate for margin, or optimize for >10x bandwidth improvement in specific applications). Offers overload protection on input and output, no latch-up with common-mode range exceeded, and low input bias/offset currents suited to integrators, sample-and-holds, and low-frequency waveform generators.",
+  "packages": {
+    "TO5-8": {
+      "template": "custom",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "BAL/COMP",
+          "type": "passive",
+          "description": "offset null / compensation node; paired with pin 8 (COMP) for the external frequency-compensation capacitor, and with pin 5 (BAL) for offset-null trim"
+        },
+        {
+          "pin": 2,
+          "name": "-IN",
+          "type": "input",
+          "description": "inverting input"
+        },
+        {
+          "pin": 3,
+          "name": "+IN",
+          "type": "input",
+          "description": "noninverting input"
+        },
+        {
+          "pin": 4,
+          "name": "V-",
+          "type": "power",
+          "description": "negative supply voltage"
+        },
+        {
+          "pin": 5,
+          "name": "BAL",
+          "type": "passive",
+          "description": "offset null balance; used with pin 1 and an external trim pot to null input offset voltage"
+        },
+        {
+          "pin": 6,
+          "name": "OUT",
+          "type": "output",
+          "description": "amplifier output"
+        },
+        {
+          "pin": 7,
+          "name": "V+",
+          "type": "power",
+          "description": "positive supply voltage"
+        },
+        {
+          "pin": 8,
+          "name": "COMP",
+          "type": "passive",
+          "description": "compensation node; paired with pin 1 (BAL/COMP) for the external compensation network (30 pF single-pole cap for unity-gain stability)"
+        }
+      ],
+      "notes": "Metal-can TO-5 (8-lead), round pin circle package, per the datasheet's page 1 top-view connection diagram (Alfa RPAR AS301A datasheet, 2020 v.3, rev 3). Pin arrangement is identical to the PDIP-8 package below (same numbering, same functions)."
+    },
+    "PDIP-8": {
+      "template": "dip",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "BAL/COMP",
+          "type": "passive",
+          "description": "offset null / compensation node; paired with pin 8 (COMP) for the external frequency-compensation capacitor, and with pin 5 (BAL) for offset-null trim"
+        },
+        {
+          "pin": 2,
+          "name": "-IN",
+          "type": "input",
+          "description": "inverting input"
+        },
+        {
+          "pin": 3,
+          "name": "+IN",
+          "type": "input",
+          "description": "noninverting input"
+        },
+        {
+          "pin": 4,
+          "name": "V-",
+          "type": "power",
+          "description": "negative supply voltage"
+        },
+        {
+          "pin": 5,
+          "name": "BAL",
+          "type": "passive",
+          "description": "offset null balance; used with pin 1 and an external trim pot to null input offset voltage"
+        },
+        {
+          "pin": 6,
+          "name": "OUT",
+          "type": "output",
+          "description": "amplifier output"
+        },
+        {
+          "pin": 7,
+          "name": "V+",
+          "type": "power",
+          "description": "positive supply voltage"
+        },
+        {
+          "pin": 8,
+          "name": "COMP",
+          "type": "passive",
+          "description": "compensation node; paired with pin 1 (BAL/COMP) for the external compensation network (30 pF single-pole cap for unity-gain stability)"
+        }
+      ],
+      "notes": "8-lead 300-mil plastic DIP, per the datasheet's page 1 top-view connection diagram (Alfa RPAR AS301A datasheet, 2020 v.3, rev 3; package dimensional drawing on page 5). Pin arrangement matches the TO5-8 package exactly, both dot/pin-1 referenced top view."
+    }
+  },
+  "specs": {
+    "vs_min_v": 5.0,
+    "vs_max_v": 18.0,
+    "vs_typ_v": 15.0,
+    "iq_ma": 1.8,
+    "pd_max_mw": 200.0,
+    "rth_ja_cw": 135.0,
+    "gain_db_min": 83.5,
+    "extra": {
+      "supply range (split)": "\u00b15V to \u00b118V",
+      "supply current": "1.8mA typ, 3mA max @ Vs=\u00b115V",
+      "input offset voltage": "2mV typ, 5mV max @ Tamb=25C; 10mV max over full temp range",
+      "avg tempco of input offset voltage": "6uV/C typ, 30uV/C max",
+      "input offset current": "30nA typ, 200nA max @ Tamb=25C; 300nA max over full temp range",
+      "input bias current": "250nA typ, 500nA max @ Tamb=25C; 600nA max over full temp range",
+      "input resistance": "0.5 Mohm min, 2 Mohm typ",
+      "large signal voltage gain": "50 V/mV min @ Tamb=25C (Vs=+-15V, RL>=2k, Vout=+-10V, ~93.98dB); 15 V/mV min over full temp range (~83.52dB)",
+      "output voltage swing": "+-12V min/+-14V typ @ RL=10k; +-11V min/+-13V typ @ RL=2k (Vs=+-15V)",
+      "input voltage range": "+-12V min, +15V/-13V typ @ Vs=+-15V",
+      "differential input voltage abs max": "+-30V",
+      "input voltage abs max": "+-15V (or supply voltage, whichever is less, for Vs<+-15V)",
+      "common-mode rejection ratio": "70dB min, 90dB typ",
+      "supply voltage rejection ratio": "70dB min, 96dB typ",
+      "slew rate": "10V/us typical as a summing amplifier (unity-gain follower, single-pole 30pF compensation)",
+      "compensation": "externally compensated via pins 1 (BAL/COMP) and 8 (COMP); 30pF single-pole cap is the standard/minimum stable compensation; datasheet gives balancing, two-pole, single-pole, and feedforward compensation topologies with component values",
+      "operating temp range": "0C to +70C (guaranteed); performance maintained at -45C and +85C",
+      "storage temp range": "-65C to +150C",
+      "Tj max": "100C"
+    }
+  },
+  "typical_application": "General-purpose precision amplification where external compensation is wanted: long-interval integrators/timers, sample-and-hold circuits, low-frequency waveform generators, and summing amplifiers, using the datasheet's balancing, single-pole, two-pole, or feedforward compensation networks to trade stability margin for bandwidth.",
+  "gotchas": [
+    "externally compensated like the original LM301A this clones, not internally compensated like a 741; needs a compensation cap (30pF minimum for unity-gain stability) across pins 1 (BAL/COMP) and 8 (COMP), or it will oscillate",
+    "pin 8 is COMP here, not NC as on a 741; despite the superficially similar 8-pin offset-null-at-1&5 / out-at-6 layout, this is not pin-compatible with a 741 socket",
+    "offset null uses pins 1 (BAL/COMP, shared with compensation) and 5 (BAL) with an external trim pot, per the balancing-circuit application diagram",
+    "guaranteed electrical specs are only over 0C to +70C; -45C and +85C are just 'performance maintained', not full guaranteed-spec range",
+    "split supply only; no single-supply operation specified",
+    "clone of the National Semiconductor LM301A; same external-compensation philosophy and pinout intent"
+  ],
+  "related": [
+    "lm741"
+  ],
+  "source": "claude",
+  "verified": true,
+  "datasheet_url": ""
+}

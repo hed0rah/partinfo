@@ -1,0 +1,435 @@
+{
+  "id": "as3320",
+  "name": "AS3320",
+  "aliases": [
+    "AS3320D",
+    "AS3320F"
+  ],
+  "full_name": "Voltage Controlled Filter (VCF), 4-pole architecture pin/electrically compatible with the Curtis CEM3320",
+  "manufacturers": [
+    "Alfa (JSC Alfa, Riga)"
+  ],
+  "category": "audio",
+  "subcategory": "voltage-controlled filter (OTA-based)",
+  "tags": [
+    "vcf",
+    "ota",
+    "transconductance",
+    "filter",
+    "analog-synth",
+    "eurorack",
+    "cem3320-clone",
+    "classic"
+  ],
+  "description": "High-performance four-pole voltage-controlled filter with on-chip voltage-controlled resonance, modern production of the classic Curtis Electromusic Specialties CEM3320. Four independent variable-gain-cell filter sections can be interconnected externally for low-pass, high-pass, band-pass, all-pass, or state-variable/notch responses, and can also be configured as a low-distortion sine-wave VCO. A single VCFI input exponentially controls all four sections' frequency together over a >10-octave range with low feedthrough; a separate resonance path (Vres/Ires) controls Q in a modified-linear manner from zero up to oscillation. Includes an on-chip -2V regulator to keep power dissipation and warm-up drift low.",
+  "packages": {
+    "PDIP-18": {
+      "template": "dip",
+      "pin_count": 18,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "IN1",
+          "type": "input",
+          "description": "inverting input to filter section 1's variable-gain cell"
+        },
+        {
+          "pin": 2,
+          "name": "IN2",
+          "type": "input",
+          "description": "inverting input to filter section 2's variable-gain cell"
+        },
+        {
+          "pin": 3,
+          "name": "GND",
+          "type": "ground",
+          "description": "signal ground"
+        },
+        {
+          "pin": 4,
+          "name": "Cap2",
+          "type": "passive",
+          "description": "integrating capacitor pin for filter section 2 (typ. 300pF to ground per the datasheet's application circuit)"
+        },
+        {
+          "pin": 5,
+          "name": "Cap1",
+          "type": "passive",
+          "description": "integrating capacitor pin for filter section 1 (typ. 300pF to ground)"
+        },
+        {
+          "pin": 6,
+          "name": "Out2",
+          "type": "output",
+          "description": "buffered output of filter section 2"
+        },
+        {
+          "pin": 7,
+          "name": "Out1",
+          "type": "output",
+          "description": "buffered output of filter section 1"
+        },
+        {
+          "pin": 8,
+          "name": "Vres",
+          "type": "input",
+          "description": "resonance input; feeds the on-chip resonance control element"
+        },
+        {
+          "pin": 9,
+          "name": "Ires",
+          "type": "input",
+          "description": "resonance control current input; sets Q from zero up to oscillation via ICR (0-100uA untrimmed per Note 7)"
+        },
+        {
+          "pin": 10,
+          "name": "Out4",
+          "type": "output",
+          "description": "buffered output of filter section 4"
+        },
+        {
+          "pin": 11,
+          "name": "Cap4",
+          "type": "passive",
+          "description": "integrating capacitor pin for filter section 4 (typ. 300pF to ground)"
+        },
+        {
+          "pin": 12,
+          "name": "VCFI",
+          "type": "input",
+          "description": "voltage-control frequency input; single exponential control drives all four sections' pole frequency together"
+        },
+        {
+          "pin": 13,
+          "name": "Vee",
+          "type": "power",
+          "description": "negative supply; requires a current-limiting series resistor REE (e.g. ~1.5k for -15V per datasheet Note 3, since REE = (|Vee|-2.7V)/8.4mA)"
+        },
+        {
+          "pin": 14,
+          "name": "Vcc",
+          "type": "power",
+          "description": "positive supply"
+        },
+        {
+          "pin": 15,
+          "name": "Out3",
+          "type": "output",
+          "description": "buffered output of filter section 3"
+        },
+        {
+          "pin": 16,
+          "name": "Cap3",
+          "type": "passive",
+          "description": "integrating capacitor pin for filter section 3 (typ. 300pF to ground)"
+        },
+        {
+          "pin": 17,
+          "name": "IN3",
+          "type": "input",
+          "description": "inverting input to filter section 3's variable-gain cell"
+        },
+        {
+          "pin": 18,
+          "name": "IN4",
+          "type": "input",
+          "description": "inverting input to filter section 4's variable-gain cell"
+        }
+      ],
+      "notes": "Per Alfa AS3320 datasheet (2020, rev 8) 'Pin Information' table and PDIP-18/SOIC-18 Circuit Block and Connection Diagram, p.1, 300-mil body, top view. Section numbering (1/2/4/3) is non-monotonic in package pin order but matches the datasheet exactly."
+    },
+    "SOIC-18": {
+      "template": "soic",
+      "pin_count": 18,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "IN1",
+          "type": "input",
+          "description": "inverting input to filter section 1's variable-gain cell"
+        },
+        {
+          "pin": 2,
+          "name": "IN2",
+          "type": "input",
+          "description": "inverting input to filter section 2's variable-gain cell"
+        },
+        {
+          "pin": 3,
+          "name": "GND",
+          "type": "ground",
+          "description": "signal ground"
+        },
+        {
+          "pin": 4,
+          "name": "Cap2",
+          "type": "passive",
+          "description": "integrating capacitor pin for filter section 2 (typ. 300pF to ground)"
+        },
+        {
+          "pin": 5,
+          "name": "Cap1",
+          "type": "passive",
+          "description": "integrating capacitor pin for filter section 1 (typ. 300pF to ground)"
+        },
+        {
+          "pin": 6,
+          "name": "Out2",
+          "type": "output",
+          "description": "buffered output of filter section 2"
+        },
+        {
+          "pin": 7,
+          "name": "Out1",
+          "type": "output",
+          "description": "buffered output of filter section 1"
+        },
+        {
+          "pin": 8,
+          "name": "Vres",
+          "type": "input",
+          "description": "resonance input; feeds the on-chip resonance control element"
+        },
+        {
+          "pin": 9,
+          "name": "Ires",
+          "type": "input",
+          "description": "resonance control current input; sets Q from zero up to oscillation via ICR (0-100uA untrimmed per Note 7)"
+        },
+        {
+          "pin": 10,
+          "name": "Out4",
+          "type": "output",
+          "description": "buffered output of filter section 4"
+        },
+        {
+          "pin": 11,
+          "name": "Cap4",
+          "type": "passive",
+          "description": "integrating capacitor pin for filter section 4 (typ. 300pF to ground)"
+        },
+        {
+          "pin": 12,
+          "name": "VCFI",
+          "type": "input",
+          "description": "voltage-control frequency input; single exponential control drives all four sections' pole frequency together"
+        },
+        {
+          "pin": 13,
+          "name": "Vee",
+          "type": "power",
+          "description": "negative supply; requires a current-limiting series resistor REE (e.g. ~1.5k for -15V per datasheet Note 3)"
+        },
+        {
+          "pin": 14,
+          "name": "Vcc",
+          "type": "power",
+          "description": "positive supply"
+        },
+        {
+          "pin": 15,
+          "name": "Out3",
+          "type": "output",
+          "description": "buffered output of filter section 3"
+        },
+        {
+          "pin": 16,
+          "name": "Cap3",
+          "type": "passive",
+          "description": "integrating capacitor pin for filter section 3 (typ. 300pF to ground)"
+        },
+        {
+          "pin": 17,
+          "name": "IN3",
+          "type": "input",
+          "description": "inverting input to filter section 3's variable-gain cell"
+        },
+        {
+          "pin": 18,
+          "name": "IN4",
+          "type": "input",
+          "description": "inverting input to filter section 4's variable-gain cell"
+        }
+      ],
+      "notes": "AS3320D device: identical pinout to the PDIP-18, per the same 'Pin Information' table and connection diagram, 300-mil (SOICW-18L) body. Alfa AS3320 datasheet, 2020, rev 8, p.1."
+    },
+    "QFN-24": {
+      "template": "qfn",
+      "pin_count": 24,
+      "pins": [
+        {
+          "pin": 2,
+          "name": "IN3",
+          "type": "input",
+          "description": "inverting input to filter section 3's variable-gain cell"
+        },
+        {
+          "pin": 3,
+          "name": "IN4",
+          "type": "input",
+          "description": "inverting input to filter section 4's variable-gain cell"
+        },
+        {
+          "pin": 4,
+          "name": "IN1",
+          "type": "input",
+          "description": "inverting input to filter section 1's variable-gain cell"
+        },
+        {
+          "pin": 5,
+          "name": "IN2",
+          "type": "input",
+          "description": "inverting input to filter section 2's variable-gain cell"
+        },
+        {
+          "pin": 7,
+          "name": "GND",
+          "type": "ground",
+          "description": "signal ground"
+        },
+        {
+          "pin": 8,
+          "name": "Cap2",
+          "type": "passive",
+          "description": "integrating capacitor pin for filter section 2 (typ. 300pF to ground)"
+        },
+        {
+          "pin": 9,
+          "name": "Cap1",
+          "type": "passive",
+          "description": "integrating capacitor pin for filter section 1 (typ. 300pF to ground)"
+        },
+        {
+          "pin": 11,
+          "name": "Out2",
+          "type": "output",
+          "description": "buffered output of filter section 2"
+        },
+        {
+          "pin": 12,
+          "name": "Out1",
+          "type": "output",
+          "description": "buffered output of filter section 1"
+        },
+        {
+          "pin": 14,
+          "name": "Vres",
+          "type": "input",
+          "description": "resonance input; feeds the on-chip resonance control element"
+        },
+        {
+          "pin": 15,
+          "name": "Ires",
+          "type": "input",
+          "description": "resonance control current input; sets Q from zero up to oscillation"
+        },
+        {
+          "pin": 16,
+          "name": "Out4",
+          "type": "output",
+          "description": "buffered output of filter section 4"
+        },
+        {
+          "pin": 17,
+          "name": "Cap4",
+          "type": "passive",
+          "description": "integrating capacitor pin for filter section 4 (typ. 300pF to ground)"
+        },
+        {
+          "pin": 19,
+          "name": "VCFI",
+          "type": "input",
+          "description": "voltage-control frequency input; single exponential control drives all four sections' pole frequency together"
+        },
+        {
+          "pin": 20,
+          "name": "Vee",
+          "type": "power",
+          "description": "negative supply; requires a current-limiting series resistor REE"
+        },
+        {
+          "pin": 22,
+          "name": "Vcc",
+          "type": "power",
+          "description": "positive supply"
+        },
+        {
+          "pin": 23,
+          "name": "Out3",
+          "type": "output",
+          "description": "buffered output of filter section 3"
+        },
+        {
+          "pin": 24,
+          "name": "Cap3",
+          "type": "passive",
+          "description": "integrating capacitor pin for filter section 3 (typ. 300pF to ground)"
+        }
+      ],
+      "notes": "AS3320F device, 24-lead QFN 4x4mm 0.5mm pitch, per Alfa AS3320 datasheet (2020, rev 8) 'Pin Information' table (p.1, QFN-24L Pin No column) cross-referenced against p.4's mechanical QFN-24 outline drawing (pin 1 indicator, top/bottom view). Only the 18 electrically-defined pins are listed here; QFN pins 1,6,10,13,18,21 are undocumented in this datasheet revision (2020 rev 8) and are omitted rather than guessed. The exposed thermal pad carries a contradictory spec in the source ('Don't connect' in the pin table vs 'improves thermal stability' in the prose) -- see gotchas."
+    }
+  },
+  "specs": {
+    "vs_typ_v": 15,
+    "bw_hz": 800000,
+    "extra": {
+      "supply (asymmetric)": "Vcc +9V to +18V; Vee -4V to -18V (not a simple split rail); typ +-15V",
+      "Icc": "3.8mA min, 5mA typ, 6.5mA max",
+      "Iee": "8mA min, 8.4mA typ, 8.8mA max",
+      "internal -2V regulator output (Vee-referenced node)": "-2.4V min, -2.7V typ, -2.9V max",
+      "current-limiting resistor for Vee": "required; REE = (|Vee| - 2.7V) / 8.4mA, e.g. ~1.5k for -15V supply (datasheet Note 3)",
+      "frequency control range": "3500:1 min, 10,000:1 typ (>10 octaves), swept over -20mV < VCFI < +160mV",
+      "frequency control sensitivity": "57.5 min, 60 typ, 62.5 max mV/decade, midrange",
+      "tempco of pole frequency control scale": "3000 min, 3300 typ, 3600 max ppm",
+      "exponential error of frequency control scale": "4% typ, 12% max (over -16mV < VCFI < +176mV, most error in upper two octaves)",
+      "pole frequency control feedthrough": "60mV typ, 200mV max",
+      "pole frequency warm-up drift": "0.5% typ, 1.5% max",
+      "variable gain cell gain at VCFI=0": "0.7 min, 1 typ, 1.3 max",
+      "max gain of variable gain cell": "2.4 min, 3 typ, 3.6 max",
+      "tempco of variable gain cell": "500 typ, 1500 max ppm",
+      "output impedance of gain cell": "0.5 min, 1 typ, 2 max Mohm",
+      "resonance element Gm at ICR=100uA": "0.8 min, 1 typ, 1.2 max mmho",
+      "resonance obtainable before oscillation": "20 min, 30 typ dB",
+      "resonance control feedthrough (untrimmed, 0<ICR<100uA)": "0.2 typ, 1.5 max V",
+      "input impedance of resonance signal input": "2.7 min, 3.6 typ, 4.5 max kohm",
+      "output swing at clipping": "10 min, 12 typ, 14 max Vpp",
+      "output DC voltage (VIN=0, RC=91k, RF=100k)": "5 min, 6.5 typ, 9 max V",
+      "buffer input bias current": "+-10 min, +-30 typ, +-100 max nA",
+      "buffer output impedance (VCFI=0)": "25 min, 50 typ, 100 max ohm",
+      "buffer slew rate": "1.5 min, 3 typ V/uS",
+      "buffer sink capability": "0.4 min, 0.5 typ, 0.63 max mA",
+      "input bias current, frequency control input": "0.2 min, 1 typ, 1.5 max uA",
+      "internal reference current, IREF": "45 min, 63 typ, 85 max uA",
+      "output noise re max output (LPF, 20kHz cutoff)": "-76 typ...-86 max dB (table lists -76/-86 as min/typ; more negative = quieter)",
+      "rejection in bandreject": "73 min, 83 typ dB",
+      "distortion in passband (3dB below clipping)": "0.1% typ, 0.3% max, predominantly 2nd harmonic",
+      "distortion in bandreject": "0.3% typ, 1% max",
+      "distortion of sine wave oscillation": "0.5% typ, 1.5% max",
+      "current through any pin (abs max)": "+-40mA",
+      "voltage, Vcc to Vee (abs max)": "+22V, -0.5V",
+      "voltage, Vcc to GND (abs max)": "+18V, -0.5V",
+      "voltage, Vee to GND (abs max)": "-4V, -0.5V",
+      "voltage, cell input to GND (abs max)": "+0.5V, -6V",
+      "voltage, frequency control to GND (abs max)": "+-6V",
+      "voltage, resonance control to GND (abs max)": "+2V, -18V",
+      "Tstg": "-55 to +150C",
+      "Top_op": "-25 to +75C"
+    }
+  },
+  "typical_application": "Classic analog-synth voltage-controlled filter (VCF) core, pin/electrically compatible with the vintage Curtis CEM3320: wire the four independent gain-cell sections externally for low-pass, high-pass, band-pass, notch, all-pass, or state-variable responses, with a shared exponential VCFI frequency control and a separate resonance path capable of driving the filter into self-oscillation (usable as a low-distortion sine VCO). Widely used in Eurorack and boutique synth VCF modules as a modern CEM3320/SSM2040-family second source.",
+  "gotchas": [
+    "negative supply (Vee) always needs a series current-limiting resistor REE; the datasheet gives REE = (|Vee| - 2.7V) / 8.4mA, e.g. ~1.5k for a -15V rail -- omitting it risks exceeding the internal -2V regulator's ratings",
+    "supply is asymmetric, not a simple +-V split: Vcc spec'd +9V to +18V while Vee is spec'd -4V to -18V; do not assume a symmetric bipolar supply is required or sufficient",
+    "resonance control (Ires/ICR) is untrimmed by default and only specified over 0 to 100uA in the datasheet's own feedthrough test; check the application circuit for the resistor network (Rres, RRI, RRC) needed to reach reliable self-oscillation",
+    "QFN (AS3320F) exposed power pad has a genuinely contradictory datasheet: the pin table says 'Don't connect' while the general description says it 'highly improves thermal stability' -- verify against Alfa's own application/eval board or contact them before deciding whether to solder it to a ground/thermal plane",
+    "only 18 of the QFN-24's 24 pins are individually named in this datasheet revision (rev 8, 2020); the remaining 6 are not documented and are assumed NC by elimination, not confirmed",
+    "pin/electrically intended as a CEM3320-compatible second source (per Alfa's Curtis-lineage AS33xx series and community usage), but this datasheet itself makes no explicit CEM3320 cross-reference claim -- treat the compatibility claim as a well-known community/vendor-lineage fact, not something stated on this PDF",
+    "internal -2V regulator node (pin-accessible indirectly via Vee) sits at -2.4 to -2.9V; useful as a quick continuity/power-up sanity check on the negative rail"
+  ],
+  "related": [
+    "ssi2140"
+  ],
+  "source": "claude",
+  "verified": true,
+  "datasheet_url": ""
+}

@@ -1,0 +1,176 @@
+{
+  "id": "as3109",
+  "name": "AS3109",
+  "aliases": [
+    "AS3109D"
+  ],
+  "full_name": "Voltage Controlled Four-Pole Filter (VCF)",
+  "manufacturers": [
+    "Alfa (JSC Alfa, Riga)"
+  ],
+  "category": "audio",
+  "subcategory": "voltage-controlled filter (transconductance-based, 4-pole)",
+  "tags": [
+    "vcf",
+    "ota",
+    "transconductance",
+    "filter",
+    "analog-synth",
+    "exponential-control",
+    "vintage-clone"
+  ],
+  "description": "High performance voltage controlled four-pole filter with four independent transconductance-amplifier sections that can be interconnected for low-pass, high-pass, band-pass, or all-pass responses. A single control voltage pin exponentially sets the frequency of all four sections together over greater than a 15 octave range with low control-voltage feedthrough. Functionally and pinwise matches the classic SSM2044 (16-pin, four cascaded VCA-buffered gm stages, single shared exp control), the filter chip used in the Roland Juno-106 and widely cloned/reissued since the original went out of production.",
+  "packages": {
+    "SOIC-16": {
+      "template": "soic",
+      "pin_count": 16,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "GND",
+          "type": "ground",
+          "description": "analog ground"
+        },
+        {
+          "pin": 2,
+          "name": "In1",
+          "type": "input",
+          "description": "signal input to transconductance amplifier stage 1; Rin internal to the amp is approx. 560ohm, datasheet recommends a trimmed external resistor to this pin (68k to signal, 560ohm to ground in the reference low-pass application)"
+        },
+        {
+          "pin": 3,
+          "name": "C1",
+          "type": "passive",
+          "description": "integrating capacitor pin for stage 1, to ground; 240pF used in the datasheet's reference low-pass wiring and in the -3dB=250Hz test condition (with 68k input R)"
+        },
+        {
+          "pin": 4,
+          "name": "Out1",
+          "type": "output",
+          "description": "buffered output of stage 1; this stage's output buffer has a passive resistor-type load (see gotchas) and a lower max positive drive current (0.6mA min) than stages 2/4"
+        },
+        {
+          "pin": 5,
+          "name": "In2",
+          "type": "input",
+          "description": "signal input to transconductance amplifier stage 2; same Rin/external network guidance as In1"
+        },
+        {
+          "pin": 6,
+          "name": "C2",
+          "type": "passive",
+          "description": "integrating capacitor pin for stage 2, to ground; same sizing guidance as C1"
+        },
+        {
+          "pin": 7,
+          "name": "Out2",
+          "type": "output",
+          "description": "buffered output of stage 2; this stage's output buffer has an active current-source load (see gotchas), max positive drive current 1mA min"
+        },
+        {
+          "pin": 8,
+          "name": "VEE",
+          "type": "power",
+          "description": "negative supply; -10V to -18V"
+        },
+        {
+          "pin": 9,
+          "name": "VC",
+          "type": "input",
+          "description": "control voltage input; exponential U/I converter input that sets the transconductance (and hence cutoff frequency) of all four stages together, -17.5 to -20.5 mV/octave (typ -19)"
+        },
+        {
+          "pin": 10,
+          "name": "In3",
+          "type": "input",
+          "description": "signal input to transconductance amplifier stage 3; same Rin/external network guidance as In1"
+        },
+        {
+          "pin": 11,
+          "name": "C3",
+          "type": "passive",
+          "description": "integrating capacitor pin for stage 3, to ground; same sizing guidance as C1"
+        },
+        {
+          "pin": 12,
+          "name": "Out3",
+          "type": "output",
+          "description": "buffered output of stage 3; passive resistor-type load like stage 1, max positive drive current 0.6mA min"
+        },
+        {
+          "pin": 13,
+          "name": "In4",
+          "type": "input",
+          "description": "signal input to transconductance amplifier stage 4; same Rin/external network guidance as In1"
+        },
+        {
+          "pin": 14,
+          "name": "C4",
+          "type": "passive",
+          "description": "integrating capacitor pin for stage 4, to ground; same sizing guidance as C1"
+        },
+        {
+          "pin": 15,
+          "name": "Out4",
+          "type": "output",
+          "description": "buffered output of stage 4; active current-source load like stage 2, highest max positive drive current of the four (1.3mA min)"
+        },
+        {
+          "pin": 16,
+          "name": "VCC",
+          "type": "power",
+          "description": "positive supply; +10V to +18V"
+        }
+      ],
+      "notes": "Pin table and Fig.1 (Circuit Block and Connection Diagram) of the Alfa AS3109 datasheet, 2021 v.1 (rev history: 10-May-2021 preliminary v1, 20-Dec-2021 version 1), page 1/4. AS3109D is the SOIC-16 (150 mil) device type; a DIP-16 pin numbering is stated as identical in the same table. Position confirmed against Fig.1's top-view connection diagram, which lists pins in the same GND/In1/C1/Out1.../VCC order around the package as the pin-info table."
+    }
+  },
+  "specs": {
+    "vs_min_v": 10.0,
+    "vs_max_v": 18.0,
+    "iq_ma": 7.5,
+    "extra": {
+      "supply (split, typical test)": "VCC=+15V, VEE=-15V",
+      "supply abs max VCC-VEE": "+36V, -0.5V",
+      "supply abs max VCC-GND": "+18V, -0.5V",
+      "supply abs max VEE-GND": "-18V, +0.5V",
+      "abs max current, any pin": "+-40mA",
+      "abs max input/control voltage vs GND": "+-6V",
+      "storage temp range": "-55 to +120C",
+      "operating temp range": "-25 to +75C",
+      "frequency control range": "15 octave (min)",
+      "control voltage span for 15 octaves": "-140mV to +160mV",
+      "control voltage sensitivity": "-17.5 to -20.5 mV/octave (typ -19)",
+      "tempco of frequency control": "0.33 %/C typ",
+      "cutoff freq test condition": "250Hz typ per stage, VC=0, C=240pF, R=68k ohm, f-3dB",
+      "frequency control error": "4% typ, 10% max",
+      "control input bias current": "30nA typ",
+      "voltage offset per stage, VC=0": "-12mV typ",
+      "voltage offset, 4 stages cascaded, VC=0": "+-0.2mV typ",
+      "max output voltage": "+-10V typ, RL=50k",
+      "max positive output current, stages 1&3 buffer": "0.6mA min",
+      "max positive output current, stage 2 buffer": "1mA min",
+      "max positive output current, stage 4 buffer": "1.3mA min",
+      "buffer slew rate": "25 V/us typ",
+      "current consumption, VC=0": "7.5mA typ",
+      "max current consumption, VC=-200mV": "13mA typ",
+      "control voltage feedthrough": "-45dB typ",
+      "Rin (internal, per amplifier)": "~560 ohm; datasheet recommends trimming the external input network to each IN pin for best performance"
+    }
+  },
+  "typical_application": "Classic 4-pole voltage-controlled low-pass filter core (Fig.3 of the datasheet): an exponential converter feeds VC (pin 9) with 1V/octave scaling through a 54k/1k divider; each of the four IN pins gets the signal through a 68k input resistor with a 560ohm pulldown to ground, and each stage's integrating cap (C1-C4) is 240pF; the four stages are cascaded output-to-input to build a steep low-pass response, though the independent sections can equally be wired for high-pass, band-pass, or all-pass. Used in electronic music / synthesizer VCF circuits as a direct successor part for the SSM2044.",
+  "gotchas": [
+    "single VC pin (9) sets the exponential frequency control for all four stages together; there is no per-stage independent cutoff control other than external mixing/scaling circuitry",
+    "stages 1 and 3 use a passive resistor-type output buffer load while stages 2 and 4 use an active current-source load; the datasheet explicitly notes their drive behavior differs (asymmetric max output current: 0.6mA for stages 1/3 vs 1-1.3mA for stages 2/4)",
+    "internal Rin per amplifier is only ~560 ohm; the datasheet calls out that the external circuit connected to each IN pin must be trimmed for accurate performance, this is not a high-impedance signal input on its own",
+    "split supply only, +10V/-10V minimum up to +18V/-18V maximum; no single-rail operation is documented",
+    "pin-compatible functional match to the vintage SSM2044 (same 16-pin layout and single shared VC pin), the chip behind the Roland Juno-106's VCF; treat as a modern reissue/clone rather than an SSM part number",
+    "datasheet is marked preliminary as of 2021 v.1 (10-May-2021 prelim, 20-Dec-2021 version 1); double-check against a newer revision if one becomes available"
+  ],
+  "related": [
+    "ssi2140"
+  ],
+  "source": "claude",
+  "verified": true,
+  "datasheet_url": ""
+}

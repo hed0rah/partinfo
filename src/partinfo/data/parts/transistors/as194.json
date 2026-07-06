@@ -1,0 +1,176 @@
+{
+  "id": "as194",
+  "name": "AS194",
+  "aliases": [
+    "AS194H",
+    "AS194DE"
+  ],
+  "full_name": "Ultra-Matched Monolithic NPN Transistor Pair",
+  "manufacturers": [
+    "Alfa (JSC Alfa RPAR)"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "matched NPN transistor pair (monolithic dual)",
+  "tags": [
+    "matched-pair",
+    "dual-transistor",
+    "npn",
+    "precision",
+    "transconductance",
+    "expo-converter",
+    "analog-synth",
+    "log-antilog"
+  ],
+  "description": "Junction-isolated, ultra well-matched monolithic NPN transistor pair with an order-of-magnitude tighter matching than conventional dual transistors: emitter-base offset voltage under 100uV, hFE matched to within 2%, and CMRR over 120dB, guaranteed over a 10uA-1mA collector current range. Internal clamp diodes across each emitter-base junction protect against reverse-bias degradation, the most common field-failure mode in matched pairs, and also clamp the shared substrate to the more negative emitter for isolation. AS194 is the tightest-spec bin of the AS194/AS394/AS394CH family, which all share the same die and pinout. Functionally an Alfa clone of the classic National Semiconductor LM194/LM394 ultra-matched pair long used in analog-synth exponential (V/octave) converters.",
+  "packages": {
+    "TO5-8": {
+      "template": "custom",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "NC",
+          "type": "nc",
+          "description": "not connected"
+        },
+        {
+          "pin": 2,
+          "name": "C1",
+          "type": "passive",
+          "description": "collector of transistor 1"
+        },
+        {
+          "pin": 3,
+          "name": "B1",
+          "type": "input",
+          "description": "base of transistor 1"
+        },
+        {
+          "pin": 4,
+          "name": "E1",
+          "type": "passive",
+          "description": "emitter of transistor 1"
+        },
+        {
+          "pin": 5,
+          "name": "NC",
+          "type": "nc",
+          "description": "not connected"
+        },
+        {
+          "pin": 6,
+          "name": "E2",
+          "type": "passive",
+          "description": "emitter of transistor 2"
+        },
+        {
+          "pin": 7,
+          "name": "B2",
+          "type": "input",
+          "description": "base of transistor 2"
+        },
+        {
+          "pin": 8,
+          "name": "C2",
+          "type": "passive",
+          "description": "collector of transistor 2"
+        }
+      ],
+      "notes": "Per Alfa AS194/AS394 datasheet (2020 v.3, p.1), Connection Diagram, top view, 8-pin TO5-8 metal can. Pin numbering for this package does NOT match the SOIC-8/EPAD package by number, only by function (e.g. pin 1 is NC here but is C1 on the SOIC part) -- confirmed against the datasheet's shared Pin Information table which lists both package pin columns side by side."
+    },
+    "SOIC-8/EPAD": {
+      "template": "soic",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "C1",
+          "type": "passive",
+          "description": "collector of transistor 1"
+        },
+        {
+          "pin": 2,
+          "name": "B1",
+          "type": "input",
+          "description": "base of transistor 1"
+        },
+        {
+          "pin": 3,
+          "name": "E1",
+          "type": "passive",
+          "description": "emitter of transistor 1"
+        },
+        {
+          "pin": 4,
+          "name": "NC",
+          "type": "nc",
+          "description": "not connected"
+        },
+        {
+          "pin": 5,
+          "name": "NC",
+          "type": "nc",
+          "description": "not connected"
+        },
+        {
+          "pin": 6,
+          "name": "E2",
+          "type": "passive",
+          "description": "emitter of transistor 2"
+        },
+        {
+          "pin": 7,
+          "name": "B2",
+          "type": "input",
+          "description": "base of transistor 2"
+        },
+        {
+          "pin": 8,
+          "name": "C2",
+          "type": "passive",
+          "description": "collector of transistor 2"
+        }
+      ],
+      "notes": "Per Alfa AS194/AS394 datasheet (2020 v.3, p.1), Connection Diagram, top view, 8-lead SOIC-8 (150mil) EPAD. This part is marked \"AS194DE\" on the package (marking table, p.4). The exposed EPAD is explicitly isolated from the substrate per the pin information table, but it is not a numbered/electrically-driven pin, so it is not listed as pin 9 here."
+    }
+  },
+  "specs": {
+    "hfe_min": 350,
+    "vce_sat_v": 0.25,
+    "extra": {
+      "current gain (hFE), IC=1mA, VCB=0V to 35V": "350 min, 700 typ",
+      "current gain (hFE), IC=100uA": "350 min, 550 typ",
+      "current gain (hFE), IC=10uA": "300 min, 450 typ",
+      "current gain (hFE), IC=1uA": "300 min",
+      "current gain match, dhFE, IC=10uA to 1mA": "0.5% typ, 2% max",
+      "emitter-base offset voltage, IC=10uA to 1mA": "25uV typ, 100uV max",
+      "CMRR (offset vs VCB), IC=10uA-1mA, VCB=0 to 35V": "10uV typ, 25uV max",
+      "offset vs collector current, VCB=0V, IC=10uA to 1mA": "5uV typ, 25uV max",
+      "collector-base leakage, VCB=35V": "0.05nA typ, 0.3nA max",
+      "collector-collector leakage, VCC=35V": "1nA typ, 2nA max",
+      "input voltage noise, IC=100uA, f=100Hz-100kHz": "1.8 nV/sqrt(Hz)",
+      "VCE(sat), IC=1mA, IB=10uA": "0.2V typ, 0.25V max",
+      "VCE(sat), IC=1mA, IB=100uA": "0.1V typ, 0.15V max",
+      "collector current (abs max)": "20mA",
+      "collector-emitter voltage VCEO (abs max)": "40V",
+      "collector-base voltage VCBO (abs max)": "40V",
+      "collector-substrate voltage (abs max)": "40V",
+      "collector-collector voltage (abs max)": "40V",
+      "base-emitter current (abs max)": "10mA",
+      "guaranteed matching current range": "10uA to 1mA"
+    }
+  },
+  "typical_application": "Precision temperature-tracking pair for exponential converters (V/octave CV-to-current stages), log/antilog amps, differential input stages, and other circuits needing two electrically identical, thermally-coupled NPN transistors -- the same role the vintage LM194/LM394 dual monolithic transistors filled in analog synth VCOs and expanders.",
+  "gotchas": [
+    "TO5-8 and SOIC-8/EPAD packages do NOT share pin numbering for the same function: pin 1 is NC on the TO5-8 can but is C1 on the SOIC-8/EPAD part; always check the package-specific column",
+    "internal clamp diodes across each transistor's E-B junction prevent damage/matching drift from reverse-biased emitter current; the simplified schematic also shows smaller cross-coupling diodes (~1/25 to 1/250 scale) tying the substrate node to both emitters and the two collectors together, so unusual bias topologies should be checked against that schematic",
+    "the die substrate is internally clamped to whichever emitter is more negative, it is not a simple floating node; on the SOIC-8/EPAD package the exposed thermal pad is explicitly isolated from substrate",
+    "matching specs (offset voltage, hFE match, CMRR) are only guaranteed over IC = 10uA to 1mA; outside that range the pair is not specified as matched",
+    "AS194 is the tightest-spec bin; AS394 and AS394CH are looser, cheaper-grade bins of the identical die and pinout -- do not substitute a AS394CH where AS194-grade matching is required",
+    "hFE is only guaranteed as a minimum (plus a typical) at each test current; the datasheet does not publish an hFE maximum"
+  ],
+  "related": [],
+  "source": "claude",
+  "verified": true,
+  "datasheet_url": ""
+}

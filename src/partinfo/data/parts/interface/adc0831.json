@@ -1,0 +1,180 @@
+{
+  "id": "adc0831",
+  "name": "ADC0831",
+  "aliases": [
+    "ADC0831-N",
+    "ADC0831BCN",
+    "ADC0831CCN",
+    "ADC0831CCWM",
+    "ADC0831CIWM"
+  ],
+  "full_name": "8-Bit Serial I/O A/D Converter with Single Differential Input",
+  "manufacturers": [
+    "Texas Instruments"
+  ],
+  "category": "interface",
+  "subcategory": "MICROWIRE serial ADC",
+  "tags": [
+    "adc",
+    "serial",
+    "microwire",
+    "8-bit",
+    "differential",
+    "successive-approximation",
+    "analog"
+  ],
+  "description": "8-bit successive-approximation A/D converter with a serial I/O compliant with TI's MICROWIRE standard for direct interface to COPS-family processors, and easily bit-banged from any microprocessor or shift register. The ADC0831 is the single-channel differential-input member of the ADC0831/2/4/8 family (0832 adds a 2-channel mux, 0834 a 4-channel mux, 0838 an 8-channel mux); it has no address/DI pin because there is nothing to select. Originally a National Semiconductor design, continued by TI (National's ADC family retains the '-N' suffix post-acquisition). Operates ratiometrically from a single 5V supply or with an external VREF to encode a smaller analog span across the full 8 bits; needs no zero or full-scale adjustment.",
+  "packages": {
+    "PDIP-8": {
+      "template": "dip",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "CS",
+          "type": "input",
+          "description": "chip select, active low; must be low to enable CLK and start/continue a conversion, high tri-states DO"
+        },
+        {
+          "pin": 2,
+          "name": "VIN(+)",
+          "type": "analog",
+          "description": "noninverting analog input of the differential pair"
+        },
+        {
+          "pin": 3,
+          "name": "VIN(-)",
+          "type": "analog",
+          "description": "inverting analog input of the differential pair; sets the analog zero/offset for VIN(+)"
+        },
+        {
+          "pin": 4,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground reference for both analog and digital sections"
+        },
+        {
+          "pin": 5,
+          "name": "VREF",
+          "type": "analog",
+          "description": "reference voltage input; sets the full-scale (256-code) span. Tie to VCC for ratiometric 0-5V operation, or reduce below VCC to encode a smaller analog span across the full 8 bits"
+        },
+        {
+          "pin": 6,
+          "name": "DO",
+          "type": "output",
+          "description": "serial data output, tri-state; shifts out the conversion result MSB-first then LSB-first on CLK falling edges, tri-states when CS goes high"
+        },
+        {
+          "pin": 7,
+          "name": "CLK",
+          "type": "clock",
+          "description": "external clock input; also times the successive-approximation conversion (10 kHz min to 400 kHz design limit, 40-60% duty cycle)"
+        },
+        {
+          "pin": 8,
+          "name": "VCC",
+          "type": "power",
+          "description": "positive supply, 4.5V to 6.3V operating (6.5V absolute max); also the ratiometric reference if VREF is tied to it"
+        }
+      ],
+      "notes": "Per TI datasheet SNAS531B (Aug 1999, rev March 2013), Figure 4 'ADC0831-N Single Differential Input PDIP Package (P) Top View', page 2. Pin numbering confirmed from the connection diagram, not inferred from function names."
+    },
+    "SOIC-8": {
+      "template": "soic",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "CS",
+          "type": "input",
+          "description": "chip select, active low; must be low to enable CLK and start/continue a conversion, high tri-states DO"
+        },
+        {
+          "pin": 2,
+          "name": "VIN(+)",
+          "type": "analog",
+          "description": "noninverting analog input of the differential pair"
+        },
+        {
+          "pin": 3,
+          "name": "VIN(-)",
+          "type": "analog",
+          "description": "inverting analog input of the differential pair; sets the analog zero/offset for VIN(+)"
+        },
+        {
+          "pin": 4,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground reference for both analog and digital sections"
+        },
+        {
+          "pin": 5,
+          "name": "VREF",
+          "type": "analog",
+          "description": "reference voltage input; sets the full-scale (256-code) span. Tie to VCC for ratiometric 0-5V operation, or reduce below VCC to encode a smaller analog span across the full 8 bits"
+        },
+        {
+          "pin": 6,
+          "name": "DO",
+          "type": "output",
+          "description": "serial data output, tri-state; shifts out the conversion result MSB-first then LSB-first on CLK falling edges, tri-states when CS goes high"
+        },
+        {
+          "pin": 7,
+          "name": "CLK",
+          "type": "clock",
+          "description": "external clock input; also times the successive-approximation conversion (10 kHz min to 400 kHz design limit, 40-60% duty cycle)"
+        },
+        {
+          "pin": 8,
+          "name": "VCC",
+          "type": "power",
+          "description": "positive supply, 4.5V to 6.3V operating (6.5V absolute max); also the ratiometric reference if VREF is tied to it"
+        }
+      ],
+      "notes": "Per TI datasheet SNAS531B (Aug 1999, rev March 2013), Figure 6 'ADC0831-N Single Differential Input SOIC Package (NPA) Top View', page 2 -- identical pinout to the PDIP package."
+    }
+  },
+  "specs": {
+    "vs_min_v": 4.5,
+    "vs_max_v": 6.3,
+    "freq_max_hz": 400000,
+    "extra": {
+      "resolution": "8-bit",
+      "input configuration": "single differential channel (VIN+/VIN-), no multiplexer or address pin",
+      "total unadjusted error": "+-1/2 LSB (B-grade, e.g. ADC0831BCN) or +-1 LSB (C-grade, e.g. ADC0831CCN/CCWM/CIWM), tested at VREF=5.00V",
+      "conversion time": "32us typ, tC = 8 clock periods (not including CS setup/MUX addressing time) at fCLK=250kHz",
+      "clock frequency": "10kHz min to 400kHz design limit; specs given typ at fCLK=250kHz",
+      "clock duty cycle": "40% to 60% (clock may be stopped low indefinitely if analog input is stable, or high up to 60us max)",
+      "power dissipation": "15mW typ at VCC=5V",
+      "ICC supply current": "0.9mA typ, 2.5mA max (VCC=5V, fCLK=250kHz, CS=1)",
+      "VIN(1) logic high min": "2.0V at VCC=5.25V",
+      "VIN(0) logic low max": "0.8V at VCC=4.75V",
+      "output source current": "-14mA typ, -6.5mA design limit min (VOUT=0V)",
+      "output sink current": "16mA typ, 8.0mA design limit min (VOUT=VCC)",
+      "reference input resistance": "1.3kohm (tested limit min) to 5.9kohm (design limit max)",
+      "input voltage range": "0V to 5V with single 5V supply; VIN(-) staying within ~50mV of the rails avoids input-protection-diode conduction (needs VCC >= 4.95V for a true full 0-5V span)",
+      "package dissipation": "0.8W at TA=25C, board mount",
+      "storage temperature": "-65C to +150C",
+      "operating temperature range": "-40C to +85C (BCV/CCV/BCN/CCN grades) or 0C to +70C (CCWM grade)",
+      "ESD susceptibility": "2000V (human body model, 100pF through 1.5kohm)"
+    }
+  },
+  "typical_application": "Low-cost 8-bit data acquisition of a single differential analog channel over a simple CS/CLK/DO serial interface compatible with TI MICROWIRE and easily bit-banged by any microprocessor; typical uses include reading a bridge or pressure sensor differentially, or a ratiometric potentiometer/thermistor front end feeding a COPS or general-purpose MCU.",
+  "gotchas": [
+    "the -N suffix (ADC0831-N/0832-N/0834-N/0838-N) marks TI's continuation of the original National Semiconductor ADC0831 family after the 2011 acquisition; it is not TI's usual NRND marker",
+    "ADC0831 has no input mux or DI (address) pin, unlike its siblings ADC0832 (2-ch mux), ADC0834 (4-ch mux), and ADC0838 (8-ch mux) -- it is permanently wired as one differential channel",
+    "DO shifts out MSB-first immediately, then re-shifts the same result LSB-first afterward; a receiver expecting only one bit order will misread half the transmission if it doesn't stop clocking after 8 bits",
+    "VREF sets the full-scale span (not just a bias): tie to VCC for ratiometric 0-5V operation, or drop it below VCC to encode a smaller analog span across the full 8-bit code",
+    "VIN(-) must stay close to GND (within ~50mV) or its internal protection diode conducts and corrupts the conversion; a true 0V-5V single-supply input range requires VCC >= 4.95V to keep enough diode margin",
+    "the 6.3-8.5V internal zener/shunt-regulator trick for running from higher supply voltages needs the separate V+ pin, which the PDIP-8/SOIC-8 ADC0831 package does not break out (only VCC) -- that trick applies to the ADC0834-N/0838-N packages that do expose V+"
+  ],
+  "related": [
+    "mcp3008",
+    "ads1115"
+  ],
+  "source": "claude",
+  "verified": true,
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/adc0831-n.pdf"
+}

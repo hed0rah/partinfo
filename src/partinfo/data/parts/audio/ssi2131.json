@@ -1,0 +1,174 @@
+{
+  "id": "ssi2131",
+  "name": "SSI2131",
+  "aliases": [
+    "SSI2131SS-TU",
+    "SSI2131SS-RT"
+  ],
+  "full_name": "FatKeys Voltage Controlled Oscillator",
+  "manufacturers": [
+    "Sound Semiconductor"
+  ],
+  "category": "audio",
+  "subcategory": "voltage-controlled oscillator (analog synth VCO)",
+  "tags": [
+    "vco",
+    "exponential-converter",
+    "analog-synth",
+    "eurorack",
+    "triangle-core",
+    "pwm"
+  ],
+  "description": "Analog-synth voltage-controlled oscillator core with a temperature-compensated exponential converter driving a triangle-core oscillator; internal shapers derive sawtooth and a variable-width pulse (PWM) from the triangle. Buffered triangle, sawtooth, and pulse outputs, plus soft sync and hard sync inputs. Requires very few external parts (single timing capacitor, a handful of resistors for scale/HF trim, a 2.5V VREF). Designed for split, regulated +5V/-5V-to--18V supplies rather than the +-12V/+-15V rails typical of vintage synth VCO chips it succeeds in function (e.g. CEM3340-class designs), trading legacy pin compatibility for improved temperature stability and lower component count. Sound Semiconductor's SSI2130 is the higher-feature sibling in the same family, adding an integrated 5-channel mixer, open-collector square output, sine shaper, and through-zero FM/PM.",
+  "packages": {
+    "SOP-16": {
+      "template": "soic",
+      "pin_count": 16,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "SAW OUT",
+          "type": "output",
+          "description": "sawtooth generator output, 0V to VREF swing; direction (rising vs falling ramp) set by internal TIME REVERSE state tied to the sync logic. Also fed internally to the (unpopulated on this part) mixer"
+        },
+        {
+          "pin": 2,
+          "name": "PULSE OUT",
+          "type": "output",
+          "description": "output of the internal PWM comparator; driven hard to GND or VREF depending on the triangle vs PWM CTRL comparison"
+        },
+        {
+          "pin": 3,
+          "name": "PWM CTRL",
+          "type": "input",
+          "description": "second input to the internal PWM comparator, range 0V to VREF; compared against the buffered triangle to produce the variable-width pulse"
+        },
+        {
+          "pin": 4,
+          "name": "TRI OUT",
+          "type": "output",
+          "description": "buffered triangle output, swings between GND and VREF at a rate set by TCAP and the exponential converter's output current"
+        },
+        {
+          "pin": 5,
+          "name": "HF TRACK",
+          "type": "output",
+          "description": "current output used to trim high-frequency tuning errors caused by bulk emitter resistance in the exponential converter; feed back into EXPO FREQ through a resistor network (fixed or trimmed) for HF compensation, or leave unconnected if not used"
+        },
+        {
+          "pin": 6,
+          "name": "EXPO FREQ",
+          "type": "input",
+          "description": "ground-referenced current input to the exponential converter; sensitivity is set by the current into EXPO SCALE, typically 20uA/octave with a 50k ohm resistor for standard 1V/octave response"
+        },
+        {
+          "pin": 7,
+          "name": "V-",
+          "type": "power",
+          "description": "negative supply, -4.75V to -18V; recommend a 100nF local decoupling capacitor placed close to the package with short low-inductance traces, plus a dedicated regulator for best noise performance"
+        },
+        {
+          "pin": 8,
+          "name": "TCAP",
+          "type": "passive",
+          "description": "oscillator timing capacitor to ground; recommended 3.9nF C0G/NP0 or polystyrene for the audio range, usable range 1nF-10nF"
+        },
+        {
+          "pin": 9,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground; connect with thick short traces or vias to a ground plane"
+        },
+        {
+          "pin": 10,
+          "name": "HARD SYNC",
+          "type": "input",
+          "description": "level-sensitive hard sync; when driven high, an internal switch discharges TCAP to ground, resetting the oscillator to the start of its cycle irrespective of phase. Ground directly if unused"
+        },
+        {
+          "pin": 11,
+          "name": "SOFT SYNC",
+          "type": "input",
+          "description": "connects through an internal 5k ohm resistor; an AC-coupled pulse causes the falling triangle to reverse direction toward the upper point. Only affects the falling half of the cycle (while TCAP is discharging). Leave unconnected if not used"
+        },
+        {
+          "pin": 12,
+          "name": "LIN FREQ",
+          "type": "input",
+          "description": "ground-referenced linear frequency control current input; oscillator frequency is a linear function of this current and stops entirely at zero. Tie to a constant ~5uA (e.g. VREF through 499k ohm) for normal operation if linear FM is not used"
+        },
+        {
+          "pin": 13,
+          "name": "EXPO SCALE",
+          "type": "input",
+          "description": "ground-referenced current input that sets the sensitivity (scale) of the EXPO FREQ input; a 20uA/octave scale requires 94.34uA into this pin"
+        },
+        {
+          "pin": 14,
+          "name": "VREF",
+          "type": "input",
+          "description": "reference voltage input, must be a stable, low-noise, low-impedance 2.5V (within +-0.5%/+-12.5mV for rated tuning stability); sets waveform amplitude and the EXPO SCALE/LIN FREQ current references"
+        },
+        {
+          "pin": 15,
+          "name": "BW COMP",
+          "type": "passive",
+          "description": "frequency compensation node for the exponential converter; connect a 270 ohm resistor in series with a 10nF capacitor to ground"
+        },
+        {
+          "pin": 16,
+          "name": "V+",
+          "type": "power",
+          "description": "positive supply, regulated +4.75V to +5.25V (typ +5.0V); recommend a 100nF local decoupling capacitor placed close to the package with short low-inductance traces"
+        }
+      ],
+      "notes": "Per Sound Semiconductor SSI2131 datasheet Rev 2.0, January 2021, page 1 pin-connection diagram (\"PIN CONNECTIONS\", 16-Lead SOP, top view, JEDEC MS-012-AC) cross-checked against the page 3 pin-description table. Package labeled PSL16 by SSI."
+    }
+  },
+  "specs": {
+    "vs_min_v": 4.75,
+    "vs_max_v": 18.0,
+    "vs_typ_v": 5.0,
+    "iq_ma": 3.75,
+    "freq_max_hz": 60000,
+    "extra": {
+      "V+ range": "+4.75V to +5.25V, typ +5.0V, regulated",
+      "V- range": "-4.75V to -18V, regulated recommended (abs max -18V)",
+      "Isy+": "3.75mA typ",
+      "Isy-": "-2.90mA typ",
+      "VREF spec": "2.5V +-0.5% (+-12.5mV) required; 100uA max current draw from VREF pin",
+      "frequency sweep range": "1000:1 (ten octaves), calibrated to +-1 cent error",
+      "max charging current": "1.2mA typ (TCAP=3.9nF)",
+      "exponential conformity": "0.3% typ (calibrated per datasheet Expo Setup procedure)",
+      "exponential scale factor drift": "200 ppm/C typ, 0-50C, <=4kHz, 1/10th semitone",
+      "multiplier offset": "0.5mV typ",
+      "multiplier input bias current": "10nA typ",
+      "control constant - expo (Iscale)": "20uA/octave typ default (94.34uA into EXPO SCALE pin)",
+      "soft sync input resistance": "5k ohm typ",
+      "hard sync thresholds": "upper 1.55V typ, lower 1.0V typ",
+      "triangle output drive": "0V-VREF swing, 6mA source / 1mA sink typ",
+      "sawtooth output drive": "0V-VREF swing, 6mA sink or source typ, discharge time 1.6us typ",
+      "pulse/PWM output": "0V-VREF swing, 6mA source typ, rise 70ns/fall 125ns typ, PWM bias current 40nA typ",
+      "recommended TCAP": "3.9nF C0G/NP0 or polystyrene for audio range; usable 1nF-10nF",
+      "operating temp range": "-40 to +85C",
+      "storage temp range": "-65 to +150C",
+      "lead temp (soldering, 10s)": "260C"
+    }
+  },
+  "typical_application": "Complete VCO front end for an analog synth voice: buffered triangle, sawtooth, and PWM pulse outputs, with 1V/octave exponential control (summed at EXPO FREQ), linear FM (LIN FREQ), and soft/hard sync inputs for classic analog-synth oscillator sync effects.",
+  "gotchas": [
+    "requires two regulated supplies (+5V and -5V to -18V) plus a stable low-noise 2.5V VREF; not a single-rail part and VREF quality directly sets tuning stability",
+    "LIN FREQ needs a constant bias current (recommended ~5uA via a 499k ohm resistor from VREF) even when linear FM isn't used, since the oscillator frequency is a linear function of this current and stops entirely at zero",
+    "requires a tuning procedure (EXPO SCALE trim, then optional HF TRACK trim) to hit accurate 1V/octave tracking across the ten-octave range; not a plug-and-play fixed-scale part for tonal use, though fixed resistor values are given for LFO-grade applications",
+    "HARD SYNC is level-sensitive: holding it high stops the oscillator at GND rather than just resetting phase once; needs a short pulse (capacitively coupled) for edge-triggered sync behavior",
+    "TCAP must be a low-tempco C0G/NP0 or polystyrene capacitor; ordinary ceramics will drift tuning with temperature",
+    "sold only directly by Sound Semiconductor and its authorized resellers, not a general second-sourced part",
+    "successor-in-function to classic CEM3340-family analog synth VCO chips but not pin-compatible; expects modern regulated low-voltage split supplies rather than vintage +-12V/+-15V rails"
+  ],
+  "related": [
+    "ssi2140"
+  ],
+  "source": "claude",
+  "verified": true,
+  "datasheet_url": "https://www.soundsemiconductor.com/downloads/ssi2131datasheet.pdf"
+}

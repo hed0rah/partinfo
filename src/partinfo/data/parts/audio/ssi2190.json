@@ -1,0 +1,218 @@
+{
+  "id": "ssi2190",
+  "name": "SSI2190",
+  "aliases": [
+    "SSI2190SS-TU",
+    "SSI2190SS-RT"
+  ],
+  "full_name": "ProCircuit 6-into-1 Voltage Controlled Mixer",
+  "manufacturers": [
+    "Sound Semiconductor"
+  ],
+  "category": "audio",
+  "subcategory": "voltage-controlled mixer (OTA-based)",
+  "tags": [
+    "vca",
+    "mixer",
+    "ota",
+    "transconductance",
+    "linear-control",
+    "analog-synth",
+    "eurorack"
+  ],
+  "description": "Six-into-one voltage controlled mixer built from six independent new-generation OTAs, each with differential voltage inputs and a current-mode linear control input, summed to a single high-compliance current output. The high-compliance MIX OUT allows multiple SSI2190s to be paralleled for more than six inputs. Differential inputs support phase correction and differential signal paths. Wide split/single supply range targets everything from effects pedals to prosumer mixing gear; datasheet used for this entry is marked PRELIMINARY (Rev 1.4, July 2024) with several spec-table values still unpublished (shown as 'xx' placeholders in the vendor sheet).",
+  "packages": {
+    "SSOP-24": {
+      "template": "ssop",
+      "pin_count": 24,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "V-",
+          "type": "power",
+          "description": "negative supply; recommend 100nF local decoupling capacitor placed as close to the package as possible with a low-inductance trace to ground"
+        },
+        {
+          "pin": 2,
+          "name": "IN 1+",
+          "type": "input",
+          "description": "non-inverting voltage signal input, channel 1"
+        },
+        {
+          "pin": 3,
+          "name": "IN 2+",
+          "type": "input",
+          "description": "non-inverting voltage signal input, channel 2"
+        },
+        {
+          "pin": 4,
+          "name": "IN 3+",
+          "type": "input",
+          "description": "non-inverting voltage signal input, channel 3"
+        },
+        {
+          "pin": 5,
+          "name": "CTRL 3",
+          "type": "input",
+          "description": "control current input for channel 3, referenced to CTRL REF (pin 13)"
+        },
+        {
+          "pin": 6,
+          "name": "CTRL 2",
+          "type": "input",
+          "description": "control current input for channel 2, referenced to CTRL REF (pin 13)"
+        },
+        {
+          "pin": 7,
+          "name": "CTRL 1",
+          "type": "input",
+          "description": "control current input for channel 1, referenced to CTRL REF (pin 13)"
+        },
+        {
+          "pin": 8,
+          "name": "IN 4+",
+          "type": "input",
+          "description": "non-inverting voltage signal input, channel 4"
+        },
+        {
+          "pin": 9,
+          "name": "IN 5+",
+          "type": "input",
+          "description": "non-inverting voltage signal input, channel 5"
+        },
+        {
+          "pin": 10,
+          "name": "IN 6+",
+          "type": "input",
+          "description": "non-inverting voltage signal input, channel 6"
+        },
+        {
+          "pin": 11,
+          "name": "NC",
+          "type": "nc",
+          "description": "no connection; leave unconnected"
+        },
+        {
+          "pin": 12,
+          "name": "MIX OUT",
+          "type": "output",
+          "description": "high-compliance current output, sum of all six OTA channels; multiple SSI2190 MIX OUT pins can be paralleled to combine more than six inputs"
+        },
+        {
+          "pin": 13,
+          "name": "CTRL REF",
+          "type": "input",
+          "description": "common reference for all six control inputs; tie to control ground in a bipolar-supply system, or to a pseudo-ground in a single-supply system"
+        },
+        {
+          "pin": 14,
+          "name": "NC",
+          "type": "nc",
+          "description": "no connection; leave unconnected"
+        },
+        {
+          "pin": 15,
+          "name": "IN 6-",
+          "type": "input",
+          "description": "inverting voltage signal input, channel 6; differential input should not exceed +-100mV"
+        },
+        {
+          "pin": 16,
+          "name": "IN 5-",
+          "type": "input",
+          "description": "inverting voltage signal input, channel 5; differential input should not exceed +-100mV"
+        },
+        {
+          "pin": 17,
+          "name": "IN 4-",
+          "type": "input",
+          "description": "inverting voltage signal input, channel 4; differential input should not exceed +-100mV"
+        },
+        {
+          "pin": 18,
+          "name": "CTRL 4",
+          "type": "input",
+          "description": "control current input for channel 4, referenced to CTRL REF (pin 13)"
+        },
+        {
+          "pin": 19,
+          "name": "CTRL 5",
+          "type": "input",
+          "description": "control current input for channel 5, referenced to CTRL REF (pin 13)"
+        },
+        {
+          "pin": 20,
+          "name": "CTRL 6",
+          "type": "input",
+          "description": "control current input for channel 6, referenced to CTRL REF (pin 13)"
+        },
+        {
+          "pin": 21,
+          "name": "IN 3-",
+          "type": "input",
+          "description": "inverting voltage signal input, channel 3; differential input should not exceed +-100mV"
+        },
+        {
+          "pin": 22,
+          "name": "IN 2-",
+          "type": "input",
+          "description": "inverting voltage signal input, channel 2; differential input should not exceed +-100mV"
+        },
+        {
+          "pin": 23,
+          "name": "IN 1-",
+          "type": "input",
+          "description": "inverting voltage signal input, channel 1; differential input should not exceed +-100mV"
+        },
+        {
+          "pin": 24,
+          "name": "V+",
+          "type": "power",
+          "description": "positive supply; recommend 100nF local decoupling capacitor placed as close to the package as possible with a low-inductance trace to ground"
+        }
+      ],
+      "notes": "Per Sound Semiconductor's own 'PIN CONNECTIONS 24-LEAD SSOP' diagram and the pin-description table on page 3 (Rev. 1.4, July 2024, marked PRELIMINARY), 24-lead SSOP (SSI package ID 'PSSL24', JEDEC MO-137-AE), top view. Cross-checked against the functional block diagram on page 1; both agree on pin numbering for all six OTA channels."
+    }
+  },
+  "specs": {
+    "vs_min_v": 4.0,
+    "vs_max_v": 18.0,
+    "extra": {
+      "supply (split)": "+-4V to +-18V (spec table); +-20V absolute max total supply",
+      "Isy": "+11.6mA typ (positive rail), -12.3mA typ (negative rail), all six channels active",
+      "PSRR": "65dB typ @ 60Hz",
+      "control current range": "0 to 100uA at CTRL pins, mute to full-on",
+      "transconductance (gm)": "8350uS typ",
+      "input bias current": "2.0uA typ at IN+/IN- pins",
+      "input offset current": "20nA typ",
+      "CMRR": "68dB typ",
+      "max input voltage": "V- +2V to V+ -2V at IN+ and IN- pins",
+      "max differential input voltage": "+-1V typ between any IN+/IN- pair; +-4V absolute max",
+      "output compliance": "V- +2V to V+ -2V",
+      "output noise": "-100dBu typ (VIN = GND)",
+      "THD": "0.02% typ",
+      "max input signal level": "10Vrms",
+      "max control current abs max": "1mA",
+      "Top_op": "-40 to +85C",
+      "Tstg": "-65 to +150C",
+      "lead temp (soldering, 10s)": "260C",
+      "datasheet status": "vendor PDF is marked PRELIMINARY (Rev 1.4, July 2024); several spec-table entries (ISY max, gm min/max, gm tracking, control feedthrough, max attenuation, input resistance, output offset current, max output current, headroom, channel separation, slew rate) are unpublished placeholders ('xx') in the source sheet, not omissions by this entry"
+    }
+  },
+  "typical_application": "Six-channel voltage-controlled audio/CV mixer for synth voice architectures and mixing consoles: sum up to six differential inputs to one current output, with per-channel linear (current-mode) level control referenced to CTRL REF. MIX OUT pins of multiple SSI2190s can be paralleled to extend beyond six inputs. Typical application circuit (datasheet Figure 1) uses a TL072-based current-to-voltage output stage (26.1k ROUT, 150pF CF) and a 49.9k/221R input attenuator network per channel.",
+  "gotchas": [
+    "differential input (IN+ to IN-) must stay within +-100mV typ (+-1V typ max per spec table, +-4V absolute max); this is a small-signal differential port, not a general-purpose differential line receiver",
+    "CTRL REF (pin 13) must be tied to control ground (bipolar supply) or a pseudo-ground (single supply); floating it breaks all six control inputs since they're referenced to it",
+    "pins 11 and 14 are NC and must be left unconnected per the datasheet",
+    "MIX OUT is a high-compliance current output, not a voltage output; needs an external transimpedance stage (see Figure 1's TL072 + ROUT/CF) to get a usable voltage signal",
+    "datasheet used is a PRELIMINARY revision (1.4, July 2024) with numerous spec values still unpublished ('xx' in the vendor's own table); treat gm min/max, ISY max, control feedthrough, output offset current, max output current, headroom, channel separation, and slew rate as unconfirmed until Sound Semiconductor issues a final sheet",
+    "sold only directly by Sound Semiconductor and its authorized resellers, not a general second-sourced part"
+  ],
+  "related": [
+    "ssi2140",
+    "lm13700"
+  ],
+  "source": "claude",
+  "verified": true,
+  "datasheet_url": "https://www.soundsemiconductor.com/downloads/ssi2190datasheet.pdf"
+}

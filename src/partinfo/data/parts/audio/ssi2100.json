@@ -1,0 +1,130 @@
+{
+  "id": "ssi2100",
+  "name": "SSI2100",
+  "aliases": [
+    "SSI2100S-TU",
+    "SSI2100S-RT"
+  ],
+  "full_name": "ProCircuit 512-Stage Bucket Brigade Delay",
+  "manufacturers": [
+    "Sound Semiconductor"
+  ],
+  "category": "audio",
+  "subcategory": "bucket brigade delay (BBD)",
+  "tags": [
+    "bbd",
+    "bucket-brigade-delay",
+    "analog-delay",
+    "chorus",
+    "flanger",
+    "analog-synth",
+    "eurorack",
+    "cmos"
+  ],
+  "description": "First new bucket brigade delay design in decades, built on a modern CMOS process rather than a legacy vintage clone. A 512-stage switched-capacitor delay chain runs from a single TTL/CMOS clock (1kHz-2MHz), with an on-chip clock driver and tetrode bias generator removing the need for a companion BBD clock IC or an external legacy VGG (14/15 V+) supply. A patent-pending scheme allows multiple SSI2100s to be daisy-chained for longer delays without recalibrating inputs/outputs, and exposes intermediate feedback taps for reverb/psychoacoustic effects. Single 5V operation and an 8-lead SOP package make it far more compact than classic BBDs like the MN3007/MN3005 it functionally succeeds.",
+  "packages": {
+    "SOP-8": {
+      "template": "soic",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "GND",
+          "type": "ground",
+          "description": "analog signal ground; connect with a short, low-inductance trace or closely-spaced vias to a ground plane"
+        },
+        {
+          "pin": 2,
+          "name": "GCAP",
+          "type": "input",
+          "description": "gain capacitor enable; tie to GND for standard (0dB-ish) gain or to V+ for high gain (~6dB). Must not be left floating"
+        },
+        {
+          "pin": 3,
+          "name": "SIGNAL IN",
+          "type": "input",
+          "description": "audio signal input to the internal sample-and-hold; requires a 3.20V DC bias and a low-impedance drive source. Max signal range 440mVpp"
+        },
+        {
+          "pin": 4,
+          "name": "VTBIAS",
+          "type": "passive",
+          "description": "internally-generated tetrode bias voltage (~14/15 of V+, biases internal tetrode transistors); connect a 3.3uF capacitor to GND (add a parallel 100nF ceramic for very high clock frequencies)"
+        },
+        {
+          "pin": 5,
+          "name": "SIG OUT 2",
+          "type": "output",
+          "description": "delay chain output when CLK IN is high; source-follower, anti-phase with SIG OUT 1, needs an external load"
+        },
+        {
+          "pin": 6,
+          "name": "SIG OUT 1",
+          "type": "output",
+          "description": "delay chain output when CLK IN is low; source-follower, anti-phase with SIG OUT 2, needs an external load"
+        },
+        {
+          "pin": 7,
+          "name": "V+",
+          "type": "power",
+          "description": "+5V supply only; recommend a local 100nF X7R ceramic decoupling capacitor plus 10uF+ bulk decoupling, short low-inductance trace to ground"
+        },
+        {
+          "pin": 8,
+          "name": "CLK IN",
+          "type": "clock",
+          "description": "clock input to the internal clock generator, which produces two anti-phase buffered clocks for the delay chain; TTL/CMOS compatible at both 3.3V and 5V logic levels"
+        }
+      ],
+      "notes": "Per Sound Semiconductor's own Pin Connections diagram and Pin Descriptions table (Rev 2.2, October 2025), 8-lead SOP, top view. SSI package ID 'PSL8', compliant with JEDEC MS-012-AA."
+    }
+  },
+  "specs": {
+    "vs_min_v": 4.75,
+    "vs_typ_v": 5.0,
+    "vs_max_v": 5.25,
+    "iq_ma": 0.5,
+    "gain_db_min": 2.0,
+    "gain_db_max": 6.0,
+    "freq_max_hz": 2000000,
+    "extra": {
+      "delay chain length": "512 stages",
+      "clock frequency range": "1kHz to 2000kHz (2MHz); will run outside this range with some degradation",
+      "clock duty cycle": "50% typ, equal high/low periods recommended",
+      "clock rise/fall time": "100ns max",
+      "clock logic levels": "VIH 2.5V min, VIL 1.5V max (TTL/CMOS, 3.3V and 5V compatible)",
+      "clock input capacitance": "5pF typ",
+      "signal input range (optimal)": "40-440mVpp, THD<1% in this range",
+      "signal input DC bias": "3.20V required at pin 3, needs a low-impedance bias source",
+      "insertion loss": "-1.2 to -2.0dB typ -1.6dB, at Pin 3",
+      "output offset voltage": "2.4V typ",
+      "input/output -3dB bandwidth": "15kHz min (at fCLK=40kHz test condition; scales with clock frequency, filter to half fCLK to satisfy Nyquist)",
+      "output noise voltage": "0.14mVrms typ, A-weighted, VIN=GND",
+      "SNR": "61dB typ, A-weighted at 1% THD",
+      "THD": "0.22% typ @ VIN=70mVrms",
+      "sampling capacitor": "5-10pF depending on GCAP gain setting",
+      "absolute max supply/pin voltage": "7V",
+      "Top_op": "-40 to +85C",
+      "Tstg": "-65 to +150C",
+      "lead temp (soldering, 10s)": "260C max"
+    }
+  },
+  "typical_application": "Analog delay line for chorus, flanging, reverb, and slapback/echo effects in synths and effects pedals; direct modern replacement for legacy 512-stage BBDs (e.g. MN3007) with a simpler support-circuit footprint since the clock driver and VGG-equivalent tetrode bias are on-chip. Needs an anti-aliasing filter ahead of SIGNAL IN and a reconstruction filter after the outputs, both set near the clock's Nyquist frequency (see datasheet Figure 1 application circuit).",
+  "gotchas": [
+    "single 5V rail only, not split supply; absolute max on any pin is 7V",
+    "SIGNAL IN (pin 3) needs a precise 3.20V DC bias from a low-impedance source, not just AC coupling; get this wrong and the sample-and-hold mis-biases",
+    "GCAP (pin 2) must be tied to GND or V+, never left floating, or gain/behavior is undefined",
+    "as a sampled-data device it needs Nyquist-correct anti-alias and reconstruction filtering around half the clock frequency; skipping either lets clock-rate energy or aliased signal through",
+    "the two SIG OUT pins are anti-phase source followers that need an external load and often benefit from the optional trim pot (Figure 2) to null residual clock breakthrough from output-transistor mismatch",
+    "VTBIAS (pin 4) requires an external 3.3uF cap to GND; add a parallel 100nF ceramic if running near the top of the clock range",
+    "a genuinely new CMOS design, not a clone of a legacy BBD, though it targets the same use cases as parts like the MN3007/MN3005 with far less external clock/bias support circuitry",
+    "sold only directly by Sound Semiconductor and its authorized resellers"
+  ],
+  "related": [
+    "mn3007",
+    "mn3005"
+  ],
+  "source": "claude",
+  "verified": true,
+  "datasheet_url": "https://www.soundsemiconductor.com/downloads/ssi2100datasheet.pdf"
+}

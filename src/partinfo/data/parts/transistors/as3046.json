@@ -1,0 +1,253 @@
+{
+  "id": "as3046",
+  "name": "AS3046",
+  "aliases": [
+    "AS3046D"
+  ],
+  "full_name": "NPN Transistor Array (5-transistor monolithic array, one matched differential pair + 3 isolated)",
+  "manufacturers": [
+    "Alfa (JSC Alfa, \"Alfa RPAR\")"
+  ],
+  "category": "transistor_bjt",
+  "subcategory": "npn transistor array",
+  "tags": [
+    "transistor",
+    "npn",
+    "bjt",
+    "array",
+    "matched pair",
+    "differential",
+    "analog-synth",
+    "classic"
+  ],
+  "description": "Five general-purpose silicon NPN transistors on a common monolithic substrate: Q1/Q2 are internally wired as a differentially-connected pair (common emitter, VBE matched to <=1mV typ), and Q3/Q4/Q5 are isolated general-purpose transistors sharing only the substrate. Alfa RPAR's clone of the classic RCA CA3046 / Fairchild-TI LM3046 monolithic NPN transistor array, same pinout and functional layout. Used wherever on-chip thermal/electrical matching beats discrete transistors: differential amps, current mirrors, temperature-compensated stages, and filters -- common in analog synth and instrumentation circuits that specifically call out a 3046-family array.",
+  "packages": {
+    "PDIP-14": {
+      "template": "dip",
+      "pin_count": 14,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "C1",
+          "type": "passive",
+          "description": "collector of Q1 (differential pair)"
+        },
+        {
+          "pin": 2,
+          "name": "B1",
+          "type": "passive",
+          "description": "base of Q1 (differential pair)"
+        },
+        {
+          "pin": 3,
+          "name": "E1,2",
+          "type": "passive",
+          "description": "common emitter of Q1 and Q2 (differential pair tail); not independently accessible per-transistor"
+        },
+        {
+          "pin": 4,
+          "name": "B2",
+          "type": "passive",
+          "description": "base of Q2 (differential pair)"
+        },
+        {
+          "pin": 5,
+          "name": "C2",
+          "type": "passive",
+          "description": "collector of Q2 (differential pair)"
+        },
+        {
+          "pin": 6,
+          "name": "B3",
+          "type": "passive",
+          "description": "base of Q3 (isolated transistor)"
+        },
+        {
+          "pin": 7,
+          "name": "E3",
+          "type": "passive",
+          "description": "emitter of Q3 (isolated transistor)"
+        },
+        {
+          "pin": 8,
+          "name": "C3",
+          "type": "passive",
+          "description": "collector of Q3 (isolated transistor)"
+        },
+        {
+          "pin": 9,
+          "name": "B4",
+          "type": "passive",
+          "description": "base of Q4 (isolated transistor)"
+        },
+        {
+          "pin": 10,
+          "name": "E4",
+          "type": "passive",
+          "description": "emitter of Q4 (isolated transistor)"
+        },
+        {
+          "pin": 11,
+          "name": "C4",
+          "type": "passive",
+          "description": "collector of Q4 (isolated transistor)"
+        },
+        {
+          "pin": 12,
+          "name": "B5",
+          "type": "passive",
+          "description": "base of Q5 (isolated transistor)"
+        },
+        {
+          "pin": 13,
+          "name": "E5 / SUBSTRATE",
+          "type": "passive",
+          "description": "emitter of Q5, doubling as the die substrate connection; each transistor's collector is isolated from the substrate by an internal diode, so this pin MUST be tied to the most negative point in the external circuit to keep the isolation diodes reverse-biased and preserve normal transistor action"
+        },
+        {
+          "pin": 14,
+          "name": "C5",
+          "type": "passive",
+          "description": "collector of Q5 (isolated transistor)"
+        }
+      ],
+      "notes": "per Alfa AS3046 datasheet (2019 v.2), Connection Diagram + Pin Information table, top view, 14-pin PDIP 300mil/2.54mm pitch. Same pin numbering and functional layout is shared with the SOIC-14 package (single connection diagram covers both in the datasheet)."
+    },
+    "SOIC-14": {
+      "template": "soic",
+      "pin_count": 14,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "C1",
+          "type": "passive",
+          "description": "collector of Q1 (differential pair)"
+        },
+        {
+          "pin": 2,
+          "name": "B1",
+          "type": "passive",
+          "description": "base of Q1 (differential pair)"
+        },
+        {
+          "pin": 3,
+          "name": "E1,2",
+          "type": "passive",
+          "description": "common emitter of Q1 and Q2 (differential pair tail); not independently accessible per-transistor"
+        },
+        {
+          "pin": 4,
+          "name": "B2",
+          "type": "passive",
+          "description": "base of Q2 (differential pair)"
+        },
+        {
+          "pin": 5,
+          "name": "C2",
+          "type": "passive",
+          "description": "collector of Q2 (differential pair)"
+        },
+        {
+          "pin": 6,
+          "name": "B3",
+          "type": "passive",
+          "description": "base of Q3 (isolated transistor)"
+        },
+        {
+          "pin": 7,
+          "name": "E3",
+          "type": "passive",
+          "description": "emitter of Q3 (isolated transistor)"
+        },
+        {
+          "pin": 8,
+          "name": "C3",
+          "type": "passive",
+          "description": "collector of Q3 (isolated transistor)"
+        },
+        {
+          "pin": 9,
+          "name": "B4",
+          "type": "passive",
+          "description": "base of Q4 (isolated transistor)"
+        },
+        {
+          "pin": 10,
+          "name": "E4",
+          "type": "passive",
+          "description": "emitter of Q4 (isolated transistor)"
+        },
+        {
+          "pin": 11,
+          "name": "C4",
+          "type": "passive",
+          "description": "collector of Q4 (isolated transistor)"
+        },
+        {
+          "pin": 12,
+          "name": "B5",
+          "type": "passive",
+          "description": "base of Q5 (isolated transistor)"
+        },
+        {
+          "pin": 13,
+          "name": "E5 / SUBSTRATE",
+          "type": "passive",
+          "description": "emitter of Q5, doubling as the die substrate connection; each transistor's collector is isolated from the substrate by an internal diode, so this pin MUST be tied to the most negative point in the external circuit to keep the isolation diodes reverse-biased and preserve normal transistor action"
+        },
+        {
+          "pin": 14,
+          "name": "C5",
+          "type": "passive",
+          "description": "collector of Q5 (isolated transistor)"
+        }
+      ],
+      "notes": "per Alfa AS3046 datasheet (2019 v.2), Connection Diagram + Pin Information table, top view, 14-pin SOIC 150mil/1.27mm pitch (device marked AS3046D). Same pin numbering and functional layout as the PDIP-14 package."
+    }
+  },
+  "specs": {
+    "vce_sat_v": 0.15,
+    "hfe_min": 150,
+    "pd_max_mw": 500.0,
+    "rth_ja_cw": 220.0,
+    "extra": {
+      "Vceo": "30V (each transistor)",
+      "Vcbo": "50V (each transistor)",
+      "Vcio (collector-substrate)": "50V (each transistor); each collector is isolated from substrate by an internal diode",
+      "Vebo": "5V (each transistor)",
+      "Ic max": "30mA (each transistor)",
+      "Pd per transistor": "200mW",
+      "Pd total package": "500mW",
+      "Rth(JA) PDIP-14": "180 C/W (typ, on eval PCB in free air)",
+      "Rth(JA) SOIC-14": "220 C/W (typ, on eval PCB in free air)",
+      "Rth(JC)": "not specified (N/A on datasheet)",
+      "V(BR)CBO": "50V min @ Ic=10uA, Ie=0",
+      "V(BR)CEO": "30V min @ Ic=100uA, Ib=0",
+      "V(BR)CIO": "50V min @ Ic=10uA, Ici=0",
+      "V(BR)EBO": "5V min, 6.5V max @ Ie=10uA, Ic=0",
+      "Icbo": "0.002nA typ, 5nA max @ Vcb=10V, Ie=0",
+      "Iceo": "20nA max @ Vce=10V, Ib=0",
+      "hFE @ Vce=3V, Ic=10mA": "150 min",
+      "hFE @ Vcb=0V, Ic=1mA": "150 min",
+      "hFE @ Vce=3V, Ic=10uA": "140 min",
+      "input offset current, Q1/Q2 matched pair |Io1-Io2|": "0.02uA typ, 1uA max @ Vce=3V, Ic=1mA",
+      "Vbe(on)": "0.75V max @ Ie=1mA; 0.8V max @ Ie=10mA (both @ Vce=3V)",
+      "input offset voltage, Q1/Q2 differential pair |Vbe1-Vbe2|": "0.5mV typ, 1mV max @ Vce=3V, Ic=1mA",
+      "input offset voltage, Q3/Q4/Q5 isolated transistors": "0.5mV typ, 1.5mV max @ Vce=3V, Ic=1mA (|Vbe3-Vbe4|, |Vbe4-Vbe5|, |Vbe5-Vbe3|)",
+      "Vce(sat)": "0.1V typ, 0.15V max @ Ib=1mA, Ic=10mA",
+      "operating temp": "not stated separately from Tj=25C test condition on this datasheet"
+    }
+  },
+  "typical_application": "Matched differential amplifier front ends, current mirrors, temperature-compensated bias/amplifier stages, and active filters that specifically call for a 3046-family monolithic NPN array instead of discrete transistors -- the on-chip thermal/electrical matching between Q1/Q2 is the whole point.",
+  "gotchas": [
+    "pin 13 is both Q5's emitter AND the die substrate; it must be tied to the most negative point in the circuit or the internal collector-substrate isolation diodes stop doing their job and transistors misbehave/cross-couple",
+    "Q1/Q2 share a single emitter pin (3) as a wired differential pair; you cannot use them as two independent transistors",
+    "Q3, Q4, Q5 are isolated from each other and from Q1/Q2 but are NOT tightly matched to the same spec as the Q1/Q2 pair -- offset voltage between them is only guaranteed to 1.5mV max vs 1mV max for the dedicated pair",
+    "low absolute ratings: 30mA/200mW per transistor, 500mW total package -- small-signal use only, not a power device",
+    "pin-compatible clone of the classic RCA CA3046 / Fairchild-TI LM3046 array; datasheet gives no max hFE, only mins, and no explicit ft or noise spec"
+  ],
+  "related": [],
+  "source": "claude",
+  "verified": true,
+  "datasheet_url": ""
+}

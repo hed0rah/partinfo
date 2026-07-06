@@ -8,6 +8,7 @@ data) -- color only applies to the template-based renderers below.
 """
 
 from __future__ import annotations
+import shutil
 from .schema import Package, Pin
 from .color import ColorMode, colorize_pin
 
@@ -204,26 +205,71 @@ def _two_column_box(left: list[Pin | None], right: list[Pin | None],
     return "\n".join(out)
 
 
-def _render_qfp(pkg: Package, part_name: str, mode: ColorMode = "off") -> str:
-    """four-sided package (QFP/QFN/LQFP). ascii can't rotate text, so a single
-    top-view would have to stack the top/bottom pin names vertically -- spatially
-    misleading. instead we show two views: the left/right edges as-is, then the
-    chip turned 90° so the top/bottom pins become a readable side too."""
+def _qfp_quadrants(pkg: Package):
     n = pkg.pin_count
     side = n // 4
-    by_num = {p.pin: p for p in pkg.pins}
+    by = {p.pin: p for p in pkg.pins}
+    bottom = [by.get(i) for i in range(1, side + 1)]                 # L->R
+    left   = [by.get(i) for i in range(side + 1, 2 * side + 1)]      # top->bottom
+    top    = [by.get(i) for i in range(2 * side + 1, 3 * side + 1)]  # L->R
+    right  = [by.get(i) for i in range(3 * side + 1, n + 1)]         # top->bottom
+    return side, bottom, left, top, right
 
-    bottom = [by_num.get(i) for i in range(1, side + 1)]                 # L->R
-    left   = [by_num.get(i) for i in range(side + 1, 2 * side + 1)]      # top->bottom
-    top    = [by_num.get(i) for i in range(2 * side + 1, 3 * side + 1)]  # L->R
-    right  = [by_num.get(i) for i in range(3 * side + 1, n + 1)]         # bottom->top
 
-    # view 1: the physical left and right edges (right edge read top->bottom).
+def _render_qfp_square(pkg: Package, part_name: str, mode: ColorMode = "off") -> str:
+    """the true top-view: a square with pins on all four edges, top/bottom names
+    spread horizontally over their pins. faithful to the package, but wide."""
+    side, bottom, left, top, right = _qfp_quadrants(pkg)
+    cw = max([3] + [len(_plain(p)) for p in top + bottom])   # top/bottom slot width
+    lw = max([3] + [len(_plain(p)) for p in left])           # left name column
+    nw = max(2, len(str(pkg.pin_count)))                     # number column
+    gutter = lw + 2 + nw                                     # "<name> -<num>" then ┤
+    interior = side * cw + (side - 1)                        # slots + separators
+    pad = " " * (gutter + 1)
+
+    def row(cells):     # cells already centered to cw, joined by one space
+        return pad + " ".join(cells)
+
+    def border(l, mid, r):
+        buf = ["─"] * interior
+        for k in range(side):
+            c = k * (cw + 1) + (cw - 1) // 2   # match str.center's single-char slot
+            buf[c] = mid
+        return " " * gutter + l + "".join(buf) + r
+
+    ticks = lambda pins: row([("│" if p else " ").center(cw) for p in pins])
+    nums = lambda pins: row([(str(p.pin) if p else "").center(cw) for p in pins])
+    names = lambda pins: row([_cname(p, mode, cw, "^") for p in pins])
+
+    out = [names(top), nums(top), ticks(top), border("┌", "┬", "┐")]
+    mid = side // 2
+    for i in range(side):
+        lp, rp = left[i], right[i]
+        ln = _cname(lp, mode, lw, ">")
+        lnum = f"{lp.pin:>{nw}}" if lp else " " * nw
+        rnum = f"{rp.pin:<{nw}}" if rp else " " * nw
+        label = part_name if i == mid else ""
+        out.append(f"{ln} -{lnum}┤{label:^{interior}}├{rnum}- {_cname(rp, mode)}")
+    out += [border("└", "┴", "┘"), ticks(bottom), nums(bottom), names(bottom)]
+    return "\n".join(out)
+
+
+def _render_qfp(pkg: Package, part_name: str, mode: ColorMode = "off") -> str:
+    """four-sided package (QFP/QFN/LQFP). prefer the faithful square top-view when
+    it fits the terminal; fall back to two 90°-rotated DIP views when it would be
+    too wide (ascii can't rotate the top/bottom names, so a narrow square would
+    have to stack them -- misleading)."""
+    side, bottom, left, top, right = _qfp_quadrants(pkg)
+    cw = max([3] + [len(_plain(p)) for p in top + bottom])
+    lw = max([3] + [len(_plain(p)) for p in left])
+    nw = max(2, len(str(pkg.pin_count)))
+    square_w = (lw + 2 + nw) + 1 + (side * cw + side - 1) + 1 + (nw + 2 + cw)
+    avail = shutil.get_terminal_size((100, 24)).columns
+    if square_w <= avail:
+        return _render_qfp_square(pkg, part_name, mode)
+    # narrow fallback: two DIP views, every pin still named + numbered.
     v1 = _two_column_box(left, list(reversed(right)), part_name, mode)
-    # view 2: turn the chip 90° CW -- the bottom edge swings to the left column,
-    # the top edge to the right column, both now horizontally readable.
     v2 = _two_column_box(bottom, top, part_name, mode)
-
     return (
         f"  left + right edges:\n{v1}\n\n"
         f"  top + bottom edges (chip turned 90°):\n{v2}"

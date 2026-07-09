@@ -104,6 +104,50 @@ blind.
   convention is E-B-C, but onsemi's P2N2222A is mirrored to C-B-E). The full
   entry shows the common pinout plus a VARIANTS section listing the specific
   parts that differ; always match the user's actual part number.
-- To add or correct a part: edit/add a JSON file under
-  `src/partinfo/data/parts/<category>/` (in a checkout, not an installed
-  copy) then run `partinfo ingest` to rebuild the index.
+- To add or correct a part, see the section below.
+
+## Adding or correcting a part
+
+One JSON file per part under `src/partinfo/data/parts/<category>/`, validated
+against `src/partinfo/schema.py`. Directory names are cosmetic -- the `category`
+field is authoritative, and the tree mixes singular and plural dir names
+(`sensor` vs `sensors`, etc.), so check BOTH when looking for an existing entry.
+Full rules are in `CONTRIBUTING.md`; the non-negotiables:
+
+- **Primary datasheet only.** Verify pins and specs against the manufacturer's
+  own PDF, never an aggregator (alldatasheet, lcsc, octopart). Cite it in
+  `datasheet_url`.
+- **Position first, names second.** Confirm which physical pin *number* is which
+  function from the actual package drawing -- a pinout is right or wrong at the
+  pin-number level; labels are cosmetic on top. (This rule exists because it has
+  caught real bugs: cd4066, tl431, bd139 all shipped with transposed pins until
+  a datasheet read fixed them.)
+- **`verified: true` only when a human or agent read the primary sheet and
+  checked the pins against it** -- not from memory, not "an aggregator agreed."
+  An honest `false` with a `notes` reason beats a hopeful `true`. `source` stays
+  a permanent record of who wrote the entry; `human_reviewed: true` records that
+  a human has since confirmed a non-human-sourced one.
+- **Store the calculation inputs, not the datasheet.** Meet the core-parameter
+  set for the device class (CONTRIBUTING.md): well-known typed values go in
+  `specs`, everything else in `specs.extra`. If a common calc for the part needs
+  an input you didn't store, the entry is incomplete.
+- **`datasheet_name`** (per pin) = the verbatim vendor label, set only when it
+  differs from the house `name`. **`variants`** = a specific MPN whose *physical*
+  pinout differs from the common one; never let a variant mask a wrong pinout.
+
+Workflow:
+
+```sh
+# 1. before adding, catch an id collision (checks singular + plural dirs)
+find src/partinfo/data/parts -name '*.json' -exec basename {} \; | sort | uniq -d
+# 2. write/edit the JSON in a checkout (not an installed copy)
+# 3. rebuild the derived index
+partinfo ingest
+# 4. eyeball the render -- pinout, specs, gotchas all look right?
+partinfo <id> --ascii && partinfo <id> --specs
+# 5. commit (voice per TASTE.md) and push to origin/main (this repo is public)
+```
+
+Archive the source datasheet PDF to the private inventory repo at
+`parts-db/datasheets/<category>/` as `<part>-<source>.pdf` -- that tree is
+gitignored, so the binary PDFs stay on disk and out of the public repo.

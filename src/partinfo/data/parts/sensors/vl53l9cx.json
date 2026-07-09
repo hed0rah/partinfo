@@ -1,0 +1,119 @@
+{
+  "id": "vl53l9cx",
+  "name": "VL53L9CX",
+  "aliases": [
+    "VL53L9",
+    "VL53L9CXV0VE",
+    "STEVAL-VL53L9"
+  ],
+  "full_name": "VL53L9CX 3D dToF LiDAR sensor, 2,300-zone (STEVAL-VL53L9 evaluation board)",
+  "manufacturers": [
+    "STMicroelectronics"
+  ],
+  "category": "sensor",
+  "subcategory": "3D direct time-of-flight (dToF) LiDAR ranging sensor",
+  "tags": [
+    "tof",
+    "dtof",
+    "lidar",
+    "3d",
+    "ranging",
+    "depth",
+    "flightsense",
+    "mipi",
+    "i3c",
+    "i2c",
+    "module",
+    "vl53l9"
+  ],
+  "description": "STMicroelectronics FlightSense all-in-one direct time-of-flight (dToF) 3D LiDAR module. The VL53L9CX resolves 2,300 zones (a large step up from the 8x8 = 64 zones of the VL53L8CX), with a 71 degree diagonal field of view, 1 degree angular resolution across a 55 x 42 degree FoV, and accurate ranging from 5 cm to 9 m. It exposes a MIPI CSI-2 interface for the high-bandwidth multizone depth stream plus an I3C/I2C control interface. Documented here from the STEVAL-VL53L9 evaluation board, which breaks the sensor out to a 22-pin MIPI flex connector and an 8-pin 2.54mm control header for STM32 Nucleo/Discovery (N657 / N6570-DK), Raspberry Pi, and Rockchip hosts.",
+  "packages": {
+    "STEVAL-VL53L9 header (J2)": {
+      "template": "sip",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 2,
+          "name": "SDA",
+          "type": "bidirectional",
+          "description": "I3C/I2C serial data (control interface); sensor I2C address 0x29 (7-bit) / 0x52 (8-bit)"
+        },
+        {
+          "pin": 3,
+          "name": "SCL",
+          "type": "clock",
+          "description": "I3C/I2C serial clock"
+        },
+        {
+          "pin": 4,
+          "name": "AP_CLK",
+          "type": "clock",
+          "description": "application-processor reference clock input"
+        },
+        {
+          "pin": 5,
+          "name": "XSHUT",
+          "type": "input",
+          "description": "active-low shutdown / reset; hold low to disable, release high to boot the sensor"
+        },
+        {
+          "pin": 6,
+          "name": "INTR",
+          "type": "output",
+          "description": "interrupt output to the host (data-ready / event)"
+        },
+        {
+          "pin": 7,
+          "name": "SYNC_IN",
+          "type": "input",
+          "description": "external synchronization input for triggered / synchronized captures"
+        },
+        {
+          "pin": 8,
+          "name": "3V3",
+          "type": "power",
+          "description": "3.3 V board supply feeding the eval-board regulators (per-contact current rating 0.5 A)"
+        }
+      ],
+      "notes": "Control + power header on the STEVAL-VL53L9 eval board. The 2,300-zone depth frame streams over the SEPARATE 22-pin MIPI CSI-2 flex connector (J1: MIPI_D0 +/-, MIPI_D1 +/-, MIPI_CLK +/-, plus the same control lines), not this header."
+    }
+  },
+  "specs": {
+    "vs_typ_v": 3.3,
+    "extra": {
+      "sensor_type": "direct time-of-flight (dToF) 3D LiDAR, all-in-one module with VCSEL illuminator",
+      "zones": "2,300 (vs 64 on the VL53L8CX)",
+      "field_of_view": "71 deg diagonal; 55 x 42 deg",
+      "angular_resolution": "1 deg",
+      "ranging_distance": "5 cm to 9 m",
+      "control_interface": "I3C / I2C, sensor address 0x29 (7-bit) / 0x52 (8-bit)",
+      "data_interface": "MIPI CSI-2 (multizone depth stream)",
+      "rail_vbat": "3.3 V",
+      "rail_avdd": "2.8 V",
+      "rail_dvdd": "1.2 V",
+      "rail_iovdd": "1.8 V",
+      "eval_board_eeprom": "M24C64 I2C EEPROM at 0x55 (7-bit) on the STEVAL-VL53L9 board",
+      "host_platforms": "STM32N657 / STM32N6570-DK, Raspberry Pi, Rockchip"
+    }
+  },
+  "typical_application": "Room-scale 3D depth mapping and scene understanding for robotics, drones, humanoid robots, AR / smart glasses, presence and gesture sensing, and building / home automation, where a compact solid-state dToF replaces a stereo camera or scanning LiDAR.",
+  "gotchas": [
+    "The 2,300-zone depth frame streams over MIPI CSI-2, NOT over I2C/I3C -- the serial control bus alone cannot carry the full-resolution data; you need a MIPI host (STM32N6, Raspberry Pi, Rockchip). Expecting to read it 'over I2C' like a VL53L0X is the first wrong assumption.",
+    "Sensor I2C address is 0x29 (7-bit) = 0x52 (8-bit write); the eval board's M24C64 EEPROM sits separately at 0x55.",
+    "It is a genuine multizone LiDAR, not a single-point ranger -- 2,300 zones is ~36x the VL53L8CX's 64 and far above the single-zone VL53L0X/L1X. Bandwidth, power, and host processing scale accordingly.",
+    "XSHUT is active-low: it must be released high for the sensor to boot; tying it low or leaving it floating on a noisy line leaves the sensor dark.",
+    "The STEVAL-VL53L9 is marked 'for evaluation only, not FCC approved for resale' -- it is a dev board, not a drop-in production module.",
+    "Multiple internal rails (VBAT 3.3 V, AVDD 2.8 V, DVDD 1.2 V, IOVDD 1.8 V) are generated on the eval board from the single 3.3 V header feed; a bare-chip design must provide all of them."
+  ],
+  "related": [],
+  "datasheet_url": "https://www.st.com/resource/en/data_brief/steval-vl53l9.pdf",
+  "source": "human",
+  "verified": true,
+  "notes": "Authored from the STEVAL-VL53L9 data brief (DB5805 Rev 2, April 2026); the full VL53L9CX device datasheet is not yet public (typical for a new FlightSense part). Verified from the primary ST brief: the specs, the STEVAL-VL53L9 J2 control-header pinout, the sensor I2C address, and the board power rails. The bare VL53L9CX chip-package pinout is NOT yet captured -- add it (with its own chip package) when the full device datasheet becomes available."
+}

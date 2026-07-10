@@ -1,0 +1,97 @@
+{
+  "id": "mt9196",
+  "name": "MT9196",
+  "aliases": [
+    "MT9196AP",
+    "MT9196AE",
+    "MT9196AS",
+    "IDPC"
+  ],
+  "full_name": "MT9196 Integrated Digital Phone Circuit (IDPC) -- programmable u-Law/A-Law codec + filters",
+  "manufacturers": [
+    "Zarlink Semiconductor",
+    "Mitel"
+  ],
+  "category": "audio",
+  "subcategory": "telephony codec / integrated digital phone circuit",
+  "tags": [
+    "telephony",
+    "telecom",
+    "codec",
+    "u-law",
+    "a-law",
+    "g711",
+    "dtmf",
+    "st-bus",
+    "idpc",
+    "zarlink",
+    "mitel"
+  ],
+  "description": "Zarlink (formerly Mitel) ISO2-CMOS Integrated Digital Phone Circuit for digital telephone sets, wireless phones, and local-area comms stations. A single-5V mixed-signal SoC combining a programmable u-Law/A-Law (CCITT G.711) filter/codec, digital gain pads, DTMF and single-tone generation, a tone ringer, and fully-differential handset + speakerphone transducer interfaces (mic amps, handset speaker driver, speakerphone driver, anti-howl for group listening). The digital side speaks ST-BUS/SSI (GCI-compatible) with internal registers accessed over a serial microport compatible with Intel or Motorola/National host conventions.",
+  "packages": {
+    "PDIP-28 / SOIC-28": {
+      "template": "dip",
+      "pin_count": 28,
+      "notes": "PDIP-28 (MT9196AE) and SOIC-28 (MT9196AS) share this pin numbering. A PLCC-28 variant (MT9196AP) exists with different, package-specific numbering -- see the datasheet Figure 2.",
+      "pins": [
+        {"pin": 1,  "name": "M-",       "type": "analog", "description": "inverting microphone input (handset mic amp)"},
+        {"pin": 2,  "name": "M+",       "type": "analog", "description": "non-inverting microphone input (handset mic amp)"},
+        {"pin": 3,  "name": "VBias",    "type": "analog", "description": "bias voltage output, VDD/2, for biasing external amps; 0.1uF cap to VSSA"},
+        {"pin": 4,  "name": "VRef",     "type": "analog", "description": "codec reference voltage output, nominally (VDD/2)-1.5 V; 0.1uF cap to VSSA"},
+        {"pin": 5,  "name": "PWRST",    "type": "reset",  "description": "power-up reset input, active low, CMOS Schmitt-trigger"},
+        {"pin": 6,  "name": "IC",       "type": "input",  "description": "internal connection -- tie externally to VSS for normal operation"},
+        {"pin": 7,  "name": "VSSD",     "type": "ground", "description": "digital ground (0 V)"},
+        {"pin": 8,  "name": "CS",       "type": "input",  "description": "chip select, active low, TTL; selects the device for microport transfers"},
+        {"pin": 9,  "name": "SCLK",     "type": "clock",  "description": "serial-port synchronous clock input (microport data clock), TTL"},
+        {"pin": 10, "name": "DATA1",    "type": "bidirectional", "description": "bidirectional serial microport data; in Motorola/National mode this is transmit-only (RX on DATA2)"},
+        {"pin": 11, "name": "DATA2",    "type": "input",  "description": "serial data receive in Motorola/National mode; disconnected in Intel mode (DATA1 does both)"},
+        {"pin": 12, "name": "WD",       "type": "output", "description": "watchdog timer output, active high"},
+        {"pin": 13, "name": "IRQ",      "type": "output", "description": "interrupt request to the host, open-drain, active low (needs pull-up)"},
+        {"pin": 14, "name": "Dout",     "type": "output", "description": "ST-BUS data output, tri-state, 8-bit channel data shifted out on the STB timeslot"},
+        {"pin": 15, "name": "Din",      "type": "input",  "description": "ST-BUS data input, 8-bit channel data sampled on the STB timeslot, CMOS"},
+        {"pin": 16, "name": "STB/F0i",  "type": "input",  "description": "data strobe / frame pulse, 8 kHz; ST-BUS frame pulse or SSI 8-bit timeslot select, CMOS"},
+        {"pin": 17, "name": "CLOCKin",  "type": "clock",  "description": "master/bit clock input: C4i in ST-BUS mode, bit clock in SSI-sync, 4 MHz async master clock in SSI-async"},
+        {"pin": 18, "name": "XSTL2",    "type": "input",  "description": "crystal input, 4.096 MHz, used with CLOCKin to derive the master clock via an external crystal"},
+        {"pin": 19, "name": "VDD",      "type": "power",  "description": "positive supply, nominally +5 V"},
+        {"pin": 20, "name": "HSPKR-",   "type": "analog", "description": "inverting handset speaker driver output (balanced)"},
+        {"pin": 21, "name": "HSPKR+",   "type": "analog", "description": "non-inverting handset speaker driver output (balanced)"},
+        {"pin": 22, "name": "SPKR-",    "type": "analog", "description": "inverting speakerphone speaker driver output (balanced)"},
+        {"pin": 23, "name": "SPKR+",    "type": "analog", "description": "non-inverting speakerphone speaker driver output (balanced)"},
+        {"pin": 24, "name": "VSSSPKR",  "type": "ground", "description": "power-supply rail (return) for the speaker driver, nominally 0 V"},
+        {"pin": 25, "name": "AUXout",   "type": "analog", "description": "auxiliary port output: D/A analog of the receive path and various analog inputs"},
+        {"pin": 26, "name": "AUXin",    "type": "analog", "description": "auxiliary port input to the filter/codec transmit section; no external anti-aliasing needed"},
+        {"pin": 27, "name": "MIC+",     "type": "analog", "description": "non-inverting on-hook answer-back microphone input"},
+        {"pin": 28, "name": "VSSA",     "type": "ground", "description": "analog ground input, nominally 0 V"}
+      ]
+    }
+  },
+  "specs": {
+    "vs_typ_v": 5.0,
+    "extra": {
+      "device_class": "integrated digital phone circuit (IDPC), mixed-signal telephony SoC",
+      "codec": "programmable u-Law / A-Law, CCITT G.711 and sign-magnitude coding",
+      "features": "digital gain pads (+21/-24 dB Tx & Rx, 3.0 dB steps), DTMF + single-tone generation, tone ringer, anti-howl for group listening",
+      "transducers": "fully-differential handset mic + speaker, speakerphone speaker, on-hook answer-back mic, auxiliary analog port",
+      "digital_interface": "ST-BUS / SSI (GCI-compatible); serial microport (Intel or Motorola/National host modes)",
+      "master_clock": "4.096 MHz crystal (XSTL2 + CLOCKin) or 4 MHz master clock in SSI-async",
+      "frame_rate": "8 kHz (STB/F0i)",
+      "supply": "single +5 V, low power",
+      "temp_range": "-40 C to +85 C"
+    }
+  },
+  "typical_application": "Digital telephone sets, wireless (cordless) telephones, and local-area communication stations: converts received PCM to analog audio and mic audio to PCM, with on-chip gain, DTMF/tone generation, and handset/speakerphone drive, all under host control over the serial microport.",
+  "gotchas": [
+    "Pin 6 (IC, 'internal connection') MUST be tied to VSS for normal operation -- leaving it floating misbehaves.",
+    "The serial microport has two host conventions: in Intel mode DATA1 carries both transmit and receive and DATA2 is disconnected; in Motorola/National mode DATA1 is transmit-only and DATA2 is receive. Wiring for the wrong convention breaks register access.",
+    "IRQ (pin 13) is an open-drain, active-low output -- it needs an external pull-up.",
+    "Single +5 V part; the digital pins are TTL/CMOS level. VRef and VBias are internal analog references (VDD/2 area) -- decouple each with 0.1 uF to VSSA, do not load them.",
+    "Master clock is a 4.096 MHz crystal (not 4 MHz) on XSTL2/CLOCKin in the crystal configuration; 4 MHz applies only to the SSI-asynchronous external-clock mode.",
+    "Zarlink/Mitel is defunct (line went Mitel -> Zarlink -> Microsemi -> Microchip); this is legacy telecom silicon, sourced NOS/surplus."
+  ],
+  "related": [],
+  "datasheet_url": null,
+  "source": "human",
+  "verified": true,
+  "human_reviewed": false,
+  "notes": "Authored from the Zarlink MT9196 IDPC data sheet (January 2006). Pins verified against the datasheet Figure 2 + pin-description table for the PDIP-28 / SOIC-28 numbering. datasheet_url left null: Zarlink is defunct and no stable primary URL survives; the primary PDF is archived locally (parts-db/datasheets/audio/mt9196-zarlink.pdf). A PLCC-28 package (MT9196AP) exists with different pin numbering -- add it as a second package if needed."
+}

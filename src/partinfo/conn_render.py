@@ -11,21 +11,26 @@ from .color import ColorMode, colorize_section, colorize_warning
 
 
 def _dsub(rows: list[list], cell: int = 3) -> str:
-    """face-view trapezoid (D-shell) with pin numbers, one or two rows.
-    a schematic layout, not a mechanically exact drawing: pins are shown in
-    physical-row order so you can find pin N at a glance."""
+    """face-view D-shell: a trapezoid whose top edge is wider than the bottom,
+    drawn in plain ascii (the sides converge downward). rows render top to
+    bottom; a shorter row (fewer pins) is staggered so its pins fall between
+    the row above. schematic, not mechanically exact."""
+    n = len(rows)
     widest = max((len(r) for r in rows), default=0)
     if widest == 0:
         return ""
-    inner = widest * cell + 2
-    lines = ["  " + "_" * (inner + 2)]
+    # `total` is the inner width of the top (widest) edge; every line below it
+    # loses one column per side, so the frame tapers into a trapezoid.
+    total = widest * cell + 2 * (n + 1) + 2
+    lines = [" " + "_" * (total - 2)]                 # the long flat top edge
     for i, r in enumerate(rows):
         body = "".join(str(p).rjust(cell) for p in r)
-        indent = ((widest - len(r)) * cell) // 2   # stagger a shorter row
-        content = (" " * (1 + indent) + body).ljust(inner)
-        lft, rgt = ("/", "\\") if i == 0 else ("\\", "/")
-        lines.append(f"  {lft}{content}{rgt}")
-    lines.append("  " + "-" * (inner + 2))
+        stagger = ((widest - len(r)) * cell) // 2     # nudge a short row inward
+        indent = i + 1
+        content = (" " * stagger + body).center(total - 2 * indent - 2)
+        lines.append(" " * indent + "\\" + content + "/")
+    indent = n + 1
+    lines.append(" " * indent + "\\" + "_" * (total - 2 * indent - 2) + "/")
     return "\n".join(lines)
 
 

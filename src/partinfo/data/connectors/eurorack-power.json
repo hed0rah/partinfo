@@ -1,0 +1,46 @@
+{
+  "id": "eurorack-power",
+  "name": "Eurorack power (Doepfer bus, 16 & 10 pin)",
+  "aliases": ["eurorack", "doepfer bus", "eurorack-power-16", "eurorack-power-10", "module power", "bus board", "idc power", "eurorack bus"],
+  "standard": "Doepfer A-100 bus (de facto Eurorack standard)",
+  "family": "16-pin (2x8) or 10-pin (2x5) keyed IDC box header",
+  "gender": "male box header (module + bus board)",
+  "positions": 16,
+  "form": "custom",
+  "ascii": "   16-pin (2x8)              10-pin (2x5, power only)\n   .----------.              .----------.\n   | o      o | Gate         | o      o | +12V\n   | o      o | CV           | o      o | GND\n   | o      o | +5V          | o      o | GND\n   | o      o | +12V         | o      o | GND\n   | o      o | GND          | o      o | -12V  <red stripe>\n   | o      o | GND          '----------'\n   | o      o | GND\n   | o      o | -12V  <red stripe>\n   '----------'\n   Red stripe = -12V on BOTH. Each row's two pins are the same\n   rail. The 10-pin is the 16-pin's bottom five rows; it drops\n   +5V, CV, and Gate.",
+  "tags": ["eurorack", "doepfer", "power", "modular", "synth", "idc", "bus", "+12v", "-12v", "cv", "gate"],
+  "description": "The power connector that feeds every Eurorack module from the case bus board. Two forms: a 16-pin (2x8) header carrying the full bus (+/-12V, GND, +5V, CV, Gate) and the far more common 10-pin (2x5) header carrying just the power rails (+/-12V + GND). Each horizontal row's two pins are the same rail (the bus shorts them). The ribbon cable's red stripe marks -12V and must align to the module's -12V edge; get it backwards and the module is destroyed.",
+  "contacts": [
+    {"pin": 1,  "name": "-12V",  "signal": "power",  "description": "negative rail -- the RED STRIPE conductor; align this to the module's -12V mark"},
+    {"pin": 2,  "name": "-12V",  "signal": "power",  "description": "negative rail (same row as pin 1)"},
+    {"pin": 3,  "name": "GND",   "signal": "ground", "description": "ground"},
+    {"pin": 4,  "name": "GND",   "signal": "ground", "description": "ground"},
+    {"pin": 5,  "name": "GND",   "signal": "ground", "description": "ground"},
+    {"pin": 6,  "name": "GND",   "signal": "ground", "description": "ground"},
+    {"pin": 7,  "name": "GND",   "signal": "ground", "description": "ground"},
+    {"pin": 8,  "name": "GND",   "signal": "ground", "description": "ground"},
+    {"pin": 9,  "name": "+12V",  "signal": "power",  "description": "positive rail"},
+    {"pin": 10, "name": "+12V",  "signal": "power",  "description": "positive rail (10-pin connector ends here)"},
+    {"pin": 11, "name": "+5V",   "signal": "power",  "description": "+5V bus (16-pin only; often absent on the bus board -- do not rely on it)"},
+    {"pin": 12, "name": "+5V",   "signal": "power",  "description": "+5V bus (16-pin only)"},
+    {"pin": 13, "name": "CV",    "signal": "bus",    "description": "CV bus (16-pin only; legacy, rarely used)"},
+    {"pin": 14, "name": "CV",    "signal": "bus",    "description": "CV bus (16-pin only)"},
+    {"pin": 15, "name": "Gate",  "signal": "bus",    "description": "Gate bus (16-pin only; legacy, rarely used)"},
+    {"pin": 16, "name": "Gate",  "signal": "bus",    "description": "Gate bus (16-pin only)"}
+  ],
+  "variants": [
+    "10-pin (2x5): the power-only subset = the bottom five rows of the 16-pin (-12V, GND, GND, GND, +12V). It drops +5V, CV, and Gate. Most modern modules use the 10-pin; a 10-to-16 ribbon plugs a 10-pin module onto a 16-pin bus header.",
+    "The three extra 16-pin signals (+5V, CV, Gate) are optional. +5V is frequently NOT wired on the bus board (add a dedicated +5V supply if a module needs it), and the CV/Gate buses are a legacy feature almost nobody uses now."
+  ],
+  "gotchas": [
+    "Reversing the ribbon feeds -12V into +12V and vice-versa = INSTANT module destruction. The red stripe MUST go to -12V. Boxed (shrouded) headers key it so the ribbon can only seat one way; bare unshrouded pin headers do not -- triple check those.",
+    "Each row's two pins are the SAME rail (shorted on the bus), so a 16-pin connector distributes 5-6 signals, not 16 independent ones.",
+    "Do not assume +5V is available -- many bus boards leave it unconnected. A module needing +5V should regulate it locally from +12V or use a bus board that supplies it.",
+    "This connector just delivers the rails. What a well-designed module does next -- keyed connector, series Schottky reverse-protection, a 10R (or ferrite) + reservoir/decoupling caps per rail -- is the important part; see the eurorack-power-protection reference."
+  ],
+  "related": ["eurorack-power-protection", "trs-35mm"],
+  "see_also_url": "https://doepfer.de/a100_man/a100t_e.htm",
+  "source": "human",
+  "verified": true,
+  "notes": "Pinout verified from Noise Engineering's 'Standard Eurorack power connections' diagram (16 & 10 pin, signal-per-row). Pin 1 = -12V (red stripe) by IDC/Eurorack convention; the exact 1-vs-16 numbering follows the red-stripe / keyed edge. 10-pin = the -12V/GND/+12V subset."
+}

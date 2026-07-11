@@ -1,0 +1,46 @@
+{
+  "id": "eurorack-power-protection",
+  "title": "Eurorack module power-input protection",
+  "topic": "power",
+  "tags": ["eurorack", "power", "protection", "schottky", "reverse-polarity", "decoupling", "ferrite", "modular", "synth"],
+  "summary": "The standard stage between a Eurorack module's power connector and its ICs: keyed connector + series Schottky reverse-polarity diodes + a per-rail RC filter (10R or ferrite + reservoir/decoupling caps), and why each part is there.",
+  "body": "A Eurorack module never wires its ICs straight to the bus. A small, standard stage sits between the power connector and the circuit, doing two jobs: stop you from destroying the module by plugging power in backwards, and clean up the shared rails before they reach the chips. The pattern below is the one documented in the Moritz Klein / Erica Synths (mki x es edu) DIY kits, and it is essentially universal.\n\n1. Keyed connector. A shrouded 10-pin header whose key lets the ribbon seat only one way. Mechanical, the first line of defense.\n\n2. Series Schottky diode on each rail (reverse-polarity protection). The diode conducts only when the rail is the correct polarity: the +12V diode's anode sits on +12V, so if -12V is applied by mistake it blocks and no current flows (and likewise for the -12V diode). Schottky specifically, for its low forward drop (~0.3 V vs ~0.7 V for silicon), so the least rail voltage is lost. This is belt-and-suspenders on top of the keyed connector.\n\n3. Series 10 ohm resistor on each rail (RC filter + slow fuse). With the reservoir/decoupling caps it forms an RC low-pass that keeps the module's local rails steady against fluctuations arriving down the shared bus from other modules. Bonus job: it is a slow fuse. If an IC goes in backwards or a rail shorts on the board, the 10R heats, smokes, and opens -- cheaper to sacrifice a resistor than the ICs. A ferrite bead is the common alternative; there is no strict consensus, but analog (audio-band) modules usually prefer the resistor, while ferrites suit digital modules running at 8 MHz and above.\n\n4. Reservoir + HF caps. A larger pair (e.g. 47 uF) is the bulk reservoir handling low-frequency sag; smaller caps (0.1 uF) shunt RF and the fast switching spikes from SMPS bricks and neighboring modules.\n\n5. Local decoupling at each IC. A 0.1 uF as close as physically possible to every chip's supply pins, to source and sink fast transients right where they happen and hold the local rail stable.\n\nNet effect: the module is reverse-proof, and it runs on its own filtered, isolated-ish supply instead of sharing every other module's noise.",
+  "formulas": [
+    {
+      "expr": "f_c = 1 / (2 * pi * R * C)",
+      "description": "corner frequency of the per-rail R-C low-pass (series R, reservoir C to ground)",
+      "vars": [
+        {"symbol": "f_c", "meaning": "cutoff frequency", "unit": "Hz"},
+        {"symbol": "R", "meaning": "series rail resistor (or ferrite DC resistance)", "unit": "ohm"},
+        {"symbol": "C", "meaning": "reservoir capacitance to ground", "unit": "F"}
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "title": "The protection stage, part by part",
+      "headers": ["part", "typical value", "role"],
+      "rows": [
+        ["keyed connector", "10-pin shrouded", "mechanical reverse-polarity guard"],
+        ["Schottky diode x2", "BAT54 / 1N5817", "electrical reverse-polarity guard, low Vf"],
+        ["series R x2", "10 ohm", "RC filter + slow fuse (or a ferrite bead)"],
+        ["reservoir cap x2", "47 uF", "low-frequency rail reservoir"],
+        ["HF cap x2", "0.1 uF", "RF / switching-spike shunt"],
+        ["IC decoupling", "0.1 uF each", "local transient supply at every chip"]
+      ]
+    }
+  ],
+  "examples": [
+    "10R + 47uF reservoir: f_c = 1 / (2*pi*10*47e-6) ~= 339 Hz. Everything above a few hundred Hz coming down the shared rail is attenuated before it reaches the module.",
+    "Reference design: the Moritz Klein x Erica Synths dual VCA uses two Schottky diodes (VD1/VD2), two 10R rail resistors (R11/R12) into a 47uF + 0.1uF pair, plus 0.1uF decoupling at each IC."
+  ],
+  "gotchas": [
+    "The 10R doubles as a slow fuse: a backwards IC or a sustained short cooks the resistor, not the ICs. But it only opens on a sustained fault -- it will NOT save you from a fast reverse-polarity event; that is the diode's job.",
+    "Ferrite bead vs 10R: ferrite for digital/high-speed modules (blocks RF with ~no DC drop), resistor for analog audio modules (better broadband filtering, plus the slow-fuse behavior). No universal right answer.",
+    "The Schottky's low drop matters on a +/-12V analog rail: a ~0.3 V Schottky preserves headroom a ~0.7 V silicon diode would eat.",
+    "Place the 0.1 uF decoupling caps physically at each IC's power pins, not in a tidy row elsewhere -- the short supply loop is the entire point."
+  ],
+  "related": ["eurorack-power", "bat54", "1n5817"],
+  "see_also_url": null,
+  "source": "human"
+}

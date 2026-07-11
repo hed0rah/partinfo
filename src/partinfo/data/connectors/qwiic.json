@@ -1,0 +1,34 @@
+{
+  "id": "qwiic",
+  "name": "Qwiic / STEMMA QT (4-pin I2C)",
+  "aliases": ["qwiic", "stemma qt", "stemma-qt", "jst-sh i2c", "4-pin i2c", "sparkfun qwiic", "adafruit stemma qt"],
+  "standard": "SparkFun Qwiic / Adafruit STEMMA QT (JST-SH 1.0mm)",
+  "family": "4-pin JST-SH 1.0mm, keyed",
+  "gender": "plug (cable) / socket (board)",
+  "positions": 4,
+  "form": "inline",
+  "rows": [[1, 2, 3, 4]],
+  "tags": ["i2c", "qwiic", "stemma", "sensor", "3v3", "sparkfun", "adafruit", "daisy-chain"],
+  "description": "The little 4-pin JST-SH connector that carries I2C (plus power) for solderless sensor/breakout chaining. SparkFun's Qwiic and Adafruit's STEMMA QT are the same connector and pinout, so they interoperate. It's just 3.3 V I2C on a keyed, polarized connector -- boards have two so you can daisy-chain a string of sensors.",
+  "contacts": [
+    {"pin": 1, "name": "GND", "signal": "ground", "description": "ground (black wire)"},
+    {"pin": 2, "name": "3V3", "signal": "power",  "description": "3.3 V supply (red wire) -- Qwiic is a 3.3 V bus"},
+    {"pin": 3, "name": "SDA", "signal": "I2C",    "description": "I2C data (blue wire)"},
+    {"pin": 4, "name": "SCL", "signal": "I2C",    "description": "I2C clock (yellow wire)"}
+  ],
+  "variants": [
+    "Qwiic (SparkFun) and STEMMA QT (Adafruit) are cross-compatible: same JST-SH 1.0mm connector, same GND/3V3/SDA/SCL order. A Qwiic cable plugs into a STEMMA QT board and vice versa.",
+    "Adafruit STEMMA (no QT, the larger JST-PH 3-pin/4-pin) is a DIFFERENT connector -- STEMMA QT is the small one that matches Qwiic."
+  ],
+  "gotchas": [
+    "It's a 3.3 V bus. Powering a Qwiic chain from 5 V (or mixing a 5 V I2C device) risks the sensors -- everything on the chain shares that 3.3 V rail and the SDA/SCL levels.",
+    "Daisy-chaining is just paralleling the I2C bus, so every device on the chain needs a UNIQUE I2C address. Two of the same sensor collide unless one has an address-select jumper.",
+    "Pull-ups: each Qwiic board usually includes SDA/SCL pull-ups. A long chain of many boards stacks the pull-ups low, which can weaken the bus -- cut the pull-up jumpers on all but one if it gets flaky.",
+    "It's keyed and polarized, so you can't insert it backwards -- but the tiny latch is fragile."
+  ],
+  "related": ["rpi-gpio", "bmp280", "bh1750"],
+  "see_also_url": "https://www.sparkfun.com/qwiic",
+  "source": "human",
+  "verified": true,
+  "notes": "Qwiic / STEMMA QT 4-pin JST-SH pinout (GND/3V3/SDA/SCL). SparkFun and Adafruit variants are cross-compatible; 3.3V I2C."
+}

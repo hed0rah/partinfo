@@ -1,0 +1,33 @@
+{
+  "id": "usb-b",
+  "name": "USB-B (USB 2.0, printer)",
+  "aliases": ["usb-b", "type-b", "printer usb", "square usb", "usb type-b"],
+  "standard": "USB 2.0 Type-B",
+  "family": "4-pin square (Type-B)",
+  "gender": "plug (cable) / receptacle (device)",
+  "positions": 4,
+  "form": "inline",
+  "rows": [[1, 2, 3, 4]],
+  "tags": ["usb", "usb-b", "type-b", "printer", "audio-interface", "device"],
+  "description": "The tall square USB connector on the DEVICE end of a USB 2.0 link -- printers, audio interfaces, older Arduinos (Uno/Mega), USB DACs. Same four USB 2.0 signals as USB-A (VBUS, D-, D+, GND); the different shell just guarantees you plug host-to-device (A-to-B) and can't accidentally join two hosts.",
+  "contacts": [
+    {"pin": 1, "name": "VBUS", "signal": "power",   "description": "+5 V bus power"},
+    {"pin": 2, "name": "D-",   "signal": "USB 2.0", "description": "differential data, negative"},
+    {"pin": 3, "name": "D+",   "signal": "USB 2.0", "description": "differential data, positive"},
+    {"pin": 4, "name": "GND",  "signal": "ground",  "description": "ground return"}
+  ],
+  "variants": [
+    "USB 3.0 Type-B is a taller connector (the square with a bump on top) carrying the extra SuperSpeed pins; it accepts a USB 2.0 B plug but not vice-versa. Seen on USB3 docks/drives.",
+    "Mini-B and Micro-B are the small device connectors that largely replaced full-size B on portable gear."
+  ],
+  "gotchas": [
+    "Same signals as USB-A -- the Type-B shell exists purely to enforce host(A)-to-device(B) cabling. You cannot make an A-to-A or B-to-B USB cable and expect it to work.",
+    "Common on class-compliant USB audio interfaces and MIDI devices; a flaky Type-B solder joint (they take mechanical stress) shows up as random disconnects.",
+    "Charge-only vs data: as with any USB, a cable missing D+/D- charges but never enumerates."
+  ],
+  "related": ["usb-a", "micro-usb"],
+  "see_also_url": "https://en.wikipedia.org/wiki/USB_hardware#Connectors",
+  "source": "human",
+  "verified": true,
+  "notes": "USB 2.0 Type-B 4-pin (VBUS/D-/D+/GND), same signals as USB-A. Device-end connector."
+}

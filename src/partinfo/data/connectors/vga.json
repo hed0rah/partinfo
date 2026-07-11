@@ -1,0 +1,45 @@
+{
+  "id": "vga",
+  "name": "VGA (DE-15 / HD-15)",
+  "aliases": ["vga", "de-15", "hd-15", "d-sub 15", "rgb", "hd15", "svga"],
+  "standard": "VGA / DDC2 (HD-15 D-sub)",
+  "family": "15-pin high-density D-subminiature (3 rows of 5)",
+  "gender": "male (cable) / female (display)",
+  "positions": 15,
+  "form": "dsub",
+  "rows": [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15]],
+  "tags": ["vga", "video", "analog", "rgb", "display", "ddc", "d-sub"],
+  "description": "The 15-pin analog RGB video connector on PCs, projectors, and old monitors. Three analog video signals (R, G, B) each with its own return ground, separate horizontal and vertical sync lines, and a DDC I2C bus so the PC can read the display's EDID. Analog and uncompressed -- superseded by DVI/HDMI/DisplayPort but still everywhere on projectors.",
+  "contacts": [
+    {"pin": 1,  "name": "RED",     "signal": "video",  "description": "red analog video (0.7 Vpp into 75 ohm)"},
+    {"pin": 2,  "name": "GREEN",   "signal": "video",  "description": "green analog video"},
+    {"pin": 3,  "name": "BLUE",    "signal": "video",  "description": "blue analog video"},
+    {"pin": 4,  "name": "ID2/RES", "signal": "-",      "description": "reserved (formerly monitor ID bit 2)"},
+    {"pin": 5,  "name": "GND",     "signal": "ground", "description": "ground (HSync return)"},
+    {"pin": 6,  "name": "RED_RTN", "signal": "ground", "description": "red video return / ground"},
+    {"pin": 7,  "name": "GRN_RTN", "signal": "ground", "description": "green video return / ground"},
+    {"pin": 8,  "name": "BLU_RTN", "signal": "ground", "description": "blue video return / ground"},
+    {"pin": 9,  "name": "+5V",     "signal": "power",  "description": "+5 V (key pin; powers the display's EDID EEPROM on some monitors)"},
+    {"pin": 10, "name": "GND",     "signal": "ground", "description": "ground (VSync / DDC return)"},
+    {"pin": 11, "name": "ID0/RES", "signal": "-",      "description": "reserved (formerly monitor ID bit 0)"},
+    {"pin": 12, "name": "SDA",     "signal": "DDC",    "description": "DDC2 I2C data (EDID read)"},
+    {"pin": 13, "name": "HSync",   "signal": "sync",   "description": "horizontal sync (or composite sync)"},
+    {"pin": 14, "name": "VSync",   "signal": "sync",   "description": "vertical sync"},
+    {"pin": 15, "name": "SCL",     "signal": "DDC",    "description": "DDC2 I2C clock (EDID read)"}
+  ],
+  "variants": [
+    "The old 3-row DE-15 replaced the earlier 2-row DE-9 (EGA/CGA) connector; they share the shell size but not the pinout.",
+    "Sync-on-green and composite sync exist but are rare; almost all VGA uses separate HSync (13) and VSync (14)."
+  ],
+  "gotchas": [
+    "This is ANALOG RGB, not digital -- image quality degrades with cable length/quality (ghosting, softness), unlike a digital link that's perfect-or-nothing.",
+    "Each colour has its own dedicated return (pins 6-8); sharing them or a bad ground shows up as colour shifts or shading across the screen.",
+    "DDC (pins 12/15, an I2C bus) lets the PC read EDID for supported resolutions. A broken DDC line = the PC only offers safe/low resolutions even though the RGB works.",
+    "The three video pins are 75-ohm terminated; long unterminated or cheap cables give a dim/ghosted picture."
+  ],
+  "related": ["hdmi"],
+  "see_also_url": "https://en.wikipedia.org/wiki/VGA_connector",
+  "source": "human",
+  "verified": true,
+  "notes": "DE-15 (HD-15) VGA pinout cross-checked against Wikipedia's VGA connector table. 3 rows of 5; DDC on 12/15."
+}

@@ -1,0 +1,33 @@
+{
+  "id": "iec-c14",
+  "name": "IEC C13/C14 (kettle AC inlet)",
+  "aliases": ["iec", "kettle plug", "c13", "c14", "mains inlet", "computer power cord", "iec 60320"],
+  "standard": "IEC 60320 C13/C14",
+  "family": "3-pin AC mains inlet/outlet",
+  "gender": "C14 inlet (equipment, male pins) / C13 connector (cable, female)",
+  "positions": 3,
+  "form": "custom",
+  "ascii": "     ____________________\n    |       ( E )        |    C14 AC inlet (equipment side)\n    |                    |      E = earth / ground (top, longest)\n    |  ( L )      ( N )   |      L = line (live)\n    |____________________|      N = neutral\n   ~120 / 230 V AC MAINS -- LETHAL. Earth mates first, breaks last.",
+  "tags": ["power", "mains", "ac", "iec", "kettle", "c13", "c14", "earth", "danger"],
+  "description": "The 3-pin AC mains connector on PCs, monitors, amps, and countless appliances (the 'kettle lead'). The C14 is the inlet on the equipment (male pins); the C13 is the socket on the cable (female). Three conductors: line (live), neutral, and protective earth. The earth pin is longer so it connects first and disconnects last.",
+  "contacts": [
+    {"pin": "E", "name": "EARTH",   "signal": "ground", "description": "protective earth / ground (top pin, longest -- mates first, breaks last). Ties the chassis to ground"},
+    {"pin": "L", "name": "LINE",    "signal": "mains",  "description": "line / live (~120 V or ~230 V AC). LETHAL"},
+    {"pin": "N", "name": "NEUTRAL", "signal": "mains",  "description": "neutral (near ground potential, but treat as live -- it can float)"}
+  ],
+  "variants": [
+    "C13/C14 is the 10 A cold-condition type. The physically similar C15/C16 (a notch keys it) is the HOT type, rated to 120 C, used on kettles and some lab gear -- a C13 will not seat in a C16 inlet. The C19/C20 is the bigger 16 A type for servers/PSUs.",
+    "Regional cords: the C13 end is universal, but the wall plug on the other end (Schuko, NEMA 5-15, BS1363, etc.) is region-specific."
+  ],
+  "gotchas": [
+    "This is MAINS voltage -- 120 V or 230 V AC, enough to kill. Never probe a live inlet; unplug and verify dead before touching pins.",
+    "The earth pin is longer by design: it must make contact before L/N on insertion and break after them on removal, so the chassis is grounded whenever the mains pins are live. Never defeat the earth pin.",
+    "Neutral is near ground but NOT safe -- a wiring fault or a reversed wall socket can leave neutral live. Treat both L and N as dangerous.",
+    "C13/C14 (cold) vs C15/C16 (hot, keyed notch): don't force a plain kettle lead into a hot-rated C16 inlet or vice-versa; the key exists for a reason."
+  ],
+  "related": [],
+  "see_also_url": "https://en.wikipedia.org/wiki/IEC_60320",
+  "source": "human",
+  "verified": true,
+  "notes": "IEC 60320 C13/C14 3-pin mains (Earth/Line/Neutral). Earth = long pin, mates first. C15/C16 hot variant + C19/C20 16A variant noted. MAINS -- lethal."
+}

@@ -1,0 +1,37 @@
+{
+  "id": "sata",
+  "name": "SATA (data 7-pin + power 15-pin)",
+  "aliases": ["sata", "serial ata", "sata data", "sata power"],
+  "standard": "Serial ATA",
+  "family": "L-shaped keyed edge (7-pin data + 15-pin power)",
+  "gender": "receptacle (drive) / plug (cable)",
+  "positions": 7,
+  "form": "inline",
+  "rows": [[1, 2, 3, 4, 5, 6, 7]],
+  "tags": ["sata", "storage", "drive", "ssd", "hdd", "power", "differential", "pc"],
+  "description": "The storage interface on PC drives, split into two L-shaped keyed connectors: a 7-pin DATA connector (one transmit and one receive differential pair, each fenced by grounds) and a separate 15-pin POWER connector (3.3 V, 5 V, 12 V rails + grounds). This entry's contacts are the 7-pin data connector; the power connector is in the variants.",
+  "contacts": [
+    {"pin": 1, "name": "GND", "signal": "ground",     "description": "ground"},
+    {"pin": 2, "name": "A+",  "signal": "SATA TX",    "description": "transmit pair + (host to device)"},
+    {"pin": 3, "name": "A-",  "signal": "SATA TX",    "description": "transmit pair -"},
+    {"pin": 4, "name": "GND", "signal": "ground",     "description": "ground (between the pairs)"},
+    {"pin": 5, "name": "B-",  "signal": "SATA RX",    "description": "receive pair - (device to host)"},
+    {"pin": 6, "name": "B+",  "signal": "SATA RX",    "description": "receive pair +"},
+    {"pin": 7, "name": "GND", "signal": "ground",     "description": "ground"}
+  ],
+  "variants": [
+    "POWER connector (15-pin): pins 1-3 = 3.3 V, 4-6 = GND, 7-9 = 5 V, 10 = GND, 11 = staggered activity/PWDIS, 12 = GND, 13-15 = 12 V. Three pins per rail carry the current; the connector is a separate L-key next to the data one.",
+    "eSATA is the same protocol on a ruggedized external connector (no power); SATA power adapters from Molex are common."
+  ],
+  "gotchas": [
+    "Data is two differential pairs -- TX (A) and RX (B) -- each with a ground on both sides. It's point-to-point (one drive per port), not a bus.",
+    "PWDIS (power pin 3, the 3.3 V line on newer drives): SATA 3.3 spec makes pin 3 a power-disable. A Molex-to-SATA adapter (which has no 3.3 V) or taping pin 3 is the classic fix for a drive that won't spin up on a modern PSU.",
+    "Both connectors are keyed (the L notch) so they only insert one way -- but the thin edge tabs snap if you lever the cable sideways.",
+    "SATA is hot-pluggable if the port/OS support it; the longer ground pins mate first for safe hot-plug."
+  ],
+  "related": ["molex-4"],
+  "see_also_url": "https://en.wikipedia.org/wiki/SATA",
+  "source": "human",
+  "verified": true,
+  "notes": "SATA 7-pin data (GND/TX+/TX-/GND/RX-/RX+/GND). 15-pin power rails summarized in variants. PWDIS pin-3 gotcha included."
+}

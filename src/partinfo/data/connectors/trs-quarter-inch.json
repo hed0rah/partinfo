@@ -1,0 +1,33 @@
+{
+  "id": "trs-quarter-inch",
+  "name": "1/4\" TRS (6.35mm audio jack)",
+  "aliases": ["1/4 inch", "quarter inch", "6.35mm", "guitar jack", "phone jack", "ts jack", "6.3mm"],
+  "standard": "de facto (phone plug)",
+  "family": "6.35mm 3-conductor phone plug (Tip-Ring-Sleeve)",
+  "gender": "plug (cable) / jack (device)",
+  "positions": 3,
+  "form": "custom",
+  "ascii": "      sleeve         ring          tip\n        |             |             |\n   =====+=============+=============+===>   (insert ->)\n        |             |             |\n        S             R             T\n       GND        Right / cold   Left / hot",
+  "tags": ["audio", "trs", "ts", "guitar", "6.35mm", "quarter-inch", "instrument", "balanced", "pro-audio"],
+  "description": "The full-size 6.35mm phone jack, electrically identical to the 3.5mm TRS but bigger and sturdier. Same conductor order (Tip, Ring, Sleeve). A 2-conductor TS version (no ring) is the standard mono instrument jack: Tip = signal, Sleeve = ground. TRS carries stereo (Tip=L, Ring=R) or balanced mono (Tip=+, Ring=-).",
+  "contacts": [
+    {"pin": "T", "name": "Tip",    "signal": "audio",  "description": "signal / left (stereo) / hot + (balanced); the sole signal on a mono TS instrument cable"},
+    {"pin": "R", "name": "Ring",   "signal": "audio",  "description": "right (stereo) / cold - (balanced); absent on a mono TS plug"},
+    {"pin": "S", "name": "Sleeve", "signal": "ground", "description": "ground / shield / return"}
+  ],
+  "variants": [
+    "TS (mono, 2-conductor) is the guitar / instrument cable: Tip = signal, Sleeve = ground, unbalanced.",
+    "TRS (this): stereo headphones (Tip=L, Ring=R) or a balanced mono line (Tip=+, Ring=-). Same plug, wiring intent differs.",
+    "Insert / send-return and stereo-headphone TRS both exist; an insert cable splits Tip=send, Ring=return on one TRS."
+  ],
+  "gotchas": [
+    "Instrument cable vs speaker cable: a 1/4\" TS instrument cable is thin, shielded, coax; a speaker cable is unshielded heavy 2-conductor. They share the plug but are NOT interchangeable -- an instrument cable on a speaker output can overheat, and a speaker cable on a guitar hums.",
+    "Balanced TRS and stereo TRS are physically identical -- plugging a balanced source into a stereo input (or vice versa) misroutes the signal (only one side, or phase issues).",
+    "Guitar / synth patch signals on TS are UNBALANCED, so long runs pick up hum -- that's what a DI box (TS -> balanced XLR) is for."
+  ],
+  "related": ["trs-35mm", "xlr3"],
+  "see_also_url": "https://en.wikipedia.org/wiki/Phone_connector_(audio)",
+  "source": "human",
+  "verified": true,
+  "notes": "6.35mm TRS/TS phone jack, same conductor assignment as the 3.5mm (Tip=L/signal, Ring=R/cold, Sleeve=GND). Instrument-vs-speaker-cable warning included."
+}

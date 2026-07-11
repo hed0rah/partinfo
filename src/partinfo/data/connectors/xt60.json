@@ -1,0 +1,32 @@
+{
+  "id": "xt60",
+  "name": "XT60 (high-current DC)",
+  "aliases": ["xt60", "xt-60", "lipo connector", "rc power", "amass xt60"],
+  "standard": "Amass XT60 (de facto RC)",
+  "family": "2-contact polarized high-current bullet connector",
+  "gender": "male / female (bullet pair)",
+  "positions": 2,
+  "form": "custom",
+  "ascii": "        .-------------.\n       /  (+)     (-)  \\     XT60 -- high-current DC (RC / LiPo / DIY)\n      /                 \\      (+) and (-) are molded into the housing\n      '-----------------'      chamfered corners key the polarity\n        ~60 A continuous  (XT30 = smaller, XT90 = bigger)",
+  "tags": ["power", "xt60", "lipo", "rc", "battery", "high-current", "dc", "drone"],
+  "description": "The yellow polarized bullet connector for high-current DC -- LiPo batteries, RC/drones, e-bikes, and DIY power. Two large gold bullet contacts (+ and -) in a nylon housing rated around 60 A continuous. The housing's chamfered corners and molded +/- markings key the polarity so it can only fully seat one way.",
+  "contacts": [
+    {"pin": "+", "name": "POSITIVE", "signal": "power",  "description": "positive terminal (molded '+' on the housing). The bullet is often the female socket on the battery side"},
+    {"pin": "-", "name": "NEGATIVE", "signal": "ground", "description": "negative terminal (molded '-' on the housing)"}
+  ],
+  "variants": [
+    "XT30 (~30 A) is the smaller sibling, XT90 (~90 A) the bigger; same idea, not intermateable. XT90-S is an anti-spark version with a pre-charge resistor.",
+    "There's no signal here -- it's pure DC power. Balance/telemetry leads (JST-XH etc.) are separate connectors on a LiPo pack."
+  ],
+  "gotchas": [
+    "Connecting a charged LiPo through an XT60 arcs -- a visible spark on contact is normal for small packs. For big packs the inrush pits the contacts and stresses ESCs; that's what anti-spark (XT90-S) or a pre-charge resistor is for.",
+    "Polarity: the housing is keyed so you can't FULLY reverse it, but a careless half-insert can still bridge the wrong way -- match the molded + / - before pushing.",
+    "Soldering the bullets needs a lot of heat (they're big brass); a cold joint on a 60 A connector overheats under load. Tin both, heat the cup, flow the wire, and don't bridge + to -.",
+    "Rated ~60 A continuous but that assumes good solder joints and airflow; sustained max current gets the contacts hot."
+  ],
+  "related": ["dc-barrel"],
+  "see_also_url": "https://en.wikipedia.org/wiki/Nikola_(connector)",
+  "source": "human",
+  "verified": true,
+  "notes": "XT60 2-contact polarized high-current DC connector (+/-), ~60 A. XT30/XT90 siblings + anti-spark XT90-S noted. RC/LiPo standard."
+}

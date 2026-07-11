@@ -1,0 +1,33 @@
+{
+  "id": "xlr3",
+  "name": "XLR 3-pin (balanced audio)",
+  "aliases": ["xlr", "3-pin xlr", "mic connector", "cannon"],
+  "standard": "IEC 61938 / AES14 (pin 2 hot)",
+  "family": "3-pin circular locking (Cannon XLR)",
+  "gender": "male (output) / female (input)",
+  "positions": 3,
+  "form": "custom",
+  "ascii": "         .-------.\n        /   (1)   \\        1 = GND / shield\n       |           |       2 = hot  (+, in phase)\n       |  (2)   (3) |      3 = cold (-, inverted)\n        \\         /\n         '-------'",
+  "tags": ["audio", "xlr", "balanced", "microphone", "pro-audio", "3-pin"],
+  "description": "The locking 3-pin circular connector used for balanced analog audio (microphones, line level, PA). Balanced means the signal travels as a hot/cold differential pair with a shield; the receiver subtracts cold from hot, cancelling any noise picked up equally on both. The modern standard is 'pin 2 hot' (AES14).",
+  "contacts": [
+    {"pin": 1, "name": "GND",  "signal": "ground", "description": "ground / cable shield (chassis)"},
+    {"pin": 2, "name": "HOT",  "signal": "audio",  "description": "signal +, in phase (hot). 'Pin 2 hot' is the AES/modern standard"},
+    {"pin": 3, "name": "COLD", "signal": "audio",  "description": "signal -, inverted (cold)"}
+  ],
+  "variants": [
+    "Pin 2 hot (AES14) is universal now; a handful of vintage gear wired pin 3 hot, which just inverts polarity (audible only when mixed with a pin-2-hot source).",
+    "XLR also appears in 4/5/6+ pin variants (intercom, DMX-on-3-or-5-pin, headset) -- physically similar shell, different pinout; don't assume 3-pin audio.",
+    "DMX512 lighting uses a 5-pin (or, non-compliantly, 3-pin) XLR -- electrically RS-485, NOT audio. Never plug audio gear into a DMX line."
+  ],
+  "gotchas": [
+    "Balanced (XLR) vs unbalanced (TS): an XLR carries hot/cold/ground and rejects noise over long runs; that's why mics use it. Adapting XLR to unbalanced TS ties cold to ground and loses the noise rejection.",
+    "Pin 1 (shield) should tie to chassis ground at the input end; lifting or mis-wiring pin 1 is a classic hum/ground-loop source.",
+    "Male XLR = output/source, female = input/sink (signal flows into the female). Cables are male-on-one-end, female-on-the-other, following the signal."
+  ],
+  "related": ["trs-35mm"],
+  "see_also_url": "https://en.wikipedia.org/wiki/XLR_connector",
+  "source": "human",
+  "verified": true,
+  "notes": "3-pin XLR balanced-audio pinout (1=GND, 2=hot, 3=cold) per AES14 'pin 2 hot'. DMX/multi-pin variants noted as distinct."
+}

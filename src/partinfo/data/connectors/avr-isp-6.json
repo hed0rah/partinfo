@@ -1,0 +1,35 @@
+{
+  "id": "avr-isp-6",
+  "name": "AVR ISP 6-pin (SPI programming)",
+  "aliases": ["isp", "icsp", "avrisp", "6-pin isp", "spi programming header"],
+  "standard": "Atmel/Microchip AVR ISP 6-pin",
+  "family": "2x3 0.1-inch header",
+  "gender": "male header (target board)",
+  "positions": 6,
+  "form": "header",
+  "rows": [[1, 3, 5], [2, 4, 6]],
+  "tags": ["avr", "isp", "icsp", "arduino", "spi", "programming", "atmega", "attiny"],
+  "description": "The standard 6-pin in-system programming header for AVR microcontrollers (ATmega, ATtiny) and Arduino ICSP. It exposes the SPI lines plus RESET, so a programmer can clock firmware in while the chip is on the board. Pin 1 (MISO) is marked, often with a dot or a bevel on the shroud.",
+  "contacts": [
+    {"pin": 1, "name": "MISO",  "signal": "SPI",   "description": "master-in slave-out (data from target to programmer)"},
+    {"pin": 2, "name": "VCC",   "signal": "power", "description": "target supply sense / power (do NOT back-power a running board unless intended)"},
+    {"pin": 3, "name": "SCK",   "signal": "SPI",   "description": "SPI clock from the programmer"},
+    {"pin": 4, "name": "MOSI",  "signal": "SPI",   "description": "master-out slave-in (data from programmer to target)"},
+    {"pin": 5, "name": "RESET", "signal": "reset", "description": "target /RESET, held low during programming"},
+    {"pin": 6, "name": "GND",   "signal": "ground","description": "ground"}
+  ],
+  "variants": [
+    "The older 10-pin AVR ISP has the same signals spread over 2x5 with extra grounds; a 10-to-6 adapter is common.",
+    "Arduino calls this the ICSP header; it is the same 6-pin AVR ISP pinout (MISO at pin 1)."
+  ],
+  "gotchas": [
+    "Pin 1 is MISO. Getting the header rotated 180 degrees is the #1 mistake -- always find the pin-1 marker (dot / square pad / shroud key).",
+    "Pin 2 (VCC) is target-power sense. Whether the programmer powers the target or the target must be self-powered depends on the programmer/jumper -- back-powering a board already on USB can conflict.",
+    "This is NOT UART/serial bootloader programming -- it drives the chip's SPI+RESET directly (works even with no bootloader), which is how you burn a bootloader or recover a bricked fuse... except an RSTDISBL or wrong-clock fuse still needs high-voltage programming, not ISP."
+  ],
+  "related": ["swd-10", "atmega328p", "attiny85"],
+  "see_also_url": "https://en.wikipedia.org/wiki/In-system_programming",
+  "source": "human",
+  "verified": true,
+  "notes": "Standard 6-pin AVR ISP / Arduino ICSP pinout (MISO/VCC/SCK/MOSI/RESET/GND). Universal across AVR toolchains."
+}

@@ -1,0 +1,31 @@
+{
+  "id": "dc-barrel",
+  "name": "DC barrel jack (coaxial power)",
+  "aliases": ["barrel jack", "dc jack", "power jack", "5.5x2.1", "5.5x2.5", "coaxial power"],
+  "standard": "EIAJ / de facto (5.5mm OD)",
+  "family": "coaxial DC power (center pin + outer sleeve)",
+  "gender": "plug (cable) / jack (device)",
+  "positions": 2,
+  "form": "custom",
+  "ascii": "     outer sleeve                center pin\n         |                           |\n   ======[===========================(o)===>   (insert ->)\n         |                           |\n       barrel                       tip\n     (usually -)                (usually +)",
+  "tags": ["power", "dc", "barrel", "coaxial", "wall-wart", "supply"],
+  "description": "The coaxial DC power connector on countless wall-warts and devices. Two conductors: the center pin (tip) and the outer sleeve (barrel). Polarity is a convention, not guaranteed -- most modern gear is center-positive, marked with the center-plus symbol, but always check. The very common size is 5.5 mm outer / 2.1 mm inner (also 2.5 mm inner).",
+  "contacts": [
+    {"pin": "tip",    "name": "CENTER", "signal": "power", "description": "center pin -- USUALLY positive (+) on modern center-positive supplies. 2.1 mm or 2.5 mm inner diameter"},
+    {"pin": "sleeve", "name": "BARREL", "signal": "power", "description": "outer sleeve -- USUALLY negative (-) / ground. 5.5 mm outer diameter (common)"}
+  ],
+  "variants": [
+    "Center-positive (tip +) is the modern default; some older/vintage gear (and many guitar pedals) are center-negative. The barrel connector symbol on the device shows which pin the + goes to.",
+    "Inner diameter matters: a 2.1 mm plug in a 2.5 mm jack makes intermittent contact (loose center pin); they look identical but aren't interchangeable."
+  ],
+  "gotchas": [
+    "Polarity is NOT standardized -- reversing center-positive vs center-negative can destroy the device. Check the symbol or meter the supply before plugging in an unknown wall-wart.",
+    "The center pin (2.1 vs 2.5 mm) and outer (5.5 mm typical, but 3.5/3.8/6.3 exist) must both match; wrong inner size = flaky power that browns out under load.",
+    "Barrel jacks have no keying and no make-before-break sequencing -- inserting a live plug can arc across the pins briefly; power the supply after connecting where you can."
+  ],
+  "related": [],
+  "see_also_url": "https://en.wikipedia.org/wiki/Coaxial_power_connector",
+  "source": "human",
+  "verified": true,
+  "notes": "Coaxial DC barrel: center pin + outer sleeve, polarity by convention (center-positive typical). Common 5.5mm OD / 2.1mm ID size called out."
+}

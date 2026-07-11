@@ -10,36 +10,58 @@ from .schema import Connector, Contact
 from .color import ColorMode, colorize_section, colorize_warning
 
 
-def _dsub(rows: list[list], cell: int = 3) -> str:
-    """face-view D-shell: a trapezoid whose top edge is wider than the bottom,
-    drawn in plain ascii (the sides converge downward). rows render top to
-    bottom; a shorter row (fewer pins) is staggered so its pins fall between
-    the row above. schematic, not mechanically exact."""
+def _fmt_rows(rows: list[list], gap: int = 2) -> tuple[list[str], int]:
+    """format each row as aligned pin labels: right-justified to the widest
+    label, joined by `gap` spaces. returns (row_strings, widest_row_width)."""
+    pw = max((len(str(p)) for r in rows for p in r), default=1)
+    strs = [(" " * gap).join(str(p).rjust(pw) for p in r) for r in rows]
+    return strs, max((len(s) for s in strs), default=0)
+
+
+def _dsub(rows: list[list], pad: int = 3) -> str:
+    """D-shell face view: a trapezoid whose top edge is wider than the bottom
+    (the sides converge downward), pins centered on each row. plain ascii."""
     n = len(rows)
-    widest = max((len(r) for r in rows), default=0)
-    if widest == 0:
+    strs, base = _fmt_rows(rows)
+    if not base:
         return ""
-    # `total` is the inner width of the top (widest) edge; every line below it
-    # loses one column per side, so the frame tapers into a trapezoid.
-    total = widest * cell + 2 * (n + 1) + 2
-    lines = [" " + "_" * (total - 2)]                 # the long flat top edge
-    for i, r in enumerate(rows):
-        body = "".join(str(p).rjust(cell) for p in r)
-        stagger = ((widest - len(r)) * cell) // 2     # nudge a short row inward
+    # inner width of the top (widest) edge; every line below loses one column
+    # per side, tapering the frame into a trapezoid.
+    total = base + 2 * pad + 2 * (n + 1)
+    out = [" " + "_" * (total - 2)]                          # long flat top edge
+    for i, s in enumerate(strs):
         indent = i + 1
-        content = (" " * stagger + body).center(total - 2 * indent - 2)
-        lines.append(" " * indent + "\\" + content + "/")
+        out.append(" " * indent + "\\" + s.center(total - 2 * indent - 2) + "/")
     indent = n + 1
-    lines.append(" " * indent + "\\" + "_" * (total - 2 * indent - 2) + "/")
-    return "\n".join(lines)
+    out.append(" " * indent + "\\" + "_" * (total - 2 * indent - 2) + "/")
+    return "\n".join(out)
+
+
+def _header(rows: list[list], pad: int = 3) -> str:
+    """rectangular header / IDC box, one or two rows, pins centered. plain ascii.
+    for pin headers and ribbon connectors that are NOT D-shells."""
+    strs, base = _fmt_rows(rows)
+    if not base:
+        return ""
+    inner = base + 2 * pad
+    out = ["  ." + "-" * inner + "."]
+    for s in strs:
+        out.append("  |" + s.center(inner) + "|")
+    out.append("  '" + "-" * inner + "'")
+    return "\n".join(out)
+
+
+def _inline(rows: list[list], pad: int = 3) -> str:
+    """single-row flat connector (USB-A, JST, edge card): flatten to one row."""
+    return _header([[p for r in rows for p in r]], pad)
 
 
 def _diagram(c: Connector) -> str:
     if c.ascii:
         return c.ascii
-    if c.form in ("dsub", "header", "inline") and c.rows:
-        return _dsub(c.rows)
-    return ""
+    if not c.rows:
+        return ""
+    return {"dsub": _dsub, "header": _header, "inline": _inline}.get(c.form, lambda r: "")(c.rows)
 
 
 def _contact_table(contacts: list[Contact]) -> str:

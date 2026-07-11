@@ -12,7 +12,7 @@ import sys
 from importlib import resources
 from pathlib import Path
 from . import __version__
-from .schema import Part, RefEntry
+from .schema import Part, RefEntry, Connector
 
 # parts/ and references/ ship inside the package (src/partinfo/data/) so they're
 # read-only bundled data, found the same way whether this is an editable dev
@@ -20,6 +20,7 @@ from .schema import Part, RefEntry
 _DATA = resources.files(__package__) / "data"
 _PARTS = _DATA / "parts"
 _REFS = _DATA / "references"
+_CONNS = _DATA / "connectors"
 
 # the SQLite index is a derived, writable cache -- it does not belong inside
 # the installed package. XDG_DATA_HOME (default ~/.local/share) is standard
@@ -60,6 +61,20 @@ def _conn(db: Path = _DB) -> sqlite3.Connection:
         CREATE VIRTUAL TABLE IF NOT EXISTS refs_fts USING fts5(
             id, title, tags, summary, body,
             content=refs, content_rowid=rowid
+        );
+        CREATE TABLE IF NOT EXISTS connectors (
+            id          TEXT PRIMARY KEY,
+            name        TEXT NOT NULL,
+            standard    TEXT NOT NULL DEFAULT '',
+            tags        TEXT NOT NULL,   -- JSON array
+            description TEXT NOT NULL,
+            aliases     TEXT NOT NULL,   -- JSON array
+            blob        TEXT NOT NULL,   -- full JSON
+            source      TEXT NOT NULL DEFAULT 'human'
+        );
+        CREATE VIRTUAL TABLE IF NOT EXISTS connectors_fts USING fts5(
+            id, name, aliases, tags, description,
+            content=connectors, content_rowid=rowid
         );
         CREATE TABLE IF NOT EXISTS meta (
             key   TEXT PRIMARY KEY,
@@ -125,6 +140,8 @@ def ingest(parts_dir: Path = _PARTS, db: Path = _DB,
     conn.execute("INSERT INTO parts_fts(parts_fts) VALUES ('rebuild')")
     ref_count, ref_errors = ingest_refs(conn, refs_dir)
     errors.extend(ref_errors)
+    conn_count, conn_errors = ingest_connectors(conn, _CONNS)
+    errors.extend(conn_errors)
     conn.execute("INSERT OR REPLACE INTO meta VALUES ('version', ?)", (__version__,))
     conn.commit()
     return count, errors
@@ -157,6 +174,36 @@ def ingest_refs(conn: sqlite3.Connection, refs_dir: Path = _REFS) -> tuple[int, 
             except Exception as e:
                 errors.append(f"{f.relative_to(refs_dir.parent)}: {e}")
     conn.execute("INSERT INTO refs_fts(refs_fts) VALUES ('rebuild')")
+    return count, errors
+
+
+def ingest_connectors(conn: sqlite3.Connection, conns_dir: Path = _CONNS) -> tuple[int, list[str]]:
+    """scan connectors/, rebuild the connectors tables. returns (count, errors)."""
+    conn.execute("DELETE FROM connectors")
+    conn.execute("DELETE FROM connectors_fts")
+    count = 0
+    errors = []
+    if conns_dir.exists():
+        for f in sorted(conns_dir.rglob("*.json")):
+            try:
+                c = Connector(**json.loads(f.read_text()))
+                conn.execute(
+                    "INSERT OR REPLACE INTO connectors VALUES (?,?,?,?,?,?,?,?)",
+                    (
+                        c.id,
+                        c.name,
+                        c.standard or "",
+                        json.dumps(c.tags),
+                        c.description,
+                        json.dumps(c.aliases),
+                        f.read_text(),
+                        c.source,
+                    )
+                )
+                count += 1
+            except Exception as e:
+                errors.append(f"{f.relative_to(conns_dir.parent)}: {e}")
+    conn.execute("INSERT INTO connectors_fts(connectors_fts) VALUES ('rebuild')")
     return count, errors
 
 
@@ -258,3 +305,46 @@ def ref_all_ids(db: Path = _DB) -> list[str]:
     _ensure_index(db)
     conn = _conn(db)
     return [r[0] for r in conn.execute("SELECT id FROM refs ORDER BY id").fetchall()]
+
+
+def conn_lookup(query: str, db: Path = _DB) -> Connector | None:
+    """exact match on a connector id, name, or alias."""
+    _ensure_index(db)
+    conn = _conn(db)
+    q = query.strip().lower()
+    row = conn.execute(
+        "SELECT blob FROM connectors WHERE id=? OR lower(name)=?", (q, q)
+    ).fetchone()
+    if not row:
+        for r in conn.execute("SELECT blob, aliases FROM connectors").fetchall():
+            if q in [a.lower() for a in json.loads(r["aliases"])]:
+                row = r
+                break
+    if row:
+        return Connector(**json.loads(row["blob"]))
+    return None
+
+
+def conn_search(query: str, limit: int = 10, db: Path = _DB) -> list[Connector]:
+    """full-text search across connector name, tags, description, aliases."""
+    _ensure_index(db)
+    match = _fts_query(query)
+    if match is None:
+        return []
+    conn = _conn(db)
+    rows = conn.execute(
+        """
+        SELECT c.blob FROM connectors c
+        JOIN connectors_fts f ON c.rowid = f.rowid
+        WHERE connectors_fts MATCH ?
+        ORDER BY rank LIMIT ?
+        """,
+        (match, limit),
+    ).fetchall()
+    return [Connector(**json.loads(r["blob"])) for r in rows]
+
+
+def conn_all_ids(db: Path = _DB) -> list[str]:
+    _ensure_index(db)
+    conn = _conn(db)
+    return [r[0] for r in conn.execute("SELECT id FROM connectors ORDER BY id").fetchall()]

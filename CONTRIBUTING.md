@@ -48,6 +48,27 @@ find src/partinfo/data/parts -name '*.json' -exec basename {} \; | sort | uniq -
   wrote the entry. Never set `human_reviewed` on an entry you haven't actually
   checked; it exists so verification can be recorded once, not skipped.
 
+## Connectors and cables
+
+Connectors (OBD-II, DB9, ...) are a separate content type from parts: JSON
+under `src/partinfo/data/connectors/`, validated against `Connector` in
+`schema.py`, served by the `conn` CLI namespace. Same provenance discipline as
+parts:
+
+- **Verify the pinout against the standard or a primary source.** Pin position
+  is right or wrong; take it from the connector standard (SAE J1962,
+  TIA/EIA-232, the device datasheet's connector drawing), not a random pinout
+  blog. `verified: true` only when it's checked against the standard.
+- **`contacts`** = one entry per pin: `pin`, `name` (signal), optional `signal`
+  (the standard/role), and a `description`.
+- **Renderer hints:** set `form` (`dsub`, `header`, `inline`) and `rows` (pin
+  numbers by physical row, top to bottom) and the ascii face-view draws itself.
+  For a connector the generic renderer can't handle, hand-draw an `ascii` field
+  and it overrides the renderer.
+- **`variants`** capture physical/protocol differences (OBD-II Type A vs B; a
+  pin whose meaning changes by protocol). Cross-link `related` to the parts that
+  drive the bus (a CAN connector -> mcp2515 / tja1050).
+
 ## Data completeness: store the inputs, not the datasheet
 
 partinfo is a structured quick-reference and a source of **calculation

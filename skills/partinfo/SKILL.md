@@ -58,6 +58,23 @@ Reach for these when the question is a calculation or convention ("what
 resistor divider gives 3.3V from 5V", "what does a brown-black-red band
 mean", "555 frequency for these R and C") rather than about a specific part.
 
+### Connector / cable pinouts
+
+Physical connectors (OBD-II, DB9 / serial, ...) live in their own `conn`
+namespace -- a connector is a pinout on a mechanical interface, not a
+component. Each entry renders an ascii face-view diagram plus a contact table.
+
+```sh
+partinfo conn <id>            # full entry: ascii face view + contact table + gotchas
+partinfo conn list            # list every connector id
+partinfo conn search <query>  # full-text search connectors
+partinfo conn <id> --json     # machine-readable output
+```
+
+Reach for these when the user is probing a cable or connector ("which OBD-II
+pin is CAN-H", "DB9 pinout", "is pin 5 ground"), especially during hardware
+bring-up with a multimeter on an unknown connector.
+
 ### Doing an actual calculation with a part
 
 Combine a reference formula with a part's stored specs -- don't ask the user

@@ -203,3 +203,46 @@ class RefEntry(BaseModel):
     see_also_url: Optional[str] = None
     source: Literal["human", "ollama", "claude"] = "human"
     human_reviewed: bool = False
+
+
+# -- connector entries -------------------------------------------------------
+# physical connectors and cables (OBD-II, DB9, USB, ...). a separate content
+# type from parts: a connector is a pinout on a mechanical interface, not an
+# electronic component. own schema, own renderer, own CLI namespace (`conn`).
+
+class Contact(BaseModel):
+    pin: int | str                  # pin/position number (or letter)
+    name: str                       # signal name: "CAN-H", "TXD", "GND"
+    signal: Optional[str] = None    # standard/role: "ISO 15765-4 CAN", "EIA-232"
+    description: str
+
+
+ConnectorForm = Literal["dsub", "header", "inline", "circular", "custom"]
+
+
+class Connector(BaseModel):
+    id: str                         # slug: "obd-ii", "rs232-db9"
+    name: str                       # "OBD-II (SAE J1962)"
+    aliases: list[str] = Field(default_factory=list)
+    standard: Optional[str] = None  # "SAE J1962", "TIA/EIA-232-F"
+    family: Optional[str] = None    # "16-pin trapezoidal D-shell (DLC)"
+    gender: Optional[str] = None    # "female on the vehicle (Type A)"
+    positions: Optional[int] = None
+    # renderer hints: `form` picks the ascii style; `rows` lays out the pin
+    # numbers by physical row (top to bottom) for the 2-row d-sub/header styles.
+    form: ConnectorForm = "custom"
+    rows: list[list[int | str]] = Field(default_factory=list)
+    tags: list[str] = Field(default_factory=list)
+    description: str
+    contacts: list[Contact]
+    # a pre-rendered diagram; when set it overrides the `form`/`rows` renderer,
+    # the escape hatch for connectors the generic renderer can't draw.
+    ascii: Optional[str] = None
+    variants: list[str] = Field(default_factory=list)  # physical/protocol variants, one note each
+    gotchas: list[str] = Field(default_factory=list)
+    related: list[str] = Field(default_factory=list)   # ids of connectors / parts / refs
+    see_also_url: Optional[str] = None
+    source: Literal["human", "ollama", "claude"] = "human"
+    verified: bool = False
+    human_reviewed: bool = False
+    notes: Optional[str] = None

@@ -12,6 +12,9 @@ usage:
   partinfo ref <id>            show a reference entry (fundamentals)
   partinfo ref list            list all reference ids
   partinfo ref search <query>  full-text search references
+  partinfo conn <id>           show a connector/cable pinout (OBD-II, DB9, ...)
+  partinfo conn list           list all connector ids
+  partinfo conn search <query> full-text search connectors
 
 Formatting logic lives in render.py -- this module is argparse wiring only.
 """
@@ -22,11 +25,13 @@ import sys
 from .db import (
     lookup, search, ingest, all_ids,
     ref_lookup, ref_search, ref_all_ids,
+    conn_lookup, conn_search, conn_all_ids,
 )
 from .schema import Part
 from .color import resolve_mode
 from .render import fmt_pins, fmt_specs, fmt_full, fmt_ascii
 from .ref_render import render_ref
+from .conn_render import render_conn
 
 
 def _ollama_fallback(query: str, model: str) -> Part | None:
@@ -134,6 +139,42 @@ def main():
             print(ref.model_dump_json(indent=2, exclude_none=True))
             return
         print(render_ref(ref, color_mode))
+        return
+
+    if args.part == "conn":
+        sub = args.rest[0] if args.rest else None
+        if sub == "list":
+            for cid in conn_all_ids():
+                print(cid)
+            return
+        if sub == "search":
+            query = " ".join(args.rest[1:])
+            if not query:
+                print("usage: partinfo conn search <query>", file=sys.stderr)
+                sys.exit(1)
+            results = conn_search(query)
+            if not results:
+                print("no results")
+                return
+            for c in results:
+                print(f"  {c.id:<20} {(c.standard or ''):<14} {c.description[:56]}")
+            return
+        if not sub:
+            print("usage: partinfo conn <id> | conn list | conn search <query>", file=sys.stderr)
+            sys.exit(1)
+        connector = conn_lookup(sub)
+        if not connector:
+            print(f"  not found: {sub}", file=sys.stderr)
+            similar = conn_search(sub, limit=5)
+            if similar:
+                print("  similar connectors:")
+                for c in similar:
+                    print(f"    partinfo conn {c.id}")
+            sys.exit(1)
+        if args.json:
+            print(connector.model_dump_json(indent=2, exclude_none=True))
+            return
+        print(render_conn(connector, color_mode))
         return
 
     if args.part == "search":

@@ -1,0 +1,40 @@
+{
+  "id": "rs232-db9",
+  "name": "RS-232 (DE-9 / DB9)",
+  "aliases": ["db9", "de-9", "de9", "rs232", "rs-232", "serial port", "com port", "eia-232"],
+  "standard": "TIA/EIA-232-F",
+  "family": "9-pin D-subminiature (DE-9), the PC serial port",
+  "gender": "male (DTE, e.g. a PC COM port)",
+  "positions": 9,
+  "form": "dsub",
+  "rows": [[1, 2, 3, 4, 5], [6, 7, 8, 9]],
+  "tags": ["serial", "rs232", "db9", "de-9", "uart", "com", "eia-232", "dte", "modem"],
+  "description": "The 9-pin serial connector on PCs and countless devices. Signal names are given from the DTE (terminal / PC) viewpoint: TXD is data the PC sends, RXD is data it receives. RS-232 signalling is bipolar (+/-3 to +/-15 V) and inverted, NOT TTL/3.3 V -- driving a bare MCU pin from it will damage it.",
+  "contacts": [
+    {"pin": 1, "name": "DCD", "signal": "EIA-232", "description": "Data Carrier Detect (input to the DTE)"},
+    {"pin": 2, "name": "RXD", "signal": "EIA-232", "description": "Receive Data (into the DTE / PC)"},
+    {"pin": 3, "name": "TXD", "signal": "EIA-232", "description": "Transmit Data (out of the DTE / PC)"},
+    {"pin": 4, "name": "DTR", "signal": "EIA-232", "description": "Data Terminal Ready (output from the DTE)"},
+    {"pin": 5, "name": "GND", "signal": "ground",  "description": "Signal Ground (0 V reference)"},
+    {"pin": 6, "name": "DSR", "signal": "EIA-232", "description": "Data Set Ready (input to the DTE)"},
+    {"pin": 7, "name": "RTS", "signal": "EIA-232", "description": "Request To Send (output from the DTE)"},
+    {"pin": 8, "name": "CTS", "signal": "EIA-232", "description": "Clear To Send (input to the DTE)"},
+    {"pin": 9, "name": "RI",  "signal": "EIA-232", "description": "Ring Indicator (input to the DTE)"}
+  ],
+  "variants": [
+    "DE-9 (this) is the common 9-pin PC port; older equipment uses the 25-pin DB-25 with the same core signals plus rarely-used ones.",
+    "'DB9' is the near-universal misnomer: the D-sub shell for 9 pins is size E (so DE-9); 'DB' is the 25-pin shell size. Everyone says DB9 anyway.",
+    "DTE (PC) vs DCE (modem): on a DCE the data-direction names flip (its TXD is the DTE's RXD). A null-modem cable crosses the pairs to join two DTEs."
+  ],
+  "gotchas": [
+    "RS-232 levels are bipolar +/-3 to +/-15 V and INVERTED (a mark/'1' is negative). This is NOT UART TTL -- connect it to a 3.3 V MCU only through a level shifter (MAX232 / MAX3232), or you fry the pin.",
+    "Names are from the DTE side. To talk to another DTE (two PCs, or a PC to a device also wired as DTE) you need a NULL-MODEM crossover: TXD<->RXD, RTS<->CTS, DTR<->DSR/DCD.",
+    "Minimum working cable is 3 wires: TXD (3), RXD (2), GND (5). Hardware flow control (RTS/CTS) is optional and many devices ignore it.",
+    "Pin 9 (RI) and pin 1 (DCD) are legacy modem lines -- usually left unconnected on non-modem gear."
+  ],
+  "related": ["obd-ii", "max232", "ft232rl", "cp2102", "ch340g"],
+  "see_also_url": "https://en.wikipedia.org/wiki/RS-232",
+  "source": "human",
+  "verified": true,
+  "notes": "DE-9 (DB9) pinout from the DTE viewpoint per TIA/EIA-232. related max232 is the TTL<->RS-232 level shifter (already in partinfo); ft232rl/cp2102/ch340g are USB-serial bridges that expose these same logical signals at TTL level."
+}

@@ -1,0 +1,39 @@
+{
+  "id": "sd-card",
+  "name": "SD card (9-pin)",
+  "aliases": ["sd", "sdcard", "secure digital", "sd-card"],
+  "standard": "SD / SDIO (SPI mode alternative)",
+  "family": "9-contact card edge",
+  "gender": "card edge (contacts) / socket",
+  "positions": 9,
+  "form": "inline",
+  "rows": [[1, 2, 3, 4, 5, 6, 7, 8, 9]],
+  "tags": ["sd", "sdcard", "spi", "sdio", "storage", "flash", "embedded", "3v3"],
+  "description": "The full-size SD card's 9 edge contacts. The card supports two bus protocols on the same pins: the native SD/SDIO bus (1- or 4-bit, fast) and a slower SPI mode that most microcontrollers use. Signal names differ between the two modes -- this entry lists both. SD I/O is 3.3 V; there is no 5 V here.",
+  "contacts": [
+    {"pin": 1, "name": "CD/DAT3", "signal": "SD / SPI nCS",   "description": "SD: card-detect / data line 3 (4-bit mode). SPI: chip select (active low)"},
+    {"pin": 2, "name": "CMD",     "signal": "SD / SPI DI",    "description": "SD: command line. SPI: DI = MOSI (data in to card)"},
+    {"pin": 3, "name": "VSS",     "signal": "ground",         "description": "ground"},
+    {"pin": 4, "name": "VDD",     "signal": "power",          "description": "supply, 2.7-3.6 V (nominally 3.3 V) -- NOT 5 V tolerant"},
+    {"pin": 5, "name": "CLK",     "signal": "SD / SPI SCLK",  "description": "clock (host to card)"},
+    {"pin": 6, "name": "VSS",     "signal": "ground",         "description": "ground"},
+    {"pin": 7, "name": "DAT0",    "signal": "SD / SPI DO",    "description": "SD: data line 0. SPI: DO = MISO (data out of card)"},
+    {"pin": 8, "name": "DAT1",    "signal": "SD / SDIO IRQ",  "description": "SD: data line 1 (4-bit) / SDIO interrupt. SPI: unused (NC)"},
+    {"pin": 9, "name": "DAT2",    "signal": "SD",             "description": "SD: data line 2 (4-bit mode). SPI: unused (NC)"}
+  ],
+  "variants": [
+    "microSD has 8 contacts (drops one ground) but the same signals and both bus modes; a passive microSD-to-SD adapter is just wiring, no electronics.",
+    "SPI mode uses only pins 1,2,5,7 (nCS/MOSI/SCLK/MISO) + power/ground; the SD 4-bit mode adds DAT1/DAT2 (pins 8,9) for 4x throughput."
+  ],
+  "gotchas": [
+    "SD is 3.3 V. Driving the pins from 5 V logic (a classic Arduino Uno mistake) can damage the card -- level-shift, or use a board with the shifter built in.",
+    "Almost every MCU talks to SD cards in SPI mode (pins 1,2,5,7). It's slow compared to native 4-bit SDIO, but simple. Cheap 'SD modules' are just a socket + a 3.3 V regulator + level shifters.",
+    "Pin 1 doubles as DAT3 in 4-bit SD mode and as chip-select in SPI mode -- so a 4-bit host and an SPI host use the same pin for very different things.",
+    "Cards need a valid init sequence (send CMD0 with CS low to enter SPI mode); just clocking data at a fresh card without the handshake gets you nothing."
+  ],
+  "related": ["w25q32", "cp2102"],
+  "see_also_url": "https://en.wikipedia.org/wiki/SD_card#Transfer_modes",
+  "source": "human",
+  "verified": true,
+  "notes": "Full-size SD 9-pin, SDIO + SPI mode names, cross-checked against Wikipedia's SD pinout table. 3.3V I/O; microSD is the same signals on 8 contacts."
+}

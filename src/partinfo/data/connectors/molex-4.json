@@ -1,0 +1,33 @@
+{
+  "id": "molex-4",
+  "name": "Molex 4-pin peripheral power",
+  "aliases": ["molex", "4-pin molex", "peripheral power", "molex 8981", "ide power", "disk power"],
+  "standard": "Molex 8981 (AMP/PC peripheral)",
+  "family": "4-pin inline 0.093-inch power connector",
+  "gender": "female (cable from PSU) / male (device)",
+  "positions": 4,
+  "form": "inline",
+  "rows": [[1, 2, 3, 4]],
+  "tags": ["power", "molex", "pc", "12v", "5v", "peripheral", "drive", "fan"],
+  "description": "The classic 4-pin PC peripheral power connector from the ATX PSU, long used for hard drives, optical drives, and fans. Carries +12V and +5V with two grounds between them. The shell is D-shaped/keyed so it only inserts one way. Colour code is standard: yellow=+12V, black=GND, red=+5V.",
+  "contacts": [
+    {"pin": 1, "name": "+12V", "signal": "power",  "description": "+12 V (yellow wire) -- motors, drive spindles, fans"},
+    {"pin": 2, "name": "GND",  "signal": "ground", "description": "ground (black wire) -- return for +12 V"},
+    {"pin": 3, "name": "GND",  "signal": "ground", "description": "ground (black wire) -- return for +5 V"},
+    {"pin": 4, "name": "+5V",  "signal": "power",  "description": "+5 V (red wire) -- logic / electronics"}
+  ],
+  "variants": [
+    "The pin order (12V, GND, GND, 5V) with the two rails on the OUTSIDE and grounds in the middle is standard. Colour code (yellow/black/black/red) is reliable on real PSUs.",
+    "SATA power (a flat 15-pin connector) has superseded this for drives, but Molex is still common on fans, older gear, and Molex-to-SATA/PCIe adapters."
+  ],
+  "gotchas": [
+    "It is easy to force a Molex in slightly rotated or half-seated because the pins are chunky -- a partly-inserted connector can arc or make intermittent 12 V contact. Seat it fully and squarely.",
+    "Molex-to-SATA adapters are a known fire risk when cheaply molded (the crimp on the SATA side is the failure point). Prefer PSU-native SATA power over an adapter for a drive that draws real current.",
+    "12 V is on pin 1 and 5 V on pin 4 -- the rails are the two OUTER pins. Reversing your assumption (grounds outside) shorts a rail."
+  ],
+  "related": [],
+  "see_also_url": "https://en.wikipedia.org/wiki/Molex_connector",
+  "source": "human",
+  "verified": true,
+  "notes": "Molex 8981 4-pin PC peripheral power (12V/GND/GND/5V, yellow/black/black/red). Universal PC standard."
+}

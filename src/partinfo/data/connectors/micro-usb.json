@@ -1,0 +1,34 @@
+{
+  "id": "micro-usb",
+  "name": "Micro-USB (Micro-B)",
+  "aliases": ["microusb", "micro-b", "micro usb", "usb micro"],
+  "standard": "USB 2.0 Micro-B",
+  "family": "5-pin micro connector",
+  "gender": "plug (cable) / receptacle (device)",
+  "positions": 5,
+  "form": "inline",
+  "rows": [[1, 2, 3, 4, 5]],
+  "tags": ["usb", "micro-usb", "micro-b", "otg", "5v", "charging", "data"],
+  "description": "The 5-pin Micro-B connector on countless older phones, dev boards, and battery packs. Same USB 2.0 signals as USB-A (VBUS, D-, D+, GND) plus a 5th 'ID' pin that selects USB On-The-Go host vs device role. Being superseded by USB-C, but still everywhere on hobby hardware.",
+  "contacts": [
+    {"pin": 1, "name": "VBUS", "signal": "power",   "description": "+5 V bus power"},
+    {"pin": 2, "name": "D-",   "signal": "USB 2.0", "description": "differential data, negative"},
+    {"pin": 3, "name": "D+",   "signal": "USB 2.0", "description": "differential data, positive"},
+    {"pin": 4, "name": "ID",   "signal": "OTG",     "description": "OTG role select: floating = device (default), shorted to GND (pin 5) = host"},
+    {"pin": 5, "name": "GND",  "signal": "ground",  "description": "ground return"}
+  ],
+  "variants": [
+    "Micro-A (host) and Micro-B (device) share this pinout; the difference is the shell shape and the ID pin state. Most cables/devices are Micro-B.",
+    "USB 3.0 Micro-B (on old USB3 hard drives) is this connector plus a second bank of 5 SuperSpeed pins alongside -- a wider, two-part shell."
+  ],
+  "gotchas": [
+    "The ID pin (4) is what makes OTG work: a special OTG cable ties ID to GND so the device becomes a USB host and can drive a keyboard/flash drive. A normal charge/sync cable leaves ID floating.",
+    "Data-only vs charge-only cables: cheap 'charging' micro-USB cables often omit D+/D- entirely, so a device that needs USB data enumeration just charges and never connects. Meter the cable if a board won't be seen.",
+    "The connector is fragile -- the tiny solder tabs lift off dev boards with repeated plugging; strain-relieve it."
+  ],
+  "related": ["usb-c", "usb-a"],
+  "see_also_url": "https://en.wikipedia.org/wiki/USB_hardware#Micro_connectors",
+  "source": "human",
+  "verified": true,
+  "notes": "USB 2.0 Micro-B 5-pin (VBUS/D-/D+/ID/GND) per the USB spec. ID pin OTG behaviour noted."
+}

@@ -1,0 +1,49 @@
+{
+  "id": "hdmi",
+  "name": "HDMI Type-A (19-pin)",
+  "aliases": ["hdmi", "hdmi-a", "type-a hdmi"],
+  "standard": "HDMI (Type-A connector)",
+  "family": "19-pin, two staggered rows (10 + 9)",
+  "gender": "plug (cable) / receptacle (device)",
+  "positions": 19,
+  "form": "header",
+  "rows": [[1, 3, 5, 7, 9, 11, 13, 15, 17, 19], [2, 4, 6, 8, 10, 12, 14, 16, 18]],
+  "tags": ["hdmi", "video", "audio", "tmds", "display", "ddc", "cec", "arc"],
+  "description": "The standard 19-pin HDMI connector. The bulk of the pins carry three TMDS differential data pairs plus a TMDS clock pair (each pair is +, shield, -). The rest are control: CEC (device control), the DDC I2C bus (SCL/SDA, for EDID), a utility/ARC/eARC line, +5V, and Hot Plug Detect. Odd pins sit on one row, even on the other (staggered).",
+  "contacts": [
+    {"pin": 1,  "name": "D2+",    "signal": "TMDS",   "description": "TMDS Data2 +"},
+    {"pin": 2,  "name": "D2 SHD", "signal": "shield", "description": "TMDS Data2 shield"},
+    {"pin": 3,  "name": "D2-",    "signal": "TMDS",   "description": "TMDS Data2 -"},
+    {"pin": 4,  "name": "D1+",    "signal": "TMDS",   "description": "TMDS Data1 +"},
+    {"pin": 5,  "name": "D1 SHD", "signal": "shield", "description": "TMDS Data1 shield"},
+    {"pin": 6,  "name": "D1-",    "signal": "TMDS",   "description": "TMDS Data1 -"},
+    {"pin": 7,  "name": "D0+",    "signal": "TMDS",   "description": "TMDS Data0 +"},
+    {"pin": 8,  "name": "D0 SHD", "signal": "shield", "description": "TMDS Data0 shield"},
+    {"pin": 9,  "name": "D0-",    "signal": "TMDS",   "description": "TMDS Data0 -"},
+    {"pin": 10, "name": "CLK+",   "signal": "TMDS",   "description": "TMDS Clock +"},
+    {"pin": 11, "name": "CLK SHD","signal": "shield", "description": "TMDS Clock shield"},
+    {"pin": 12, "name": "CLK-",   "signal": "TMDS",   "description": "TMDS Clock -"},
+    {"pin": 13, "name": "CEC",    "signal": "control","description": "Consumer Electronics Control (one-remote device control)"},
+    {"pin": 14, "name": "UTIL",   "signal": "control","description": "Utility / HEAC+ (ARC/eARC audio return channel +)"},
+    {"pin": 15, "name": "SCL",    "signal": "DDC",    "description": "DDC I2C clock (EDID read)"},
+    {"pin": 16, "name": "SDA",    "signal": "DDC",    "description": "DDC I2C data (EDID read)"},
+    {"pin": 17, "name": "GND",    "signal": "ground", "description": "ground for DDC / CEC / HEAC"},
+    {"pin": 18, "name": "+5V",    "signal": "power",  "description": "+5 V power (up to 50 mA, for the sink's EDID EEPROM etc.)"},
+    {"pin": 19, "name": "HPD",    "signal": "control","description": "Hot Plug Detect / HEAC- (ARC/eARC -)"}
+  ],
+  "variants": [
+    "Same 19 signals appear on Mini-HDMI (Type-C) and Micro-HDMI (Type-D) in different physical pin orders -- the pinout numbers differ per connector, only the signal set is shared.",
+    "ARC / eARC reuse pins 14 and 19 (the HEAC pair) to send audio back from a TV to a soundbar; older cables that leave those unconnected won't pass ARC."
+  ],
+  "gotchas": [
+    "The three TMDS data pairs + clock pair are high-speed differential lines -- impedance-controlled, length-matched. This is not something to hand-wire; a bad joint gives sparkles or a black screen, not a graceful degrade.",
+    "DDC (pins 15/16) is a plain I2C bus the source uses to read the display's EDID. A flaky DDC line = 'no signal' or wrong resolution even when the video pairs are fine.",
+    "Pin 18 supplies only ~50 mA at 5 V -- it powers the sink's EDID EEPROM and HPD, not a device. Don't try to run anything real off it.",
+    "Hot Plug Detect (pin 19) is how the source knows a display is connected; if HPD is low the source may never output video even with a good cable."
+  ],
+  "related": ["usb-c"],
+  "see_also_url": "https://en.wikipedia.org/wiki/HDMI#Connectors",
+  "source": "human",
+  "verified": true,
+  "notes": "HDMI Type-A 19-pin pinout cross-checked against Wikipedia's HDMI connector table. Odd/even staggered rows."
+}

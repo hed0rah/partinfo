@@ -1,0 +1,35 @@
+{
+  "id": "midi-din",
+  "name": "MIDI (5-pin DIN)",
+  "aliases": ["midi", "din-5", "5-pin din", "din41524", "midi din"],
+  "standard": "MIDI 1.0 (DIN 41524, 180 degrees)",
+  "family": "5-pin circular DIN, 180-degree",
+  "gender": "female socket (device) / male plug (cable)",
+  "positions": 5,
+  "form": "custom",
+  "ascii": "        .---------.\n       /  4     5  \\        MIDI uses 3 of the 5 pins:\n      | 1    2    3 |         4 = current source (+, via 220R to +5V)\n       \\     o     /          5 = current sink (the data line)\n        '---------'           2 = shield / ground\n     (5-pin DIN, socket face)  1, 3 = not connected in MIDI",
+  "tags": ["midi", "din", "music", "synth", "serial", "opto-isolated", "current-loop"],
+  "description": "The classic 5-pin DIN connector for MIDI 1.0. MIDI is a 31250-baud current loop, not a voltage-level serial line: the transmitter sources ~5 mA through pins 4 and 5, and the receiver's input is opto-isolated so there's no shared ground between devices. Only 3 of the 5 pins are used; pins 1 and 3 are unconnected on standard MIDI.",
+  "contacts": [
+    {"pin": 1, "name": "NC",     "signal": "-",       "description": "not connected on standard MIDI (some gear repurposes it, e.g. phantom power)"},
+    {"pin": 2, "name": "SHIELD", "signal": "ground",  "description": "cable shield / ground (connected at the OUT/THRU end only, not at IN)"},
+    {"pin": 3, "name": "NC",     "signal": "-",       "description": "not connected on standard MIDI"},
+    {"pin": 4, "name": "SOURCE", "signal": "midi",    "description": "current-loop source (+), driven high through 220R from +5V"},
+    {"pin": 5, "name": "SINK",   "signal": "midi",    "description": "current-loop sink -- the actual data line (the UART TX signal)"}
+  ],
+  "variants": [
+    "TRS MIDI: modern compact gear replaces the DIN with a 3.5mm TRS jack. Type A (MIDI Association standard: Tip=sink/pin5, Ring=source/pin4, Sleeve=shield/pin2) vs the older Type B are wired oppositely -- a Type-A-to-B mismatch means no MIDI, hence the 'MIDI TRS Type A' labels on cables.",
+    "MIDI OUT and MIDI THRU use the same pinout; THRU is a buffered copy of IN. MIDI IN is the opto-isolated receiver."
+  ],
+  "gotchas": [
+    "MIDI is a 5 mA current loop, NOT a TTL/RS-232 voltage line. The receiver is opto-isolated, which is why there's no ground loop between synths and why you can't just wire pin 5 to a bare UART RX and expect it to work without the opto front-end.",
+    "Pin 2 (shield) is grounded only at the transmitting end (OUT/THRU); grounding it at the IN end defeats the opto-isolation and can create hum loops.",
+    "Only pins 2, 4, 5 matter. If you're building a MIDI jack, pins 1 and 3 stay unconnected (barring non-standard phantom-power hacks).",
+    "Baud is a fixed 31250 -- there is no negotiation. A UART set to any other rate just produces garbage."
+  ],
+  "related": ["trs-35mm", "rs232-db9"],
+  "see_also_url": "https://midi.org/5-pin-din-electrical-specs",
+  "source": "human",
+  "verified": true,
+  "notes": "MIDI 1.0 5-pin DIN (pins 4=source, 5=sink, 2=shield; 1/3 unused) per the MIDI electrical spec. TRS-MIDI Type A/B variant noted."
+}

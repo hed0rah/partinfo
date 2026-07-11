@@ -1,0 +1,31 @@
+{
+  "id": "rca",
+  "name": "RCA (phono) jack",
+  "aliases": ["rca", "phono", "cinch", "composite", "coax audio"],
+  "standard": "de facto (IEC 60603-14)",
+  "family": "coaxial single-signal (center pin + shield sleeve)",
+  "gender": "plug (cable) / jack (device)",
+  "positions": 2,
+  "form": "custom",
+  "ascii": "     shield / ground (sleeve)      center pin (signal)\n          |                             |\n     =====[=============================(o)===>   (plug ->)\n          |                             |\n        outer                         center\n     (0 V return)                   (audio / video)",
+  "tags": ["audio", "video", "rca", "phono", "composite", "line-level", "coax", "unbalanced"],
+  "description": "The ubiquitous single-signal AV connector: a center pin for the signal and an outer sleeve for ground/shield -- one connector carries one unbalanced channel. Color coding is convention only (white/red = left/right analog audio, yellow = composite video, orange = S/PDIF digital, etc.); electrically they're all identical RCA jacks.",
+  "contacts": [
+    {"pin": "center", "name": "SIGNAL", "signal": "signal", "description": "the signal conductor -- line-level audio, composite video, or S/PDIF depending on use"},
+    {"pin": "sleeve", "name": "SHIELD", "signal": "ground", "description": "outer sleeve: ground / shield / 0 V return"}
+  ],
+  "variants": [
+    "Colour is convention, not function: white=L, red=R (analog audio); yellow=composite video; red/green/blue=component video; orange=coaxial S/PDIF. All are the same RCA connector -- a video signal happily runs down a 'red audio' cable.",
+    "S/PDIF over RCA is a 75-ohm coaxial digital link; using a normal (non-75-ohm) analog audio RCA cable for it usually works over short runs but can cause dropouts on longer ones."
+  ],
+  "gotchas": [
+    "RCA is UNBALANCED (signal + ground, no differential), so it picks up hum and noise over long runs -- fine for a rack, poor for stage-length cables (that's what XLR/TRS-balanced is for).",
+    "The sleeve makes contact first and breaks last, so hot-plugging thumps: connect RCA cables with the volume down.",
+    "It's a single channel per connector -- stereo needs two, and composite video + stereo audio needs three."
+  ],
+  "related": ["trs-35mm", "xlr3"],
+  "see_also_url": "https://en.wikipedia.org/wiki/RCA_connector",
+  "source": "human",
+  "verified": true,
+  "notes": "RCA / phono: center pin = signal, sleeve = ground. Colour coding is convention only. Universal."
+}

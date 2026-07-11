@@ -1,0 +1,37 @@
+{
+  "id": "rj45",
+  "name": "RJ45 / 8P8C (Ethernet)",
+  "aliases": ["8p8c", "ethernet", "lan", "rj-45", "network"],
+  "standard": "ANSI/TIA-568 (T568B shown)",
+  "family": "8-position 8-contact modular jack",
+  "gender": "plug (cable) / jack (device)",
+  "positions": 8,
+  "form": "inline",
+  "rows": [[1, 2, 3, 4, 5, 6, 7, 8]],
+  "tags": ["ethernet", "rj45", "8p8c", "network", "lan", "twisted-pair", "poe"],
+  "description": "The 8-contact modular connector used for twisted-pair Ethernet. Contacts are numbered 1-8 with the tab/latch facing away and the gold pins toward you. Wiring follows T568A or T568B (this entry lists T568B, the common one); the two schemes just swap the orange and green pairs, and either works as long as both ends match. 10/100 Ethernet uses only pins 1,2,3,6; Gigabit uses all four pairs.",
+  "contacts": [
+    {"pin": 1, "name": "TX+ / BI_DA+", "signal": "white/orange", "description": "10/100 transmit +; Gigabit bidirectional pair A +"},
+    {"pin": 2, "name": "TX- / BI_DA-", "signal": "orange",       "description": "10/100 transmit -; Gigabit pair A -"},
+    {"pin": 3, "name": "RX+ / BI_DB+", "signal": "white/green",  "description": "10/100 receive +; Gigabit pair B +"},
+    {"pin": 4, "name": "BI_DC+",       "signal": "blue",         "description": "unused on 10/100; Gigabit pair C +"},
+    {"pin": 5, "name": "BI_DC-",       "signal": "white/blue",   "description": "unused on 10/100; Gigabit pair C -"},
+    {"pin": 6, "name": "RX- / BI_DB-", "signal": "green",        "description": "10/100 receive -; Gigabit pair B -"},
+    {"pin": 7, "name": "BI_DD+",       "signal": "white/brown",  "description": "unused on 10/100; Gigabit pair D +"},
+    {"pin": 8, "name": "BI_DD-",       "signal": "brown",        "description": "unused on 10/100; Gigabit pair D -"}
+  ],
+  "variants": [
+    "T568A vs T568B: the two swap the orange and green pairs (pins 1/2 <-> 3/6). Both are valid; a cable with T568A on one end and T568B on the other is a crossover cable.",
+    "10/100 (Fast Ethernet) uses only pairs on 1-2 (TX) and 3-6 (RX); 4/5 and 7/8 are unused. Gigabit (1000BASE-T) uses all four pairs bidirectionally."
+  ],
+  "gotchas": [
+    "Pairs are 1-2, 3-6, 4-5, 7-8. Note pin 3 pairs with 6 (not 4/5) -- splitting the 3-6 pair across two twists kills the signal at speed. This trips up hand-crimped cables.",
+    "PoE (Power over Ethernet) injects DC on the pairs: Mode A on the data pairs (1-2 / 3-6), Mode B on the spare pairs (4-5 / 7-8) for 10/100. Do not probe a live PoE port expecting 0 V.",
+    "Modern gear is auto-MDI-X, so straight-through vs crossover no longer matters between switches/PCs -- but older equipment still needs the right cable."
+  ],
+  "related": [],
+  "see_also_url": "https://en.wikipedia.org/wiki/Modular_connector#8P8C",
+  "source": "human",
+  "verified": true,
+  "notes": "8P8C pinout per ANSI/TIA-568 with the T568B colour code and 1000BASE-T pair assignments; universal."
+}

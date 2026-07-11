@@ -1,0 +1,34 @@
+{
+  "id": "trs-35mm",
+  "name": "3.5mm TRS (stereo audio jack)",
+  "aliases": ["trs", "3.5mm", "aux", "headphone", "minijack", "1/8 inch", "ts", "trrs"],
+  "standard": "de facto (IEC 60603-11 / EIA)",
+  "family": "3.5mm 3-conductor phone plug (Tip-Ring-Sleeve)",
+  "gender": "plug (cable) / jack (device)",
+  "positions": 3,
+  "form": "custom",
+  "ascii": "      sleeve         ring          tip\n        |             |             |\n   =====+=============+=============+===>   (insert ->)\n        |             |             |\n        S             R             T\n       GND          Right     Left / signal",
+  "tags": ["audio", "trs", "3.5mm", "jack", "stereo", "eurorack", "patch", "cv"],
+  "description": "The 3.5mm phone jack. Conductors from the tip inward: Tip, Ring, Sleeve. In stereo audio Tip = Left, Ring = Right, Sleeve = ground. A 2-conductor TS plug (no ring) is mono: Tip = signal, Sleeve = ground -- this is the plug Eurorack uses for CV and audio patch cables. A 4-conductor TRRS adds a second ring for a microphone.",
+  "contacts": [
+    {"pin": "T", "name": "Tip",    "signal": "audio",  "description": "left channel (stereo TRS) or the single signal (mono TS); the hot / balanced + on a balanced TRS"},
+    {"pin": "R", "name": "Ring",   "signal": "audio",  "description": "right channel (stereo TRS) or cold / balanced - (balanced mono); absent on a mono TS plug"},
+    {"pin": "S", "name": "Sleeve", "signal": "ground", "description": "ground / shield / return"}
+  ],
+  "variants": [
+    "TS (2-conductor, Tip + Sleeve): mono, Tip = signal, Sleeve = ground. This is the Eurorack patch cable -- CV and audio are unbalanced mono.",
+    "TRS (3-conductor, this): stereo (Tip=L, Ring=R, Sleeve=GND) OR balanced mono (Tip=+, Ring=-, Sleeve=GND). Context decides which.",
+    "TRRS (4-conductor): adds a microphone conductor. Two incompatible standards: CTIA (common: T=L, R=R, R2=GND, S=MIC) and OMTP (older: R2=MIC, S=GND). Plugging one into the other swaps mic and ground."
+  ],
+  "gotchas": [
+    "Eurorack uses mono TS 3.5mm, not TRS -- CV and audio are unbalanced. A stereo TRS cable in a Eurorack jack shorts the ring, usually harmless but not what you want.",
+    "Balanced TRS and stereo TRS are physically identical; only the wiring intent differs. A balanced mono signal into a stereo input plays only on the left, and vice versa.",
+    "TRRS mic order (CTIA vs OMTP) is the classic 'my headset mic doesn't work' trap -- a $2 CTIA/OMTP adapter swaps the last two conductors.",
+    "Sleeve makes contact first and breaks last on insert/remove, so unplugging a live jack thumps the ground before the signal (the loud pop you hear)."
+  ],
+  "related": [],
+  "see_also_url": "https://en.wikipedia.org/wiki/Phone_connector_(audio)",
+  "source": "human",
+  "verified": true,
+  "notes": "3.5mm TRS conductor assignment (Tip=L, Ring=R, Sleeve=GND) is the universal stereo convention; TS/TRRS variants noted. Eurorack TS-mono usage called out for the user's synth work."
+}

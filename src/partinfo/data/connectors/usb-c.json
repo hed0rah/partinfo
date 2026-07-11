@@ -1,0 +1,57 @@
+{
+  "id": "usb-c",
+  "name": "USB-C (USB Type-C)",
+  "aliases": ["usbc", "type-c", "usb type-c", "usb-c"],
+  "standard": "USB Type-C",
+  "family": "24-pin reversible receptacle (2 x 12, point-symmetric)",
+  "gender": "receptacle (shown) / plug",
+  "positions": 24,
+  "form": "header",
+  "rows": [
+    ["A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "A10", "A11", "A12"],
+    ["B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8", "B9", "B10", "B11", "B12"]
+  ],
+  "tags": ["usb", "usb-c", "type-c", "reversible", "power-delivery", "pd", "displayport", "thunderbolt"],
+  "description": "The reversible 24-pin USB connector. The A and B rows are point-symmetric (A1 sits opposite B12, etc.), which is what lets the plug go in either way up. USB 2.0 rides on the D+/D- pins (A6/A7, mirrored on B6/B7); the SuperSpeed TX/RX pairs carry USB 3.x, DisplayPort, or Thunderbolt alt modes; CC1/CC2 negotiate orientation, host/device role, and Power Delivery.",
+  "contacts": [
+    {"pin": "A1",  "name": "GND",    "signal": "ground", "description": "ground return"},
+    {"pin": "A2",  "name": "SSTXp1", "signal": "SuperSpeed", "description": "TX pair 1 + (USB 3.x / alt-mode lane)"},
+    {"pin": "A3",  "name": "SSTXn1", "signal": "SuperSpeed", "description": "TX pair 1 -"},
+    {"pin": "A4",  "name": "VBUS",   "signal": "power",  "description": "bus power (5 V default, up to 20 V+ / 48 V with PD)"},
+    {"pin": "A5",  "name": "CC1",    "signal": "config", "description": "Configuration Channel: orientation, role, and PD negotiation (or VCONN)"},
+    {"pin": "A6",  "name": "D+",     "signal": "USB 2.0","description": "USB 2.0 data + (mirrored on B6, joined in the cable)"},
+    {"pin": "A7",  "name": "D-",     "signal": "USB 2.0","description": "USB 2.0 data -"},
+    {"pin": "A8",  "name": "SBU1",   "signal": "sideband","description": "Sideband Use (alt-mode aux, e.g. DisplayPort AUX)"},
+    {"pin": "A9",  "name": "VBUS",   "signal": "power",  "description": "bus power"},
+    {"pin": "A10", "name": "SSRXn2", "signal": "SuperSpeed", "description": "RX pair 2 -"},
+    {"pin": "A11", "name": "SSRXp2", "signal": "SuperSpeed", "description": "RX pair 2 +"},
+    {"pin": "A12", "name": "GND",    "signal": "ground", "description": "ground return"},
+    {"pin": "B1",  "name": "GND",    "signal": "ground", "description": "ground return"},
+    {"pin": "B2",  "name": "SSTXp2", "signal": "SuperSpeed", "description": "TX pair 2 +"},
+    {"pin": "B3",  "name": "SSTXn2", "signal": "SuperSpeed", "description": "TX pair 2 -"},
+    {"pin": "B4",  "name": "VBUS",   "signal": "power",  "description": "bus power"},
+    {"pin": "B5",  "name": "CC2",    "signal": "config", "description": "Configuration Channel 2 (the other orientation's CC, or VCONN)"},
+    {"pin": "B6",  "name": "D+",     "signal": "USB 2.0","description": "USB 2.0 data + (mirror of A6)"},
+    {"pin": "B7",  "name": "D-",     "signal": "USB 2.0","description": "USB 2.0 data - (mirror of A7)"},
+    {"pin": "B8",  "name": "SBU2",   "signal": "sideband","description": "Sideband Use 2"},
+    {"pin": "B9",  "name": "VBUS",   "signal": "power",  "description": "bus power"},
+    {"pin": "B10", "name": "SSRXn1", "signal": "SuperSpeed", "description": "RX pair 1 -"},
+    {"pin": "B11", "name": "SSRXp1", "signal": "SuperSpeed", "description": "RX pair 1 +"},
+    {"pin": "B12", "name": "GND",    "signal": "ground", "description": "ground return"}
+  ],
+  "variants": [
+    "Reversibility: the receptacle is point-symmetric (A row vs B row mirrored), so the same signals are reachable in either plug orientation; the host uses whichever CC pin (CC1/CC2) is pulled to figure out which way up it went in.",
+    "A USB 2.0-only Type-C cable populates only VBUS, GND, D+/D-, and CC/VCONN -- the SuperSpeed pins are absent. Charge-only cables may omit even the data pins."
+  ],
+  "gotchas": [
+    "CC1/CC2 are the brains: they detect orientation, decide host vs device (DFP/UFP), advertise current capability (Rp/Rd resistors), and carry the Power Delivery messages. A cable with the wrong/missing CC resistors won't enumerate or charge.",
+    "VBUS is 5 V by default but Power Delivery can negotiate up to 20 V (100 W) or 48 V (240 W with EPR). Never assume 5 V on a PD link; measure or you smoke something.",
+    "USB 2.0 D+/D- appear on BOTH A6/A7 and B6/B7 but are the same pair (bridged in the cable) -- there is only one USB 2.0 channel regardless of orientation.",
+    "The SuperSpeed pairs double as DisplayPort / Thunderbolt / other alt-mode lanes once negotiated over CC; the pin is physical, the protocol on it is not fixed."
+  ],
+  "related": ["usb-a"],
+  "see_also_url": "https://en.wikipedia.org/wiki/USB-C",
+  "source": "human",
+  "verified": true,
+  "notes": "24-pin receptacle pinout (A1-A12, B1-B12) cross-checked against the USB Type-C spec / Wikipedia. Physical row order shown logically A1..A12 / B1..B12; the connector is point-symmetric for reversibility (see variants)."
+}

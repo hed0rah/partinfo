@@ -1,0 +1,33 @@
+{
+  "id": "usb-a",
+  "name": "USB-A (USB 2.0)",
+  "aliases": ["usb", "type-a", "usb type-a", "usba"],
+  "standard": "USB 2.0",
+  "family": "4-pin flat rectangular (Type-A)",
+  "gender": "plug (cable) / receptacle (host)",
+  "positions": 4,
+  "form": "inline",
+  "rows": [[1, 2, 3, 4]],
+  "tags": ["usb", "usb-a", "type-a", "power", "data", "5v", "host"],
+  "description": "The classic flat rectangular USB host connector. Four contacts: 5 V power, a differential data pair (D+/D-), and ground. The two power contacts (1, 4) are longer than the data contacts, so on insertion power mates first and breaks last, making hot-plugging safe. USB 3.x Type-A adds a second row of 5 SuperSpeed contacts further back but stays backward compatible with these four.",
+  "contacts": [
+    {"pin": 1, "name": "VBUS", "signal": "power", "description": "+5 V bus power (red wire); 500 mA default on USB 2.0, more with BC/charging"},
+    {"pin": 2, "name": "D-",   "signal": "USB 2.0", "description": "differential data, negative (white wire)"},
+    {"pin": 3, "name": "D+",   "signal": "USB 2.0", "description": "differential data, positive (green wire)"},
+    {"pin": 4, "name": "GND",  "signal": "ground",  "description": "ground return (black wire)"}
+  ],
+  "variants": [
+    "USB 3.x Type-A ('SuperSpeed', often blue): same 4 pins here plus 5 recessed contacts (2 SS pairs + GND) in a second row further inside the shell; fully backward compatible.",
+    "Wire colours (red/white/green/black) are the standard USB convention but cheap cables lie, meter before trusting them."
+  ],
+  "gotchas": [
+    "Pin order is VBUS, D-, D+, GND (1-4). The two power pins (1 & 4) are physically longer so power connects first and disconnects last on hot-plug.",
+    "The D+/D- pair is a 90-ohm differential line; keep it matched-length and away from noise or high-speed USB fails intermittently.",
+    "VBUS is 5 V but current depends on negotiation: 500 mA (USB 2.0), 900 mA (USB 3.0), up to 1.5 A with BC1.2; a device pulling more than the port allows just browns out."
+  ],
+  "related": ["usb-c"],
+  "see_also_url": "https://en.wikipedia.org/wiki/USB",
+  "source": "human",
+  "verified": true,
+  "notes": "USB-A 4-pin pinout per the USB 2.0 spec; universal and unchanged since USB 1.0."
+}

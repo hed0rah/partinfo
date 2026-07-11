@@ -1,6 +1,6 @@
 ---
 name: partinfo
-description: Look up electronic component pinouts, specs, and gotchas from the local partinfo reference database. Use when the user asks about a specific part (e.g. NE555, TL072, ESP32, 2N3904, BC547, LM317), needs a pinout or ASCII package diagram, or asks which pin does what on a chip or transistor.
+description: Look up electronic component and connector/cable pinouts, specs, and gotchas from the local partinfo reference database. Use when the user asks about a specific part (e.g. NE555, TL072, ESP32, 2N3904) or a connector/cable (e.g. OBD-II, USB-C, DB9, HDMI, eurorack power, MIDI DIN), needs a pinout or ASCII diagram, or asks which pin does what on a chip, transistor, or connector.
 ---
 
 # partinfo

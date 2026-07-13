@@ -1,0 +1,88 @@
+{
+  "id": "pcf8575",
+  "name": "PCF8575",
+  "aliases": [
+    "PCF8575DBR",
+    "PCF8575PWR",
+    "PCF8575DGVR"
+  ],
+  "full_name": "Remote 16-bit I/O expander for I2C and SMBus with interrupt output",
+  "manufacturers": [
+    "Texas Instruments",
+    "NXP"
+  ],
+  "category": "interface",
+  "subcategory": "i2c gpio expander",
+  "tags": [
+    "interface",
+    "i2c",
+    "gpio",
+    "io-expander",
+    "expander",
+    "16-bit"
+  ],
+  "description": "16-bit quasi-bidirectional I/O expander on I2C/SMBus, the 16-channel sibling of the PCF8574. Two 8-bit ports (P00-P07, P10-P17), three address pins (A0-A2) for up to eight devices (128 I/O on one bus), and an open-drain INT that flags input changes. 400 kHz Fast-mode I2C, 2.5-5.5 V, low 10 uA standby. Its outputs have high-current drive with a current source to VCC, so it can actively drive LEDs high, not only sink like the PCF8574. Ports are accessed as two bytes (P0 then P1). SMD only - no DIP.",
+  "packages": {
+    "SSOP-24": {
+      "template": "ssop",
+      "pin_count": 24,
+      "pins": [
+        {"pin": 1, "name": "INT", "type": "output", "description": "active-low open-drain interrupt on input change"},
+        {"pin": 2, "name": "A1", "type": "input", "description": "address select bit 1"},
+        {"pin": 3, "name": "A2", "type": "input", "description": "address select bit 2"},
+        {"pin": 4, "name": "P00", "type": "bidirectional", "description": "port 0 quasi-bidirectional I/O, bit 0"},
+        {"pin": 5, "name": "P01", "type": "bidirectional", "description": "port 0 I/O bit 1"},
+        {"pin": 6, "name": "P02", "type": "bidirectional", "description": "port 0 I/O bit 2"},
+        {"pin": 7, "name": "P03", "type": "bidirectional", "description": "port 0 I/O bit 3"},
+        {"pin": 8, "name": "P04", "type": "bidirectional", "description": "port 0 I/O bit 4"},
+        {"pin": 9, "name": "P05", "type": "bidirectional", "description": "port 0 I/O bit 5"},
+        {"pin": 10, "name": "P06", "type": "bidirectional", "description": "port 0 I/O bit 6"},
+        {"pin": 11, "name": "P07", "type": "bidirectional", "description": "port 0 I/O bit 7"},
+        {"pin": 12, "name": "GND", "type": "ground", "description": "ground"},
+        {"pin": 13, "name": "P10", "type": "bidirectional", "description": "port 1 I/O bit 0"},
+        {"pin": 14, "name": "P11", "type": "bidirectional", "description": "port 1 I/O bit 1"},
+        {"pin": 15, "name": "P12", "type": "bidirectional", "description": "port 1 I/O bit 2"},
+        {"pin": 16, "name": "P13", "type": "bidirectional", "description": "port 1 I/O bit 3"},
+        {"pin": 17, "name": "P14", "type": "bidirectional", "description": "port 1 I/O bit 4"},
+        {"pin": 18, "name": "P15", "type": "bidirectional", "description": "port 1 I/O bit 5"},
+        {"pin": 19, "name": "P16", "type": "bidirectional", "description": "port 1 I/O bit 6"},
+        {"pin": 20, "name": "P17", "type": "bidirectional", "description": "port 1 I/O bit 7"},
+        {"pin": 21, "name": "A0", "type": "input", "description": "address select bit 0 (note: pin 21, not beside A1/A2)"},
+        {"pin": 22, "name": "SCL", "type": "clock", "description": "I2C serial clock"},
+        {"pin": 23, "name": "SDA", "type": "bidirectional", "description": "I2C serial data (open-drain)"},
+        {"pin": 24, "name": "VCC", "type": "power", "description": "+2.5 to +5.5 V supply"}
+      ],
+      "notes": "also DBQ/DGV SSOP/TVSOP, DW SOIC-24, PW TSSOP-24, RGV VQFN-24 (RGN has a different pin numbering)."
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.5,
+    "vs_max_v": 5.5,
+    "extra": {
+      "Vdd": "2.5-5.5 V",
+      "ports": "16 quasi-bidirectional (two 8-bit ports P0/P1)",
+      "i2c": "400 kHz Fast-mode",
+      "address": "0x20-0x27 (A0-A2 set the low 3 bits)",
+      "interrupt": "open-drain active-low on input change",
+      "standby": "10 uA max",
+      "drive": "high-current LED drive + current source to VCC for actively driving high"
+    }
+  },
+  "typical_application": "Add 16 GPIO over I2C, directly drive LEDs (source or sink), or expand inputs with change-interrupt; cascade up to eight for 128 I/O on one bus. Read/write both ports as a 2-byte transfer (P0 low byte, P1 high byte).",
+  "gotchas": [
+    "quasi-bidirectional like the PCF8574: to use a pin as an input, first write a 1 to it - there is no direction register",
+    "accessed as TWO bytes per transfer (P0 then P1); a 1-byte read/write only touches port 0",
+    "NO DIP package - SSOP/TSSOP/SOIC/VQFN only; use a breakout board for through-hole prototyping",
+    "answers at 0x20-0x27, the SAME block as the PCF8574 (not the PCF8574A's 0x38-0x3F), so a PCF8574 and PCF8575 can collide on a bus",
+    "pinout quirk: A0 is pin 21, far from A1/A2 (pins 2-3) - easy to miswire",
+    "no internal I2C pull-ups; INT is open-drain - both need external pull-ups"
+  ],
+  "related": [
+    "pcf8574",
+    "mcp23017",
+    "pca9555"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/pcf8575.pdf",
+  "source": "human",
+  "verified": true
+}

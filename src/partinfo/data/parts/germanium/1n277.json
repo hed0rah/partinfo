@@ -1,0 +1,60 @@
+{
+  "id": "1n277",
+  "name": "1N277",
+  "aliases": [],
+  "full_name": "Gold-Bonded Germanium Diode",
+  "manufacturers": [
+    "BKC International",
+    "various (NOS / second-source)"
+  ],
+  "category": "diode",
+  "subcategory": "germanium gold-bonded",
+  "tags": [
+    "diode",
+    "germanium",
+    "gold-bonded",
+    "detector",
+    "audio",
+    "vintage"
+  ],
+  "description": "Gold-bonded (metallurgically bonded) germanium diode: higher current handling and lower noise than a point-contact germanium, with the same low ~0.3V forward drop. 110V reverse rating. Used for detection, low-level rectification, and germanium clipping. Banded end is the cathode.",
+  "packages": {
+    "DO-7": {
+      "template": "custom",
+      "pin_count": 2,
+      "pins": [
+        {"pin": 1, "name": "A", "type": "passive", "description": "anode"},
+        {"pin": 2, "name": "K", "type": "passive", "description": "cathode (banded end)"}
+      ],
+      "notes": "small glass axial body; the band marks the cathode."
+    }
+  },
+  "specs": {
+    "vf_v": 0.3,
+    "vs_max_v": 110.0,
+    "iout_max_ma": 50.0,
+    "extra": {
+      "type": "gold-bonded germanium",
+      "Vf": "~0.3V at signal levels; 1.0V max @ IF=100mA",
+      "PIV": "110V min",
+      "peak forward current": "500mA",
+      "power dissipation": "80mW",
+      "reverse leakage": "75uA max @ 10V, 250uA max @ 50V",
+      "noise": "very low (gold-bonded construction)",
+      "Tj": "-65 to +85C"
+    }
+  },
+  "typical_application": "Detector and low-level rectification, germanium clipping in pedals; the gold-bonded build takes more current and runs quieter than point-contact germanium.",
+  "gotchas": [
+    "gold-bonded beats point-contact (more current, less noise) but it is still germanium: leakage, temperature drift, and NOS part-to-part spread",
+    "not a power rectifier despite the 500mA peak - 80mW average dissipation limit",
+    "verified against a second-source (BKC) sheet; original JEDEC 1N277 made by various, NOS parts vary"
+  ],
+  "related": [
+    "1n34a",
+    "1n270",
+    "1n60"
+  ],
+  "source": "human",
+  "verified": true
+}

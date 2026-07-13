@@ -1,0 +1,57 @@
+{
+  "id": "1n541",
+  "name": "1N541",
+  "aliases": [],
+  "full_name": "Germanium Signal Diode",
+  "manufacturers": [
+    "New Jersey Semiconductor",
+    "various (NOS / second-source)"
+  ],
+  "category": "diode",
+  "subcategory": "germanium signal",
+  "tags": [
+    "diode",
+    "germanium",
+    "detector",
+    "vintage"
+  ],
+  "description": "Germanium DO-7 signal diode with a lower 45V reverse rating than the 1N270/1N277 and the usual ~0.3V germanium forward drop at signal levels. General germanium detection, low-level rectification, and clipping. Banded end is the cathode.",
+  "packages": {
+    "DO-7": {
+      "template": "custom",
+      "pin_count": 2,
+      "pins": [
+        {"pin": 1, "name": "A", "type": "passive", "description": "anode"},
+        {"pin": 2, "name": "K", "type": "passive", "description": "cathode (banded end)"}
+      ],
+      "notes": "small glass axial body; the band marks the cathode."
+    }
+  },
+  "specs": {
+    "vf_v": 0.3,
+    "vs_max_v": 45.0,
+    "iout_max_ma": 35.0,
+    "extra": {
+      "type": "germanium",
+      "Vf": "~0.3V at signal levels; 2.2V max @ IF=10mA (loose NOS max spec)",
+      "VRRM": "45V",
+      "surge": "500mA (1-cycle)",
+      "reverse leakage": "18uA typ @ VR=10V",
+      "Tj": "85C max"
+    }
+  },
+  "typical_application": "General germanium detection, low-level rectification, and soft clipping where a low forward drop and modest voltage rating are enough.",
+  "gotchas": [
+    "germanium NOS spread: the 2.2V-max Vf is a loose datasheet ceiling - real parts drop ~0.3V at signal currents; measure",
+    "lower 45V reverse rating than the 1N270/1N277 - watch reverse voltage in clipping/detector use",
+    "temperature-sensitive; not a rectifier",
+    "verified against a second-source (NJS) sheet; original JEDEC 1N541 made by various"
+  ],
+  "related": [
+    "1n34a",
+    "1n270",
+    "1n277"
+  ],
+  "source": "human",
+  "verified": true
+}

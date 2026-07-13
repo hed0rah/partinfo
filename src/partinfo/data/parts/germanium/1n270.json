@@ -1,0 +1,63 @@
+{
+  "id": "1n270",
+  "name": "1N270",
+  "aliases": [],
+  "full_name": "Germanium RF-Detector Diode",
+  "manufacturers": [
+    "NTE Electronics",
+    "various (NOS / second-source)"
+  ],
+  "category": "diode",
+  "subcategory": "germanium signal",
+  "tags": [
+    "diode",
+    "germanium",
+    "detector",
+    "rf",
+    "audio",
+    "fuzz",
+    "vintage"
+  ],
+  "description": "Germanium DO-7 diode optimized for RF and detector use (AM/FM/TV detectors, RF probes, FM discriminators). Low ~0.3V forward drop at signal levels, but with a higher 100V reverse rating and low 0.8pF junction capacitance versus the 1N34A, so it's favored for RF and as a higher-voltage germanium clipper. Banded end is the cathode.",
+  "packages": {
+    "DO-7": {
+      "template": "custom",
+      "pin_count": 2,
+      "pins": [
+        {"pin": 1, "name": "A", "type": "passive", "description": "anode"},
+        {"pin": 2, "name": "K", "type": "passive", "description": "cathode (banded end)"}
+      ],
+      "notes": "small glass axial body; the band marks the cathode."
+    }
+  },
+  "specs": {
+    "vf_v": 0.3,
+    "vs_max_v": 100.0,
+    "iout_max_ma": 40.0,
+    "extra": {
+      "type": "germanium (RF-optimized)",
+      "Vf": "~0.3V at signal levels; 1.0V max @ IF=200mA",
+      "PIV": "100V min",
+      "surge (IFSM)": "500mA (1s)",
+      "peak operating current": "325mA",
+      "reverse leakage": "100uA max @ VR=50V",
+      "junction capacitance": "0.8pF @ 1V/1MHz (low, good for RF)",
+      "Tj": "-65 to +90C"
+    }
+  },
+  "typical_application": "AM/FM/TV envelope detection, RF signal probes, FM discriminators; germanium soft clipping in fuzz/overdrive (higher PIV headroom than a 1N34A).",
+  "gotchas": [
+    "germanium: high reverse leakage and wide part-to-part spread; measure Vf before matching pairs",
+    "low current/power handling - a signal/detector diode, not a rectifier",
+    "temperature-sensitive; bias and tone drift with heat",
+    "verified against a second-source (NTE) sheet; original JEDEC 1N270 was made by various, NOS parts vary"
+  ],
+  "related": [
+    "1n34a",
+    "1n277",
+    "1n60",
+    "1n4148"
+  ],
+  "source": "human",
+  "verified": true
+}

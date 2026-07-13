@@ -1,0 +1,70 @@
+{
+  "id": "tle2071",
+  "name": "TLE2071",
+  "aliases": [
+    "TLE2071CP",
+    "TLE2071ACP",
+    "TLE2071ID"
+  ],
+  "full_name": "Excalibur Low-Noise High-Speed JFET-Input Operational Amplifier",
+  "manufacturers": [
+    "Texas Instruments"
+  ],
+  "category": "opamp",
+  "subcategory": "single jfet-input",
+  "tags": [
+    "opamp",
+    "single",
+    "jfet",
+    "low-noise",
+    "high-speed",
+    "precision"
+  ],
+  "description": "Single JFET-input op-amp from TI's Excalibur line -- a higher-performance, pin-compatible upgrade over the TL071: 10MHz GBW, faster slew, lower offset, and inputs that work up to the positive rail. For high-speed or low-noise single-op-amp stages (data acquisition, DMM/scope front-ends, portable audio). TLE2072 dual, TLE2074 quad.",
+  "packages": {
+    "DIP-8": {
+      "template": "dip",
+      "pin_count": 8,
+      "pins": [
+        {"pin": 1, "name": "OFFSET NULL", "type": "input", "description": "offset null (N1). Exposed only on the ceramic JG package; the plastic P (PDIP) / D (SOIC) packages mark pin 1 as NC"},
+        {"pin": 2, "name": "IN-", "type": "input", "description": "inverting input"},
+        {"pin": 3, "name": "IN+", "type": "input", "description": "noninverting input"},
+        {"pin": 4, "name": "V-", "type": "power", "description": "negative supply"},
+        {"pin": 5, "name": "OFFSET NULL", "type": "input", "description": "offset null (N2). Ceramic JG package only; NC on the plastic P/D packages"},
+        {"pin": 6, "name": "OUT", "type": "output", "description": "output"},
+        {"pin": 7, "name": "V+", "type": "power", "description": "positive supply"},
+        {"pin": 8, "name": "NC", "type": "nc", "description": "no connect"}
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 5.0,
+    "vs_max_v": 38.0,
+    "iq_ma": 1.9,
+    "bw_hz": 10000000.0,
+    "extra": {
+      "slew rate": "~35 V/us typ (high-speed Excalibur family)",
+      "input noise": "17 nV/rtHz max @ 1kHz",
+      "supply": "wider rails, dynamic signal range to +-19V",
+      "Vos": "300uV typ (TLE2071A grade); on-chip zener-trimmed",
+      "Ibias": "+-15pA typ",
+      "GBW": "10 MHz, unity-gain stable",
+      "note": "common-mode input range extends to the positive supply rail"
+    }
+  },
+  "typical_application": "High-speed data acquisition, DMM/oscilloscope front-ends, low-power/portable audio, precision single-op-amp stages. A performance drop-in for a TL071 socket (same 8-pin single in/out/power pinout).",
+  "gotchas": [
+    "OFFSET NULL is exposed only on the ceramic JG package; on the common plastic P (PDIP) / D (SOIC) packages pins 1, 5, 8 are NC -- leave them open",
+    "JFET input reaches the positive rail but not the negative one; keep signals off the V- rail",
+    "not rail-to-rail output"
+  ],
+  "related": [
+    "tl071",
+    "tle2072",
+    "opa134",
+    "ne5534"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/tle2071.pdf"
+}

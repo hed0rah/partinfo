@@ -1,0 +1,78 @@
+{
+  "id": "opa4134",
+  "name": "OPA4134",
+  "aliases": [
+    "OPA4134UA",
+    "OPA4134PA"
+  ],
+  "full_name": "Quad High-Performance SoundPlus Audio Operational Amplifier",
+  "manufacturers": [
+    "Texas Instruments (Burr-Brown)"
+  ],
+  "category": "opamp",
+  "subcategory": "quad jfet-input audio",
+  "tags": [
+    "opamp",
+    "quad",
+    "jfet",
+    "audio",
+    "hi-fi",
+    "low-distortion",
+    "premium"
+  ],
+  "description": "Quad member of the OPAx134 SoundPlus family (OPA134 single, OPA2134 dual). True FET-input, ultra-low distortion audiophile-grade op-amp: a premium upgrade for TL074/NE-class sockets in preamps, line drivers, active crossovers, and filter banks. Output swings to within 1V of the rails.",
+  "packages": {
+    "SOIC-14": {
+      "template": "dip",
+      "pin_count": 14,
+      "pins": [
+        {"pin": 1, "name": "1OUT", "type": "output", "description": "channel 1 output"},
+        {"pin": 2, "name": "1IN-", "type": "input", "description": "channel 1 inverting input"},
+        {"pin": 3, "name": "1IN+", "type": "input", "description": "channel 1 noninverting input"},
+        {"pin": 4, "name": "V+", "type": "power", "description": "positive supply"},
+        {"pin": 5, "name": "2IN+", "type": "input", "description": "channel 2 noninverting input"},
+        {"pin": 6, "name": "2IN-", "type": "input", "description": "channel 2 inverting input"},
+        {"pin": 7, "name": "2OUT", "type": "output", "description": "channel 2 output"},
+        {"pin": 8, "name": "3OUT", "type": "output", "description": "channel 3 output"},
+        {"pin": 9, "name": "3IN-", "type": "input", "description": "channel 3 inverting input"},
+        {"pin": 10, "name": "3IN+", "type": "input", "description": "channel 3 noninverting input"},
+        {"pin": 11, "name": "V-", "type": "power", "description": "negative supply"},
+        {"pin": 12, "name": "4IN+", "type": "input", "description": "channel 4 noninverting input"},
+        {"pin": 13, "name": "4IN-", "type": "input", "description": "channel 4 inverting input"},
+        {"pin": 14, "name": "4OUT", "type": "output", "description": "channel 4 output"}
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 5.0,
+    "vs_max_v": 36.0,
+    "iq_ma": 4.0,
+    "bw_hz": 8000000.0,
+    "extra": {
+      "slew rate": "20 V/us",
+      "input noise": "8 nV/rtHz",
+      "THD+N": "0.00008% (ultra-low, audio)",
+      "Ibias": "5pA (true FET input)",
+      "supply": "+-2.5V to +-18V (5-36V)",
+      "Vos": "0.5mV typ (2mV max), OPA134 family",
+      "open-loop gain": "120dB (2kohm load)",
+      "output swing": "within ~1V of each rail",
+      "amps": "4 (quad; SOIC-14 only)"
+    }
+  },
+  "typical_application": "High-fidelity audio: preamps, line drivers, active crossovers, DAC I/V and multi-pole filter banks. A pin-compatible premium drop-in for a TL074 quad socket when distortion/noise matter.",
+  "gotchas": [
+    "quad is SOIC-14 only -- no through-hole DIP quad (OPA134 single and OPA2134 dual come in 8-pin DIP)",
+    "JFET input; not rail-to-rail input, though output gets within ~1V of the rails",
+    "premium part -- overkill for non-critical stages where a TL074 is fine"
+  ],
+  "related": [
+    "opa2134",
+    "tl074",
+    "ne5532",
+    "lm4562"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/opa4134.pdf"
+}

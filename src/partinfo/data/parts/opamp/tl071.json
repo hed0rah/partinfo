@@ -1,0 +1,113 @@
+{
+  "id": "tl071",
+  "name": "TL071",
+  "aliases": [
+    "TL071CP",
+    "TL071ACP",
+    "TL071IP"
+  ],
+  "full_name": "Low-Noise JFET-Input Operational Amplifier",
+  "manufacturers": [
+    "Texas Instruments",
+    "STMicroelectronics",
+    "onsemi"
+  ],
+  "category": "opamp",
+  "subcategory": "single jfet-input",
+  "tags": [
+    "opamp",
+    "single",
+    "jfet",
+    "audio",
+    "low-noise",
+    "classic"
+  ],
+  "description": "Single JFET-input op-amp, the single-channel member of the TL07x family (TL072 dual, TL074 quad) and electrically identical per channel: low noise, high input impedance. The go-to for a one-off audio gain stage, clean boost, or buffer in pedals and synth circuits. Same core as the TL081 but positioned as the low-noise grade.",
+  "packages": {
+    "DIP-8": {
+      "template": "dip",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "OFFSET NULL",
+          "type": "input",
+          "description": "offset null (N1). Classic TL071CP DIP exposes it here; TI's current SLOS080W sheet marks pin 1 as NC on the SOIC (D) / PDIP (P) packages"
+        },
+        {
+          "pin": 2,
+          "name": "IN-",
+          "type": "input",
+          "description": "inverting input"
+        },
+        {
+          "pin": 3,
+          "name": "IN+",
+          "type": "input",
+          "description": "noninverting input"
+        },
+        {
+          "pin": 4,
+          "name": "V-",
+          "type": "power",
+          "description": "negative supply"
+        },
+        {
+          "pin": 5,
+          "name": "OFFSET NULL",
+          "type": "input",
+          "description": "offset null (N2). Classic TL071CP DIP exposes it here; NC on the SOIC/PDIP packages per SLOS080W"
+        },
+        {
+          "pin": 6,
+          "name": "OUT",
+          "type": "output",
+          "description": "output"
+        },
+        {
+          "pin": 7,
+          "name": "V+",
+          "type": "power",
+          "description": "positive supply"
+        },
+        {
+          "pin": 8,
+          "name": "NC",
+          "type": "nc",
+          "description": "no connect, leave floating"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 6.0,
+    "vs_max_v": 36.0,
+    "iq_ma": 1.4,
+    "bw_hz": 3000000.0,
+    "extra": {
+      "slew rate": "13 V/us (standard grade; the newer TL071H is 20 V/us typ)",
+      "input noise": "18 nV/rtHz typ @ 1kHz (TL071C grade)",
+      "supply": "+-3.5V to +-18V (6-36V); TI's 2025 SLOS080W widens the family spec to +-2.25 to +-20V (4.5-40V)",
+      "Vos": "3mV typ (10mV max) @ Ta=25C, TL071C grade (13mV max full range)",
+      "Ibias": "65pA typ (200pA max) @ Ta=25C, TL071C grade",
+      "CMRR": "70dB min (100dB typ), TL071C grade",
+      "offset null": "10k-100k pot across the two OFFSET NULL pins, wiper to V- (only on packages that expose them)"
+    }
+  },
+  "typical_application": "One-off audio gain stage, clean boost, active filter, or virtual-ground buffer. In single-supply pedals bias the inputs to Vcc/2. Add the offset-null pot only if you need to trim DC offset.",
+  "gotchas": [
+    "OFFSET NULL nuance: classic TL071CP DIP-8 has offset null on pins 1 & 5; TI's current SLOS080W sheet marks 1/5/8 as NC on the SOIC (D) / PDIP (P) packages and exposes offset null only on the SO-8 (PS) package. For an ordinary gain stage it is moot, leave 1 & 5 open either way",
+    "JFET input does NOT swing to the negative rail; keep inputs a few volts inside the rails",
+    "not rail-to-rail output; expect ~1.5V headroom from each rail",
+    "single-supply use needs a half-supply (Vcc/2) reference for the inputs"
+  ],
+  "related": [
+    "tl072",
+    "tl074",
+    "tl081",
+    "ne5532"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/tl071.pdf"
+}

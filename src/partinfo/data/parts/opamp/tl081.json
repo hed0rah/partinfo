@@ -1,0 +1,72 @@
+{
+  "id": "tl081",
+  "name": "TL081",
+  "aliases": [
+    "TL081CN",
+    "TL081ACN",
+    "TL081IN",
+    "TL081CP"
+  ],
+  "full_name": "General-Purpose JFET-Input Operational Amplifier",
+  "manufacturers": [
+    "STMicroelectronics",
+    "Texas Instruments",
+    "onsemi"
+  ],
+  "category": "opamp",
+  "subcategory": "single jfet-input",
+  "tags": [
+    "opamp",
+    "single",
+    "jfet",
+    "audio",
+    "classic"
+  ],
+  "description": "Single JFET-input op-amp, the general-purpose member of the TL08x family (TL082 dual, TL084 quad). Pin-identical to the TL071; the difference is grade -- the TL07x is the noise-selected version, so if a socket wants lower noise, a TL071 drops straight in. Common for general gain stages, filters, and buffers.",
+  "packages": {
+    "DIP-8": {
+      "template": "dip",
+      "pin_count": 8,
+      "pins": [
+        {"pin": 1, "name": "OFFSET NULL", "type": "input", "description": "offset null (N1)"},
+        {"pin": 2, "name": "IN-", "type": "input", "description": "inverting input"},
+        {"pin": 3, "name": "IN+", "type": "input", "description": "noninverting input"},
+        {"pin": 4, "name": "V-", "type": "power", "description": "negative supply"},
+        {"pin": 5, "name": "OFFSET NULL", "type": "input", "description": "offset null (N2)"},
+        {"pin": 6, "name": "OUT", "type": "output", "description": "output"},
+        {"pin": 7, "name": "V+", "type": "power", "description": "positive supply"},
+        {"pin": 8, "name": "NC", "type": "nc", "description": "no connect"}
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 6.0,
+    "vs_max_v": 36.0,
+    "iq_ma": 1.4,
+    "bw_hz": 3000000.0,
+    "extra": {
+      "slew rate": "16 V/us typ (ST TL081 sheet)",
+      "input noise": "~18 nV/rtHz (general-purpose grade; the TL071 is the noise-selected sibling)",
+      "supply": "+-3.5V to +-18V (6-36V)",
+      "Vos": "3mV typ (10mV max) @ Ta=25C, TL081C grade",
+      "Ibias": "30pA typ (200pA max) @ Ta=25C",
+      "CMRR": "70dB min (86dB typ), TL081C grade",
+      "offset null": "100k pot across N1/N2, wiper to V-"
+    }
+  },
+  "typical_application": "General audio gain stages, active filters, buffers. Bias inputs to Vcc/2 for single-supply use. Swap in a TL071 for a lower-noise version at the same pinout.",
+  "gotchas": [
+    "JFET input does NOT swing to the negative rail; keep inputs a few volts inside the rails",
+    "not rail-to-rail output; expect ~1.5V headroom from each rail",
+    "single-supply use needs a half-supply (Vcc/2) reference for the inputs"
+  ],
+  "related": [
+    "tl071",
+    "tl082",
+    "tl084",
+    "tl072"
+  ],
+  "source": "human",
+  "verified": true,
+  "datasheet_url": "https://www.st.com/resource/en/datasheet/tl081.pdf"
+}

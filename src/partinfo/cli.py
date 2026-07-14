@@ -13,6 +13,8 @@ usage:
   partinfo ref list            list all reference ids
   partinfo ref search <query>  full-text search references
   partinfo conn <id>           show a connector/cable pinout (OBD-II, DB9, ...)
+  partinfo conn <id> --ascii   connector face-view diagram only
+  partinfo conn <id> --pins    connector contact table only
   partinfo conn list           list all connector ids
   partinfo conn search <query> full-text search connectors
 
@@ -31,7 +33,7 @@ from .schema import Part
 from .color import resolve_mode
 from .render import fmt_pins, fmt_specs, fmt_full, fmt_ascii
 from .ref_render import render_ref
-from .conn_render import render_conn
+from .conn_render import render_conn, render_conn_ascii, render_conn_pins
 
 
 def _ollama_fallback(query: str, model: str) -> Part | None:
@@ -174,6 +176,15 @@ def main():
         if args.json:
             print(connector.model_dump_json(indent=2, exclude_none=True))
             return
+        if args.ascii:
+            print(render_conn_ascii(connector, color_mode))
+            return
+        if args.pins:
+            print(render_conn_pins(connector, color_mode))
+            return
+        if args.specs:
+            print("  connectors carry no spec table; showing the full entry",
+                  file=sys.stderr)
         print(render_conn(connector, color_mode))
         return
 

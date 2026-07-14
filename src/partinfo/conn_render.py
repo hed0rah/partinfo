@@ -79,6 +79,20 @@ def _contact_table(contacts: list[Contact]) -> str:
     return "\n".join(lines)
 
 
+def render_conn_ascii(c: Connector, mode: ColorMode = "off") -> str:
+    """face-view diagram only -- the --ascii view for a connector."""
+    diag = _diagram(c)
+    if not diag:
+        return f"\n  {c.name}\n  (no face-view diagram)"
+    body = "\n".join(f"  {ln}" for ln in diag.splitlines())
+    return f"\n  {c.name}\n{body}"
+
+
+def render_conn_pins(c: Connector, mode: ColorMode = "off") -> str:
+    """contact table only -- the --pins view for a connector."""
+    return f"\n  {c.name}\n{_contact_table(c.contacts)}"
+
+
 def render_conn(c: Connector, mode: ColorMode = "off") -> str:
     lines = [f"\n{c.name}"]
     meta = []

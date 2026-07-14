@@ -1,0 +1,126 @@
+{
+  "id": "ltk5208",
+  "name": "LTK5208",
+  "aliases": [],
+  "full_name": "2x7.9W Pulse-Controlled Class-D/AB Dual-Channel Stereo Audio Power Amplifier",
+  "manufacturers": [
+    "LTKCHIP"
+  ],
+  "category": "audio",
+  "subcategory": "class-D/AB switchable amplifier",
+  "tags": [
+    "class-d",
+    "class-ab",
+    "stereo",
+    "audio-amplifier",
+    "btl",
+    "speaker-driver",
+    "filterless"
+  ],
+  "description": "LTKCHIP LTK5208 is a 3ohm-capable, 2x7.9W dual-channel stereo class-D audio power amplifier with a single-pin MODE control that switches the whole chip between filterless class-D operation (low EMI, no output LC filter needed) and class-AB operation (lowest noise/distortion, used when EMI is not a concern). A separate EN pin gives single-pin shutdown independent of MODE, so a host can power the chip fully off or switch operating class with two GPIOs (or none, both pins can be left floating/strapped for a fixed default mode). Includes a DRC (dynamic range control) block the datasheet credits with reducing clipping-related distortion at high output power versus similar parts, plus overtemperature and short-circuit protection. Targets battery-powered portable audio: bluetooth speakers, smart speakers, GPS/handheld game consoles, and portable PA/USB speaker docks.",
+  "packages": {
+    "ESOP-10": {
+      "template": "soic",
+      "pin_count": 10,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "PVDD",
+          "type": "power",
+          "description": "power supply positive"
+        },
+        {
+          "pin": 2,
+          "name": "INL",
+          "type": "input",
+          "description": "left channel analog input"
+        },
+        {
+          "pin": 3,
+          "name": "MODE",
+          "type": "input",
+          "description": "class-AB/class-D mode select: logic high = class-AB, logic low = class-D, floating = class-D (default)"
+        },
+        {
+          "pin": 4,
+          "name": "INR",
+          "type": "input",
+          "description": "right channel analog input"
+        },
+        {
+          "pin": 5,
+          "name": "BYPASS",
+          "type": "analog",
+          "description": "internal analog reference/bias node; decouple to GND with a bypass capacitor (per the datasheet's typical application, 1uF)"
+        },
+        {
+          "pin": 6,
+          "name": "EN",
+          "type": "input",
+          "description": "chip enable/shutdown, active low (logic low = shut down, logic high = on); independent of MODE"
+        },
+        {
+          "pin": 7,
+          "name": "OUTNR",
+          "type": "output",
+          "description": "right channel negative (BTL) speaker output"
+        },
+        {
+          "pin": 8,
+          "name": "OUTPR",
+          "type": "output",
+          "description": "right channel positive (BTL) speaker output"
+        },
+        {
+          "pin": 9,
+          "name": "OUTPL",
+          "type": "output",
+          "description": "left channel positive (BTL) speaker output"
+        },
+        {
+          "pin": 10,
+          "name": "OUTNL",
+          "type": "output",
+          "description": "left channel negative (BTL) speaker output"
+        },
+        {
+          "pin": 11,
+          "name": "GND",
+          "type": "ground",
+          "description": "exposed thermal/ground pad on the package underside; power supply return and primary heat-sinking path, must be soldered to the PCB ground plane"
+        }
+      ],
+      "notes": "Per LTKCHIP LTK5208 datasheet (Ver 1.3, Chinese-language only), page 2, pin diagram and pin function table. Pin numbering confirmed from the top-view package drawing; the datasheet's own pin table has an apparent typo relabeling pin 10 as 'OUTNR' a second time, but the package diagram clearly shows pin 10 as OUTNL -- followed the diagram per the position-first rule. Pin 11 (GND) is the exposed pad, called out separately in the bottom-view drawing, not one of the 10 gull-wing leads."
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.8,
+    "vs_max_v": 7,
+    "extra": {
+      "supply_voltage_abs_max_v": 7.0,
+      "recommended_supply_range_v": "3V to 6.7V",
+      "output_power": "10% THD+N, VDD=7V: up to 2x7.9W into 3ohm+15uH; up to 2x6.6W into 4ohm+33uH",
+      "shutdown_current_ua": "< 1",
+      "junction_temp_max_c": 160,
+      "storage_temp_c": "-65 to +150",
+      "operating_ambient_temp_c": "-40 to +85",
+      "protection": "overtemperature, short-circuit, click/pop suppression on enable",
+      "output_type": "BTL (bridge-tied load); class-D is filterless (no output LC filter needed)",
+      "mode_control": "single pin (MODE) selects class-D vs class-AB for the whole chip; single pin (EN) is a separate full shutdown"
+    }
+  },
+  "typical_application": "Small battery-powered stereo speaker products where switching between class-D (efficiency, low EMI, no filter) and class-AB (lowest noise/distortion) matters: bluetooth speakers, smart speakers, GPS units, portable game consoles, boombox/PA speakers, and USB speaker docks. Typical application circuit ties MODE and EN to host GPIOs (or straps them) and decouples PVDD with a bulk plus ceramic capacitor pair, BYPASS with a small ceramic cap to GND.",
+  "gotchas": [
+    "outputs are bridge-tied (BTL): wire each speaker between OUTP and OUTN of a channel, never to ground",
+    "MODE and EN are two independent controls, not a shared enable: EN is the full chip shutdown (active low), MODE only chooses class-D vs class-AB while the chip is enabled -- floating MODE defaults to class-D, not off",
+    "pin 11 (GND) is the package's exposed thermal pad, not a 10th gull-wing lead; it must be soldered to the PCB ground/copper pour both for the return path and for heat dissipation, unlike the 10 numbered side leads",
+    "datasheet is Chinese-language only from a small manufacturer (LTKCHIP, Shenzhen); no English datasheet or public part-number cross-reference was found, treat availability/second-source risk accordingly",
+    "the datasheet's own pin-function table mislabels pin 10 as 'OUTNR' (duplicating pin 7's name) -- the package top-view diagram is unambiguous that pin 10 is OUTNL; this entry follows the diagram"
+  ],
+  "related": [
+    "pam8403",
+    "tda2822"
+  ],
+  "source": "claude",
+  "verified": true
+}

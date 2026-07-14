@@ -1,0 +1,183 @@
+{
+  "id": "viper12a",
+  "name": "VIPER12A",
+  "aliases": [
+    "VIPER12A-E",
+    "VIPER12ASTR-E",
+    "VIPER12AS-E",
+    "VIPER12ADIP-E"
+  ],
+  "full_name": "Low Power Offline Switched-Mode Power Supply Primary Switcher",
+  "manufacturers": [
+    "STMicroelectronics"
+  ],
+  "category": "power",
+  "subcategory": "off-line SMPS primary switcher",
+  "tags": [
+    "smps",
+    "flyback",
+    "offline",
+    "switcher",
+    "pwm",
+    "current-mode",
+    "power-supply",
+    "high-voltage"
+  ],
+  "description": "Monolithic off-line switched-mode power supply primary switcher combining a fixed-frequency (60kHz) current-mode PWM controller with a 730V-rated power MOSFET on the same die. Drives a flyback (or buck) transformer directly from rectified mains with no separate startup circuit: a high-voltage current source built into the DRAIN pin charges the VDD capacitor at power-on, then hands off to the auxiliary winding once VDD reaches VDDon. Includes auto-restart (hiccup mode) protection against overtemperature, overcurrent, and VDD overvoltage. The smaller of the VIPER1xA/2xA low-power family (VIPER22A is the higher-current sibling); typical uses are battery-charger adapters and standby/auxiliary supplies in the single-digit-watt range.",
+  "packages": {
+    "SO-8": {
+      "template": "soic",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "SOURCE",
+          "type": "ground",
+          "description": "power MOSFET source and circuit ground reference"
+        },
+        {
+          "pin": 2,
+          "name": "SOURCE",
+          "type": "ground",
+          "description": "power MOSFET source and circuit ground reference (tied to pin 1)"
+        },
+        {
+          "pin": 3,
+          "name": "FB",
+          "type": "input",
+          "description": "feedback input, 0V to 1V useful range, sets the peak drain MOSFET current; shorting to SOURCE gives the maximum current limitation"
+        },
+        {
+          "pin": 4,
+          "name": "VDD",
+          "type": "power",
+          "description": "control circuit supply; also charged during startup by the high-voltage current source on DRAIN. Switching starts at VDDon (typ 14.5V) and stops at VDDoff (typ 8V)"
+        },
+        {
+          "pin": 5,
+          "name": "DRAIN",
+          "type": "output",
+          "description": "power MOSFET drain; also feeds the internal high-voltage current source that charges the external VDD capacitor at startup"
+        },
+        {
+          "pin": 6,
+          "name": "DRAIN",
+          "type": "output",
+          "description": "power MOSFET drain (tied to pin 5)"
+        },
+        {
+          "pin": 7,
+          "name": "DRAIN",
+          "type": "output",
+          "description": "power MOSFET drain (tied to pin 5)"
+        },
+        {
+          "pin": 8,
+          "name": "DRAIN",
+          "type": "output",
+          "description": "power MOSFET drain (tied to pin 5)"
+        }
+      ],
+      "notes": "Per ST datasheet DocID 11977 Rev 2, Figure 2 'Pin connection', page 6. SO-8 ties pins 1-2 (SOURCE) and 5-8 (DRAIN) together for current spreading and thermal dissipation through the PCB copper."
+    },
+    "DIP-8": {
+      "template": "dip",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "SOURCE",
+          "type": "ground",
+          "description": "power MOSFET source and circuit ground reference"
+        },
+        {
+          "pin": 2,
+          "name": "SOURCE",
+          "type": "ground",
+          "description": "power MOSFET source and circuit ground reference (tied to pin 1)"
+        },
+        {
+          "pin": 3,
+          "name": "FB",
+          "type": "input",
+          "description": "feedback input, 0V to 1V useful range, sets the peak drain MOSFET current; shorting to SOURCE gives the maximum current limitation"
+        },
+        {
+          "pin": 4,
+          "name": "VDD",
+          "type": "power",
+          "description": "control circuit supply; also charged during startup by the high-voltage current source on DRAIN. Switching starts at VDDon (typ 14.5V) and stops at VDDoff (typ 8V)"
+        },
+        {
+          "pin": 5,
+          "name": "DRAIN",
+          "type": "output",
+          "description": "power MOSFET drain; also feeds the internal high-voltage current source that charges the external VDD capacitor at startup"
+        },
+        {
+          "pin": 6,
+          "name": "DRAIN",
+          "type": "output",
+          "description": "power MOSFET drain (tied to pin 5)"
+        },
+        {
+          "pin": 7,
+          "name": "DRAIN",
+          "type": "output",
+          "description": "power MOSFET drain (tied to pin 5)"
+        },
+        {
+          "pin": 8,
+          "name": "DRAIN",
+          "type": "output",
+          "description": "power MOSFET drain (tied to pin 5)"
+        }
+      ],
+      "notes": "Per ST datasheet DocID 11977 Rev 2, Figure 2 'Pin connection', page 6. Identical pin function layout to SO-8, higher power rating from the larger DIP-8 lead frame."
+    }
+  },
+  "specs": {
+    "vs_min_v": 9,
+    "vs_max_v": 38,
+    "rds_on_ohm": 30,
+    "rth_jc_cw": 25,
+    "rth_ja_cw": 55,
+    "extra": {
+      "BVdss": "730V min (ID=1mA, VFB=2V)",
+      "rDS(on)": "27-30 ohm typ/max at TJ=25C, 54 ohm max at TJ=100C (ID=0.2A)",
+      "switching frequency": "60kHz fixed",
+      "IDss off-state drain current": "0.1mA max (VDS=500V, VFB=2V, TJ=125C)",
+      "VDDon startup threshold": "13V min, 14.5V typ, 16V max",
+      "VDDoff undervoltage shutdown": "7V min, 8V typ, 9V max",
+      "VDDovp overvoltage threshold": "38V min, 42V typ, 46V max",
+      "VDD threshold hysteresis": "5.8V min, 6.5V typ, 7.2V max",
+      "IDD0 not switching": "3mA typ, 5mA max (IFB=2mA)",
+      "IDD1 switching": "4.5mA typ (IFB=0.5mA, ID=50mA)",
+      "IDDch startup charging current": "-1mA typ (100V<=VDS<=400V, VDD=0V...VDDon)",
+      "restart duty cycle": "16% typ (HICCUP mode auto-restart)",
+      "rise/fall time": "tr 50ns typ, tf 100ns typ (ID=0.2A, VIN=300V, clamped inductive load)",
+      "COSS drain capacitance": "40pF typ (VDS=25V)",
+      "junction operating temperature": "internally limited",
+      "case operating temperature": "-40C to 150C",
+      "storage temperature": "-55C to 150C",
+      "typical power capability": "European 195-265Vac: 8W (SO-8), 13W (DIP-8); European/wide-range 85-265Vac: 5W (SO-8), 8W (DIP-8)",
+      "ESD rating": "200V machine model (R=0, C=200pF), 1.5kV charged device model"
+    }
+  },
+  "typical_application": "Low-power off-line flyback SMPS: battery-charger adapters, standby power supplies for TVs/monitors, and auxiliary supplies for motor control, where a fully integrated PWM controller plus 730V MOSFET removes the need for a separate startup circuit and MOSFET. The wide VDD input range accommodates auxiliary-winding voltage swings well, and automatic burst mode reduces standby/no-load power.",
+  "gotchas": [
+    "DRAIN doubles as the high-voltage startup current source: before the auxiliary winding takes over, DRAIN charges the external VDD capacitor directly through an internal HV current source -- do not assume VDD is only ever fed from the transformer's aux winding",
+    "FB is a current-mode control input with a useful range of only 0V to 1V; shorting FB to SOURCE forces maximum peak drain current (used deliberately for current-limit testing, not a safe default wiring)",
+    "VDD has hysteretic on/off thresholds (typ 14.5V on, 8V off) -- if the auxiliary supply's minimum voltage sags below VDDoff under load, the part will restart in HICCUP mode rather than latch off cleanly",
+    "rDS(on) rises sharply with junction temperature (27-30 ohm typ at 25C vs 54 ohm max at 100C) -- thermal design at rated power must use the 100C figure, not the room-temperature datasheet headline number",
+    "SO-8 and DIP-8 share the same pin function order but not the same power rating: DIP-8's larger lead frame roughly doubles typical power capability over SO-8 for the same part number",
+    "overtemperature, overcurrent, and VDD overvoltage faults all trigger the same auto-restart HICCUP behavior rather than a latched shutdown -- design assuming the converter will keep retrying at DRST (~16% duty cycle) under a persistent fault, not stop"
+  ],
+  "related": [
+    "viper22a",
+    "lm2596"
+  ],
+  "source": "claude",
+  "verified": true,
+  "datasheet_url": "https://www.st.com/resource/en/datasheet/viper12a.pdf"
+}

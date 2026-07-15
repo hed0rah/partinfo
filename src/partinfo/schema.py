@@ -16,6 +16,8 @@ PinType = Literal[
 PackageTemplate = Literal[
     "dip", "sip", "sot23", "sot23-5", "sot23-6",
     "to92", "to220", "to247",
+    "can",      # metal-can discretes: TO-1, TO-5, TO-18, TO-39 (germanium, etc.)
+    "diode",    # 2-lead diodes: DO-35, DO-41, DO-201, DO-7 (anode/cathode)
     "qfp", "qfn", "lqfp", "tqfp",
     "soic", "tssop", "ssop",
     "module",   # breakout boards, ESP32 modules, Arduino, etc.

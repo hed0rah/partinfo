@@ -20,11 +20,21 @@
   "description": "Gold-bonded (metallurgically bonded) germanium diode: higher current handling and lower noise than a point-contact germanium, with the same low ~0.3V forward drop. 110V reverse rating. Used for detection, low-level rectification, and germanium clipping. Banded end is the cathode.",
   "packages": {
     "DO-7": {
-      "template": "custom",
+      "template": "diode",
       "pin_count": 2,
       "pins": [
-        {"pin": 1, "name": "A", "type": "passive", "description": "anode"},
-        {"pin": 2, "name": "K", "type": "passive", "description": "cathode (banded end)"}
+        {
+          "pin": 1,
+          "name": "A",
+          "type": "passive",
+          "description": "anode"
+        },
+        {
+          "pin": 2,
+          "name": "K",
+          "type": "passive",
+          "description": "cathode (banded end)"
+        }
       ],
       "notes": "small glass axial body; the band marks the cathode."
     }

@@ -24,7 +24,7 @@
   "description": "Lowest-voltage member of the ubiquitous 1N400x general-purpose silicon rectifier family, 50V / 1A average in DO-41. Mains/low-frequency rectification, freewheeling clamps, and reverse-polarity protection.",
   "packages": {
     "DO-41": {
-      "template": "custom",
+      "template": "diode",
       "pin_count": 2,
       "pins": [
         {
@@ -39,8 +39,7 @@
           "type": "passive",
           "description": "cathode (band/stripe end)"
         }
-      ],
-      "ascii": "  A \u2500\u2500\u25b7|\u2500\u2500 K\n  band/stripe end = K (cathode)"
+      ]
     }
   },
   "specs": {

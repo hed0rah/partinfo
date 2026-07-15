@@ -25,7 +25,7 @@
   "description": "Germanium PNP audio power transistor in a small TO-1 metal can, designed by Valvo as a push-pull (Class B) output pair with the AC127 (NPN). Best known today as the transistor in later production runs of the Dallas Arbiter Fuzz Face and in Sola Sound Tone Bender circuits, alongside the rarer NKT275. Widely second-sourced through the 1960s-70s under the Pro Electron AC1xx naming scheme.",
   "packages": {
     "TO-1": {
-      "template": "custom",
+      "template": "can",
       "pin_count": 3,
       "pins": [
         {

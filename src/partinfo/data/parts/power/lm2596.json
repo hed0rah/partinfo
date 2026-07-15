@@ -60,8 +60,7 @@
           "type": "input",
           "description": "shutdown control, ACTIVE-LOW: pull low (or ground) to enable, high to shut down"
         }
-      ],
-      "ascii": "    \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n    \u2502      TAB       \u2502  (GND)\n    \u2514\u2500\u252c\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u252c\u2500\u2500\u252c\u2500\u2500\u252c\u2500\u2518\n      \u2502   \u2502   \u2502  \u2502  \u2502\n     VIN  SW GND FB ON/OFF'\n      1   2   3  4    5"
+      ]
     }
   },
   "specs": {

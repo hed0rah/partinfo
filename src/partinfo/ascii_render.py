@@ -10,7 +10,7 @@ data) -- color only applies to the template-based renderers below.
 from __future__ import annotations
 import shutil
 from .schema import Package, Pin
-from .color import ColorMode, colorize_pin
+from .color import ColorMode, colorize_pin, colorize_dim
 
 
 def render(pkg: Package, part_name: str = "", mode: ColorMode = "off") -> str:
@@ -22,14 +22,18 @@ def render(pkg: Package, part_name: str = "", mode: ColorMode = "off") -> str:
         return _render_dip(pkg, part_name, mode)
     if t in ("sip",):
         return _render_sip(pkg, part_name, mode)
+    if t in ("diode",):
+        return _render_diode(pkg, part_name, mode)
     if t in ("sot23",):
         return _render_sot23(pkg, mode)
     if t in ("sot23-5", "sot23-6"):
         return _render_sot23_5(pkg, mode)
     if t in ("to92",):
-        return _render_to92(pkg, mode)
+        return _render_to92(pkg, part_name, mode)
     if t in ("to220", "to247"):
-        return _render_to220(pkg, mode)
+        return _render_to220(pkg, part_name, mode)
+    if t in ("can", "to1", "to5", "to18", "to39", "to72"):
+        return _render_can(pkg, part_name, mode)
     if t in ("qfp", "lqfp", "tqfp", "qfn"):
         return _render_qfp(pkg, part_name, mode)
     if t in ("module",):
@@ -109,79 +113,205 @@ def _render_dip(pkg: Package, part_name: str, mode: ColorMode = "off") -> str:
 
 
 def _render_sip(pkg: Package, part_name: str, mode: ColorMode = "off") -> str:
-    """single inline package. number field width is set by the widest pin
-    number so double-digit pins (10, 11, ...) still get a visible gap --
-    a fixed width-2 field made them run together (e.g. "101112...")."""
-    lines = [f"  {part_name}"]
-    lines.append("  " + "┬" * pkg.pin_count)
-    numw = max((len(str(p.pin)) for p in pkg.pins), default=1) + 1
-    nums = "  " + "".join(f"{p.pin:<{numw}}" for p in pkg.pins)
-    lines.append(nums)
-    for p in pkg.pins:
-        lines.append(f"  {p.pin}: {_cname(p, mode)}")
-    return "\n".join(lines)
+    """single inline package / single-row header (breakout modules, SIP ICs): a
+    numbered contact strip. pin names live in the numbered list printed below the
+    diagram, so the strip itself carries only numbers -- kept compact and aligned.
+    cell width follows the widest pin number so 10, 11, ... never run together."""
+    pins = sorted(pkg.pins, key=lambda p: int(p.pin) if str(p.pin).isdigit() else 0)
+    cw = max(2, max((len(str(p.pin)) for p in pins), default=2))
+    top = "  ┌" + "┬".join("─" * cw for _ in pins) + "┐"
+    bot = "  └" + "┴".join("─" * cw for _ in pins) + "┘"
+    cells = [colorize_pin(str(p.pin).rjust(cw), p.type, mode) for p in pins]
+    mid = "  │" + "│".join(cells) + "│"
+    return "\n".join([top, mid, bot])
+
+
+def _render_diode(pkg: Package, part_name: str = "", mode: ColorMode = "off") -> str:
+    """2-lead diode: the schematic symbol with numbered leads. pin 1 is the anode
+    (triangle), pin 2 is the cathode (the bar) -- the banded end of the body.
+    names live in the numbered list below the diagram."""
+    pins = {p.pin: p for p in pkg.pins}
+
+    def num(k):
+        p = pins.get(k) or pins.get(str(k))
+        return colorize_pin(str(k), p.type, mode) if p else str(k)
+
+    return (
+        f"   {num(1)} ──▷|── {num(2)}\n"
+        f"   anode    cathode (band)"
+    )
 
 
 def _render_sot23(pkg: Package, mode: ColorMode = "off") -> str:
-    """SOT-23 3-pin: leads 1 and 2 share one side, lead 3 sits alone opposite --
-    the standard TO-236 arrangement (leads 1,2 bottom, lead 3 top)."""
+    """SOT-23 3-pin: leads 1,2 on one side, lead 3 alone opposite (TO-236).
+    numbered; names live in the list below."""
     pins = {p.pin: p for p in pkg.pins}
-    p1 = _cname(pins.get(1), mode)
-    p2 = _cname(pins.get(2), mode)
-    p3 = _cname(pins.get(3), mode)
+
+    def num(k):
+        p = pins.get(k) or pins.get(str(k))
+        return colorize_pin(str(k), p.type, mode) if p else str(k)
+
     return (
-        f"      {p3}\n"
-        f"       │\n"
-        f"   ┌───┴───┐\n"
-        f"   │  SOT  │\n"
-        f"   └─┬───┬─┘\n"
-        f"     │   │\n"
-        f"    {p1}   {p2}"
+        f"      {num(3)}\n"
+        f"      │\n"
+        f"   ┌──┴──┐\n"
+        f"   │ SOT │\n"
+        f"   └─┬─┬─┘\n"
+        f"     │ │\n"
+        f"     {num(1)} {num(2)}"
     )
 
 
 def _render_sot23_5(pkg: Package, mode: ColorMode = "off") -> str:
-    """SOT-23-5 or SOT-23-6."""
+    """SOT-23-5 / SOT-23-6: 3 leads along the bottom (1,2,3 L->R), the rest along
+    the top (numbered down from the highest). numbered; names live in the list."""
+    n = pkg.pin_count
     pins = {p.pin: p for p in pkg.pins}
-    top_pins = [pins.get(i) for i in range(1, pkg.pin_count // 2 + 1)]
-    bot_pins = [pins.get(i) for i in range(pkg.pin_count, pkg.pin_count // 2, -1)]
-    tw = max(len(_plain(p)) for p in top_pins + bot_pins)
-    top = [_cname(p, mode, tw, "^") for p in top_pins]
-    bot = [_cname(p, mode, tw, "^") for p in bot_pins]
-    lines = []
-    lines.append("  " + "  ".join(top))
-    lines.append("  " + "┬  " * len(top))
-    lines.append("  ┌" + "─" * (tw * len(top) + 2 * (len(top)-1)) + "┐")
-    lines.append("  └" + "─" * (tw * len(top) + 2 * (len(top)-1)) + "┘")
-    lines.append("  " + "┴  " * len(bot))
-    lines.append("  " + "  ".join(bot))
-    return "\n".join(lines)
+    gap, left = 3, 3
+    bcols = [left + 1 + i * gap for i in range(3)]          # bottom leads 1,2,3
+    top = list(range(n, 3, -1))                             # 5 -> [5,4]; 6 -> [6,5,4]
+    tcols = [bcols[0], bcols[2]] if len(top) == 2 else list(bcols)
+
+    def num(k):
+        p = pins.get(k) or pins.get(str(k))
+        return colorize_pin(str(k), p.type, mode) if p else str(k)
+
+    def numrow(cols, nums):
+        s, cur = "", 0
+        for c, k in zip(cols, nums):
+            s += " " * (c - cur) + num(k)
+            cur = c + len(str(k))
+        return s
+
+    def tickrow(cols, ch):
+        r = []
+        for c in cols:
+            _put(r, c, ch)
+        return "".join(r)
+
+    bl, br = left, bcols[-1] + 1
+    return "\n".join([
+        numrow(tcols, top),
+        tickrow(tcols, "┬"),
+        " " * bl + "┌" + "─" * (br - bl - 1) + "┐",
+        " " * bl + "└" + "─" * (br - bl - 1) + "┘",
+        tickrow(bcols, "┴"),
+        numrow(bcols, [1, 2, 3]),
+    ])
 
 
-def _render_to92(pkg: Package, mode: ColorMode = "off") -> str:
-    pins = {p.pin: p for p in pkg.pins}
-    p1 = _cname(pins.get(1), mode)
-    p2 = _cname(pins.get(2), mode)
-    p3 = _cname(pins.get(3), mode)
-    return (
-        f"    ╭───╮\n"
-        f"    │   │   (flat face)\n"
-        f"    ╰─┬─╯\n"
-        f"   │  │  │\n"
-        f"  {p1}  {p2}  {p3}"
+def _put(buf: list, col: int, s: str) -> None:
+    """place `s` at absolute column `col` in a char-list line, extending as needed.
+    building diagrams into a buffer keeps every glyph on its intended column, so
+    alignment is correct by construction rather than by counting spaces by hand."""
+    while len(buf) < col + len(s):
+        buf.append(" ")
+    for i, ch in enumerate(s):
+        buf[col + i] = ch
+
+
+def _shade_row(w: int, ramp: str = "░▒▓") -> str:
+    """a symmetric light-center gradient across width w -- the vertical highlight
+    of a cylinder, so a metal can reads as rounded: lightest down the middle where
+    the surface faces you, darker at the edges where it curves away."""
+    c = (w - 1) / 2
+    return "".join(
+        ramp[min(len(ramp) - 1, int((abs(i - c) / (c or 1)) * len(ramp)))]
+        for i in range(w)
     )
 
 
-def _render_to220(pkg: Package, mode: ColorMode = "off") -> str:
+def _pin3(pkg: Package, label: str, mode: ColorMode,
+          corners: str = "round", tops: tuple = (), jog: bool = True,
+          margin: int = 4) -> str:
+    """shared leaded-package diagram: TO-92, TO-220 (heatsink tab), metal can, and
+    their multi-lead variants (TO-220-5, ...). the body is a box; `tops` stacks
+    decorative rows above the label (a shaded tab, dome shading). leads are numbered
+    along the bottom, and on a classic 3-pin part the outer two get a formed-lead
+    jog. numbers are colored by pin type; decorative fill is dimmed so it sits back
+    and the numbers stay the focus. names live in the numbered list below."""
+    n = pkg.pin_count
+    if n < 2:
+        return _render_generic(pkg, label, mode)
+    lc, rc, blc, brc = ("╭", "╮", "╰", "╯") if corners == "round" else ("┌", "┐", "└", "┘")
+    gap = 2
+    span = (n - 1) * gap
+    inner = max(len(label) + 2, span + 3)
+    if (inner - span) % 2:                            # equal margins around the tap cluster
+        inner += 1
+    ileft = margin + 1
+    taps = [ileft + (inner - span) // 2 + i * gap for i in range(n)]
+    do_jog = jog and n == 3                           # the formed-lead look is a 3-pin thing
+    ncols = list(taps)
+    if do_jog:
+        ncols[0] -= 1
+        ncols[-1] += 1
     pins = {p.pin: p for p in pkg.pins}
-    names = [_cname(pins.get(i), mode, 3, "^") for i in range(1, pkg.pin_count + 1)]
-    return (
-        "    ┌────────┐\n"
-        "    │  TAB   │\n"
-        "    └─┬──┬──┬┘\n"
-        "      │  │  │\n"
-        "    " + "  ".join(names)
-    )
+    pad = " " * margin
+    out = [pad + lc + "─" * inner + rc]
+
+    for kind in tops:
+        if kind == "shade":                           # rounded metal-can dome row
+            out.append(pad + "│" + colorize_dim(_shade_row(inner), mode) + "│")
+        elif kind == "tab":                           # TO-220 heatsink tab + hole
+            row = list("▓" * inner)
+            row[inner // 2] = "◎"
+            out.append(pad + "│" + colorize_dim("".join(row), mode) + "│")
+            out.append(pad + "├" + "─" * inner + "┤")
+
+    r = [" "] * (ileft + inner + 1)                    # label row
+    _put(r, margin, "│")
+    _put(r, ileft + (inner - len(label)) // 2, label)
+    _put(r, ileft + inner, "│")
+    out.append("".join(r))
+
+    r = [" "] * (ileft + inner + 1)                    # bottom edge with the taps
+    _put(r, margin, blc)
+    _put(r, ileft + inner, brc)
+    for c in range(ileft, ileft + inner):
+        _put(r, c, "─")
+    for t in taps:
+        _put(r, t, "┬")
+    out.append("".join(r))
+
+    r = []                                             # straight drop from every tap
+    for t in taps:
+        _put(r, t, "│")
+    out.append("".join(r))
+    if do_jog:                                         # outer legs form outward
+        r = []
+        _put(r, taps[0] - 1, "┌")
+        _put(r, taps[0], "┘")
+        _put(r, taps[1], "│")
+        _put(r, taps[-1], "└")
+        _put(r, taps[-1] + 1, "┐")
+        out.append("".join(r))
+        r = []
+        for c in ncols:
+            _put(r, c, "│")
+        out.append("".join(r))
+
+    line, cur = "", 0                                  # numbered leads, colored by type
+    for i, col in enumerate(ncols):
+        num = i + 1
+        p = pins.get(num) or pins.get(str(num))
+        txt = colorize_pin(str(num), p.type, mode) if p else str(num)
+        line += " " * (col - cur) + txt
+        cur = col + len(str(num))
+    out.append(line)
+    return "\n".join(out)
+
+
+def _render_to92(pkg: Package, part_name: str = "", mode: ColorMode = "off") -> str:
+    return _pin3(pkg, part_name or "TO-92", mode, corners="round")
+
+
+def _render_to220(pkg: Package, part_name: str = "", mode: ColorMode = "off") -> str:
+    return _pin3(pkg, part_name or "TO-220", mode, corners="square", tops=("tab",))
+
+
+def _render_can(pkg: Package, part_name: str = "", mode: ColorMode = "off") -> str:
+    return _pin3(pkg, part_name or "TO-1", mode, corners="round", tops=("shade", "shade"))
 
 
 def _two_column_box(left: list[Pin | None], right: list[Pin | None],

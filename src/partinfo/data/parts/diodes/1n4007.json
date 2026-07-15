@@ -28,7 +28,7 @@
   "description": "The default 1A general-purpose rectifier. The 1N400x series differs only in reverse voltage: 1N4001 is 50V, 1N4007 is 1000V. Just use the 1N4007 for everything. Banded end is the cathode.",
   "packages": {
     "DO-41": {
-      "template": "custom",
+      "template": "diode",
       "pin_count": 2,
       "pins": [
         {

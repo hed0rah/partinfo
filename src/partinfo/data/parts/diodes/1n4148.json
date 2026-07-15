@@ -23,7 +23,7 @@
   "description": "The default small-signal silicon switching diode. Fast recovery, low capacitance. Used everywhere for signal steering, clipping/clamping, flyback on small relays, and logic. The banded end is the cathode.",
   "packages": {
     "DO-35": {
-      "template": "custom",
+      "template": "diode",
       "pin_count": 2,
       "pins": [
         {

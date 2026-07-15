@@ -25,7 +25,7 @@
   "description": "5.1V, 1W silicon Zener from the 1N4728A series, A suffix = +/-5% tolerance. Reverse-biased in breakdown as a shunt reference or clamp; common for simple rails, bias references, and overvoltage protection.",
   "packages": {
     "DO-41": {
-      "template": "custom",
+      "template": "diode",
       "pin_count": 2,
       "pins": [
         {
@@ -40,8 +40,7 @@
           "type": "passive",
           "description": "cathode (band/stripe end)"
         }
-      ],
-      "ascii": "  A \u2500\u2500\u25b7|\u2500\u2500 K\n  band/stripe end = K (cathode)"
+      ]
     }
   },
   "specs": {

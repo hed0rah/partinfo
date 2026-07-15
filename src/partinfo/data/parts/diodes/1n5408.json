@@ -23,7 +23,7 @@
   "description": "Top member of the 1N540x 3A rectifier family, 1000V / 3A in the larger DO-201AD axial body. For higher-power linear supplies, bridges, inverters, and freewheeling where the 1N400x's 1A is too low.",
   "packages": {
     "DO-201AD": {
-      "template": "custom",
+      "template": "diode",
       "pin_count": 2,
       "pins": [
         {
@@ -38,8 +38,7 @@
           "type": "passive",
           "description": "cathode (band/stripe end)"
         }
-      ],
-      "ascii": "  A \u2500\u2500\u25b7|\u2500\u2500 K\n  band/stripe end = K (cathode)"
+      ]
     }
   },
   "specs": {

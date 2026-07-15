@@ -24,7 +24,7 @@
   "description": "1A Schottky rectifier with low forward drop (~0.45V) and fast recovery. The go-to for switch-mode supplies, polarity protection where every 0.1V counts, and boost/buck freewheeling. The 1N5817/18/19 differ only in reverse voltage (20/30/40V). Banded end is the cathode.",
   "packages": {
     "DO-41": {
-      "template": "custom",
+      "template": "diode",
       "pin_count": 2,
       "pins": [
         {
@@ -44,7 +44,7 @@
     }
   },
   "specs": {
-    "vf_v": 0.60,
+    "vf_v": 0.6,
     "vs_max_v": 40.0,
     "iout_max_ma": 1000.0,
     "extra": {

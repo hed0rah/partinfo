@@ -22,7 +22,7 @@
   "description": "One of the most widely used general-purpose germanium PNP transistors of the early 1960s, still in production today by Central Semiconductor as a direct legacy part. Historically significant as the transistor in the Maestro Fuzz-Tone FZ-1 (1962), the first mass-produced guitar fuzz pedal. Low absolute ratings (25V, 100mA, 150mW) by modern standards; this is a small-signal/low-power switching part, not a power device.",
   "packages": {
     "TO-5": {
-      "template": "custom",
+      "template": "can",
       "pin_count": 3,
       "pins": [
         {

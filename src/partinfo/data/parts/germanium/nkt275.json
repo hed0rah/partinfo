@@ -22,7 +22,7 @@
   "description": "The germanium PNP used in the earliest Dallas Arbiter Fuzz Face units (mid-1960s), famously associated with Jimi Hendrix's rig. Made by the UK's Newmarket Transistors, which stopped production by the early-mid 1970s; original examples are now rare and expensive collector items, commonly hundreds of dollars each, and are frequently counterfeited or relabeled given fuzz-pedal demand. Newmarket is long defunct with no successor maintaining documentation, so this entry is built from period catalog data rather than a manufacturer's own current datasheet -- see gotchas before relying on it.",
   "packages": {
     "TO-1": {
-      "template": "custom",
+      "template": "can",
       "pin_count": 3,
       "pins": [
         {

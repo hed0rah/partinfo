@@ -26,7 +26,7 @@
   "description": "12V, 1W silicon Zener from the 1N4728A series with +/-5% tolerance (A suffix). A 12V shunt reference/regulator and overvoltage clamp, e.g. protecting 12V logic/relay rails or gate-clamping. Reverse-biased in breakdown.",
   "packages": {
     "DO-41": {
-      "template": "custom",
+      "template": "diode",
       "pin_count": 2,
       "pins": [
         {
@@ -41,8 +41,7 @@
           "type": "passive",
           "description": "cathode (band/stripe end)"
         }
-      ],
-      "ascii": "  A \u2500\u2500\u25b7|\u2500\u2500 K\n  band/stripe end = K (cathode)"
+      ]
     }
   },
   "specs": {

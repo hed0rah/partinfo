@@ -21,11 +21,21 @@
   "description": "Germanium DO-7 diode optimized for RF and detector use (AM/FM/TV detectors, RF probes, FM discriminators). Low ~0.3V forward drop at signal levels, but with a higher 100V reverse rating and low 0.8pF junction capacitance versus the 1N34A, so it's favored for RF and as a higher-voltage germanium clipper. Banded end is the cathode.",
   "packages": {
     "DO-7": {
-      "template": "custom",
+      "template": "diode",
       "pin_count": 2,
       "pins": [
-        {"pin": 1, "name": "A", "type": "passive", "description": "anode"},
-        {"pin": 2, "name": "K", "type": "passive", "description": "cathode (banded end)"}
+        {
+          "pin": 1,
+          "name": "A",
+          "type": "passive",
+          "description": "anode"
+        },
+        {
+          "pin": 2,
+          "name": "K",
+          "type": "passive",
+          "description": "cathode (banded end)"
+        }
       ],
       "notes": "small glass axial body; the band marks the cathode."
     }

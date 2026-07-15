@@ -21,7 +21,7 @@
   "description": "Germanium point-contact diode with a low ~0.3V forward drop. The classic AM crystal-radio detector, and prized in guitar fuzz/clipping for its soft, asymmetric character versus silicon. Higher leakage and lower current handling than silicon. Banded end is the cathode.",
   "packages": {
     "DO-7": {
-      "template": "custom",
+      "template": "diode",
       "pin_count": 2,
       "pins": [
         {

@@ -23,7 +23,7 @@
   "description": "Lowest-voltage 1N5817/18/19 Schottky rectifier, 20V / 1A in DO-41. Very low forward drop (~0.45V) and fast switching for low-voltage DC/DC, freewheeling, polarity protection and OR-ing where conduction loss matters.",
   "packages": {
     "DO-41": {
-      "template": "custom",
+      "template": "diode",
       "pin_count": 2,
       "pins": [
         {
@@ -38,8 +38,7 @@
           "type": "passive",
           "description": "cathode (band/stripe end)"
         }
-      ],
-      "ascii": "  A \u2500\u2500\u25b7|\u2500\u2500 K\n  band/stripe end = K (cathode)"
+      ]
     }
   },
   "specs": {

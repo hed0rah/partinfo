@@ -1,0 +1,70 @@
+{
+  "id": "tcan332",
+  "name": "TCAN332",
+  "aliases": [
+    "TCAN332D",
+    "TCAN332DR",
+    "TCAN332DCN"
+  ],
+  "full_name": "3.3V CAN transceiver with CAN FD (normal mode only)",
+  "manufacturers": [
+    "Texas Instruments"
+  ],
+  "category": "interface",
+  "subcategory": "can transceiver",
+  "tags": [
+    "interface",
+    "can",
+    "can-fd",
+    "can-bus",
+    "transceiver",
+    "phy",
+    "3v3",
+    "automotive"
+  ],
+  "description": "3.3 V CAN FD bus transceiver (physical layer), ISO 11898-2 compliant. It is the bus driver a CAN controller (MCP2518FD, an MCU CAN peripheral) needs to reach the wire: it converts the controller's single-ended TXD/RXD to the differential CANH/CANL bus and back. TCAN332 is the 'normal mode only' member of the TCAN33x family, so pins 5 and 8 are NC; the siblings put features there: TCAN330 (SHDN + silent), TCAN334 (SHDN + standby/wake), TCAN337 (fault + silent). The plain part is rated to 1 Mbps; the -G speed grade (TCAN332G) runs to 5 Mbps.",
+  "packages": {
+    "SOIC-8": {
+      "template": "soic",
+      "pin_count": 8,
+      "pins": [
+        {"pin": 1, "name": "TXD", "type": "input", "description": "transmit data input from the CAN controller (drives the bus)"},
+        {"pin": 2, "name": "GND", "type": "ground", "description": "ground"},
+        {"pin": 3, "name": "VCC", "type": "power", "description": "+3.3 V supply"},
+        {"pin": 4, "name": "RXD", "type": "output", "description": "receive data output to the CAN controller"},
+        {"pin": 5, "name": "NC", "type": "nc", "description": "not connected on TCAN332 (SHDN on TCAN330/334)"},
+        {"pin": 6, "name": "CANL", "type": "bidirectional", "description": "CAN bus low line"},
+        {"pin": 7, "name": "CANH", "type": "bidirectional", "description": "CAN bus high line"},
+        {"pin": 8, "name": "NC", "type": "nc", "description": "not connected on TCAN332 (S/silent on TCAN330, STB on TCAN334, FAULT on TCAN337)"}
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.0,
+    "vs_max_v": 3.6,
+    "extra": {
+      "can": "CAN / CAN FD, ISO 11898-2; up to 1 Mbps (TCAN332), up to 5 Mbps (TCAN332G)",
+      "supply": "3.3 V nominal (3.0-3.6 V)",
+      "modes": "normal mode only - no shutdown or standby on TCAN332 (pins 5 and 8 are NC)",
+      "logic": "3.3 V TXD/RXD (interfaces directly to 3.3 V MCUs)",
+      "packages": "SOIC-8 (D) and SOT-23-8 (DCN)"
+    }
+  },
+  "typical_application": "The bus-side half of a 3.3 V CAN node: an MCU or CAN controller (e.g. MCP2518FD) drives TXD and reads RXD, and the TCAN332 puts it on the differential bus via CANH/CANL. Terminate the bus with 120 ohm at both ends.",
+  "gotchas": [
+    "NO standby or shutdown - pins 5 and 8 are NC; if you need low-power standby or silent mode use TCAN334/TCAN330 (same pinout, those pins become STB/S)",
+    "transceiver ONLY - it does not do CAN protocol; pair it with a controller (MCP2518FD, MCP2515, or an MCU CAN peripheral)",
+    "3.3 V part - do not feed it 5 V; TXD/RXD logic is 3.3 V",
+    "the -G suffix (TCAN332G) is the 5 Mbps data-rate grade; the plain TCAN332 is rated to 1 Mbps - match the grade to your CAN FD data phase",
+    "the bus needs 120 ohm termination at both physical ends; the transceiver does not provide it"
+  ],
+  "related": [
+    "mcp2518fd",
+    "mcp2551",
+    "sn65hvd230",
+    "tja1050"
+  ],
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/tcan332.pdf",
+  "source": "human",
+  "verified": true
+}

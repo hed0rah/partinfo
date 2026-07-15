@@ -1,0 +1,76 @@
+{
+  "id": "mcp2518fd",
+  "name": "MCP2518FD",
+  "aliases": [
+    "MCP2518FD-H/SL",
+    "MCP2518FD-H/JHA"
+  ],
+  "full_name": "External CAN FD controller with SPI interface",
+  "manufacturers": [
+    "Microchip"
+  ],
+  "category": "interface",
+  "subcategory": "can fd controller",
+  "tags": [
+    "interface",
+    "can",
+    "can-fd",
+    "can-bus",
+    "spi",
+    "controller",
+    "automotive"
+  ],
+  "description": "External CAN FD controller that adds a full CAN FD (and Classical CAN 2.0B) protocol engine to any microcontroller over SPI. Implements ISO 11898-1:2015 with configurable FIFOs stored in a 2 KB message RAM, 32 filters, and a transmit event FIFO. Like the MCP2515 it is controller-only: it needs an external CAN FD transceiver (e.g. TCAN332, MCP2542FD) on the bus side and an external oscillator. The go-to way to add CAN FD to an MCU that lacks the peripheral. Improves on the MCP2517FD with a Low Power Mode and an extended 23-bit SEQ field.",
+  "packages": {
+    "SOIC-14": {
+      "template": "soic",
+      "pin_count": 14,
+      "pins": [
+        {"pin": 1,  "name": "TXCAN", "type": "output", "description": "transmit output to the external CAN FD transceiver (its TXD)"},
+        {"pin": 2,  "name": "RXCAN", "type": "input", "description": "receive input from the external CAN FD transceiver (its RXD)"},
+        {"pin": 3,  "name": "CLKO/SOF", "type": "clock", "description": "clock output (prescaled from the oscillator) or start-of-frame output, configurable"},
+        {"pin": 4,  "name": "INT", "type": "output", "description": "active-low interrupt to the host MCU (open-drain)"},
+        {"pin": 5,  "name": "OSC2", "type": "clock", "description": "external oscillator output (crystal/resonator)"},
+        {"pin": 6,  "name": "OSC1", "type": "clock", "description": "external oscillator input (crystal/resonator or external clock in)"},
+        {"pin": 7,  "name": "VSS", "type": "ground", "description": "ground"},
+        {"pin": 8,  "name": "INT1/GPIO1", "type": "bidirectional", "description": "RX interrupt output (active low) or configurable GPIO"},
+        {"pin": 9,  "name": "INT0/GPIO0/XSTBY", "type": "bidirectional", "description": "TX interrupt output (active low), configurable GPIO, or transceiver standby control (XSTBY)"},
+        {"pin": 10, "name": "SCK", "type": "clock", "description": "SPI clock input"},
+        {"pin": 11, "name": "SDI", "type": "input", "description": "SPI data in (host MOSI)"},
+        {"pin": 12, "name": "SDO", "type": "output", "description": "SPI data out (host MISO)"},
+        {"pin": 13, "name": "nCS", "type": "input", "description": "active-low SPI chip select"},
+        {"pin": 14, "name": "VDD", "type": "power", "description": "+2.7 to +5.5 V supply"}
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 2.7,
+    "vs_max_v": 5.5,
+    "extra": {
+      "spi": "up to 20 MHz, SPI modes (0,0) and (1,1)",
+      "can": "CAN FD + Classical CAN 2.0B, ISO 11898-1:2015; arbitration up to 1 Mbps, data phase up to 8 Mbps",
+      "oscillator": "external 40, 20, or 4 MHz crystal/ceramic resonator (or external clock)",
+      "message_ram": "2 KB (configurable FIFOs + 32 filters + TX event FIFO)",
+      "active_current": "20 mA max at 5.5 V, 40 MHz",
+      "needs_transceiver": "yes - external CAN FD PHY required",
+      "package_note": "SOIC-14 and VDFN-14; the VDFN adds an exposed pad (EP, pin 15) that connects to VSS"
+    }
+  },
+  "typical_application": "Add a CAN FD port to any SPI-capable MCU: MCP2518FD controller + a CAN FD transceiver (TCAN332, MCP2542FD) + a 20 or 40 MHz crystal. The modern CAN-FD-over-SPI recipe, e.g. a Bus Pirate CAN plank.",
+  "gotchas": [
+    "controller ONLY - no bus driver; you must add an external CAN FD transceiver (TCAN33x, MCP2542FD) between TXCAN/RXCAN and the bus",
+    "needs an external oscillator (40/20/4 MHz); the frequency sets the achievable CAN FD bit timing, especially the fast data phase",
+    "SPI mode must be (0,0) or (1,1); clock up to 20 MHz",
+    "INT is open-drain active-low, so it needs a pull-up",
+    "NOT pin- or register-compatible with the MCP2515; different pinout, a CAN FD (not 2.0B-only) engine, and a different SPI command set",
+    "the bus still needs 120 ohm termination at both physical ends; the chip does not provide it"
+  ],
+  "related": [
+    "tcan332",
+    "mcp2515",
+    "mcp2551"
+  ],
+  "datasheet_url": "https://ww1.microchip.com/downloads/en/DeviceDoc/MCP2518FD-External-CAN-FD-Controller-with-SPI-Interface-20006027B.pdf",
+  "source": "human",
+  "verified": true
+}

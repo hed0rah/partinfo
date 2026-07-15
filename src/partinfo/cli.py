@@ -18,6 +18,7 @@ usage:
   partinfo conn <id> --pins    connector contact table only
   partinfo conn list           list all connector ids
   partinfo conn search <query> full-text search connectors
+  partinfo conn gallery        render every connector (filter by id/standard/form)
 
 Formatting logic lives in render.py -- this module is argparse wiring only.
 """
@@ -174,8 +175,19 @@ def main():
             for c in results:
                 print(f"  {c.id:<20} {(c.standard or ''):<14} {c.description[:56]}")
             return
+        if sub == "gallery":
+            filt = " ".join(args.rest[1:]).lower()      # optional: id, standard, or form
+            for cid in conn_all_ids():
+                c = conn_lookup(cid)
+                if not c:
+                    continue
+                if filt and filt not in cid.lower() and filt not in (c.standard or "").lower() \
+                        and filt not in c.form.lower():
+                    continue
+                print(render_conn(c, color_mode))
+            return
         if not sub:
-            print("usage: partinfo conn <id> | conn list | conn search <query>", file=sys.stderr)
+            print("usage: partinfo conn <id> | conn list | conn search <query> | conn gallery", file=sys.stderr)
             sys.exit(1)
         connector = conn_lookup(sub)
         if not connector:

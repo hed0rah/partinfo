@@ -24,7 +24,7 @@
   "description": "Junction-isolated, ultra well-matched monolithic NPN transistor pair with an order-of-magnitude tighter matching than conventional dual transistors: emitter-base offset voltage under 100uV, hFE matched to within 2%, and CMRR over 120dB, guaranteed over a 10uA-1mA collector current range. Internal clamp diodes across each emitter-base junction protect against reverse-bias degradation, the most common field-failure mode in matched pairs, and also clamp the shared substrate to the more negative emitter for isolation. AS194 is the tightest-spec bin of the AS194/AS394/AS394CH family, which all share the same die and pinout. Functionally an Alfa clone of the classic National Semiconductor LM194/LM394 ultra-matched pair long used in analog-synth exponential (V/octave) converters.",
   "packages": {
     "TO5-8": {
-      "template": "custom",
+      "template": "can",
       "pin_count": 8,
       "pins": [
         {

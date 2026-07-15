@@ -294,9 +294,39 @@ def _render_to92(pkg: Package, part_name: str = "", mode: ColorMode = "off", mar
     return "\n".join(out)
 
 
+def _render_can_ring(pkg: Package, mode: ColorMode = "off", margin: int = 3) -> str:
+    """round metal can with the leads in a ring (8-lead TO-5 / TO-99): the eight
+    leads laid out around the can body, numbered in order, with the locating tab
+    noted for orientation. names live in the numbered list below."""
+    pins = {p.pin: p for p in pkg.pins}
+
+    def num(k):
+        p = pins.get(k) or pins.get(str(k))
+        return colorize_pin(str(k), p.type, mode) if p else str(k)
+
+    cx = margin + 6
+    pos = {1: (0, cx), 2: (1, cx + 4), 3: (2, cx + 6), 4: (3, cx + 4),
+           5: (4, cx), 6: (3, cx - 4), 7: (2, cx - 6), 8: (1, cx - 4)}
+    cells = {r: [] for r in range(5)}
+    for k, (rw, cl) in pos.items():
+        cells[rw].append((cl, num(k), str(k)))
+    cells[2] += [(cx - 1, "(", "("), (cx, "o", "o"), (cx + 1, ")", ")")]
+    out = []
+    for r in range(5):
+        line, cur = "", 0
+        for cl, rendered, plain in sorted(cells[r], key=lambda x: x[0]):
+            line += " " * (cl - cur) + rendered
+            cur = cl + len(plain)
+        out.append(line)
+    out.append(" " * margin + "8-lead metal can; tab between pins 8 and 1")
+    return "\n".join(out)
+
+
 def _render_can(pkg: Package, part_name: str = "", mode: ColorMode = "off", margin: int = 3) -> str:
-    """metal can (TO-1/TO-5/TO-18/TO-39): a rounded metal body (light outline) with
-    three straight leads -- the round silhouette sets it apart from the boxes."""
+    """metal can: a 3-lead part (TO-1/TO-5/TO-18/TO-39) draws a small rounded body;
+    an 8-lead TO-5/TO-99 draws its leads in a ring. the round silhouette is the tell."""
+    if pkg.pin_count == 8:
+        return _render_can_ring(pkg, mode, margin)
     if pkg.pin_count != 3:
         return _render_sip(pkg, part_name, mode)
     inner = 7

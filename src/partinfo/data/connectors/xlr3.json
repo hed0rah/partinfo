@@ -7,7 +7,7 @@
   "gender": "male (output) / female (input)",
   "positions": 3,
   "form": "custom",
-  "ascii": "         .-------.\n        /   (1)   \\        1 = GND / shield\n       |           |       2 = hot  (+, in phase)\n       |  (2)   (3) |      3 = cold (-, inverted)\n        \\         /\n         '-------'",
+  "ascii": "         .-------.\n        /   (1)   \\        1 = GND / shield\n       |           |       2 = hot  (+, in phase)\n       | (2)   (3) |      3 = cold (-, inverted)\n        \\         /\n         '-------'",
   "tags": ["audio", "xlr", "balanced", "microphone", "pro-audio", "3-pin"],
   "description": "The locking 3-pin circular connector used for balanced analog audio (microphones, line level, PA). Balanced means the signal travels as a hot/cold differential pair with a shield; the receiver subtracts cold from hot, cancelling any noise picked up equally on both. The modern standard is 'pin 2 hot' (AES14).",
   "contacts": [

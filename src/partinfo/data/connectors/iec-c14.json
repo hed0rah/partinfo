@@ -7,7 +7,7 @@
   "gender": "C14 inlet (equipment, male pins) / C13 connector (cable, female)",
   "positions": 3,
   "form": "custom",
-  "ascii": "     ____________________\n    |       ( E )        |    C14 AC inlet (equipment side)\n    |                    |      E = earth / ground (top, longest)\n    |  ( L )      ( N )   |      L = line (live)\n    |____________________|      N = neutral\n   ~120 / 230 V AC MAINS -- LETHAL. Earth mates first, breaks last.",
+  "ascii": "     ____________________\n    |       ( E )        |    C14 AC inlet (equipment side)\n    |                    |      E = earth / ground (top, longest)\n    |  ( L )      ( N )  |      L = line (live)\n    |____________________|      N = neutral\n   ~120 / 230 V AC MAINS -- LETHAL. Earth mates first, breaks last.",
   "tags": ["power", "mains", "ac", "iec", "kettle", "c13", "c14", "earth", "danger"],
   "description": "The 3-pin AC mains connector on PCs, monitors, amps, and countless appliances (the 'kettle lead'). The C14 is the inlet on the equipment (male pins); the C13 is the socket on the cable (female). Three conductors: line (live), neutral, and protective earth. The earth pin is longer so it connects first and disconnects last.",
   "contacts": [

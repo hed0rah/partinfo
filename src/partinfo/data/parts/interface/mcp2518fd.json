@@ -53,16 +53,18 @@
       "message_ram": "2 KB (configurable FIFOs + 32 filters + TX event FIFO)",
       "active_current": "20 mA max at 5.5 V, 40 MHz",
       "needs_transceiver": "yes - external CAN FD PHY required",
-      "package_note": "SOIC-14 and VDFN-14; the VDFN adds an exposed pad (EP, pin 15) that connects to VSS"
+      "package_note": "SOIC-14 and VDFN-14; the VDFN adds an exposed pad (EP, pin 15) that connects to VSS",
+      "family_refman": "MCP25XXFD Family Reference Manual (DS20005678E) -- register-level operation: FIFOs, filters, ECC, bit timing (covers the 2517/2518FD family)"
     }
   },
   "typical_application": "Add a CAN FD port to any SPI-capable MCU: MCP2518FD controller + a CAN FD transceiver (TCAN332, MCP2542FD) + a 20 or 40 MHz crystal. The modern CAN-FD-over-SPI recipe, e.g. a Bus Pirate CAN plank.",
   "gotchas": [
     "controller ONLY - no bus driver; you must add an external CAN FD transceiver (TCAN33x, MCP2542FD) between TXCAN/RXCAN and the bus",
-    "needs an external oscillator (40/20/4 MHz); the frequency sets the achievable CAN FD bit timing, especially the fast data phase",
+    "needs an external oscillator; 20 or 40 MHz drives SYSCLK directly, a 4 MHz source needs the internal PLL (x10, PLLEN bit) to reach 40 MHz SYSCLK. the clock sets the achievable CAN FD bit timing, especially the fast data phase",
     "SPI mode must be (0,0) or (1,1); clock up to 20 MHz",
     "INT is open-drain active-low, so it needs a pull-up",
     "NOT pin- or register-compatible with the MCP2515; different pinout, a CAN FD (not 2.0B-only) engine, and a different SPI command set",
+    "firmware: after reset the device is in Configuration mode -- set the bit timing and INITIALIZE the 2 KB message RAM there before selecting Normal mode; the RAM is ECC-protected, so reading uninitialized words can raise ECC errors",
     "the bus still needs 120 ohm termination at both physical ends; the chip does not provide it"
   ],
   "related": [

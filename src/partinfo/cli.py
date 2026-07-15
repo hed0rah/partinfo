@@ -38,6 +38,25 @@ from .ref_render import render_ref
 from .conn_render import render_conn, render_conn_ascii, render_conn_pins
 
 
+BANNER = r"""
+ ________  ________  ________  _________  ___  ________   ________ ________
+|\   __  \|\   __  \|\   __  \|\___   ___\\  \|\   ___  \|\  _____\\   __  \
+\ \  \|\  \ \  \|\  \ \  \|\  \|___ \  \_\ \  \ \  \\ \  \ \  \__/\ \  \|\  \
+ \ \   ____\ \   __  \ \   _  _\   \ \  \ \ \  \ \  \\ \  \ \   __\\ \  \\\  \
+  \ \  \___|\ \  \ \  \ \  \\  \|   \ \  \ \ \  \ \  \\ \  \ \  \_| \ \  \\\  \
+   \ \__\    \ \__\ \__\ \__\\ _\    \ \__\ \ \__\ \__\\ \__\ \__\   \ \_______\
+    \|__|     \|__|\|__|\|__|\|__|    \|__|  \|__|\|__| \|__|\|__|    \|_______|
+
+   datasheet-verified component pinouts · specs · connectors · offline
+"""
+
+
+class _Parser(argparse.ArgumentParser):
+    """ArgumentParser that prints the banner above the help screen."""
+    def format_help(self):
+        return BANNER + "\n" + super().format_help()
+
+
 def _ollama_fallback(query: str, model: str) -> Part | None:
     try:
         import subprocess
@@ -70,7 +89,7 @@ def _ollama_fallback(query: str, model: str) -> Part | None:
 
 
 def main():
-    p = argparse.ArgumentParser(
+    p = _Parser(
         prog="partinfo",
         description="electronic component reference",
         formatter_class=argparse.RawDescriptionHelpFormatter,

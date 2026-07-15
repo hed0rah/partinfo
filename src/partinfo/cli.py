@@ -184,7 +184,7 @@ def main():
                 if filt and filt not in cid.lower() and filt not in (c.standard or "").lower() \
                         and filt not in c.form.lower():
                     continue
-                print(render_conn(c, color_mode))
+                print(render_conn_ascii(c, color_mode))
             return
         if not sub:
             print("usage: partinfo conn <id> | conn list | conn search <query> | conn gallery", file=sys.stderr)

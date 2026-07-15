@@ -10,7 +10,7 @@ data) -- color only applies to the template-based renderers below.
 from __future__ import annotations
 import shutil
 from .schema import Package, Pin
-from .color import ColorMode, colorize_pin, colorize_dim
+from .color import ColorMode, colorize_pin
 
 
 def render(pkg: Package, part_name: str = "", mode: ColorMode = "off") -> str:
@@ -137,7 +137,7 @@ def _render_diode(pkg: Package, part_name: str = "", mode: ColorMode = "off") ->
         return colorize_pin(str(k), p.type, mode) if p else str(k)
 
     return (
-        f"   {num(1)} ──▷|── {num(2)}\n"
+        f"   {num(1)} ──>|── {num(2)}\n"
         f"   anode    cathode (band)"
     )
 
@@ -210,108 +210,112 @@ def _put(buf: list, col: int, s: str) -> None:
         buf[col + i] = ch
 
 
-def _shade_row(w: int, ramp: str = "░▒▓") -> str:
-    """a symmetric light-center gradient across width w -- the vertical highlight
-    of a cylinder, so a metal can reads as rounded: lightest down the middle where
-    the surface faces you, darker at the edges where it curves away."""
-    c = (w - 1) / 2
-    return "".join(
-        ramp[min(len(ramp) - 1, int((abs(i - c) / (c or 1)) * len(ramp)))]
-        for i in range(w)
-    )
-
-
-def _pin3(pkg: Package, label: str, mode: ColorMode,
-          corners: str = "round", tops: tuple = (), jog: bool = True,
-          margin: int = 4) -> str:
-    """shared leaded-package diagram: TO-92, TO-220 (heatsink tab), metal can, and
-    their multi-lead variants (TO-220-5, ...). the body is a box; `tops` stacks
-    decorative rows above the label (a shaded tab, dome shading). leads are numbered
-    along the bottom, and on a classic 3-pin part the outer two get a formed-lead
-    jog. numbers are colored by pin type; decorative fill is dimmed so it sits back
-    and the numbers stay the focus. names live in the numbered list below."""
-    n = pkg.pin_count
-    if n < 2:
-        return _render_generic(pkg, label, mode)
-    lc, rc, blc, brc = ("╭", "╮", "╰", "╯") if corners == "round" else ("┌", "┐", "└", "┘")
-    gap = 2
+def _lead_columns(n: int, ileft: int, inner: int, gap: int = 2) -> list:
+    """evenly spaced lead columns, centered under a body of the given width."""
     span = (n - 1) * gap
-    inner = max(len(label) + 2, span + 3)
-    if (inner - span) % 2:                            # equal margins around the tap cluster
-        inner += 1
-    ileft = margin + 1
-    taps = [ileft + (inner - span) // 2 + i * gap for i in range(n)]
-    do_jog = jog and n == 3                           # the formed-lead look is a 3-pin thing
-    ncols = list(taps)
-    if do_jog:
-        ncols[0] -= 1
-        ncols[-1] += 1
+    start = ileft + (inner - span) // 2
+    return [start + i * gap for i in range(n)]
+
+
+def _append_leads(out: list, pkg: Package, taps: list, mode: ColorMode, lead: str = "│") -> None:
+    """append the straight lead row + the numbered row. numbers are colored by pin
+    type and placed by concatenation so ANSI codes never shift them off the leads --
+    the numbers sit directly under the leads, which is what keeps the bottom aligned."""
     pins = {p.pin: p for p in pkg.pins}
-    pad = " " * margin
-    out = [pad + lc + "─" * inner + rc]
-
-    for kind in tops:
-        if kind == "shade":                           # rounded metal-can dome row
-            out.append(pad + "│" + colorize_dim(_shade_row(inner), mode) + "│")
-        elif kind == "tab":                           # TO-220 heatsink tab + hole
-            row = list("▓" * inner)
-            row[inner // 2] = "◎"
-            out.append(pad + "│" + colorize_dim("".join(row), mode) + "│")
-            out.append(pad + "├" + "─" * inner + "┤")
-
-    r = [" "] * (ileft + inner + 1)                    # label row
-    _put(r, margin, "│")
-    _put(r, ileft + (inner - len(label)) // 2, label)
-    _put(r, ileft + inner, "│")
-    out.append("".join(r))
-
-    r = [" "] * (ileft + inner + 1)                    # bottom edge with the taps
-    _put(r, margin, blc)
-    _put(r, ileft + inner, brc)
-    for c in range(ileft, ileft + inner):
-        _put(r, c, "─")
+    r = []
     for t in taps:
-        _put(r, t, "┬")
+        _put(r, t, lead)
     out.append("".join(r))
-
-    r = []                                             # straight drop from every tap
-    for t in taps:
-        _put(r, t, "│")
-    out.append("".join(r))
-    if do_jog:                                         # outer legs form outward
-        r = []
-        _put(r, taps[0] - 1, "┌")
-        _put(r, taps[0], "┘")
-        _put(r, taps[1], "│")
-        _put(r, taps[-1], "└")
-        _put(r, taps[-1] + 1, "┐")
-        out.append("".join(r))
-        r = []
-        for c in ncols:
-            _put(r, c, "│")
-        out.append("".join(r))
-
-    line, cur = "", 0                                  # numbered leads, colored by type
-    for i, col in enumerate(ncols):
+    line, cur = "", 0
+    for i, col in enumerate(taps):
         num = i + 1
         p = pins.get(num) or pins.get(str(num))
         txt = colorize_pin(str(num), p.type, mode) if p else str(num)
         line += " " * (col - cur) + txt
         cur = col + len(str(num))
     out.append(line)
+
+
+def _render_to220(pkg: Package, part_name: str = "", mode: ColorMode = "off", margin: int = 3) -> str:
+    """TO-220 / TO-247: a light metal heatsink tab with the mounting hole up top,
+    the heavy-outlined black plastic body below, then straight leads. fixed width
+    -- it grows only with the lead count (e.g. TO-220-5), never with the part name,
+    which is printed in the header line above the diagram. safe glyphs only."""
+    n = pkg.pin_count
+    if n < 2:
+        return _render_generic(pkg, part_name, mode)
+    inner = max(9, (n - 1) * 2 + 4)
+    ileft = margin + 1
+    ctr = ileft + inner // 2
+    taps = _lead_columns(n, ileft, inner)
+    pad = " " * margin
+    out = [pad + "┌" + "─" * inner + "┐"]
+    r = [" "] * (ileft + inner + 1)                    # light metal tab + mounting hole
+    _put(r, margin, "│")
+    _put(r, ctr - 2, "(")
+    _put(r, ctr, "o")
+    _put(r, ctr + 2, ")")
+    _put(r, ileft + inner, "│")
+    out.append("".join(r))
+    out.append(pad + "┢" + "━" * inner + "┪")          # tab -> heavy black-plastic body
+    for _ in range(2):
+        out.append(pad + "┃" + " " * inner + "┃")
+    r = [" "] * (ileft + inner + 1)                    # heavy body bottom + lead taps
+    _put(r, margin, "┗")
+    _put(r, ileft + inner, "┛")
+    for c in range(ileft, ileft + inner):
+        _put(r, c, "━")
+    for t in taps:
+        _put(r, t, "┳")
+    out.append("".join(r))
+    _append_leads(out, pkg, taps, mode, lead="┃")
     return "\n".join(out)
 
 
-def _render_to92(pkg: Package, part_name: str = "", mode: ColorMode = "off") -> str:
-    return _pin3(pkg, part_name or "TO-92", mode, corners="round")
+def _render_to92(pkg: Package, part_name: str = "", mode: ColorMode = "off", margin: int = 3) -> str:
+    """TO-92: the small black plastic body (heavy outline) with three straight leads."""
+    if pkg.pin_count != 3:
+        return _render_sip(pkg, part_name, mode)
+    inner = 7
+    ileft = margin + 1
+    taps = _lead_columns(3, ileft, inner)
+    pad = " " * margin
+    out = [pad + "┏" + "━" * inner + "┓",
+           pad + "┃" + " " * inner + "┃"]
+    r = [" "] * (ileft + inner + 1)
+    _put(r, margin, "┗")
+    _put(r, ileft + inner, "┛")
+    for c in range(ileft, ileft + inner):
+        _put(r, c, "━")
+    for t in taps:
+        _put(r, t, "┳")
+    out.append("".join(r))
+    _append_leads(out, pkg, taps, mode, lead="┃")
+    return "\n".join(out)
 
 
-def _render_to220(pkg: Package, part_name: str = "", mode: ColorMode = "off") -> str:
-    return _pin3(pkg, part_name or "TO-220", mode, corners="square", tops=("tab",))
-
-
-def _render_can(pkg: Package, part_name: str = "", mode: ColorMode = "off") -> str:
-    return _pin3(pkg, part_name or "TO-1", mode, corners="round", tops=("shade", "shade"))
+def _render_can(pkg: Package, part_name: str = "", mode: ColorMode = "off", margin: int = 3) -> str:
+    """metal can (TO-1/TO-5/TO-18/TO-39): a rounded metal body (light outline) with
+    three straight leads -- the round silhouette sets it apart from the boxes."""
+    if pkg.pin_count != 3:
+        return _render_sip(pkg, part_name, mode)
+    inner = 7
+    ileft = margin + 1
+    taps = _lead_columns(3, ileft, inner)
+    pad = " " * margin
+    out = [pad + "╭" + "─" * inner + "╮",
+           pad + "│" + " " * inner + "│",
+           pad + "│" + " " * inner + "│"]
+    r = [" "] * (ileft + inner + 1)
+    _put(r, margin, "╰")
+    _put(r, ileft + inner, "╯")
+    for c in range(ileft, ileft + inner):
+        _put(r, c, "─")
+    for t in taps:
+        _put(r, t, "┬")
+    out.append("".join(r))
+    _append_leads(out, pkg, taps, mode, lead="│")
+    return "\n".join(out)
 
 
 def _two_column_box(left: list[Pin | None], right: list[Pin | None],

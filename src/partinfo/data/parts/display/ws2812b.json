@@ -52,7 +52,7 @@
           "description": "data input; reads its 24-bit GRB word then passes the rest to DOUT"
         }
       ],
-      "ascii": "        +-----------+\n        |   o (LED)  |\n  VDD 1-|           |-4 DIN\n        |  WS2812B  |\n DOUT 2-|   5050    |-3 VSS\n        +-----------+\n  data flows: DIN -> [LED] -> DOUT -> next DIN\n  (pin 1 marked by the cut/chamfered corner)"
+      "ascii": "        +-----------+\n        |   o (LED) |\n  VDD 1-|           |-4 DIN\n        |  WS2812B  |\n DOUT 2-|   5050    |-3 VSS\n        +-----------+\n  data flows: DIN -> [LED] -> DOUT -> next DIN\n  (pin 1 marked by the cut/chamfered corner)"
     }
   },
   "specs": {

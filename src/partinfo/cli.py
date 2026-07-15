@@ -9,6 +9,7 @@ usage:
   partinfo search <query>      full-text search
   partinfo ingest              rebuild parts.db from parts/ and references/
   partinfo list                list all part ids
+  partinfo gallery [filter]    render every ascii diagram (filter by id/category/template)
   partinfo ref <id>            show a reference entry (fundamentals)
   partinfo ref list            list all reference ids
   partinfo ref search <query>  full-text search references
@@ -105,6 +106,18 @@ def main():
     if args.part == "list":
         for pid in all_ids():
             print(pid)
+        return
+
+    if args.part == "gallery":
+        filt = " ".join(args.rest).lower()      # optional: id, category, or template substring
+        for pid in all_ids():
+            part = lookup(pid)
+            if not part:
+                continue
+            if filt and filt not in pid.lower() and filt not in part.category.lower() \
+                    and not any(filt in pk.template.lower() for pk in part.packages.values()):
+                continue
+            print(fmt_ascii(part, args.pkg, color_mode))
         return
 
     if args.part == "ref":

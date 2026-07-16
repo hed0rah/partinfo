@@ -6,6 +6,8 @@ Datasheet-verified electronic component pinouts, specs, and ASCII diagrams in yo
 
 Structured `--json` on every lookup, plus a bundled skill (below), so Claude Code or Codex query partinfo for a verified number instead of guessing a pinout (or a thermal resistance) from memory.
 
+<img src="https://raw.githubusercontent.com/hed0rah/partinfo/main/docs/img/ne555.png" alt="partinfo ne555: ASCII DIP-8 package diagram, pinout table colored by pin function, specs, and gotchas" width="820">
+
 ## Why
 
 Datasheets are slow to open and pin-numbering traps are easy to forget: the BC547 is C-B-E, the 2N3904 is E-B-C; the LM317 tab is the output but the 7805 tab is ground. `partinfo` answers those in one command, with the package drawn in ASCII so you can wire it without opening a PDF.
@@ -35,6 +37,8 @@ partinfo ref mosfet-parameters  # formulas with a variable legend
 partinfo gallery                # every part diagram, to scroll
 ```
 
+<img src="https://raw.githubusercontent.com/hed0rah/partinfo/main/docs/img/conn-obd-ii.png" alt="partinfo conn obd-ii --ascii: face-view ASCII diagram of the OBD-II connector" width="700">
+
 Pins are colored by function on a real terminal and drop to plain when piped or read by a script or model. Override with `--color {auto,semantic,minimal,mixed,off}` or `NO_COLOR=1`.
 
 ## Use it as a Claude Code / Codex skill
@@ -54,6 +58,8 @@ The ASCII pinout is generated from the same pin table as the specs, so the pictu
 ## It computes, not just looks up
 
 Each part stores its calculation inputs (`rds_on_ohm`, `rth_ja_cw`, ...) and the reference library stores the formulas, so a question gets answered from verified numbers. For "is an IRF520 safe switching 3 A in still air?", partinfo supplies `Rds(on) = 0.27 Ω` and `Rth(JA) = 62 °C/W`; applying `P = I²·R` and `Tj = Ta + P·Rth(JA)` gives `Tj ≈ 176 °C`, over the limit. The 9 A on the datasheet front page is a rating that needs a heatsink, and one formula shows it. `--json` hands the field names straight to a formula's variables.
+
+<img src="https://raw.githubusercontent.com/hed0rah/partinfo/main/docs/img/irf520-thermal.png" alt="partinfo irf520 --ascii --specs: TO-220 package diagram alongside the Rds(on) and Rth(JA) values the thermal math needs" width="700">
 
 ## Data model
 

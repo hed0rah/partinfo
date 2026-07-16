@@ -32,6 +32,8 @@ partinfo <name> --pkg DIP-8      # restrict to one package
 partinfo <name> --json           # machine-readable output (field names for calcs)
 partinfo search <query>    # full-text search across name/tags/description
 partinfo list              # list every part id
+partinfo gallery [filter]  # render just the ascii diagrams for many parts at once
+                           #   (optional filter by id / category / template, e.g. `gallery mosfet`)
 ```
 
 Bare `partinfo <name>` prints the whole entry, diagram included. The section flags
@@ -74,6 +76,7 @@ component. Each entry renders an ascii face-view diagram plus a contact table.
 partinfo conn <id>            # full entry: ascii face view + contact table + gotchas
 partinfo conn list            # list every connector id
 partinfo conn search <query>  # full-text search connectors
+partinfo conn gallery [filter]  # render every connector's face-view diagram (filter by id/standard/form)
 partinfo conn <id> --json     # machine-readable output
 ```
 

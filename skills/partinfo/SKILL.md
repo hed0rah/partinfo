@@ -28,7 +28,9 @@ redraw it, re-align it, restyle it, or reconstruct a pinout from memory, and nev
 substitute your own ASCII art. Pulling the pinout from partinfo instead of guessing is
 the entire point: pin-order traps (the LM317 tab is OUT not ground; BC547 is C-B-E
 against the 2N3904 E-B-C; the 79xx differs from the 78xx) are exactly what a
-from-memory diagram gets wrong.
+from-memory diagram gets wrong. If you need to highlight a specific pin, do it in
+prose by its number ("pin 2 is OUT") beneath partinfo's diagram; leave the diagram
+itself intact rather than redrawing it to add labels or callouts.
 
 ```sh
 partinfo <name>            # full entry: diagram + pinout + specs + gotchas + more

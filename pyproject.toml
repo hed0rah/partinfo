@@ -4,11 +4,11 @@ build-backend = "hatchling.build"
 
 [project]
 name = "partinfo"
-version = "0.1.1"
+version = "0.1.2"
 description = "Electronic component reference database with ASCII pinout diagrams"
 readme = "README.md"
 license = {text = "MIT"}
-requires-python = ">=3.11"
+requires-python = ">=3.9"
 authors = [
     {name = "hed0rah", email = "18272116+hed0rah@users.noreply.github.com"},
 ]
@@ -20,6 +20,10 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: POSIX :: Linux",
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)",
     "Topic :: Utilities",
 ]

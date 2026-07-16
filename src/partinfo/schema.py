@@ -4,7 +4,7 @@ all parts stored as JSON files under parts/; this module validates them.
 """
 
 from __future__ import annotations
-from typing import Literal, Optional
+from typing import Literal, Optional, Union
 from pydantic import BaseModel, Field
 
 
@@ -50,7 +50,7 @@ Category = Literal[
 
 
 class Pin(BaseModel):
-    pin: int | str          # int for DIP/SIP, str for named pins (ESP32 GPIO4)
+    pin: Union[int, str]          # int for DIP/SIP, str for named pins (ESP32 GPIO4)
     name: str               # house/functional label, normalized across the family
     type: PinType
     description: str
@@ -107,7 +107,7 @@ class Specs(BaseModel):
     # detail with conditions still belongs in extra alongside it.
     rth_jc_cw:      Optional[float] = None
     rth_ja_cw:      Optional[float] = None
-    extra: dict[str, str | float | int] = Field(default_factory=dict)  # anything else
+    extra: dict[str, Union[str, float, int]] = Field(default_factory=dict)  # anything else
 
 
 class Variant(BaseModel):
@@ -213,7 +213,7 @@ class RefEntry(BaseModel):
 # electronic component. own schema, own renderer, own CLI namespace (`conn`).
 
 class Contact(BaseModel):
-    pin: int | str                  # pin/position number (or letter)
+    pin: Union[int, str]                  # pin/position number (or letter)
     name: str                       # signal name: "CAN-H", "TXD", "GND"
     signal: Optional[str] = None    # standard/role: "ISO 15765-4 CAN", "EIA-232"
     description: str
@@ -233,7 +233,7 @@ class Connector(BaseModel):
     # renderer hints: `form` picks the ascii style; `rows` lays out the pin
     # numbers by physical row (top to bottom) for the 2-row d-sub/header styles.
     form: ConnectorForm = "custom"
-    rows: list[list[int | str]] = Field(default_factory=list)
+    rows: list[list[Union[int, str]]] = Field(default_factory=list)
     tags: list[str] = Field(default_factory=list)
     description: str
     contacts: list[Contact]

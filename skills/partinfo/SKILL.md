@@ -21,6 +21,15 @@ diagrams rendered from pin data.
 
 Run the CLI; do not read the JSON files directly unless editing the database.
 
+**Show partinfo's output, do not reproduce it.** The ASCII package diagram and the
+pinout are rendered from verified datasheet data. When the user wants a pinout or a
+diagram, run the CLI and show its rendered diagram *verbatim* in a code block. Do not
+redraw it, re-align it, restyle it, or reconstruct a pinout from memory, and never
+substitute your own ASCII art. Pulling the pinout from partinfo instead of guessing is
+the entire point: pin-order traps (the LM317 tab is OUT not ground; BC547 is C-B-E
+against the 2N3904 E-B-C; the 79xx differs from the 78xx) are exactly what a
+from-memory diagram gets wrong.
+
 ```sh
 partinfo <name>            # full entry: diagram + pinout + specs + gotchas + more
 partinfo <name> --ascii    # just the ascii package diagram

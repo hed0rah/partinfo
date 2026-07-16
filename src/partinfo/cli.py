@@ -10,6 +10,7 @@ usage:
   partinfo ingest              rebuild parts.db from parts/ and references/
   partinfo list                list all part ids
   partinfo gallery [filter]    render every ascii diagram (filter by id/category/template)
+  partinfo skill install       install the Claude Code / Codex skill (asks first)
   partinfo ref <id>            show a reference entry (fundamentals)
   partinfo ref list            list all reference ids
   partinfo ref search <query>  full-text search references
@@ -33,7 +34,7 @@ from .db import (
 )
 from .schema import Part
 from .color import resolve_mode
-from .render import fmt_pins, fmt_specs, fmt_full, fmt_ascii
+from .render import fmt_pins, fmt_specs, fmt_full, fmt_ascii, fmt_gotchas
 from .ref_render import render_ref
 from .conn_render import render_conn, render_conn_ascii, render_conn_pins
 
@@ -88,7 +89,52 @@ def _ollama_fallback(query: str, model: str) -> Part | None:
         return None
 
 
+def _skill_install(rest: list) -> None:
+    """copy the bundled skill into the user's Claude Code / Codex skill dirs."""
+    import os
+    from importlib.resources import files
+    try:
+        data = (files("partinfo") / "_skill" / "SKILL.md").read_text(encoding="utf-8")
+    except Exception:
+        print("  bundled skill not found in this install", file=sys.stderr)
+        sys.exit(1)
+    yes = "--yes" in rest or "-y" in rest
+    forced = {a[2:] for a in rest if a in ("--claude", "--codex")}
+    agents = {"claude": "~/.claude/skills", "codex": "~/.codex/skills"}
+    targets = [os.path.join(os.path.expanduser(b), "partinfo")
+               for n, b in agents.items()
+               if n in forced or (not forced and os.path.isdir(os.path.expanduser(b)))]
+    if not targets:
+        print("  found no ~/.claude/skills or ~/.codex/skills.", file=sys.stderr)
+        print("  pass --claude or --codex to create and install anyway.", file=sys.stderr)
+        sys.exit(1)
+    print("  install the partinfo skill to:")
+    for t in targets:
+        print(f"    {os.path.join(t, 'SKILL.md')}")
+    if not yes and sys.stdin.isatty():
+        if input("  proceed? [y/N] ").strip().lower() not in ("y", "yes"):
+            print("  aborted")
+            return
+    for t in targets:
+        os.makedirs(t, exist_ok=True)
+        dst = os.path.join(t, "SKILL.md")
+        with open(dst, "w", encoding="utf-8") as f:
+            f.write(data)
+        print(f"  installed  {dst}")
+
+
 def main():
+    # handle `skill` before argparse so its --claude/--codex/--yes flags aren't
+    # rejected as unknown top-level options
+    if len(sys.argv) >= 2 and sys.argv[1] == "skill":
+        rest = sys.argv[2:]
+        if rest[:1] == ["install"]:
+            _skill_install(rest[1:])
+        else:
+            print("usage: partinfo skill install [--claude|--codex] [--yes]", file=sys.stderr)
+            sys.exit(1)
+        return
+
     p = _Parser(
         prog="partinfo",
         description="electronic component reference",
@@ -98,9 +144,10 @@ def main():
     # first positional is a part name, or a command: ingest, list, search
     p.add_argument("part", nargs="?", help="part name/id, or a command: ingest, list, search")
     p.add_argument("rest", nargs="*", help="search query (when part is 'search')")
-    p.add_argument("--pins",  action="store_true", help="pinout only")
-    p.add_argument("--ascii", action="store_true", help="ascii package diagram")
-    p.add_argument("--specs", action="store_true", help="specs only")
+    p.add_argument("--pins",  action="store_true", help="pinout table (combinable)")
+    p.add_argument("--ascii", action="store_true", help="ascii package diagram (combinable)")
+    p.add_argument("--specs", action="store_true", help="key specs (combinable)")
+    p.add_argument("--gotchas", action="store_true", help="gotchas (combinable)")
     p.add_argument("-b", "--brief", action="store_true",
                    help="with --specs: headline specs only, skip the detailed extras")
     p.add_argument("--pkg",   help="filter to specific package (e.g. DIP-8)")
@@ -220,16 +267,17 @@ def main():
         if args.json:
             print(connector.model_dump_json(indent=2, exclude_none=True))
             return
+        picks = []
         if args.ascii:
-            print(render_conn_ascii(connector, color_mode))
-            return
+            picks.append(render_conn_ascii(connector, color_mode))
         if args.pins:
-            print(render_conn_pins(connector, color_mode))
-            return
-        if args.specs:
-            print("  connectors carry no spec table; showing the full entry",
-                  file=sys.stderr)
-        print(render_conn(connector, color_mode))
+            picks.append(render_conn_pins(connector, color_mode))
+        if picks:
+            if args.specs:
+                print("  connectors carry no spec table", file=sys.stderr)
+            print("\n".join(picks))
+        else:
+            print(render_conn(connector, color_mode))
         return
 
     if args.part == "search":
@@ -273,19 +321,20 @@ def main():
         print(part.model_dump_json(indent=2, exclude_none=True))
         return
 
+    # section flags are combinable; none given -> the full entry (which includes the diagram)
+    picks = []
     if args.ascii:
-        print(fmt_ascii(part, args.pkg, color_mode))
-        return
-
+        picks.append(fmt_ascii(part, args.pkg, color_mode))
     if args.pins:
-        print(fmt_pins(part, args.pkg, color_mode))
-        return
-
+        picks.append(fmt_pins(part, args.pkg, color_mode))
     if args.specs:
-        print(fmt_specs(part, color_mode, brief=args.brief))
-        return
-
-    print(fmt_full(part, color_mode))
+        picks.append(fmt_specs(part, color_mode, brief=args.brief))
+    if args.gotchas:
+        picks.append(fmt_gotchas(part, color_mode))
+    if picks:
+        print("\n".join(s for s in picks if s.strip()))
+    else:
+        print(fmt_full(part, color_mode))
 
 
 if __name__ == "__main__":

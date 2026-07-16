@@ -137,6 +137,15 @@ def _section(title: str, width: int, mode: ColorMode) -> str:
     return colorize_section(bar, mode)
 
 
+def fmt_gotchas(part: Part, mode: ColorMode = "off") -> str:
+    if not part.gotchas:
+        return ""
+    lines = [_section("GOTCHAS", 59, mode)]
+    for g in part.gotchas:
+        lines.append(f"  • {g}")
+    return "\n".join(lines)
+
+
 def fmt_full(part: Part, mode: ColorMode = "off") -> str:
     lines = []
     lines.append(f"\n{part.name}  --  {part.full_name}")
@@ -146,6 +155,9 @@ def fmt_full(part: Part, mode: ColorMode = "off") -> str:
         lines.append(f"  mfr:     {', '.join(part.manufacturers)}")
     lines.append(f"  tags:    {', '.join(part.tags)}")
     lines.append(f"\n  {part.description}")
+    diagram = fmt_ascii(part, mode=mode)
+    if diagram.strip():
+        lines.append(diagram)
     lines.append(_section("PINOUT", 60, mode))
     lines.append(fmt_pins(part, mode=mode))
     if part.specs:
@@ -155,9 +167,7 @@ def fmt_full(part: Part, mode: ColorMode = "off") -> str:
         lines.append(_section("TYPICAL APPLICATION", 47, mode))
         lines.append(f"  {part.typical_application}")
     if part.gotchas:
-        lines.append(_section("GOTCHAS", 59, mode))
-        for g in part.gotchas:
-            lines.append(f"  • {g}")
+        lines.append(fmt_gotchas(part, mode))
     if part.variants:
         lines.append(_section("VARIANTS", 58, mode))
         lines.append("  the common pinout is shown above; these manufacturer parts differ:")

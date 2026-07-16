@@ -22,16 +22,22 @@ diagrams rendered from pin data.
 Run the CLI; do not read the JSON files directly unless editing the database.
 
 ```sh
-partinfo <name>            # full entry: pinout, specs, typical use, gotchas
-partinfo <name> --pins     # pinout table only
-partinfo <name> --ascii    # ascii package diagram
-partinfo <name> --specs    # specs: headline table + detailed extras
-partinfo <name> --specs -b # --brief: headline specs only, skip the details
-partinfo <name> --pkg DIP-8  # restrict to one package
-partinfo <name> --json     # machine-readable output
+partinfo <name>            # full entry: diagram + pinout + specs + gotchas + more
+partinfo <name> --ascii    # just the ascii package diagram
+partinfo <name> --pins     # just the pinout table
+partinfo <name> --specs    # just the specs (add -b / --brief for headline only)
+partinfo <name> --gotchas  # just the gotchas
+partinfo <name> --ascii --pins   # SECTION FLAGS COMBINE: diagram + pin table, nothing else
+partinfo <name> --pkg DIP-8      # restrict to one package
+partinfo <name> --json           # machine-readable output (field names for calcs)
 partinfo search <query>    # full-text search across name/tags/description
 partinfo list              # list every part id
 ```
+
+Bare `partinfo <name>` prints the whole entry, diagram included. The section flags
+(`--ascii`, `--pins`, `--specs`, `--gotchas`) are **combinable filters**: pass any
+subset to print only those sections (e.g. `--ascii --pins` for a diagram plus the pin
+table). There is no `--full`; bare is full. `partinfo conn <id>` works the same way.
 
 Names are case-insensitive and match the id, canonical name, aliases, or a
 manufacturer variant's part number (so `partinfo 555`, `partinfo ne555`, and
@@ -161,7 +167,7 @@ find src/partinfo/data/parts -name '*.json' -exec basename {} \; | sort | uniq -
 # 3. rebuild the derived index
 partinfo ingest
 # 4. eyeball the render -- pinout, specs, gotchas all look right?
-partinfo <id> --ascii && partinfo <id> --specs
+partinfo <id>              # bare prints everything: diagram, pinout, specs, gotchas
 # 5. commit (voice per TASTE.md) and push to origin/main (this repo is public)
 ```
 

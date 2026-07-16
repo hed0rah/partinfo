@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "partinfo"
-version = "0.1.0"
+version = "0.1.1"
 description = "Electronic component reference database with ASCII pinout diagrams"
 readme = "README.md"
 license = {text = "MIT"}
@@ -40,6 +40,9 @@ partinfo = "partinfo.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/partinfo"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"skills/partinfo/SKILL.md" = "partinfo/_skill/SKILL.md"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

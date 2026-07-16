@@ -52,6 +52,15 @@ BANNER = r"""
 """
 
 
+def _pkg_version() -> str:
+    """the installed version, read from package metadata so it tracks pyproject."""
+    try:
+        from importlib.metadata import version
+        return version("partinfo")
+    except Exception:
+        return "unknown"
+
+
 class _Parser(argparse.ArgumentParser):
     """ArgumentParser that prints the banner above the help screen."""
     def format_help(self):
@@ -154,6 +163,8 @@ def main():
     p.add_argument("--fallback", choices=["ollama", "claude"], help="fallback if not in db")
     p.add_argument("--model", default="nemotron-nano-4b", help="ollama model for fallback")
     p.add_argument("--json",  action="store_true", help="raw JSON output")
+    p.add_argument("--version", action="version",
+                   version=f"partinfo {_pkg_version()}", help="show version and exit")
     p.add_argument("--color", choices=["auto", "semantic", "minimal", "mixed", "off"],
                     default="auto", help="color mode (default: auto -- color on a real terminal, off otherwise)")
 

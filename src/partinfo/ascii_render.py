@@ -95,7 +95,10 @@ def _render_dip(pkg: Package, part_name: str, mode: ColorMode = "off") -> str:
 
     lines = []
     notch = list("─" * body_w)                 # pin-1 orientation notch, top center
-    notch[body_w // 2] = "◡"
+    # ◡ (U+25E1) is prettiest but ambiguous-width, so it misaligns in proportional
+    # renderers (phones, some markdown). Emit it only for a real terminal; fall back
+    # to ascii 'u' when captured (mode off == piped/redirected), like color auto.
+    notch[body_w // 2] = "◡" if mode != "off" else "u"
     lines.append(f"{'':>{lw+nw+2}}┌{''.join(notch)}┐")
     for i in range(half):
         lpin = left[i]
@@ -444,7 +447,7 @@ def _render_qfp(pkg: Package, part_name: str, mode: ColorMode = "off") -> str:
     v2 = _two_column_box(bottom, top, part_name, mode)
     return (
         f"  left + right edges:\n{v1}\n\n"
-        f"  top + bottom edges (chip turned 90°):\n{v2}"
+        f"  top + bottom edges (chip turned {'90°' if mode != 'off' else '90 deg'}):\n{v2}"
     )
 
 

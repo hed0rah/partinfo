@@ -1,0 +1,180 @@
+{
+  "id": "v13700",
+  "name": "V13700",
+  "aliases": [
+    "V13700D",
+    "V13700M",
+    "LM13700",
+    "13700"
+  ],
+  "full_name": "Dual Operational Transconductance Amplifier with Linearizing Diodes and Buffers",
+  "manufacturers": [
+    "Coolaudio"
+  ],
+  "category": "opamp",
+  "subcategory": "OTA (transconductance)",
+  "tags": [
+    "ota",
+    "transconductance",
+    "vca",
+    "vcf",
+    "synth",
+    "pedal",
+    "audio",
+    "classic"
+  ],
+  "description": "Two current-controlled transconductance amplifiers with differential inputs and push-pull outputs, plus linearizing diodes and high-impedance output buffers. Gain is set by the amplifier bias current (IABC) rather than a feedback network, which makes it the workhorse of voltage-controlled amplifiers and filters. Coolaudio's in-production equivalent of the LM13700. Unlike the LM13600, the buffer input bias currents (and so their output DC levels) are independent of IABC.",
+  "packages": {
+    "DIP-16": {
+      "template": "dip",
+      "pin_count": 16,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "IABC A",
+          "type": "input",
+          "description": "amplifier bias current input, sets gain of A",
+          "datasheet_name": "AMP BIAS INPUT"
+        },
+        {
+          "pin": 2,
+          "name": "DBIAS A",
+          "type": "input",
+          "description": "linearizing diode bias, amp A",
+          "datasheet_name": "DIODE BIAS"
+        },
+        {
+          "pin": 3,
+          "name": "+IN A",
+          "type": "input",
+          "description": "non-inverting input, amp A",
+          "datasheet_name": "INPUT (+)"
+        },
+        {
+          "pin": 4,
+          "name": "-IN A",
+          "type": "input",
+          "description": "inverting input, amp A",
+          "datasheet_name": "INPUT (-)"
+        },
+        {
+          "pin": 5,
+          "name": "OUT A",
+          "type": "output",
+          "description": "push-pull current output, amp A",
+          "datasheet_name": "OUTPUT"
+        },
+        {
+          "pin": 6,
+          "name": "V-",
+          "type": "power",
+          "description": "negative supply (NOTE: pin 6, not a corner pin)",
+          "datasheet_name": "V-"
+        },
+        {
+          "pin": 7,
+          "name": "BUFIN A",
+          "type": "input",
+          "description": "buffer input, amp A",
+          "datasheet_name": "BUFFER INPUT"
+        },
+        {
+          "pin": 8,
+          "name": "BUFOUT A",
+          "type": "output",
+          "description": "buffer output, amp A",
+          "datasheet_name": "BUFFER OUTPUT"
+        },
+        {
+          "pin": 9,
+          "name": "BUFOUT B",
+          "type": "output",
+          "description": "buffer output, amp B",
+          "datasheet_name": "BUFFER OUTPUT"
+        },
+        {
+          "pin": 10,
+          "name": "BUFIN B",
+          "type": "input",
+          "description": "buffer input, amp B",
+          "datasheet_name": "BUFFER INPUT"
+        },
+        {
+          "pin": 11,
+          "name": "V+",
+          "type": "power",
+          "description": "positive supply (NOTE: pin 11, not a corner pin)",
+          "datasheet_name": "V+"
+        },
+        {
+          "pin": 12,
+          "name": "OUT B",
+          "type": "output",
+          "description": "push-pull current output, amp B",
+          "datasheet_name": "OUTPUT"
+        },
+        {
+          "pin": 13,
+          "name": "-IN B",
+          "type": "input",
+          "description": "inverting input, amp B",
+          "datasheet_name": "INPUT (-)"
+        },
+        {
+          "pin": 14,
+          "name": "+IN B",
+          "type": "input",
+          "description": "non-inverting input, amp B",
+          "datasheet_name": "INPUT (+)"
+        },
+        {
+          "pin": 15,
+          "name": "DBIAS B",
+          "type": "input",
+          "description": "linearizing diode bias, amp B",
+          "datasheet_name": "DIODE BIAS"
+        },
+        {
+          "pin": 16,
+          "name": "IABC B",
+          "type": "input",
+          "description": "amplifier bias current input, sets gain of B",
+          "datasheet_name": "AMP BIAS INPUT"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_max_v": 36.0,
+    "extra": {
+      "supply": "36V total, or +/-18V max",
+      "IABC_max": "2mA (amplifier bias current)",
+      "diode_bias_max": "2mA (ID)",
+      "buffer_output_current": "20mA max",
+      "differential_input": "+/-5V max",
+      "power_dissipation": "570mW at Ta = 25C",
+      "operating_temp": "0 to +70 C",
+      "equivalent": "LM13700",
+      "vs_LM13600": "buffer input bias currents (and output DC levels) are independent of IABC",
+      "linearizing_diodes": "10dB signal-to-noise improvement referenced to 0.5% THD",
+      "packages": "V13700D = DIP-16, V13700M = SOP/SOIC-16"
+    }
+  },
+  "typical_application": "Voltage-controlled amplifiers (VCA) and voltage-controlled filters (VCF), plus tremolo, compressors and modulation effects. Gain follows IABC, so a control voltage into the bias pin becomes the gain control. The backbone chip of synth-DIY and analog pedal VCAs.",
+  "gotchas": [
+    "V- is pin 6 and V+ is pin 11, NOT the corner pins. Wiring the rails to pins 8/16 out of habit is the classic mis-wire on this chip",
+    "gain is set by the bias current IABC (pins 1 and 16), not by a feedback network; it is a current-controlled amplifier",
+    "keep IABC at 2mA or below, and always feed it through a resistor from the control voltage, never straight from a rail",
+    "the OTA input wants millivolts, not volts: attenuate hard going in (typically to tens of mV) or it distorts. The linearizing diodes buy you headroom back",
+    "the raw amplifier output is a current; the on-chip buffers (Darlington followers) are there to drive real loads. Use them",
+    "V13700M is SOIC-16 surface mount, V13700D is DIP-16; the M will not breadboard without an adapter"
+  ],
+  "related": [
+    "lm13700"
+  ],
+  "source": "claude",
+  "verified": true,
+  "human_reviewed": false,
+  "datasheet_url": "https://www.coolaudio.com/docs/COOLAUDIO_V13700_DATASHEET.pdf",
+  "notes": "Pins and specs checked against Coolaudio's own V13700D/M datasheet, supplied by the user. The pin diagram in that sheet confirms V- on pin 6 and V+ on pin 11."
+}

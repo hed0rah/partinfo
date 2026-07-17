@@ -1,0 +1,178 @@
+{
+  "id": "cd4049",
+  "name": "CD4049UB",
+  "aliases": [
+    "CD4049",
+    "4049",
+    "CD4049UBE",
+    "MC14049",
+    "HEF4049"
+  ],
+  "full_name": "Hex Inverting Buffer / Level Converter (CMOS, Unbuffered)",
+  "manufacturers": [
+    "Texas Instruments",
+    "onsemi",
+    "Nexperia"
+  ],
+  "category": "logic",
+  "subcategory": "inverter",
+  "tags": [
+    "logic",
+    "cmos",
+    "inverter",
+    "buffer",
+    "level-shifter",
+    "synth",
+    "classic"
+  ],
+  "description": "Six inverting buffers with high sink current (drives two TTL loads). Its input high level may exceed VDD, so it converts higher-voltage logic down to a lower supply on a single rail. Unbuffered (one inverting stage per gate), so biased mid-rail it also works as a linear amplifier, the basis of CMOS distortion circuits. The CD4050B is the non-inverting counterpart and shares this datasheet.",
+  "packages": {
+    "DIP-16": {
+      "template": "dip",
+      "pin_count": 16,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "VDD",
+          "type": "power",
+          "description": "supply, 3V to 18V (NOTE: pin 1, not pin 16)",
+          "datasheet_name": "VCC"
+        },
+        {
+          "pin": 2,
+          "name": "1Y",
+          "type": "output",
+          "description": "inverter 1 output (inverted)",
+          "datasheet_name": "G"
+        },
+        {
+          "pin": 3,
+          "name": "1A",
+          "type": "input",
+          "description": "inverter 1 input",
+          "datasheet_name": "A"
+        },
+        {
+          "pin": 4,
+          "name": "2Y",
+          "type": "output",
+          "description": "inverter 2 output (inverted)",
+          "datasheet_name": "H"
+        },
+        {
+          "pin": 5,
+          "name": "2A",
+          "type": "input",
+          "description": "inverter 2 input",
+          "datasheet_name": "B"
+        },
+        {
+          "pin": 6,
+          "name": "3Y",
+          "type": "output",
+          "description": "inverter 3 output (inverted)",
+          "datasheet_name": "I"
+        },
+        {
+          "pin": 7,
+          "name": "3A",
+          "type": "input",
+          "description": "inverter 3 input",
+          "datasheet_name": "C"
+        },
+        {
+          "pin": 8,
+          "name": "VSS",
+          "type": "ground",
+          "description": "ground (0V)",
+          "datasheet_name": "VSS"
+        },
+        {
+          "pin": 9,
+          "name": "4A",
+          "type": "input",
+          "description": "inverter 4 input",
+          "datasheet_name": "D"
+        },
+        {
+          "pin": 10,
+          "name": "4Y",
+          "type": "output",
+          "description": "inverter 4 output (inverted)",
+          "datasheet_name": "J"
+        },
+        {
+          "pin": 11,
+          "name": "5A",
+          "type": "input",
+          "description": "inverter 5 input",
+          "datasheet_name": "E"
+        },
+        {
+          "pin": 12,
+          "name": "5Y",
+          "type": "output",
+          "description": "inverter 5 output (inverted)",
+          "datasheet_name": "K"
+        },
+        {
+          "pin": 13,
+          "name": "NC",
+          "type": "nc",
+          "description": "no connection"
+        },
+        {
+          "pin": 14,
+          "name": "6A",
+          "type": "input",
+          "description": "inverter 6 input",
+          "datasheet_name": "F"
+        },
+        {
+          "pin": 15,
+          "name": "6Y",
+          "type": "output",
+          "description": "inverter 6 output (inverted)",
+          "datasheet_name": "L"
+        },
+        {
+          "pin": 16,
+          "name": "NC",
+          "type": "nc",
+          "description": "no connection (supply is pin 1)"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 3.0,
+    "vs_max_v": 18.0,
+    "extra": {
+      "variant": "UB = unbuffered (single stage), usable as a linear amp",
+      "logic family": "CD40xx CMOS (4000B)",
+      "abs max supply": "20V (VDD to VSS)",
+      "input current": "1 uA max at 18V",
+      "drive": "high sink current, drives 2 TTL loads",
+      "level conversion": "input high level may exceed VDD, single supply"
+    }
+  },
+  "typical_application": "Hex inversion, high-to-low logic level conversion on a single supply, and CMOS current driving. The UB variant biased mid-rail is the classic CMOS distortion / oscillator gain stage.",
+  "gotchas": [
+    "supply is pin 1 and ground is pin 8; pin 16 is NOT connected. Wiring VDD to pin 16 out of 16-pin DIP habit leaves the chip dead",
+    "pins 13 and 16 are NC on this package, unlike most 16-pin logic",
+    "the input high level is allowed to exceed VDD (that is the level-conversion feature) -- unusual for CMOS, where inputs normally must stay inside the rails",
+    "UB (unbuffered) and B (buffered) variants behave differently; the linear-amp and distortion tricks need the UB",
+    "inverting; the CD4050B is the pin-similar non-inverting version",
+    "do not leave inputs floating"
+  ],
+  "related": [
+    "cd4069",
+    "cd40106",
+    "cd4093"
+  ],
+  "source": "claude",
+  "verified": true,
+  "human_reviewed": false,
+  "datasheet_url": "https://www.ti.com/lit/ds/symlink/cd4049ub.pdf",
+  "notes": "Pins and specs checked against TI SCHS046L (Aug 1998, rev Feb 2026). TI labels the gates A-F (inputs) and G-L (outputs); house names use the 1A/1Y convention with the vendor labels kept in datasheet_name."
+}

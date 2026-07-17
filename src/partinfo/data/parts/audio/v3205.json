@@ -1,0 +1,115 @@
+{
+  "id": "v3205",
+  "name": "V3205SD",
+  "aliases": [
+    "V3205",
+    "V3205D",
+    "MN3205"
+  ],
+  "full_name": "4096-Stage Low-Voltage Low-Noise BBD Analog Delay Line",
+  "manufacturers": [
+    "Coolaudio"
+  ],
+  "category": "audio",
+  "subcategory": "bucket-brigade delay (BBD)",
+  "tags": [
+    "bbd",
+    "delay",
+    "echo",
+    "chorus",
+    "flanger",
+    "analog",
+    "synth",
+    "pedal"
+  ],
+  "description": "4096-stage bucket-brigade delay line running on a single low positive supply (5V typical), giving 20.48ms to 204.8ms of analog delay. A charge packet is passed capacitor to capacitor by a two-phase clock, so the signal stays analog end to end: sampled in time, never quantized. Coolaudio's in-production replacement for the Panasonic MN3205.",
+  "packages": {
+    "DIP-8": {
+      "template": "dip",
+      "pin_count": 8,
+      "pins": [
+        {
+          "pin": 1,
+          "name": "GND",
+          "type": "ground",
+          "description": "ground"
+        },
+        {
+          "pin": 2,
+          "name": "CP2",
+          "type": "input",
+          "description": "clock phase 2 input"
+        },
+        {
+          "pin": 3,
+          "name": "OUT1",
+          "type": "output",
+          "description": "delayed signal output, 4096 stages"
+        },
+        {
+          "pin": 4,
+          "name": "OUT2",
+          "type": "output",
+          "description": "delayed signal output, 4097 stages"
+        },
+        {
+          "pin": 5,
+          "name": "VDD",
+          "type": "power",
+          "description": "positive supply, 4V to 8V (5V typical)"
+        },
+        {
+          "pin": 6,
+          "name": "CP1",
+          "type": "input",
+          "description": "clock phase 1 input"
+        },
+        {
+          "pin": 7,
+          "name": "IN",
+          "type": "input",
+          "description": "analog signal input"
+        },
+        {
+          "pin": 8,
+          "name": "VGG",
+          "type": "power",
+          "description": "bias voltage input, 14/15 x VDD"
+        }
+      ]
+    }
+  },
+  "specs": {
+    "vs_min_v": 4.0,
+    "vs_max_v": 8.0,
+    "extra": {
+      "stages": 4096,
+      "delay_range": "20.48 to 204.8ms",
+      "clock_range": "10 to 100kHz (delay = stages / (2 x clock); 204.8ms at a 10kHz clock)",
+      "SN_ratio": "60dB",
+      "THD": "0.8%",
+      "insertion_loss": "0dB typ (Li)",
+      "supply": "VDD = +5V typ (4 to 8V); VGG = 14/15 x VDD",
+      "abs_max": "-0.3 to +11V on VDD, VGG, CP and input",
+      "operating_temp": "-20 to +60 C",
+      "process": "N-channel silicon gate"
+    }
+  },
+  "typical_application": "Analog delay, echo, chorus, flanger and reverb. Delay = stages / (2 x clock), so 4096 stages at a 10kHz clock gives 204.8ms. The full recipe is V3205 + a V3102 clock driver + a V571 compander, which is the classic analog-delay pedal signal chain.",
+  "gotchas": [
+    "it does nothing on its own: it needs a two-phase non-overlapping clock. Pair it with a V3102/MN3102 clock driver, which also generates the VGG bias",
+    "NOT a drop-in for the MN3005. The MN3005 runs a negative supply (VDD = -15V); the V3205 is a positive low-voltage part (4 to 8V). It replaces the MN3205",
+    "companding is effectively mandatory: compress in and expand out with a V571/NE571, or the noise floor of 4096 charge transfers dominates",
+    "the clock sets delay AND bandwidth at once (Nyquist = clock/2), so longer delays lose high end; anti-alias filter going in and reconstruction filter coming out",
+    "OUT1 and OUT2 are one stage apart; designs typically sum them to help cancel clock feedthrough",
+    "VGG is a bias input, not a second rail: it sits at 14/15 of VDD"
+  ],
+  "related": [
+    "mn3005"
+  ],
+  "source": "claude",
+  "verified": true,
+  "human_reviewed": false,
+  "datasheet_url": "https://www.coolaudio.com/docs/COOLAUDIO_V3205_DATASHEET.pdf",
+  "notes": "Pins and specs checked against Coolaudio's own V3205SD datasheet (V1.0), supplied by the user. Note reseller listings for this part are unreliable: several claim DIP-14 and S/N 67dB, while the manufacturer's sheet says an 8-lead DIP, 4-8V, and S/N 60dB."
+}

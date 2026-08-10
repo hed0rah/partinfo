@@ -1,0 +1,39 @@
+{
+  "id": "dreamcast-controller",
+  "name": "Sega Dreamcast controller port (Maple Bus)",
+  "aliases": ["dreamcast", "dc controller", "maple", "maple bus connector", "usb2maple", "usb4maple"],
+  "standard": "Sega Maple Bus",
+  "family": "5-contact proprietary Dreamcast peripheral connector",
+  "gender": "female socket on the console / male plug on the controller cable",
+  "positions": 5,
+  "form": "custom",
+  "ascii": "   looking into the peripheral socket (D-keyed):\n    __________________________\n   |                          |\n   |    1      3      5        |   <- top row, 3 contacts\n   |                          |\n   |       2         4        |   <- bottom row, 2 contacts\n   |__________________________|\n\n   1 DATA   data/clock line (Maple), 3.3V TTL   [ref: 'Data pin 1']\n   2 +5V    VCC console power (the only 5V pin)\n   3 GND    ground return\n   4 SENSE  tie to GND = device present\n   5 DATA   data/clock line (Maple), 3.3V TTL   [ref: 'Data pin 5']",
+  "tags": ["dreamcast", "sega", "maple", "maple-bus", "controller", "console", "retro", "game", "usb2maple", "usb4maple"],
+  "description": "The proprietary 5-contact connector on a Sega Dreamcast controller cable / console port. It carries the Maple Bus: a half-duplex two-wire serial bus (SDCKA + SDCKB) that the console powers with 5 V but signals at 3.3 V TTL. The two data lines alternate clock and data roles every bit; the host runs ~2 Mbps and polls attached peripherals about every 16 ms. A 5th 'sense' contact is tied to ground to announce that a device is plugged in. Physically the two data lines are the outer pins of the top row (1 and 5); power, ground and sense fill pins 2-4.",
+  "contacts": [
+    {"pin": 1, "name": "SDCKA", "datasheet_name": "Data pin 1", "signal": "maple",  "description": "Serial Data/Clock line (one of the two Maple data lines), 3.3 V TTL. Reference pinouts label this 'Data pin 1'. The two data lines swap clock/data role every bit and idle HIGH via a weak pull-up. Which physical line is SDCKA vs SDCKB is not fixed across sources, confirm by scope/continuity."},
+    {"pin": 2, "name": "VCC",   "datasheet_name": "+5V",      "signal": "power",  "description": "+5 V supply from the console (powers the peripheral). The only 5 V pin."},
+    {"pin": 3, "name": "GND",   "signal": "ground", "description": "0 V ground return."},
+    {"pin": 4, "name": "SENSE", "signal": "detect", "description": "Device-present sense. Commonly tied to GND to tell the console a peripheral is attached (the DC also detects via Maple polling, so some designs omit it)."},
+    {"pin": 5, "name": "SDCKB", "datasheet_name": "Data pin 5", "signal": "maple",  "description": "Serial Data/Clock line (the other Maple data line), 3.3 V TTL. Reference pinouts label this 'Data pin 5'. Swaps clock/data role with the pin-1 line every bit and idles HIGH."}
+  ],
+  "variants": [
+    "The controller itself acts as a Maple host to its own sub-peripherals (VMU, Puru Puru rumble pack) over the expansion-slot 'LM bus' -- a Maple-style bus one level down.",
+    "Wire colors are NOT standardized across cables/controllers. A commonly-seen mapping is red=VCC, black=GND, white=sense, with the two remaining wires as the data lines -- but always confirm with a meter, do not trust the colors."
+  ],
+  "gotchas": [
+    "Pin numbering (this entry): aligned to the RNT / dreamcast.wiki peripheral pinout -- 1=DATA, 2=+5V, 3=GND, 4=SENSE, 5=DATA. The two DATA lines are the OUTER pins of the top row (1 and 5); +5V and SENSE are the bottom pair (2 and 4). Other projects (e.g. GP2040-CE) number the same connector differently, so a pin number only means something within one source's convention -- identify each wire by continuity, never by pin number or wire color.",
+    "Data lines are 3.3 V TTL, NOT 5 V -- only VCC (pin 2) is 5 V. A 3.3 V MCU (RP2040/Pico) reads and drives the data lines directly, so NO level shifter is required. (Some older projects level-shifted out of caution; it is not needed.)",
+    "Ring out VCC and GND first, then identify the two data lines and the sense wire BEFORE soldering -- especially on a cut-off cable with bare leads.",
+    "This is not UART or SPI. The two data lines swap clock/data roles every bit and data is latched on the clock line's falling edge, so you need bit-level handling -- on an RP2040 that means a PIO program (see the Maple-bus Pico projects), not a hardware UART/SPI block.",
+    "Both data lines idle HIGH through weak pull-ups; the bus is half-duplex.",
+    "Pin 4 (sense): tie to GND to signal 'device present.' Leaving it floating can make the console fail to see the peripheral in some setups.",
+    "The console polls peripherals about every 16 ms (60 Hz) -- a device must answer within that window to register on a given frame."
+  ],
+  "related": ["maple-bus", "txs0108e"],
+  "see_also_url": "https://dreamcast.wiki/Maple_bus",
+  "source": "claude",
+  "verified": false,
+  "human_reviewed": false,
+  "notes": "Pin numbering aligned to the RNT / dreamcast.wiki peripheral pinout (1=DATA, 2=+5V, 3=GND, 4=SENSE, 5=DATA) -- this CORRECTS an earlier draft that had 1=VCC/2=SDCKA/3=SDCKB/4=SENSE/5=GND. No manufacturer datasheet exists for this proprietary connector, so verified stays false; confirm wire-to-pin mapping and SDCKA-vs-SDCKB data-line identity on the bench with a meter/scope. 3.3 V-TTL data level per dreamcast.wiki and working no-level-shifter RP2040 builds (GP2040-CE, OrangeFox86 DreamcastControllerUsbPico)."
+}

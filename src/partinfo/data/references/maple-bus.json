@@ -1,0 +1,46 @@
+{
+  "id": "maple-bus",
+  "title": "Sega Maple Bus (Dreamcast peripheral bus)",
+  "topic": "digital",
+  "tags": ["dreamcast", "sega", "maple", "maple-bus", "controller", "serial", "console", "retro", "usb2maple", "rp2040"],
+  "summary": "The Dreamcast's half-duplex peripheral bus: 5 V power with 3.3 V TTL signalling on two lines (SDCKA/SDCKB) that alternate clock and data every bit. The host runs ~2 Mbps and polls peripherals about every 16 ms.",
+  "body": "Maple is the bus behind every Dreamcast controller port. Physically it is five contacts (VCC +5V, SDCKA, SDCKB, sense, GND); electrically it is a half-duplex two-wire serial bus on SDCKA and SDCKB. The catch that surprises people: the console POWERS peripherals at 5 V but the two data lines SIGNAL at 3.3 V TTL, so a 3.3 V microcontroller can talk to it directly with no level shifting -- only the VCC rail is 5 V.\n\nThe encoding is unusual. There is no fixed baud and no dedicated clock line. Instead the two lines take turns: for one bit, line A is the clock and line B carries the data; for the next bit they swap, B clocks and A carries data. The receiver latches the data line on the clock line's falling edge. Both lines idle HIGH through weak pull-ups. Frames are bracketed by distinctive start and end patterns (one line pulsed while the other is held), so a decoder syncs on those patterns rather than on a bit rate.\n\nSpeeds: the host drives roughly 160 ns per phase (~2 Mbps); peripherals answer slower, around 250 ns per phase. The Dreamcast polls each port about every 16 ms (60 Hz), which conveniently lines up input sampling with the video frame. A controller is itself a Maple host to its own sub-devices (VMU, rumble pack) over the expansion 'LM bus'.\n\nBuilding an adapter: because the protocol is bit-level and role-swapping, you don't use a UART or SPI block -- you bit-bang it with precise timing. On an RP2040 this is a natural fit for a PIO state machine running at 3.3 V straight onto the bus (the basis of usb2maple-style controller adapters). Data pins are typically assigned as consecutive GPIOs.",
+  "formulas": [],
+  "tables": [
+    {
+      "title": "Connector signals",
+      "headers": ["pin", "signal", "level", "role"],
+      "rows": [
+        ["1", "SDCKA (data)", "3.3 V TTL", "data/clock line, role swaps each bit (ref: 'Data pin 1')"],
+        ["2", "VCC", "+5 V", "peripheral power (only 5 V line)"],
+        ["3", "GND", "0 V", "ground return"],
+        ["4", "SENSE", "-", "tie to GND = device present"],
+        ["5", "SDCKB (data)", "3.3 V TTL", "data/clock line, role swaps each bit (ref: 'Data pin 5')"]
+      ]
+    },
+    {
+      "title": "Timing",
+      "headers": ["party", "phase time", "approx rate"],
+      "rows": [
+        ["host (Dreamcast)", "~160 ns/phase", "~2 Mbps"],
+        ["peripheral", "~250 ns/phase", "~0.5-1.3 Mbps"],
+        ["min edge spacing", "~125 ns diff lines / ~225 ns same line", "-"],
+        ["poll interval", "~16 ms", "60 Hz"]
+      ]
+    }
+  ],
+  "examples": [
+    "One bit: line A = clock, line B = data. Next bit: line B = clock, line A = data. The data line is sampled on the clock line's falling edge -- there is no separate clock wire and no fixed baud.",
+    "RP2040 adapter: a PIO state machine bit-bangs Maple timing directly at 3.3 V, no level shifter. Reference projects: GP2040-CE Dreamcast, OrangeFox86 DreamcastControllerUsbPico. Assign the two data GPIOs consecutively."
+  ],
+  "gotchas": [
+    "3.3 V TTL signalling, not 5 V -- a 3.3 V MCU interfaces directly; only VCC is 5 V.",
+    "Not UART/SPI: the two lines swap clock/data roles each bit and sample on the clock's falling edge. You need bit-level timing (RP2040 PIO / FPGA), not a stock serial peripheral.",
+    "Both lines idle HIGH via weak pull-ups; the bus is half-duplex.",
+    "Frames are delimited by start/end patterns on the two lines, not by a baud rate -- a decoder must sync on those patterns."
+  ],
+  "related": ["dreamcast-controller"],
+  "see_also_url": "https://dreamcast.wiki/Maple_bus",
+  "source": "claude",
+  "human_reviewed": false
+}

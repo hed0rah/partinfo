@@ -1,0 +1,164 @@
+{
+  "id": "mcu-usb-families",
+  "title": "MCU families over USB: enumerate, identify, dump",
+  "topic": "digital",
+  "tags": [
+    "mcu",
+    "usb",
+    "bootloader",
+    "dfu",
+    "bootsel",
+    "esp32",
+    "esp8266",
+    "rp2040",
+    "rp2350",
+    "stm32",
+    "avr",
+    "arduino",
+    "nrf52",
+    "cortex-m",
+    "esptool",
+    "picotool",
+    "dfu-util",
+    "avrdude",
+    "pyocd",
+    "openocd",
+    "swd",
+    "jtag",
+    "firmware",
+    "dump",
+    "read-flash",
+    "ch340",
+    "cp2102",
+    "ft232",
+    "identify",
+    "triage",
+    "unknown-board"
+  ],
+  "summary": "How each common microcontroller family presents itself over USB, the command that names the silicon rather than the silkscreen, and the command that reads its firmware out. Dump before you write: the vendor image is usually the only copy.",
+  "body": "An unknown board arrives and the printing on it is a claim, not evidence. Work in four steps and the family stops mattering.\n\n1. ENUMERATE. What does the host see? USB IDs, device class, which driver bound. This is also the only moment a hostile device is still inert, which is a separate concern from identification: see the gotchas.\n\n2. IDENTIFY. What chip is it actually? Read it from the silicon. Every family below has a command that asks the part itself, and the answer routinely disagrees with the silkscreen on cloned or relabelled boards.\n\n3. DUMP BEFORE YOU WRITE. The vendor firmware is usually the only copy in existence of whatever this thing does. Reflashing destroys it permanently and there is no undo. Read it out first, every time, even when you are certain you will not want it.\n\n4. THEN DECIDE. Only after the above does a board earn a place on a machine that matters.\n\nTwo ways a board reaches the host. Some MCUs have NATIVE USB in the silicon (ESP32-S3/C3/C6, RP2040/RP2350, STM32 with USB, nRF52) and enumerate as themselves. Others have no USB at all (ESP8266, classic AVR, plenty of STM32 boards) and reach you through a SERIAL BRIDGE chip soldered beside them, so what enumerates is the bridge and tells you nothing about the MCU behind it. A CH340 on the bus means 'something is back there', not 'this is an Arduino'.\n\nMost families also have a separate BOOTLOADER identity: hold a button, or pull a strap pin, and the board enumerates as a different device entirely with a different USB ID. That mode is where identify and dump both happen.",
+  "formulas": [],
+  "tables": [
+    {
+      "title": "Family: how it appears, how to identify, how to dump",
+      "headers": [
+        "family",
+        "enumerates as",
+        "identify",
+        "dump"
+      ],
+      "rows": [
+        [
+          "ESP32 S3 / C3 / C6",
+          "303a:* native USB, or a bridge chip",
+          "esptool chip_id",
+          "esptool read_flash 0 ALL out.bin"
+        ],
+        [
+          "ESP8266",
+          "bridge only (CH340 / CP2102)",
+          "esptool chip_id",
+          "esptool read_flash 0 ALL out.bin"
+        ],
+        [
+          "RP2040",
+          "2e8a:0003 mass storage, hold BOOTSEL",
+          "picotool info -a",
+          "picotool save out.uf2"
+        ],
+        [
+          "RP2350",
+          "2e8a:* mass storage, hold BOOTSEL (PID differs from RP2040, confirm)",
+          "picotool info -a",
+          "picotool save out.uf2"
+        ],
+        [
+          "STM32",
+          "0483:df11 in DFU mode, or SWD",
+          "dfu-util -l",
+          "dfu-util -a 0 -U out.bin"
+        ],
+        [
+          "AVR / Arduino",
+          "bridge (CH340 / FT232)",
+          "avrdude -c arduino -p m328p -v",
+          "avrdude -U flash:r:out.hex:i"
+        ],
+        [
+          "nRF52",
+          "J-Link (1366:*) or DAPLink (0d28:0204)",
+          "pyocd list",
+          "pyocd flash --read out.bin"
+        ],
+        [
+          "any Cortex-M",
+          "SWD probe, no USB of its own",
+          "openocd IDCODE scan",
+          "target dependent"
+        ]
+      ]
+    },
+    {
+      "title": "Serial bridge chips: what is really on the bus",
+      "headers": [
+        "id",
+        "chip",
+        "note"
+      ],
+      "rows": [
+        [
+          "1a86:7523",
+          "CH340 serial converter",
+          "the cheap default. says nothing about the MCU behind it"
+        ],
+        [
+          "10c4:ea60",
+          "CP210x UART bridge",
+          "Silicon Labs"
+        ],
+        [
+          "0403:6001",
+          "FT232 serial UART",
+          "counterfeits are common and misbehave under vendor drivers"
+        ],
+        [
+          "0483:df11",
+          "STM device in DFU mode",
+          "STM32 in its bootloader, not a bridge"
+        ],
+        [
+          "0d28:0204",
+          "ARM mbed / DAPLink",
+          "debug probe"
+        ],
+        [
+          "1366:*",
+          "SEGGER J-Link",
+          "debug probe"
+        ]
+      ]
+    }
+  ],
+  "examples": [
+    "Identify before trusting the label: `esptool chip_id` on a board silkscreened ESP32 reports the actual die, which on cloned boards is often a C3 rather than the S3 claimed.",
+    "Dump an RP2040 before reflashing: hold BOOTSEL while plugging in, then `picotool save out.uf2`. Once you drag a new .uf2 across, the original is gone.",
+    "STM32 into DFU: pull BOOT0 high, reset, then `dfu-util -l` should show 0483:df11. `dfu-util -a 0 -U out.bin` reads it back.",
+    "A board that enumerates as 1a86:7523 has told you only that a CH340 is present. Ask the MCU with esptool or avrdude before assuming which family it is."
+  ],
+  "gotchas": [
+    "usb.ids does not carry Espressif (303a) or Raspberry Pi (2e8a) on many distributions, verified on Ubuntu 24.04. lsusb then falls back to the device's own string descriptors, so the name you see is supplied by the device rather than looked up, and a device that cannot be queried shows as unknown.",
+    "Dump before you write. The vendor image is usually the only copy and reflashing is irreversible. This is the one step people skip and cannot undo.",
+    "The silkscreen is a claim. Relabelled and cloned boards are common, so identify from the silicon.",
+    "A bridge chip on the bus identifies the bridge, not the MCU. CH340 does not mean Arduino.",
+    "No USB event at all, while the board powers up and drives its screen, is electrical rather than software: a charge-only cable, connector orientation, or a USB-C port wired for power only. The host never saw a connect.",
+    "ESP32-C3 native USB Serial/JTAG sits on GPIO18 and GPIO19. Firmware that repurposes those pins kills USB the moment it boots. Hold BOOT (GPIO9), tap RESET, release BOOT to force the ROM bootloader, which reclaims them. A board that enumerates only in that state had its pins stolen by its own firmware.",
+    "RP2350's BOOTSEL product ID is not the RP2040's 2e8a:0003. Confirm on hardware rather than assuming they share one.",
+    "Enumeration is also the last moment an unknown device is inert. A device claiming an HID keyboard interface can type as soon as a driver binds, so identification and safety are separate problems."
+  ],
+  "related": [
+    "maple-bus"
+  ],
+  "see_also_url": null,
+  "source": "claude",
+  "human_reviewed": false
+}

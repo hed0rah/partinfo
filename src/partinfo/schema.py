@@ -45,6 +45,7 @@ Category = Literal[
     "memory",
     "display",
     "rf",
+    "passive",
     "other",
 ]
 

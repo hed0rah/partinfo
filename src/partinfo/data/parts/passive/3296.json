@@ -4,7 +4,7 @@
   "aliases": ["3296W", "3296X", "3296Y", "3296Z", "3296P", "3296W-1-103", "trimpot", "trimmer pot"],
   "full_name": "3/8 inch Square Multiturn Cermet Trimming Potentiometer",
   "manufacturers": ["Bourns"],
-  "category": "other",
+  "category": "passive",
   "subcategory": "multiturn cermet trimming potentiometer",
   "tags": ["trimpot", "trimmer", "potentiometer", "multiturn", "cermet", "calibration", "passive", "variable-resistor", "offset-null", "eurorack"],
   "description": "The industry-standard 3/8 inch square multiturn cermet trimmer, and the blue rectangular part with a tiny adjustment screw found in almost every through-hole parts drawer. 25 turns of effective travel across the full resistance range makes it a calibration part rather than a control: fine enough to null an op-amp offset or trim V/oct scaling, far too slow for anything a user turns. Sold in five terminal styles (W, X, Y, Z, P) that differ only in pin geometry, not electrically. The three-digit resistance code on the body is the value, not a part number: two significant digits followed by a decade multiplier, so 103 is 10 kohm and 501 is 500 ohm.",

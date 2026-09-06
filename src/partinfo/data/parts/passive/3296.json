@@ -1,0 +1,68 @@
+{
+  "id": "3296",
+  "name": "3296",
+  "aliases": ["3296W", "3296X", "3296Y", "3296Z", "3296P", "3296W-1-103", "trimpot", "trimmer pot"],
+  "full_name": "3/8 inch Square Multiturn Cermet Trimming Potentiometer",
+  "manufacturers": ["Bourns"],
+  "category": "other",
+  "subcategory": "multiturn cermet trimming potentiometer",
+  "tags": ["trimpot", "trimmer", "potentiometer", "multiturn", "cermet", "calibration", "passive", "variable-resistor", "offset-null", "eurorack"],
+  "description": "The industry-standard 3/8 inch square multiturn cermet trimmer, and the blue rectangular part with a tiny adjustment screw found in almost every through-hole parts drawer. 25 turns of effective travel across the full resistance range makes it a calibration part rather than a control: fine enough to null an op-amp offset or trim V/oct scaling, far too slow for anything a user turns. Sold in five terminal styles (W, X, Y, Z, P) that differ only in pin geometry, not electrically. The three-digit resistance code on the body is the value, not a part number: two significant digits followed by a decade multiplier, so 103 is 10 kohm and 501 is 500 ohm.",
+  "packages": {
+    "3296W": {
+      "template": "sip",
+      "pin_count": 3,
+      "pins": [
+        {"pin": 1, "name": "CCW", "type": "passive", "description": "counter-clockwise end of the resistive element. Full marked resistance measured from here to pin 3 regardless of wiper position"},
+        {"pin": 2, "name": "WIPER", "type": "passive", "description": "wiper. Clockwise rotation of the adjustment screw moves it toward pin 3"},
+        {"pin": 3, "name": "CW", "type": "passive", "description": "clockwise end of the resistive element"}
+      ],
+      "notes": "3296W is the top-adjust style with in-line terminals on 2.54 mm (.100 in) centres. The W, X, Y, Z and P styles share this terminal numbering and differ only in pin arrangement and adjustment-screw orientation, so a footprint drawn for one style will not accept another."
+    }
+  },
+  "specs": {
+    "pd_max_mw": 500,
+    "extra": {
+      "effective travel": "25 turns nominal",
+      "resistance range": "10 ohm to 2 Mohm (codes 100 through 205)",
+      "resistance tolerance": "+/-10 % standard",
+      "temperature coefficient": "+/-100 PPM/degC",
+      "power rating": "0.5 W at 70 degC, derating linearly to 0 W at 125 degC; 300 V max",
+      "temperature range": "-55 degC to +125 degC",
+      "resolution": "infinite (cermet element)",
+      "contact resistance variation": "1.0 % or 3 ohm max",
+      "adjustability, voltage": "+/-0.01 %",
+      "insulation resistance": "500 VDC",
+      "dielectric strength": "350 VAC at 70,000 ft",
+      "rotational life": "200 cycles",
+      "load life": "1,000 hours at 0.5 W, 70 degC (3 % delta-TR)",
+      "torque": "3.0 oz-in max",
+      "mechanical stops": "wiper idles (slip clutch at both ends)",
+      "vibration / shock": "20 G / 100 G",
+      "adjustment tool": "Bourns H-90",
+      "standard": "meets EIA Specification 468"
+    }
+  },
+  "gotchas": [
+    "Pin 2 is the wiper, pin 1 is the counter-clockwise end and pin 3 the clockwise end. Turning the screw clockwise moves the wiper toward pin 3. Confirmed against the Bourns schematic, but note the numbering is not universal across trimmer families -- check before assuming on a part from another maker.",
+    "As a rheostat, ALWAYS tie the wiper to one end terminal. A worn or contaminated wiper goes momentarily open, and if the wiper is the only current path the circuit sees an open circuit -- which in a bias string or feedback network usually means something rails. Tied, an open wiper degrades to the fixed end-to-end resistance instead of infinity.",
+    "The 0.5 W rating is for the whole element at 70 degC. Used as a rheostat, only the fraction of the track in circuit dissipates the power, so derate in proportion to the fraction you are using, not to the marked value.",
+    "Rotational life is 200 cycles, not 200,000. These are set-once calibration parts. Anything a user or a service tech turns repeatedly wants a real potentiometer.",
+    "The end stops are a slip clutch -- the datasheet calls it 'wiper idles'. There is no hard stop to feel, so counting turns is the only way to know where you are. Genuine parts tolerate over-travel indefinitely; cheap clones often do not and will strip.",
+    "The three-digit code is a resistance code, not ohms: two significant figures plus a decade multiplier. 103 = 10 kohm, 501 = 500 ohm, 205 = 2 Mohm. Reading 103 as 103 ohm is a factor-of-100 error.",
+    "Adjust with a proper trimmer tool (Bourns H-90) rather than a metal screwdriver. On high-impedance nodes and megohm values, hand capacitance through a metal blade shifts the very reading you are trying to set, so the circuit settles somewhere else the moment you pull the driver out.",
+    "+/-10 % resistance tolerance is normal. The marked value is a range, not a target -- which is fine, because the point of the part is that you trim it."
+  ],
+  "applications": [
+    "op-amp input offset nulling",
+    "gain trimming in an instrumentation or feedback network",
+    "scale and offset calibration for V/oct pitch CV in synthesizer and eurorack circuits",
+    "setting bias current or a reference voltage divider",
+    "any set-once adjustment that must survive vibration and then be left alone"
+  ],
+  "datasheet_url": "https://www.bourns.com/docs/product-datasheets/3296.pdf",
+  "verified": true,
+  "source": "claude",
+  "human_reviewed": false,
+  "notes": "Pin function and every spec value here were read from the Bourns 3296 datasheet PDF (revision fetched 2026-09-06), not from memory. The terminal schematic printed on that sheet reads '2 WIPER' above 'CCW 1 ... 3 CW' with CLOCKWISE between them, which is the basis for the pin assignment. What was NOT verified: the per-style pin geometry of the X, Y, Z and P variants, because the dimension drawings did not survive text extraction cleanly. Only the 3296W footprint is described, and the claim that all five styles share the electrical numbering comes from the shared schematic rather than from reading each drawing."
+}
